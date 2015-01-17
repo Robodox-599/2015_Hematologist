@@ -14,19 +14,20 @@ class Hematologist: public IterativeRobot
 public:
 	Hematologist()
 	{
-		drive = new HematologistDrive(oi);
 		oi = new HematologistOperatorInterface();
+		drive = new HematologistDrive();
 		timer = new Timer();
+		oi->dashboard->init();
 	}
 
 	void RobotInit()
 	{
-
+		drive->gyro->Reset();
 	}
 
 	void AutonomousInit()
 	{
-		drive->gyro->Reset();
+
 	}
 
 	void AutonomousPeriodic()
@@ -39,19 +40,21 @@ public:
       if(timer->Get() > 0 + autonInitTime)
       {
     	  angle = drive->gyro->GetAngle();
-    	  drive->HematologistDrive(-1.0, -angle * drive->Kp);
+    	  //drive->drive(-1.0, 1.0, 1.0);
     	  Wait(0.004);
       }
 	}
 
 	void TeleopInit()
 	{
-		drive->gyro->Reset();
+
 	}
 
 	void TeleopPeriodic()
 	{
-		drive->drive(float spin, float side, float forward);
+		drive->RobotDrive->MecanumDrive_Cartesian(oi->rightJoystick->GetX(), oi->rightJoystick->GetY(), oi->leftJoystick->GetX(), drive->gyro->GetAngle());
+		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
+		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());
 	}
 
 	void TestPeriodic()

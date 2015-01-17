@@ -4,6 +4,7 @@ HematologistOperatorInterface::HematologistOperatorInterface()
 {
 	leftJoystick = new Joystick(1);
 	rightJoystick = new Joystick(2);
+	dashboard->init();
 }
 
 HematologistOperatorInterface::~HematologistOperatorInterface()
