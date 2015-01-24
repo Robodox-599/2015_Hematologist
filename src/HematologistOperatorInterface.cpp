@@ -2,9 +2,8 @@
 
 HematologistOperatorInterface::HematologistOperatorInterface()
 {
-	leftJoystick = new Joystick(1);
-	rightJoystick = new Joystick(2);
-	dashboard->init();
+	leftJoystick = new Joystick(0);
+	rightJoystick = new Joystick(1);
 }
 
 HematologistOperatorInterface::~HematologistOperatorInterface()
@@ -15,5 +14,7 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	leftJoystick = NULL;
 	rightJoystick = NULL;
 }
+
+
 
 

@@ -8,25 +8,31 @@ class HematologistDrive
 public:
 	HematologistDrive();
 	~HematologistDrive();
-	RobotDrive* RobotDrive;
 
-	/*
-     void setLinearDrive(float forward);
-     void setTurn(float spin);
-     void setStrafe(float side);
-	 void drive(float spin, float side, float forward);*/
+     void setLinearDrive();
+     void setTurn();
+     void setStrafe();
+	 void drive();
+	 void testDrive();
 
 	 Gyro* gyro;
-	 static const float Kp;
+
+	 float forward;
+	 float spin;
+	 float side;
+	 double initTime;
 
 private:
-/*
+	HematologistOperatorInterface* oi;
+
 	Talon* frontLeftMotor;
 	Talon* backLeftMotor;
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
-*/
 
-	HematologistOperatorInterface* oi;
+	Timer* timer;
+	double gyro_ref;
+
+    static constexpr float Kp = .03;
 };
 #endif

@@ -11,7 +11,6 @@ public:
 
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
-
 	SmartDashboard* dashboard;
 
 private:
