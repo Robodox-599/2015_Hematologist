@@ -50,6 +50,7 @@ void HematologistDrive::setLinearDrive()
 	 }
 }
 
+
 void HematologistDrive::setTurn()
 {
 	 if (oi->rightJoystick->GetX() > DEADZONE || oi->rightJoystick->GetX() < -DEADZONE)
@@ -74,6 +75,8 @@ void HematologistDrive::setStrafe()
 		 side = 0;
 	 }
 }
+
+
 
 void HematologistDrive::drive()
 {

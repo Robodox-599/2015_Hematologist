@@ -9,6 +9,7 @@ class Hematologist: public IterativeRobot
 {
 	HematologistDrive *drive;
 	HematologistOperatorInterface *oi;
+	LiveWindow *lw;
 	Timer *timer;
 
 public:
@@ -17,6 +18,7 @@ public:
 		oi = new HematologistOperatorInterface();
 		drive = new HematologistDrive();
 		timer = new Timer();
+		lw = LiveWindow::GetInstance();
 		oi->dashboard->init();
 	}
 
@@ -45,6 +47,8 @@ public:
 
 	void TestPeriodic()
 	{
+		lw->Run();
+
 		drive->setLinearDrive();
 		drive->setTurn();
 		drive->setStrafe();

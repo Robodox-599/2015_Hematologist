@@ -21,6 +21,7 @@ public:
 	 float spin;
 	 float side;
 	 double initTime;
+	 float Kp = .03;
 
 private:
 	HematologistOperatorInterface* oi;
@@ -32,7 +33,5 @@ private:
 
 	Timer* timer;
 	double gyro_ref;
-
-    static constexpr float Kp = .03;
 };
 #endif
