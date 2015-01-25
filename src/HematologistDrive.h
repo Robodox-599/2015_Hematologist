@@ -23,6 +23,8 @@ public:
 	 double initTime;
 	 float Kp = .06;
 
+	 Timer* timer;
+
 private:
 	HematologistOperatorInterface* oi;
 
@@ -31,7 +33,6 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
-	Timer* timer;
 	double gyro_ref;
 };
 #endif

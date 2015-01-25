@@ -10,14 +10,12 @@ class Hematologist: public IterativeRobot
 	HematologistDrive *drive;
 	HematologistOperatorInterface *oi;
 	LiveWindow *lw;
-	Timer *timer;
 
 public:
 	Hematologist()
 	{
 		oi = new HematologistOperatorInterface();
 		drive = new HematologistDrive();
-		timer = new Timer();
 		lw = LiveWindow::GetInstance();
 		oi->dashboard->init();
 	}
@@ -43,12 +41,11 @@ public:
 
 	void TeleopPeriodic()
 	{
-	}
-
-	void TestPeriodic()
-	{
-		drive->drive();
-		if(oi->rightJoystick->GetTrigger()) drive->testDrive();
+		if(oi->rightJoystick->GetTrigger()){
+			drive->drive();
+		} else {
+			drive->testDrive();
+		}
 		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
 		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());
 		oi->dashboard->PutNumber("Forward: ", drive->forward);
@@ -58,6 +55,12 @@ public:
 		oi->dashboard->PutNumber("Right Joystick Y", oi->rightJoystick->GetY());
 		oi->dashboard->PutNumber("Left Joystick X", oi->leftJoystick->GetX());
 		oi->dashboard->PutNumber("Left Joystick Y", oi->leftJoystick->GetY());
+		oi->dashboard->PutNumber("Timer", drive->timer->Get());
+	}
+
+	void TestPeriodic()
+	{
+		drive->drive();
 	}
 };
 

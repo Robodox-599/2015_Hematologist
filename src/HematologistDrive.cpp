@@ -18,6 +18,7 @@
 	 oi = new HematologistOperatorInterface;
 
 	 timer = new Timer();
+	 timer->Start();
 	 initTime = 0;
 }
 
@@ -80,6 +81,9 @@ void HematologistDrive::setStrafe()
 
 void HematologistDrive::drive()
 {
+	 setLinearDrive();
+	 setTurn();
+	 setStrafe();
 	 frontLeftMotor->Set(forward - side + spin);
 	 frontRightMotor->Set(-forward - side + spin);
 	 backLeftMotor->Set(forward + side + spin);
@@ -89,7 +93,7 @@ void HematologistDrive::drive()
 //for performing gyro testing, will be removed when test is successful
 void HematologistDrive::testDrive()
 {   //speed: .24
-    if(oi->rightJoystick->GetTrigger()){
+    if(oi->rightJoystick->GetRawButton(3)){
     	gyro_ref = gyro->GetAngle();
     	initTime = timer->Get();
     }
@@ -100,5 +104,10 @@ void HematologistDrive::testDrive()
     	frontRightMotor->Set(-.24 + spin);
     	backLeftMotor->Set(.24 + spin);
     	backRightMotor->Set(-.24 + spin);
+    } else {
+    	frontLeftMotor->Set(0);
+    	frontRightMotor->Set(0);
+    	backLeftMotor->Set(0);
+    	backRightMotor->Set(0);
     }
 }
