@@ -21,7 +21,7 @@ public:
 	 float spin;
 	 float side;
 	 double initTime;
-	 float Kp = .03;
+	 float Kp = .06;
 
 private:
 	HematologistOperatorInterface* oi;

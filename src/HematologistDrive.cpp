@@ -89,15 +89,16 @@ void HematologistDrive::drive()
 //for performing gyro testing, will be removed when test is successful
 void HematologistDrive::testDrive()
 {   //speed: .24
-    if(oi->rightJoystick->GetRawButton(1)){
+    if(oi->rightJoystick->GetTrigger()){
+    	gyro_ref = gyro->GetAngle();
     	initTime = timer->Get();
     }
 
-    if(timer->Get() > 0 + initTime && timer->Get() < 4 + initTime){
-    	frontLeftMotor->Set(.24);
-    	frontRightMotor->Set(-.24);
-    	backLeftMotor->Set(.24);
-    	backRightMotor->Set(-.24);
+    if(timer->Get() > 0 + initTime && timer->Get() < 3 + initTime){
     	spin = Kp * (gyro_ref - (gyro->GetAngle()));
+    	frontLeftMotor->Set(.24 + spin);
+    	frontRightMotor->Set(-.24 + spin);
+    	backLeftMotor->Set(.24 + spin);
+    	backRightMotor->Set(-.24 + spin);
     }
 }

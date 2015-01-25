@@ -47,12 +47,8 @@ public:
 
 	void TestPeriodic()
 	{
-		lw->Run();
-
-		drive->setLinearDrive();
-		drive->setTurn();
-		drive->setStrafe();
 		drive->drive();
+		if(oi->rightJoystick->GetTrigger()) drive->testDrive();
 		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
 		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());
 		oi->dashboard->PutNumber("Forward: ", drive->forward);
