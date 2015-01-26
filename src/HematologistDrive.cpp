@@ -84,10 +84,10 @@ void HematologistDrive::drive()
 	 setLinearDrive();
 	 setTurn();
 	 setStrafe();
-	 frontLeftMotor->Set(forward - side + spin);
-	 frontRightMotor->Set(-forward - side + spin);
-	 backLeftMotor->Set(forward + side + spin);
-	 backRightMotor->Set(-forward + side + spin);
+	 frontLeftMotor->Set(forward + side + spin);
+	 frontRightMotor->Set(-forward + side + spin);
+	 backLeftMotor->Set(forward - side + spin);
+	 backRightMotor->Set(-forward - side + spin);
 }
 
 //for performing gyro testing, will be removed when test is successful
