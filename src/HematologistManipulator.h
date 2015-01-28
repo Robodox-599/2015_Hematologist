@@ -12,7 +12,7 @@ private:
 public:
 	HematologistManipulator();
 	~virtual HematologistManipulator();
-	void openBinHugger();
+	void toggleBinHugger();
 
 
 

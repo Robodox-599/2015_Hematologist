@@ -15,7 +15,7 @@ virtual HematologistManipulator::~HematologistManipulator()
 	solenoid = NULL;
 }
 
-void HematologistManipulator::openCloseBinHugger()
+void HematologistManipulator::toggleBinHugger()
 {
 	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
 	{
