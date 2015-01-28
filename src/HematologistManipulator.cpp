@@ -8,11 +8,18 @@ HematologistManipulator::HematologistManipulator()
 
 }
 
-bool HematologistManipulator::openBinHugger(int buttonNum)
+void HematologistManipulator::openBinHugger()
 {
-	if (joystick->GetRawButton(buttonNum))
+	if (joystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
 	{
-
+		solenoid->Set(DoubleSolenoid::kReverse);
+	}
+	else
+	{
+		if (joystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
+		{
+			solenoid->Set(DoubleSolenoid::kForward);
+		}
 	}
 }
 
