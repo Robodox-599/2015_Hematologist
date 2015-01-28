@@ -6,7 +6,7 @@ class HematologistManipulator
 private:
 	DoubleSolenoid* solenoid;
 
-	ManipJoystick* joystick;
+	Joystick* manipJoystick;
 
 
 public:

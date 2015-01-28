@@ -2,28 +2,11 @@
 
 HematologistManipulator::HematologistManipulator()
 {
-	solenoid = new DoubleSolenoid();
+	solenoid = new DoubleSolenoid(1);
 
-	ManipJoystick = new joystick();
+	manipJoystick = new Joystick(1);
 
 }
-
-void HematologistManipulator::openBinHugger()
-{
-	if (joystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
-	{
-		solenoid->Set(DoubleSolenoid::kReverse);
-	}
-	else
-	{
-		if (joystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
-		{
-			solenoid->Set(DoubleSolenoid::kForward);
-		}
-	}
-}
-
-
 
 virtual HematologistManipulator::~HematologistManipulator()
 {
@@ -31,4 +14,20 @@ virtual HematologistManipulator::~HematologistManipulator()
 
 	solenoid = NULL;
 }
+
+void HematologistManipulator::openCloseBinHugger()
+{
+	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
+	{
+		solenoid->Set(DoubleSolenoid::kReverse);
+	}
+	else if (manipJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
+	{
+		solenoid->Set(DoubleSolenoid::kForward);
+	}
+}
+
+
+
+
 
