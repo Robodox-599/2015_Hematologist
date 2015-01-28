@@ -12,7 +12,7 @@ private:
 public:
 	HematologistManipulator();
 	~virtual HematologistManipulator();
-	bool buttonIsPressed(int buttonNum);
+	bool openBinHugger(int buttonNum);
 
 
 

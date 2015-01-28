@@ -8,11 +8,11 @@ HematologistManipulator::HematologistManipulator()
 
 }
 
-bool HematologistManipulator::buttonIsPressed(int buttonNum)
+bool HematologistManipulator::openBinHugger(int buttonNum)
 {
 	if (joystick->GetRawButton(buttonNum))
 	{
-		
+
 	}
 }
 
