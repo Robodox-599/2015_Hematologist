@@ -76,7 +76,7 @@ void HematologistManipulator::secondTierSolStop()
 
 void HematologistManipulator::encoder()
 {
-	rightLiftEncoder->Start();
+	rightLiftEncoder->Encoder::Reset();
 }
 
 
