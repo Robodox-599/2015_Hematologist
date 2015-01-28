@@ -12,7 +12,7 @@ bool HematologistManipulator::buttonIsPressed(int buttonNum)
 {
 	if (joystick->GetRawButton(buttonNum))
 	{
-
+		
 	}
 }
 
