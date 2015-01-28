@@ -74,7 +74,7 @@ void HematologistManipulator::secondTierSolStop()
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
-void HematologistManipulator::endcoder()
+void HematologistManipulator::encoder()
 {
 	rightLiftEncoder->Start();
 }

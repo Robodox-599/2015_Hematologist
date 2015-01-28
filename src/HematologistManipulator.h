@@ -23,6 +23,8 @@ public:
 	void secondTierSolForward();
 	void secondTierSolBackward();
 	void secondTierSolStop();
+
+	void encoder();
 };
 
 
