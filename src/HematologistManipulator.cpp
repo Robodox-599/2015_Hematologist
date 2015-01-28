@@ -77,6 +77,11 @@ void HematologistManipulator::secondTierSolStop()
 void HematologistManipulator::encoder()
 {
 	rightLiftEncoder->Encoder::Reset();
+	rightLiftEncoder->Encoder::SetMaxPeriod(1);
+	rightLiftEncoder->Encoder::SetMinRate(10);
+	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
+	rightLiftEncoder->Encoder::SetReverseDirection(true);
+	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
 }
 
 
