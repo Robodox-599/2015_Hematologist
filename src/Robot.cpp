@@ -2,11 +2,12 @@
 class Robot: public IterativeRobot
 {
 private:
-	
-
+	OI* oi;
+	HM* hm;
 	void RobotInit()
 	{
-		
+		oi = new OI();
+		hm = new HM(oi);		
 	}
 
 	void AutonomousInit()

@@ -19,6 +19,11 @@ virtual HematologistManipulator::~HematologistManipulator()
 	solenoid = NULL;
 }
 
+HematologistManipulator::HematologistManipulator(OperatorInteface * oi)
+{
+	this.oi = oi;
+}
+
 void HematologistManipulator::toggleBinHugger()
 {
 	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
@@ -42,6 +47,5 @@ void HematologistManipulator::moveForklift(float power)
 	{
 		leftForkliftMotor->Set(0);
 		rightForkliftMotor->Set(0);
-
 	}
 }

@@ -9,11 +9,15 @@ private:
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 
 
+	OperatorInterface* oi;
+	
 public:
 	HematologistManipulator();
+	HematologistManipulator(OperatorInterface* oi);
 	~virtual HematologistManipulator();
 	void toggleBinHugger();
 	void moveForklift(float power);
+
 
 };
 #endif
