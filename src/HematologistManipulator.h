@@ -13,6 +13,7 @@ private:
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
 	Joystick* manipulatorJoystick;
+	double liftHeight;
 
 public:
 	HematologistManipulator();
@@ -26,8 +27,9 @@ public:
 	void secondTierSolStop();
 
 	void setLiftToPosition(int target);
-
 	void preSetHeight();
+	void activateSecondTier(int target);
+
 };
 
 

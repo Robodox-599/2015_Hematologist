@@ -118,3 +118,17 @@ void HematologistManipulator::preSetHeight()
 	}
 }
 
+void HematologistManipulator::activateSecondTier(int target)
+{
+	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
+	{
+		secondTierSolForward();
+	}
+	else
+	{
+		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
+			{
+				secondTierSolBackward();
+			}
+	}
+}
