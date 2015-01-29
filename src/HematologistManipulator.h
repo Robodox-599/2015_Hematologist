@@ -24,7 +24,7 @@ public:
 	void secondTierSolBackward();
 	void secondTierSolStop();
 
-	void encoder();
+	void setLiftToPosition();
 };
 
 
