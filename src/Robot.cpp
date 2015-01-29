@@ -1,4 +1,3 @@
-#include "WPILib.h"
 
 class Robot: public IterativeRobot
 {

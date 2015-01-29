@@ -4,8 +4,6 @@ HematologistManipulator::HematologistManipulator()
 {
 	solenoid = new DoubleSolenoid(1);
 
-	manipJoystick = new Joystick(1);
-
 	leftForkliftMotor = new Talon(1);
 	rightForkliftMotor = new Talon(1);
 }
@@ -13,7 +11,11 @@ HematologistManipulator::HematologistManipulator()
 virtual HematologistManipulator::~HematologistManipulator()
 {
 	delete solenoid;
+	delete leftForkliftMotor;
+	delete rightForkliftMotor;
 
+	leftForkliftMotor = NULL;
+	rightForkliftMotor = NULL;
 	solenoid = NULL;
 }
 
@@ -33,6 +35,13 @@ void HematologistManipulator::moveForklift(float power)
 {
 	if(manipJoystick->GetRawButton(MOVE_FORKLIFT_BUTTON))
 	{
+		leftForkliftMotor->Set(power);
+		rightForkliftMotor->Set(-power);
+	}
+	else
+	{
+		leftForkliftMotor->Set(0);
+		rightForkliftMotor->Set(0);
 
 	}
-}             
+}

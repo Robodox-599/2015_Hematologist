@@ -6,24 +6,14 @@ class HematologistManipulator
 private:
 	DoubleSolenoid* solenoid;
 
-	Joystick* manipJoystick;
-
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 
-
 
 public:
 	HematologistManipulator();
 	~virtual HematologistManipulator();
 	void toggleBinHugger();
-	void moveForklift();
-
-
-
-
+	void moveForklift(float power);
 
 };
-
-
-
 #endif
