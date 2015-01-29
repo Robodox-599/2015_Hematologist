@@ -18,6 +18,5 @@ public:
 	void toggleBinHugger();
 	void moveForklift(float power);
 
-
 };
 #endif

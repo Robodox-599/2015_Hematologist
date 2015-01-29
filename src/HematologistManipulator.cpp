@@ -2,26 +2,26 @@
 
 HematologistManipulator::HematologistManipulator()
 {
-	solenoid = new DoubleSolenoid(1);
-
 	leftForkliftMotor = new Talon(1);
 	rightForkliftMotor = new Talon(1);
+
+	solenoid = new DoubleSolenoid(1);
 }
 
 virtual HematologistManipulator::~HematologistManipulator()
 {
-	delete solenoid;
 	delete leftForkliftMotor;
 	delete rightForkliftMotor;
+	delete solenoid;
 
 	leftForkliftMotor = NULL;
 	rightForkliftMotor = NULL;
 	solenoid = NULL;
 }
 
-HematologistManipulator::HematologistManipulator(OperatorInteface * oi)
+HematologistManipulator::HematologistManipulator(OperatorInteface* oi)
 {
-	this.oi = oi;
+	this->oi = oi;
 }
 
 void HematologistManipulator::toggleBinHugger()
