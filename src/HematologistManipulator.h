@@ -25,7 +25,7 @@ public:
 	void secondTierSolBackward();
 	void secondTierSolStop();
 
-	void setLiftToPosition();
+	void setLiftToPosition(int target);
 };
 
 

@@ -80,7 +80,7 @@ void HematologistManipulator::secondTierSolStop()
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
-void HematologistManipulator::setLiftToPosition()
+void HematologistManipulator::setLiftToPosition(int target)
 {
 	if(rightLiftEncoder->Get() < 30 && leftLiftEncoder->Get() < 30)
 	{
@@ -89,13 +89,10 @@ void HematologistManipulator::setLiftToPosition()
 	}
 	else
 	{
-		if(LIFTDEADZONE < rightLiftEncoder->Get() && rightLiftEncoder->Get() < LIFTDEADZONE + 10)
+		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
 		{
-			if(LIFTDEADZONE < leftLiftEncoder->Get() && rightLiftEncoder->Get() < LIFTDEADZONE + 10)
-			{
-				leftLiftMotor->Set(0);
-				rightLiftMotor->Set(0);
-			}
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
 		}
 		else
 		{
