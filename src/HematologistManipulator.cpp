@@ -82,26 +82,22 @@ void HematologistManipulator::secondTierSolStop()
 
 void HematologistManipulator::setLiftToPosition(int target)
 {
-	while(true)
+	if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
 	{
-		if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
+		leftLiftMotor->Set(0.5);
+		rightLiftMotor->Set(0.5);
+	}
+	else
+	{
+		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
 		{
-			leftLiftMotor->Set(0.5);
-			rightLiftMotor->Set(0.5);
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
 		}
 		else
 		{
-			if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
-			{
-				leftLiftMotor->Set(0);
-				rightLiftMotor->Set(0);
-				break;
-			}
-			else
-			{
-				leftLiftMotor->Set(-0.5);
-				rightLiftMotor->Set(-0.5);
-			}
+			leftLiftMotor->Set(-0.5);
+			rightLiftMotor->Set(-0.5);
 		}
 	}
 }
