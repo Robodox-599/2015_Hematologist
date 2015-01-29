@@ -6,6 +6,8 @@ HematologistManipulator::HematologistManipulator()
 
 	manipJoystick = new Joystick(1);
 
+	leftForkliftMotor = new Talon(1);
+	rightForkliftMotor = new Talon(1);
 }
 
 virtual HematologistManipulator::~HematologistManipulator()
@@ -18,7 +20,7 @@ virtual HematologistManipulator::~HematologistManipulator()
 void HematologistManipulator::toggleBinHugger()
 {
 	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
-	{
+	{ 
 		solenoid->Set(DoubleSolenoid::kReverse);
 	}
 	else if (manipJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
@@ -27,7 +29,10 @@ void HematologistManipulator::toggleBinHugger()
 	}
 }
 
+void HematologistManipulator::moveForklift(float power)
+{
+	if(manipJoystick->GetRawButton(MOVE_FORKLIFT_BUTTON))
+	{
 
-
-
-
+	}
+}             

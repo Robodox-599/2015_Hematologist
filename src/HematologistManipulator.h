@@ -8,11 +8,15 @@ private:
 
 	Joystick* manipJoystick;
 
+	Talon* rightForkliftMotor;
+	Talon* leftForkliftMotor; 
+
 
 public:
 	HematologistManipulator();
 	~virtual HematologistManipulator();
 	void toggleBinHugger();
+	void moveForklift();
 
 
 
