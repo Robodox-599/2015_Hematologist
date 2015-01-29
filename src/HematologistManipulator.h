@@ -26,6 +26,8 @@ public:
 	void secondTierSolStop();
 
 	void setLiftToPosition(int target);
+
+	void preSetHeight();
 };
 
 

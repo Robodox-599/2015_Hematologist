@@ -82,24 +82,43 @@ void HematologistManipulator::secondTierSolStop()
 
 void HematologistManipulator::setLiftToPosition(int target)
 {
-	if(rightLiftEncoder->Get() < 30 && leftLiftEncoder->Get() < 30)
+	while(true)
 	{
-		leftLiftMotor->Set(0.5);
-		rightLiftMotor->Set(0.5);
-	}
-	else
-	{
-		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
+		if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
 		{
-			leftLiftMotor->Set(0);
-			rightLiftMotor->Set(0);
+			leftLiftMotor->Set(0.5);
+			rightLiftMotor->Set(0.5);
 		}
 		else
 		{
-			leftLiftMotor->Set(-0.5);
-			rightLiftMotor->Set(-0.5);
+			if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
+			{
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
+				break;
+			}
+			else
+			{
+				leftLiftMotor->Set(-0.5);
+				rightLiftMotor->Set(-0.5);
+			}
 		}
 	}
 }
 
+void HematologistManipulator::preSetHeight()
+{
+	if(manipulatorJoystick->GetRawButton(3))
+	{
+		setLiftToPosition(0);
+	}
+	if(manipulatorJoystick->GetRawButton(4))
+	{
+		setLiftToPosition(30);
+	}
+	if(manipulatorJoystick->GetRawButton(5))
+	{
+		setLiftToPosition(50);
+	}
+}
 
