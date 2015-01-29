@@ -145,11 +145,11 @@ void HematologistManipulator::toggleBinHugger()
 {
 	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
 	{ 
-		solenoid->Set(DoubleSolenoid::kReverse);
+		binHuggerSolenoid->Set(DoubleSolenoid::kReverse);
 	}
 	else if (manipJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
 	{
-		solenoid->Set(DoubleSolenoid::kForward);
+		binHuggerSolenoid->Set(DoubleSolenoid::kForward);
 	}
 }
 

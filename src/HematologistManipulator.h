@@ -15,7 +15,7 @@ private:
 	Joystick* manipulatorJoystick;
 	double liftHeight;
 	
-	DoubleSolenoid* solenoid;
+	DoubleSolenoid* binHuggerSolenoid;
 
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 
