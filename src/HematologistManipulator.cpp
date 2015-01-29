@@ -1,5 +1,5 @@
 #include "HematologistManipulator.h"
-
+#include "HematologistMacros.h"
 
 HematologistManipulator::HematologistManipulator()
 {
@@ -35,7 +35,7 @@ HematologistManipulator::~HematologistManipulator()
 	manipulatorJoystick = NULL;
 }
 
-void HematologistManipulator::moveLiftUp()
+/*void HematologistManipulator::moveLiftUp()
 {
 	//moves lift up
 	if(manipulatorJoystick->GetRawButton(4))
@@ -63,7 +63,7 @@ void HematologistManipulator::moveLiftDown()
 		leftLiftMotor->Set(0);
 		rightLiftMotor->Set(0);
 	}
-}
+}*/
 
 void HematologistManipulator::secondTierSolForward()
 {
@@ -89,10 +89,13 @@ void HematologistManipulator::setLiftToPosition()
 	}
 	else
 	{
-		if(rightLiftEncoder->Get() == 30 && leftLiftEncoder->Get() == 30)
+		if(LIFTDEADZONE < rightLiftEncoder->Get() && rightLiftEncoder->Get() < LIFTDEADZONE + 10)
 		{
-			leftLiftMotor->Set(0);
-			rightLiftMotor->Set(0);
+			if(LIFTDEADZONE < leftLiftEncoder->Get() && rightLiftEncoder->Get() < LIFTDEADZONE + 10)
+			{
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
+			}
 		}
 		else
 		{

@@ -1,6 +1,7 @@
 #ifndef HEMATOLOGIST_MANIPULATOR_H_
 #define HEMATOLOGIST_MANIPULATOR_H_
 #include "WPILib.h"
+#include "HematologistMacros.h"
 
 
 class HematologistManipulator
