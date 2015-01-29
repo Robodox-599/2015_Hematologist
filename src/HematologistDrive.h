@@ -21,7 +21,7 @@ public:
 	 float spin;
 	 float side;
 	 double initTime;
-	 float Kp = .09;
+	 float Kp = .1;
 	 float Kd = .01;
 
 	 Timer* timer;

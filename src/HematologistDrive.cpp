@@ -104,7 +104,9 @@ void HematologistDrive::testDrive()
     	frontRightMotor->Set(-.24 + spin);
     	backLeftMotor->Set(.24 + spin);
     	backRightMotor->Set(-.24 + spin);
-    } else {
+    }
+
+    else {
     	frontLeftMotor->Set(0);
     	frontRightMotor->Set(0);
     	backLeftMotor->Set(0);
