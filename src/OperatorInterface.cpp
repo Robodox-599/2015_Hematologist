@@ -12,9 +12,7 @@ virtual OperatorInterface::~OperatorInterface()
 
 OperatorInterface::printForkliftPower()
 {
-	//if (leftForkliftMotor->Set(power))
-	//{
-	//	dashboard->PutNumber("Forklift Power", power );
-	//}
-
+	dashboard->PutNumber("Forklift Power: ", leftForkliftMotor->Get());
 }
+
+
