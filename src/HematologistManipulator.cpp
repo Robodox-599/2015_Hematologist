@@ -1,6 +1,4 @@
 #include "HematologistManipulator.h"
-<<<<<<< HEAD
-#include "HematologistMacros.h"
 
 HematologistManipulator::HematologistManipulator()
 {

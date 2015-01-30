@@ -22,6 +22,7 @@ private:
 
 	OperatorInterface* oi;
 public:
+
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
 
