@@ -4,7 +4,7 @@
 
 //Joystick
 #define MANIP_JOYSTICK						(0)			//TODO: get correct number
-#define TOGGLE_BIN_HUGGER_BUTTON			(1)			//TODO: get correct number
+#define OPEN_BIN_HUGGER_BUTTON				(1)			//TODO: get correct number
 #define MOVE_FORKLIFT_BUTTON				(2)			//TODO: get correct number
 
 //Motor Channels
