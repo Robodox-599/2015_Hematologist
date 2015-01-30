@@ -1,25 +1,20 @@
-/*
- * HematologistAutonomous.cpp
- *
- *  Created on: Jan 29, 2015
- *      Author: Jasmine
- */
-
+#include "HematologistAutonomous.h"
 
 HematologistAutonomous::HematologistAutonomous()
 {
-
+	drive = new Drive();
 }
 
 virtual HematologistAutonomous::~HematologistAutonomous()
 {
+	delete drive();
 
+	drive = NULL;
 }
 
-void HematologistAutonomousz::autonStrafeRight()
+void HematologistAutonomous::autonStrafeRight()
 {
-	drive->SetStrafe(1);
+	drive->setStrafe(1);
 	drive->drive();
-	sleep(2300);
+	sleep(1000);
 }
-

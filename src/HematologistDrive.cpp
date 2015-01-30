@@ -77,6 +77,10 @@ void HematologistDrive::setStrafe()
 	 }
 }
 
+void HematologistDrive::setStrafe(float speed)
+{
+	side = speed;
+}
 
 
 void HematologistDrive::drive()

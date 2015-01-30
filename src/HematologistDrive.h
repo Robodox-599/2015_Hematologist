@@ -12,6 +12,7 @@ public:
      void setLinearDrive();
      void setTurn();
      void setStrafe();
+     void setStrafe(float speed);
 	 void drive();
 	 void testDrive();
 
@@ -35,4 +36,8 @@ private:
 
 	double gyro_ref;
 };
-#endif
+
+
+
+
+

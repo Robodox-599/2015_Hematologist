@@ -1,17 +1,10 @@
-/*
- * HematologistAutonomous.h
- *
- *  Created on: Jan 29, 2015
- *      Author: Jasmine
- */
-
-#ifndef SRC_HEMATOLOGISTAUTONOMOUS_H_
-#define SRC_HEMATOLOGISTAUTONOMOUS_H_
+#ifndef HEMATOLOGISTAUTONOMOUS_H_
+#define HEMATOLOGISTAUTONOMOUS_H_
 
 class HematologistAutonomous
 {
 private:
-
+	Drive* drive;
 
 
 public:
@@ -19,10 +12,5 @@ public:
 	~virtual HematologistAutonomous();
 	void autonStrafeRight();
 
-
-
 };
-
-
-
-#endif /* SRC_HEMATOLOGISTAUTONOMOUS_H_ */
+#endif
