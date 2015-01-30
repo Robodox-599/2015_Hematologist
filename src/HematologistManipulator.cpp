@@ -1,5 +1,4 @@
 #include "HematologistManipulator.h"
-<<<<<<< HEAD
 #include "HematologistMacros.h"
 
 HematologistManipulator::HematologistManipulator()
@@ -10,6 +9,8 @@ HematologistManipulator::HematologistManipulator()
 	leftLiftEncoder = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
 	rightLiftEncoder = new Encoder(2, 3, false, Encoder::EncodingType::k4X);
 	manipulatorJoystick = new Joystick(2);
+	buttonPressed = false;
+	presetValue = 0;
 
 	rightLiftEncoder->Encoder::SetMaxPeriod(1);
 	rightLiftEncoder->Encoder::SetMinRate(10);
@@ -27,6 +28,8 @@ HematologistManipulator::~HematologistManipulator()
 	delete leftLiftEncoder;
 	delete rightLiftEncoder;
 	delete manipulatorJoystick;
+	delete buttonPressed;
+	delete presetValue;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
@@ -34,6 +37,8 @@ HematologistManipulator::~HematologistManipulator()
 	leftLiftEncoder = NULL;
 	rightLiftEncoder = NULL;
 	manipulatorJoystick = NULL;
+	buttonPressed = NULL;
+	presetValue = 0;
 }
 
 /*void HematologistManipulator::moveLiftUp()
@@ -66,12 +71,12 @@ void HematologistManipulator::moveLiftDown()
 	}
 }*/
 
-void HematologistManipulator::secondTierSolForward()
+void HematologistManipulator::secondTierClawClosed()
 {
 	secondTierSol->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::secondTierSolBackward()
+void HematologistManipulator::secondTierClawOpen()
 {
 	secondTierSol->Set(DoubleSolenoid::kReverse);
 }
@@ -81,25 +86,47 @@ void HematologistManipulator::secondTierSolStop()
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
-void HematologistManipulator::setLiftToPosition(int target)
+void HematologistManipulator::setLiftToPosition()
 {
-	if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
+	if(buttonPressed == true)
 	{
-		leftLiftMotor->Set(0.5);
-		rightLiftMotor->Set(0.5);
+		if(rightLiftEncoder->Get() < presetValue && leftLiftEncoder->Get() < presetValue)
+			{
+				leftLiftMotor->Set(0.5);
+				rightLiftMotor->Set(0.5);
+			}
+			else
+			{
+				if(rightLiftEncoder->Get() < presetValue + LIFTDEADZONE && rightLiftEncoder->Get() < presetValue + LIFTDEADZONE)
+				{
+					leftLiftMotor->Set(0);
+					rightLiftMotor->Set(0);
+					buttonPressed = false;
+				}
+				else
+				{
+					leftLiftMotor->Set(-0.5);
+					rightLiftMotor->Set(-0.5);
+				}
+			}
 	}
-	else
+}
+
+void HematologistManipulator::buttonIsPressed()
+{
+	if(manipulatorJoystick->GetRawButton(3))
 	{
-		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
-		{
-			leftLiftMotor->Set(0);
-			rightLiftMotor->Set(0);
-		}
-		else
-		{
-			leftLiftMotor->Set(-0.5);
-			rightLiftMotor->Set(-0.5);
-		}
+		buttonPressed = true;
+	}
+
+	if(manipulatorJoystick->GetRawButton(4))
+	{
+		buttonPressed = true;
+	}
+
+	if(manipulatorJoystick->GetRawButton(5))
+	{
+		buttonPressed = true;
 	}
 }
 
@@ -107,15 +134,15 @@ void HematologistManipulator::preSetHeight()
 {
 	if(manipulatorJoystick->GetRawButton(3))
 	{
-		setLiftToPosition(0);
+		presetValue = 0;
 	}
 	if(manipulatorJoystick->GetRawButton(4))
 	{
-		setLiftToPosition(30);
+		presetValue = 30;
 	}
 	if(manipulatorJoystick->GetRawButton(5))
 	{
-		setLiftToPosition(50);
+		presetValue = 50;
 	}
 }
 
@@ -123,13 +150,13 @@ void HematologistManipulator::activateSecondTier(int target)
 {
 	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
 	{
-		secondTierSolForward();
+		secondTierClawClosed();
 	}
 	else
 	{
 		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
 			{
-				secondTierSolBackward();
+				secondTierClawOpen();
 			}
 	}
 }

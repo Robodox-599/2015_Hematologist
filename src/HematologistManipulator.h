@@ -13,7 +13,8 @@ private:
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
 	Joystick* manipulatorJoystick;
-	double liftHeight;
+	bool buttonPressed; //true = button is pressed
+	int presetValue;
 	
 	DoubleSolenoid* solenoid;
 
@@ -21,6 +22,7 @@ private:
 	Talon* leftForkliftMotor; 
 
 	OperatorInterface* oi;
+
 public:
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
@@ -28,13 +30,14 @@ public:
 	void moveLiftUp();
 	void moveLiftDown();
 
-	void secondTierSolForward();
-	void secondTierSolBackward();
+	void secondTierClawClosed();
+	void secondTierClawOpen();
 	void secondTierSolStop();
 
-	void setLiftToPosition(int target);
+	void setLiftToPosition();
 	void preSetHeight();
 	void activateSecondTier(int target);
+	void buttonIsPressed();
 	
 	HematologistManipulator(OperatorInterface* oi);
 	void toggleBinHugger();
