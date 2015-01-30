@@ -1,5 +1,6 @@
 #include "HematologistDrive.h"
 #include "HematologistOperatorInterface.h"
+#include "HematologistManipulator.h"
 
 bool autonInit = true;
 double autonInitTime = 0;
@@ -7,18 +8,12 @@ float angle = 0;
 
 class Hematologist: public IterativeRobot
 {
+private:
 	HematologistDrive *drive;
 	HematologistOperatorInterface *oi;
+	HematologistManipulator *man;
 	LiveWindow *lw;
 
-public:
-	Hematologist()
-	{
-		oi = new HematologistOperatorInterface();
-		drive = new HematologistDrive();
-		lw = LiveWindow::GetInstance();
-		oi->dashboard->init();
-	}
 
 	void RobotInit()
 	{
@@ -32,7 +27,15 @@ public:
 
 	void AutonomousPeriodic()
 	{
+		man->leftLiftEncoder->Encoder::Reset();
 
+		if(man->leftLiftEncoder->Get() < 20)
+		{
+			drive->frontLeftMotor->Set(.5);
+			drive->frontRightMotor->Set(.5);
+			drive->backLeftMotor->Set(.5);
+			drive->backRightMotor->Set(.5);
+		}
 	}
 
 	void TeleopInit()
