@@ -11,25 +11,25 @@ HematologistAutonomous::HematologistAutonomous()
 	backLeftEnc = new Encoder(5, 6, false, Encoder::EncodingType::k4X);
 	backRightEnc = new Encoder(7, 8, true, Encoder::EncodingType::k4X);
 
-	frontLeftEnc->Encoder::SetMaxPeriod(1);
-	frontLeftEnc->Encoder::SetMinRate(10);
-	frontLeftEnc->Encoder::SetDistancePerPulse(5);
-	frontLeftEnc->Encoder::SetSamplesToAverage(7);
+	frontLeftEnc->SetMaxPeriod(1);
+	frontLeftEnc->SetMinRate(10);
+	frontLeftEnc->SetDistancePerPulse(5);
+	frontLeftEnc->SetSamplesToAverage(7);
 
-	frontRightEnc->Encoder::SetMaxPeriod(1);
-	frontRightEnc->Encoder::SetMinRate(10);
-	frontRightEnc->Encoder::SetDistancePerPulse(5);
-	frontRightEnc->Encoder::SetSamplesToAverage(7);
+	frontRightEnc->SetMaxPeriod(1);
+	frontRightEnc->SetMinRate(10);
+	frontRightEnc->SetDistancePerPulse(5);
+	frontRightEnc->SetSamplesToAverage(7);
 
-	backLeftEnc->Encoder::SetMaxPeriod(1);
-	backLeftEnc->Encoder::SetMinRate(10);
-	backLeftEnc->Encoder::SetDistancePerPulse(5);
-	backLeftEnc->Encoder::SetSamplesToAverage(7);
+	backLeftEnc->SetMaxPeriod(1);
+	backLeftEnc->SetMinRate(10);
+	backLeftEnc->SetDistancePerPulse(5);
+	backLeftEnc->SetSamplesToAverage(7);
 
-	backRightEnc->Encoder::SetMaxPeriod(1);
-	backRightEnc->Encoder::SetMinRate(10);
-	backRightEnc->Encoder::SetDistancePerPulse(5);
-	backRightEnc->Encoder::SetSamplesToAverage(7);
+	backRightEnc->SetMaxPeriod(1);
+	backRightEnc->SetMinRate(10);
+	backRightEnc->SetDistancePerPulse(5);
+	backRightEnc->SetSamplesToAverage(7);
 }
 
 HematologistAutonomous::~HematologistAutonomous()
@@ -47,10 +47,10 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::secondHemanAuto()
 {
-	frontLeftEnc->Encoder::Reset();
-	frontRightEnc->Encoder::Reset();
-	backLeftEnc->Encoder::Reset();
-	backRightEnc->Encoder::Reset();
+	frontLeftEnc->Reset();
+	frontRightEnc->Reset();
+	backLeftEnc->Reset();
+	backRightEnc->Reset();
 	man->secondTierClawOpen();
 
 	if(averageEncVal < 20)

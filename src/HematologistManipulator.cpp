@@ -15,11 +15,11 @@ HematologistManipulator::HematologistManipulator()
 	presetValue = 0;
 	oi = new HematologistOperatorInterface();
 
-	liftEncoder->Encoder::SetMaxPeriod(1);
-	liftEncoder->Encoder::SetMinRate(10);
-	liftEncoder->Encoder::SetDistancePerPulse(5);
-	liftEncoder->Encoder::SetReverseDirection(true);
-	liftEncoder->Encoder::SetSamplesToAverage(7);
+	liftEncoder->SetMaxPeriod(1);
+	liftEncoder->SetMinRate(10);
+	liftEncoder->SetDistancePerPulse(5);
+	liftEncoder->SetReverseDirection(true);
+	liftEncoder->SetSamplesToAverage(7);
 }
 
 
