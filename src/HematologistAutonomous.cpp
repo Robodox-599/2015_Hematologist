@@ -104,6 +104,11 @@ void HematologistAutonomous::secondHemanAuto()
 						drive->frontRightMotor->Set(0);
 						drive->backLeftMotor->Set(0);
 						drive->backRightMotor->Set(0);
+
+						frontLeftEnc->Reset();
+						frontRightEnc->Reset();
+						backLeftEnc->Reset();
+						backRightEnc->Reset();
 					}
 				}
 			}
