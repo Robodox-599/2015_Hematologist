@@ -42,39 +42,7 @@ HematologistManipulator::~HematologistManipulator()
 	secondTierSol = NULL;
 	leftLiftEncoder = NULL;
 	rightLiftEncoder = NULL;
-	manipulatorJoystick = NULL;
 }
-
-
-//TODO: Intelligently merge these functions into setLiftToPosition() to enable manual override
-/*void HematologistManipulator::moveLiftUp()
-{
-	//moves lift up
-	if(manipulatorJoystick->GetRawButton(4))
-	{
-		leftLiftMotor->Set(0.5);
-		rightLiftMotor->Set(0.5);
-	}
-	else
-	{
-		leftLiftMotor->Set(0);
-		rightLiftMotor->Set(0);
-	}
-}
-void HematologistManipulator::moveLiftDown()
-{
-		//moves lift down
-	if(manipulatorJoystick-> GetRawButton(5))
-	{
-		leftLiftMotor->Set(-0.5);
-		rightLiftMotor->Set(-0.5);
-	}
-	else
-	{
-		leftLiftMotor->Set(0);
-		rightLiftMotor->Set(0);
-	}
-}*/
 
 void HematologistManipulator::moveForklift(bool up, bool down, float power)
 {
@@ -124,6 +92,29 @@ void HematologistManipulator::activateSecondTier(int target)
 		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
 		{
 			secondTierSolBackward();
+		}
+	}
+}
+
+void HematologistManipulator::manualLiftControl(bool up, bool down, float power)
+{
+	//moves lift up
+	if(up)
+	{
+		leftLiftMotor->Set(power);
+		rightLiftMotor->Set(power);
+	}
+	else
+	{
+		if(down)
+		{
+			leftLiftMotor->Set(-power);
+			rightLiftMotor->Set(-power);
+		}
+		else
+		{
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
 		}
 	}
 }

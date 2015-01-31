@@ -41,11 +41,15 @@ public:
 
 	void TeleopPeriodic()
 	{
-		if(oi->rightJoystick->GetTrigger()){
-			drive->drive();
-		} else {
+		if(oi->rightJoystick->GetTrigger())
+		{
+			drive->drive(oi->rightJoystick->GetY(), oi->rightJoystick->GetX(), oi->leftJoystick->GetX());
+		}
+		else
+		{
 			drive->testDrive();
 		}
+
 		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
 		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());
 		oi->dashboard->PutNumber("Forward: ", drive->forward);
@@ -60,7 +64,7 @@ public:
 
 	void TestPeriodic()
 	{
-		drive->drive();
+		drive->drive(oi->rightJoystick->GetY(), oi->rightJoystick->GetX(), oi->leftJoystick->GetX());
 	}
 };
 
