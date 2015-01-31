@@ -171,11 +171,11 @@ HematologistManipulator::HematologistManipulator(HematologistOperatorInterface* 
 
 void HematologistManipulator::toggleBinHugger()
 {
-	if (manipulatorJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
+	if (manipulatorJoystick->GetRawButton(1)) /*OPEN_BIN_HUGGER_BUTTON*/
 	{ 
 		forkLiftSol->Set(DoubleSolenoid::kReverse);
 	}
-	else if (manipulatorJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
+	else if (manipulatorJoystick->GetRawButton(2)) /*CLOSE_BIN_HUGGER_BUTTON*/
 	{
 		forkLiftSol->Set(DoubleSolenoid::kForward);
 	}
@@ -183,7 +183,7 @@ void HematologistManipulator::toggleBinHugger()
 
 void HematologistManipulator::moveForklift(float power)
 {
-	if(manipulatorJoystick->GetRawButton(MOVE_FORKLIFT_BUTTON))
+	if(manipulatorJoystick->GetRawButton(3)) /*MOVE_FORKLIFT_BUTTON*/
 	{
 		leftForkliftMotor->Set(power);
 		rightForkliftMotor->Set(-power);
