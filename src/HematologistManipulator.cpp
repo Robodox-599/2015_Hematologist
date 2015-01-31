@@ -42,7 +42,6 @@ HematologistManipulator::~HematologistManipulator()
 	secondTierSol = NULL;
 	leftLiftEncoder = NULL;
 	rightLiftEncoder = NULL;
-	manipulatorJoystick = NULL;
 }
 
 

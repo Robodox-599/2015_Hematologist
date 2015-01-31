@@ -19,8 +19,6 @@ private:
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
 
-	Joystick* manipulatorJoystick;
-
 public:
 
 	HematologistManipulator();
