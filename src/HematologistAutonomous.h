@@ -4,14 +4,17 @@
 class HematologistAutonomous
 {
 private:
-	Drive* drive;
-
+	HematologistDrive* drive;
+	HematologistManipulator* manip;
+	Encoder* encFrontLeft;
+	Encoder* encFrontRight;
+	Encoder* encBackLeft;
+	Encoder* encBackRight;
+	Encoder* encLift;
 
 public:
-	HematologistAutonomous();
+	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
 	~virtual HematologistAutonomous();
 	void autonStrafeRight();
-
-	Encoder* enc
 };
 #endif

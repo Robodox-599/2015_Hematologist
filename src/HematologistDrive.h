@@ -15,12 +15,16 @@ public:
      void setStrafe(float speed);
 	 void drive();
 	 void testDrive();
+	 void hematologistStrafeDrive();
+	 void setAutonStrafeRight();
+	 void setAutonSpeed
 
 	 Gyro* gyro;
 
 	 float forward;
 	 float spin;
 	 float side;
+	 float autonSide;
 	 double initTime;
 	 float Kp = .06;
 

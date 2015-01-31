@@ -1,8 +1,10 @@
 #include "HematologistAutonomous.h"
 
-HematologistAutonomous::HematologistAutonomous()
+HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
 {
-	drive = new Drive();
+	this->drive = drive;
+	this->manip = manip;
+
 }
 
 virtual HematologistAutonomous::~HematologistAutonomous()
@@ -14,8 +16,8 @@ virtual HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::autonStrafeRight()
 {
-	drive->setStrafe(1);
-	drive->drive();
+	drive->setAutonStrafe(1);
+	drive->HematologistStrafeDrive();
 	sleep(1000);
 }
 /*
