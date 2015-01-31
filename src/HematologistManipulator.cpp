@@ -18,7 +18,6 @@ HematologistManipulator::HematologistManipulator()
 	liftEncoder->SetMaxPeriod(1);
 	liftEncoder->SetMinRate(10);
 	liftEncoder->SetDistancePerPulse(5);
-	liftEncoder->SetReverseDirection(true);
 	liftEncoder->SetSamplesToAverage(7);
 }
 
