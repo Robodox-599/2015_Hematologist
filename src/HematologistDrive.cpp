@@ -94,32 +94,7 @@ void HematologistDrive::drive()
 	 backRightMotor->Set(-forward + side + spin);
 }
 
-//for the autonomous option one - strafe right
 
-void HematologistDrive::setAutonStrafeRight()
-{
-	 if (encFrontLeft > adistanceortime || encFrontRight > adistanceortime|| encBackLeft > adistanceortime|| encBackRight > adistanceortime)
-	 {
-		 autonSide = ;
-	 }
-	 else
-	 {
-		 autonSide = 0;
-	 }
-}
-
-void HematologistDrive::HematologistStrafeDrive()
-{
-	 frontLeftMotor->Set(forward - autonSide + spin);
-	 frontRightMotor->Set(-forward - autonSide + spin);
-	 backLeftMotor->Set(forward + autonSide + spin);
-	 backRightMotor->Set(-forward + autonSide + spin);
-}
-
-void HematologistDrive::setAutonSpeed(int speed)
-{
-	autonSide = speed;
-}
 
 
 //for performing gyro testing, will be removed when test is successful

@@ -1,5 +1,6 @@
 #include "HematologistAutonomous.h"
 #include "HematologistDrive.h"
+#include "HematologistManipulator.h"
 
 HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
 {
@@ -10,16 +11,20 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 virtual HematologistAutonomous::~HematologistAutonomous()
 {
 	delete drive();
-
 	drive = NULL;
 }
 
-void HematologistAutonomous::autonStrafeRight()
+void HematologistAutonomous::drive()
 {
-	drive->setAutonStrafe(1);
-	drive->HematologistStrafeDrive();
-	sleep(1000);
+	drive->setLinearDrive(linearValue);
+	drive->setTurn(turnValue);
+	drive->setStrafe(sideValue);
+	drive->frontLeftMotor->Set(forward + side + spin);
+	drive->frontRightMotor->Set(-forward + side + spin);
+	drive->backLeftMotor->Set(forward - side + spin);
+	drive->backRightMotor->Set(-forward - side + spin);
 }
+
 /*
 12.5 feet per sec
 */

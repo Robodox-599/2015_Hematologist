@@ -15,6 +15,6 @@ private:
 public:
 	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
 	~virtual HematologistAutonomous();
-	void autonStrafeRight();
+
 };
 #endif

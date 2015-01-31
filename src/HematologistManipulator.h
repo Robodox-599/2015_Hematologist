@@ -20,7 +20,7 @@ private:
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 
 
-	OperatorInterface* oi;
+	HematologistOperatorInterface* oi;
 public:
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
