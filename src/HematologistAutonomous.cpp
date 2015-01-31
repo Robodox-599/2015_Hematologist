@@ -70,6 +70,44 @@ void HematologistAutonomous::secondHemanAuto()
 			drive->backLeftMotor->Set(.5);
 			drive->backRightMotor->Set(.5);
 		}
+		else
+		{
+			if(averageEncVal < 30)
+			{
+				drive->frontLeftMotor->Set(.5);
+				drive->frontRightMotor->Set(-.5);
+				drive->backLeftMotor->Set(.5);
+				drive->backRightMotor->Set(-.5);
+				//if pressure button is pressed, then activateSecondTier
+			}
+			else
+			{
+				if(averageEncVal < 35)
+				{
+					drive->frontLeftMotor->Set(.5);
+					drive->frontRightMotor->Set(.5);
+					drive->backLeftMotor->Set(.5);
+					drive->backRightMotor->Set(.5);
+				}
+				else
+				{
+					if(averageEncVal < 50)
+					{
+						drive->frontLeftMotor->Set(.5);
+						drive->frontRightMotor->Set(-.5);
+						drive->backLeftMotor->Set(.5);
+						drive->backRightMotor->Set(-.5);
+					}
+					else
+					{
+						drive->frontLeftMotor->Set(0);
+						drive->frontRightMotor->Set(0);
+						drive->backLeftMotor->Set(0);
+						drive->backRightMotor->Set(0);
+					}
+				}
+			}
+		}
 	}
 }
 
