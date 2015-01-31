@@ -14,17 +14,10 @@ virtual HematologistAutonomous::~HematologistAutonomous()
 	drive = NULL;
 }
 
-void HematologistAutonomous::drive()
+void HematologistAutonomous::strafeRight()
 {
-	drive->setLinearDrive(linearValue);
-	drive->setTurn(turnValue);
-	drive->setStrafe(sideValue);
-	drive->frontLeftMotor->Set(forward + side + spin);
-	drive->frontRightMotor->Set(-forward + side + spin);
-	drive->backLeftMotor->Set(forward - side + spin);
-	drive->backRightMotor->Set(-forward - side + spin);
+	drive(0, 0, .2);
 }
-
 /*
 12.5 feet per sec
 */

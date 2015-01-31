@@ -18,6 +18,7 @@ public:
 	 void hematologistStrafeDrive();
 	 void setAutonStrafeRight();
 	 void setAutonSpeed(int speed);
+	 void strafeRight();
 
 	 Gyro* gyro;
 
