@@ -11,7 +11,6 @@ class Hematologist: public IterativeRobot
 private:
 	HematologistDrive *drive;
 	HematologistOperatorInterface *oi;
-	HematologistManipulator *man;
 	LiveWindow *lw;
 
 
