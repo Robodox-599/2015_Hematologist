@@ -12,5 +12,6 @@ public:
 	~virtual HematologistAutonomous();
 	void autonStrafeRight();
 
+	Encoder* enc
 };
 #endif

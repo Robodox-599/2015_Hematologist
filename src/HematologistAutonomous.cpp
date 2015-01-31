@@ -18,3 +18,6 @@ void HematologistAutonomous::autonStrafeRight()
 	drive->drive();
 	sleep(1000);
 }
+/*
+12.5 feet per sec
+*/
