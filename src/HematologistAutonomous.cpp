@@ -2,7 +2,6 @@
 
 HematologistAutonomous::HematologistAutonomous()
 {
-	man = new HematologistManipulator();
 	drive = new HematologistDrive();
 
 	averageEncVal = 0;
@@ -39,7 +38,15 @@ HematologistAutonomous::HematologistAutonomous()
 
 HematologistAutonomous::~HematologistAutonomous()
 {
+	delete frontLeftEnc;
+	delete frontRightEnc;
+	delete backLeftEnc;
+	delete backRightEnc;
 
+	frontLeftEnc = NULL;
+	frontRightEnc = NULL;
+	backLeftEnc = NULL;
+	backRightEnc = NULL;
 }
 
 void HematologistAutonomous::secondHemanAuto()

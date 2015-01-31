@@ -1,6 +1,8 @@
 #ifndef HEMATOLOGIST_AUTONOMOUS_H_
 #define HEMATOLOGIST_AUTONOMOUS_H_
 
+#include "WPILib.h"
+
 class HematologistAutonomous
 {
 private:
