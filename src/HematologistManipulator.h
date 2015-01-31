@@ -3,43 +3,43 @@
 
 #include "WPILib.h"
 #include "HematologistMacros.h"
-#include "HematologistOperatorInterface.h"
 
 class HematologistManipulator
 {
 private:
+
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	DoubleSolenoid* secondTierSol;
-	Encoder *encLift;
-	Joystick* manipulatorJoystick;
-	double liftHeight;
-	
-	DoubleSolenoid* solenoid;
-
 	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor; 
+	Talon* leftForkliftMotor;
 
-	OperatorInterface* oi;
+	DoubleSolenoid* secondTierSol;
+	DoubleSolenoid* binHuggerSol;
+
+	Encoder* leftLiftEncoder;
+	Encoder* rightLiftEncoder;
+
+	Joystick* manipulatorJoystick;
 
 public:
+
 	HematologistManipulator();
-	HematologistManipulator(OperatorInterface* oi);
 	virtual ~HematologistManipulator();
 
-	void moveLiftUp();
-	void moveLiftDown();
+//	void moveLiftUp();
+//	void moveLiftDown();
+	void setLiftToPosition(int target, float power);
+	void preSetHeight(bool low, bool mid, bool high);
+
+	void moveForklift(bool up, bool down, float power);
 
 	void secondTierSolForward();
 	void secondTierSolBackward();
 	void secondTierSolStop();
-
-	void setLiftToPosition(int target);
-	void preSetHeight();
 	void activateSecondTier(int target);
-	
-	void toggleBinHugger();
-	void moveForklift(float power);
 
+	void toggleBinHugger(bool on, bool off);
 };
+
+
 #endif
