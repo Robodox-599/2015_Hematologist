@@ -19,15 +19,12 @@ private:
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
 
-	Joystick* manipulatorJoystick;
-
 public:
 
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
 
-//	void moveLiftUp();
-//	void moveLiftDown();
+	void manualLiftControl(bool up, bool down, float power);
 	void setLiftToPosition(int target, float power);
 	void preSetHeight(bool low, bool mid, bool high);
 

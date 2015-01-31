@@ -9,10 +9,10 @@ public:
 	HematologistDrive();
 	~HematologistDrive();
 
-     void setLinearDrive();
-     void setTurn();
-     void setStrafe();
-	 void drive();
+     void setLinearDrive(float linearValue);
+     void setTurn(float turnValue);
+     void setStrafe(float sideValue);
+	 void drive(float linearValue, float turnValue, float sideValue);
 	 void testDrive();
 
 	 Gyro* gyro;
