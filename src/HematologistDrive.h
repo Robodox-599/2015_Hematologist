@@ -9,11 +9,11 @@ public:
 	HematologistDrive();
 	~HematologistDrive();
 
-     void setLinearDrive();
-     void setTurn();
-     void setStrafe();
-     void setStrafe(float speed);
-	 void drive();
+     void setLinearDrive(float linearValue);
+     void setTurn(float turnValue);
+     void setStrafe(float sideValue);
+	 void drive(float linearValue, float turnValue, float sideValue);
+
 	 void testDrive();
 	 void hematologistStrafeDrive();
 	 void setAutonStrafeRight();
@@ -26,7 +26,8 @@ public:
 	 float side;
 	 float autonSide;
 	 double initTime;
-	 float Kp = .06;
+	 float Kp = .1;
+	 float Kd = .01;
 
 	 Timer* timer;
 

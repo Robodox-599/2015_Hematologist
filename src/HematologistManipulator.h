@@ -7,9 +7,15 @@
 class HematologistManipulator
 {
 private:
+
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
+	Talon* rightForkliftMotor;
+	Talon* leftForkliftMotor;
+
 	DoubleSolenoid* secondTierSol;
+	DoubleSolenoid* binHuggerSol;
+
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
 	Joystick* manipulatorJoystick;
@@ -22,24 +28,22 @@ private:
 
 	HematologistOperatorInterface* oi;
 public:
+
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
 
-	void moveLiftUp();
-	void moveLiftDown();
+	void manualLiftControl(bool up, bool down, float power);
+	void setLiftToPosition(int target, float power);
+	void preSetHeight(bool low, bool mid, bool high);
+
+	void moveForklift(bool up, bool down, float power);
 
 	void secondTierSolForward();
 	void secondTierSolBackward();
 	void secondTierSolStop();
-
-	void setLiftToPosition(int target);
-	void preSetHeight();
 	void activateSecondTier(int target);
-	
-	HematologistManipulator(OperatorInterface* oi);
-	void toggleBinHugger();
-	void moveForklift(float power);
 
+	void toggleBinHugger(bool on, bool off);
 };
 
 
