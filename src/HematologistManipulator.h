@@ -2,6 +2,7 @@
 #define HEMATOLOGIST_MANIPULATOR_H_
 
 #include "WPILib.h"
+#include "HematologistOperatorInterface.h"
 #include "HematologistMacros.h"
 
 class HematologistManipulator
@@ -16,7 +17,7 @@ private:
 	bool buttonPressed; //true = button is pressed
 	int presetValue;
 	
-	DoubleSolenoid* solenoid;
+	DoubleSolenoid* forkLiftSol;
 
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 

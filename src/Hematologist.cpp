@@ -28,13 +28,25 @@ private:
 	void AutonomousPeriodic()
 	{
 		man->leftLiftEncoder->Encoder::Reset();
+		man->secondTierClawOpen();
 
 		if(man->leftLiftEncoder->Get() < 20)
 		{
 			drive->frontLeftMotor->Set(.5);
-			drive->frontRightMotor->Set(.5);
+			drive->frontRightMotor->Set(-.5);
 			drive->backLeftMotor->Set(.5);
-			drive->backRightMotor->Set(.5);
+			drive->backRightMotor->Set(-.5);
+			//if pressure button is pressed, then activateSecondTier
+		}
+		else
+		{
+			if(man->leftLiftEncoder->Get() < 25)
+			{
+				drive->frontLeftMotor->Set(.5);
+				drive->frontRightMotor->Set(.5);
+				drive->backLeftMotor->Set(.5);
+				drive->backRightMotor->Set(.5);
+			}
 		}
 	}
 

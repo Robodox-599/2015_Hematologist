@@ -5,12 +5,16 @@ HematologistManipulator::HematologistManipulator()
 {
 	leftLiftMotor = new Talon(0);
 	rightLiftMotor = new Talon(1);
+	leftForkliftMotor = new Talon(2);
+	rightForkliftMotor = new Talon(3);
 	secondTierSol = new DoubleSolenoid(2, 3);
+	forkLiftSol = new DoubleSolenoid(1,4);
 	leftLiftEncoder = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
 	rightLiftEncoder = new Encoder(2, 3, false, Encoder::EncodingType::k4X);
 	manipulatorJoystick = new Joystick(2);
 	buttonPressed = false;
 	presetValue = 0;
+	oi = new OperatorInterface();
 
 	rightLiftEncoder->Encoder::SetMaxPeriod(1);
 	rightLiftEncoder->Encoder::SetMinRate(10);
@@ -170,19 +174,19 @@ HematologistManipulator::HematologistManipulator(OperatorInteface* oi)
 
 void HematologistManipulator::toggleBinHugger()
 {
-	if (manipJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
+	if (manipulatorJoystick->GetRawButton(OPEN_BIN_HUGGER_BUTTON))
 	{ 
-		solenoid->Set(DoubleSolenoid::kReverse);
+		forkLiftSol->Set(DoubleSolenoid::kReverse);
 	}
-	else if (manipJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
+	else if (manipulatorJoystick->GetRawButton(CLOSE_BIN_HUGGER_BUTTON))
 	{
-		solenoid->Set(DoubleSolenoid::kForward);
+		forkLiftSol->Set(DoubleSolenoid::kForward);
 	}
 }
 
 void HematologistManipulator::moveForklift(float power)
 {
-	if(manipJoystick->GetRawButton(MOVE_FORKLIFT_BUTTON))
+	if(manipulatorJoystick->GetRawButton(MOVE_FORKLIFT_BUTTON))
 	{
 		leftForkliftMotor->Set(power);
 		rightForkliftMotor->Set(-power);
