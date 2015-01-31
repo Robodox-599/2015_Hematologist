@@ -21,7 +21,7 @@ private:
 	Talon* rightForkliftMotor;
 	Talon* leftForkliftMotor; 
 
-	OperatorInterface* oi;
+	HematologistOperatorInterface* oi;
 
 public:
 	HematologistManipulator();
@@ -39,7 +39,7 @@ public:
 	void activateSecondTier(int target);
 	void buttonIsPressed();
 	
-	HematologistManipulator(OperatorInterface* oi);
+	HematologistManipulator(HematologistOperatorInterface* oi);
 	void toggleBinHugger();
 	void moveForklift(float power);
 

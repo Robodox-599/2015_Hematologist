@@ -13,7 +13,7 @@ HematologistManipulator::HematologistManipulator()
 	manipulatorJoystick = new Joystick(2);
 	buttonPressed = false;
 	presetValue = 0;
-	oi = new OperatorInterface();
+	oi = new HematologistOperatorInterface();
 
 	liftEncoder->Encoder::SetMaxPeriod(1);
 	liftEncoder->Encoder::SetMinRate(10);
@@ -163,7 +163,7 @@ void HematologistManipulator::activateSecondTier(int target)
 }
 
 
-HematologistManipulator::HematologistManipulator(OperatorInteface* oi)
+HematologistManipulator::HematologistManipulator(HematologistOperatorInterface* oi)
 {
 	this->oi = oi;
 	HematologistManipulator();
