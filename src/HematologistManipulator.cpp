@@ -30,16 +30,12 @@ HematologistManipulator::~HematologistManipulator()
 	delete secondTierSol;
 	delete liftEncoder;
 	delete manipulatorJoystick;
-	delete buttonPressed;
-	delete presetValue;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
 	secondTierSol = NULL;
 	liftEncoder = NULL;
 	manipulatorJoystick = NULL;
-	buttonPressed = NULL;
-	presetValue = 0;
 }
 
 /*void HematologistManipulator::moveLiftUp()
