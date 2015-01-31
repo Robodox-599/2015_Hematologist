@@ -27,10 +27,10 @@ private:
 
 	void AutonomousPeriodic()
 	{
-		man->leftLiftEncoder->Encoder::Reset();
+		man->liftEncoder->Encoder::Reset();
 		man->secondTierClawOpen();
 
-		if(man->leftLiftEncoder->Get() < 20)
+		if(man->liftEncoder->Get() < 20)
 		{
 			drive->frontLeftMotor->Set(.5);
 			drive->frontRightMotor->Set(-.5);
@@ -40,7 +40,7 @@ private:
 		}
 		else
 		{
-			if(man->leftLiftEncoder->Get() < 25)
+			if(man->liftEncoder->Get() < 25)
 			{
 				drive->frontLeftMotor->Set(.5);
 				drive->frontRightMotor->Set(.5);

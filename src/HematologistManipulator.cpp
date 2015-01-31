@@ -9,18 +9,17 @@ HematologistManipulator::HematologistManipulator()
 	rightForkliftMotor = new Talon(3);
 	secondTierSol = new DoubleSolenoid(2, 3);
 	forkLiftSol = new DoubleSolenoid(1,4);
-	leftLiftEncoder = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder = new Encoder(2, 3, false, Encoder::EncodingType::k4X);
+	liftEncoder = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
 	manipulatorJoystick = new Joystick(2);
 	buttonPressed = false;
 	presetValue = 0;
 	oi = new OperatorInterface();
 
-	rightLiftEncoder->Encoder::SetMaxPeriod(1);
-	rightLiftEncoder->Encoder::SetMinRate(10);
-	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
-	rightLiftEncoder->Encoder::SetReverseDirection(true);
-	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
+	liftEncoder->Encoder::SetMaxPeriod(1);
+	liftEncoder->Encoder::SetMinRate(10);
+	liftEncoder->Encoder::SetDistancePerPulse(5);
+	liftEncoder->Encoder::SetReverseDirection(true);
+	liftEncoder->Encoder::SetSamplesToAverage(7);
 }
 
 
@@ -29,8 +28,7 @@ HematologistManipulator::~HematologistManipulator()
 	delete leftLiftMotor;
 	delete rightLiftMotor;
 	delete secondTierSol;
-	delete leftLiftEncoder;
-	delete rightLiftEncoder;
+	delete liftEncoder;
 	delete manipulatorJoystick;
 	delete buttonPressed;
 	delete presetValue;
@@ -38,8 +36,7 @@ HematologistManipulator::~HematologistManipulator()
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
 	secondTierSol = NULL;
-	leftLiftEncoder = NULL;
-	rightLiftEncoder = NULL;
+	liftEncoder = NULL;
 	manipulatorJoystick = NULL;
 	buttonPressed = NULL;
 	presetValue = 0;
@@ -94,14 +91,14 @@ void HematologistManipulator::setLiftToPosition()
 {
 	if(buttonPressed == true)
 	{
-		if(rightLiftEncoder->Get() < presetValue && leftLiftEncoder->Get() < presetValue)
+		if(liftEncoder->Get() < presetValue)
 			{
 				leftLiftMotor->Set(0.5);
 				rightLiftMotor->Set(0.5);
 			}
 			else
 			{
-				if(rightLiftEncoder->Get() < presetValue + LIFTDEADZONE && rightLiftEncoder->Get() < presetValue + LIFTDEADZONE)
+				if(liftEncoder->Get() < presetValue + LIFTDEADZONE)
 				{
 					leftLiftMotor->Set(0);
 					rightLiftMotor->Set(0);
@@ -152,13 +149,13 @@ void HematologistManipulator::preSetHeight()
 
 void HematologistManipulator::activateSecondTier(int target)
 {
-	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
+	if(liftEncoder->Get() < target)
 	{
 		secondTierClawClosed();
 	}
 	else
 	{
-		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
+		if(liftEncoder->Get() > target)
 			{
 				secondTierClawOpen();
 			}

@@ -11,8 +11,7 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 	DoubleSolenoid* secondTierSol;
-	Encoder* leftLiftEncoder;
-	Encoder* rightLiftEncoder;
+	Encoder* liftEncoder;
 	Joystick* manipulatorJoystick;
 	bool buttonPressed; //true = button is pressed
 	int presetValue;
