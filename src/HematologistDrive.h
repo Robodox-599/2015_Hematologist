@@ -16,6 +16,10 @@ public:
 	 void testDrive();
 
 	 Gyro* gyro;
+	 Encoder *encFrontLeft;
+	 Encoder *encBackLeft;
+	 Encoder *encFrontRight;
+	 Encoder *encBackRight;
 
 	 float forward;
 	 float spin;

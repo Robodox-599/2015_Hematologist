@@ -3,6 +3,7 @@
 
 #include "WPILib.h"
 #include "HematologistMacros.h"
+#include "HematologistOperatorInterface.h"
 
 class HematologistManipulator
 {
@@ -10,8 +11,7 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 	DoubleSolenoid* secondTierSol;
-	Encoder* leftLiftEncoder;
-	Encoder* rightLiftEncoder;
+	Encoder *encLift;
 	Joystick* manipulatorJoystick;
 	double liftHeight;
 	
@@ -21,8 +21,10 @@ private:
 	Talon* leftForkliftMotor; 
 
 	OperatorInterface* oi;
+
 public:
 	HematologistManipulator();
+	HematologistManipulator(OperatorInterface* oi);
 	virtual ~HematologistManipulator();
 
 	void moveLiftUp();
@@ -36,11 +38,8 @@ public:
 	void preSetHeight();
 	void activateSecondTier(int target);
 	
-	HematologistManipulator(OperatorInterface* oi);
 	void toggleBinHugger();
 	void moveForklift(float power);
 
 };
-
-
 #endif
