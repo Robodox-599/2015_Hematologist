@@ -116,7 +116,7 @@ void HematologistDrive::HematologistStrafeDrive()
 	 backRightMotor->Set(-forward + autonSide + spin);
 }
 
-void HematologistDrive::setAutonStrafe(float speed)
+void HematologistDrive::setAutonSpeed(int speed)
 {
 	autonSide = speed;
 }

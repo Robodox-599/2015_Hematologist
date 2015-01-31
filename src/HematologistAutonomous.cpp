@@ -1,10 +1,10 @@
 #include "HematologistAutonomous.h"
+#include "HematologistDrive.h"
 
 HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
 {
 	this->drive = drive;
 	this->manip = manip;
-
 }
 
 virtual HematologistAutonomous::~HematologistAutonomous()
