@@ -11,7 +11,6 @@ class Hematologist: public IterativeRobot
 	HematologistOperatorInterface *oi;
 	LiveWindow *lw;
 
-	double distance;
 
 public:
 	Hematologist()
@@ -20,12 +19,6 @@ public:
 		drive = new HematologistDrive();
 		lw = LiveWindow::GetInstance();
 		oi->dashboard->init();
-		encLift = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-		encFrontLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-		encBackLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-		encFrontRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-		encBackRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-	    distance = encFrontLeft->GetDistance();
 	}
 
 	void RobotInit()
@@ -40,21 +33,9 @@ public:
 
 	void AutonomousPeriodic()
 	{
-		if(distance == 7)
-		{
-			drive->setLinearDrive() = 0;
-			drive->setTurn() = -.5;
-			drive->setStrafe() = 0;
-			if(drive->gyro->GetAngle() == -10){
-				drive->setTurn() = 0;
-				drive->gyro->Reset();
-			}
-			if(drive->drive()==0)
-			{
-				encFrontLeft->Reset();
-			   drive->setLinearDrive() = 1 + drive->setTurn();
-			}
-		}
+
+
+
 
 	}
 
