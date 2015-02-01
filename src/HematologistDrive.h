@@ -38,6 +38,11 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
+	double countFrontLeft;
+	double countFrontRight;
+	double countBackLeft;
+	double countBackRight;
+
 	double gyro_ref;
 };
 #endif
