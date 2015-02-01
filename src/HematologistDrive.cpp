@@ -7,6 +7,16 @@
 	 frontRightMotor = new Talon(0);
 	 backRightMotor = new Talon(1);
 
+	 encFrontLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	 encBackLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	 encFrontRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	 encBackRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+
+	 countFrontLeft = 0;
+	 countFrontRight = 0;
+	 countBackLeft = 0;
+	 countBackRight = 0;
+
 	 gyro = new Gyro(1);
      gyro_ref = 0;
 
@@ -19,6 +29,7 @@
 	 timer = new Timer();
 	 timer->Start();
 	 initTime = 0;
+
 }
 
  HematologistDrive::~HematologistDrive()
@@ -80,6 +91,7 @@ void HematologistDrive::setStrafe(float sideValue)
 
 void HematologistDrive::drive(float linearValue, float turnValue, float sideValue)
 {
+
 	 setLinearDrive(linearValue);
 	 setTurn(turnValue);
 	 setStrafe(sideValue);
