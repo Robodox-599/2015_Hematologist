@@ -16,9 +16,7 @@ private:
 	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
 
-	Encoder* leftLiftEncoder;
-	Encoder* rightLiftEncoder;
-
+	double count;
 public:
 
 	HematologistManipulator();
@@ -36,6 +34,8 @@ public:
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
+
+	Encoder* encLift;
 };
 
 
