@@ -13,13 +13,8 @@ HematologistManipulator::HematologistManipulator()
 	secondTierSol = new DoubleSolenoid(2, 3);
 
 	//Encoders
-	leftLiftEncoder = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder = new Encoder(2, 3, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder->Encoder::SetMaxPeriod(1);
-	rightLiftEncoder->Encoder::SetMinRate(10);
-	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
-	rightLiftEncoder->Encoder::SetReverseDirection(true);
-	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
+	encLift = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	count = 0;
 }
 
 
@@ -31,8 +26,7 @@ HematologistManipulator::~HematologistManipulator()
 	delete rightForkliftMotor;
 	delete binHuggerSol;
 	delete secondTierSol;
-	delete leftLiftEncoder;
-	delete rightLiftEncoder;
+	delete encLift;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
@@ -40,8 +34,7 @@ HematologistManipulator::~HematologistManipulator()
 	rightForkliftMotor = NULL;
 	binHuggerSol = NULL;
 	secondTierSol = NULL;
-	leftLiftEncoder = NULL;
-	rightLiftEncoder = NULL;
+	encLift = NULL;
 }
 
 void HematologistManipulator::moveForklift(bool up, bool down, float power)
@@ -83,13 +76,13 @@ void HematologistManipulator::secondTierSolStop()
 
 void HematologistManipulator::activateSecondTier(int target)
 {
-	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
+	if(encLift->Get() < target)
 	{
 		secondTierSolForward();
 	}
 	else
 	{
-		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
+		if(encLift->Get() > target)
 		{
 			secondTierSolBackward();
 		}
@@ -121,14 +114,14 @@ void HematologistManipulator::manualLiftControl(bool up, bool down, float power)
 
 void HematologistManipulator::setLiftToPosition(int target, float power)
 {
-	if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
+	if(encLift->Get() < target)
 	{
 		leftLiftMotor->Set(power);
 		rightLiftMotor->Set(power);
 	}
 	else
 	{
-		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
+		if(encLift->Get() < target + LIFTDEADZONE)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
