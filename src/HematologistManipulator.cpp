@@ -13,13 +13,8 @@ HematologistManipulator::HematologistManipulator()
 	secondTierSol = new DoubleSolenoid(SECOND_TIER_SOL_CHANNEL_A, SECOND_TIER_SOL_CHANNEL_B);
 
 	//Encoders
-	leftLiftEncoder = new Encoder(LEFT_LIFT_ENCODER_CHANNEL_A, LEFT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder = new Encoder(RIGHT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder->Encoder::SetMaxPeriod(1);
-	rightLiftEncoder->Encoder::SetMinRate(10);
-	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
-	rightLiftEncoder->Encoder::SetReverseDirection(true);
-	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
+	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	forkliftEncoder = new Encoder(FORKLIFT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
 }
 
 
@@ -31,8 +26,8 @@ HematologistManipulator::~HematologistManipulator()
 	delete rightForkliftMotor;
 	delete binHuggerSol;
 	delete secondTierSol;
-	delete leftLiftEncoder;
-	delete rightLiftEncoder;
+	delete forkliftEncoder;
+	delete liftEncoder;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
@@ -40,8 +35,8 @@ HematologistManipulator::~HematologistManipulator()
 	rightForkliftMotor = NULL;
 	binHuggerSol = NULL;
 	secondTierSol = NULL;
-	leftLiftEncoder = NULL;
-	rightLiftEncoder = NULL;
+	forkliftEncoder = NULL;
+	liftEncoder = NULL;
 }
 
 void HematologistManipulator::moveForklift(bool up, bool down, float power)
@@ -66,7 +61,6 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-
 void HematologistManipulator::toggleSecondTierSolenoid()
 {
 	secondTierSol->Set(DoubleSolenoid::kForward);
@@ -76,13 +70,13 @@ void HematologistManipulator::toggleSecondTierSolenoid()
 
 void HematologistManipulator::activateSecondTier(int target)
 {
-	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
+	if(liftEncoder->Get() < target && liftEncoder->Get() < target)
 	{
 		secondTierSolForward();
 	}
 	else
 	{
-		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
+		if(liftEncoder->Get() > target && liftEncoder->Get() > target)
 		{
 			secondTierSolBackward();
 		}

@@ -26,10 +26,10 @@
 #define SECOND_TIER_SOL_CHANNEL_B			(3)			//TODO: get correct number
 
 //Encoders
-#define LEFT_LIFT_ENCODER_CHANNEL_A			(0)			//TODO: get correct number
-#define LEFT_LIFT_ENCODER_CHANNEL_B			(1)			//TODO: get correct number
-#define RIGHT_LIFT_ENCODER_CHANNEL_A		(2)			//TODO: get correct number
-#define RIGHT_LIFT_ENCODER_CHANNEL_B		(3)			//TODO: get correct number
+#define LIFT_ENCODER_CHANNEL_A			(0)			//TODO: get correct number
+#define LIFT_ENCODER_CHANNEL_B			(1)			//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_A		(2)			//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_B		(3)			//TODO: get correct number
 
 //Misc Constants
 #define DEADZONE                   		    (.1)

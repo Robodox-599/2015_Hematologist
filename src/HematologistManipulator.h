@@ -16,8 +16,8 @@ private:
 	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
 
-	Encoder* leftLiftEncoder;
-	Encoder* rightLiftEncoder;
+	Encoder* liftEncoder;
+	Encoder* forkliftEncoder;
 
 public:
 
