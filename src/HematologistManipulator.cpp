@@ -66,18 +66,11 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-void HematologistManipulator::secondTierSolForward()
+
+void HematologistManipulator::toggleSecondTierSolenoid()
 {
 	secondTierSol->Set(DoubleSolenoid::kForward);
-}
-
-void HematologistManipulator::secondTierSolBackward()
-{
 	secondTierSol->Set(DoubleSolenoid::kReverse);
-}
-
-void HematologistManipulator::secondTierSolStop()
-{
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
