@@ -16,6 +16,7 @@ virtual HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::strafeRight()
 {
+
 	drive(0, 0, .2);
 }
 /*
