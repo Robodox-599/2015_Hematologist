@@ -13,13 +13,19 @@ public:
      void setTurn(float turnValue);
      void setStrafe(float sideValue);
 	 void drive(float linearValue, float turnValue, float sideValue);
+
 	 void testDrive();
+	 void hematologistStrafeDrive();
+	 void setAutonStrafeRight();
+	 void setAutonSpeed(int speed);
+	 void strafeRight();
 
 	 Gyro* gyro;
 
 	 float forward;
 	 float spin;
 	 float side;
+	 float autonSide;
 	 double initTime;
 	 float Kp = .1;
 	 float Kd = .01;
@@ -36,4 +42,8 @@ private:
 
 	double gyro_ref;
 };
-#endif
+
+
+
+
+

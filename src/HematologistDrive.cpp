@@ -76,6 +76,10 @@ void HematologistDrive::setStrafe(float sideValue)
 	 }
 }
 
+void HematologistDrive::setStrafe(float speed)
+{
+	side = speed;
+}
 
 
 void HematologistDrive::drive(float linearValue, float turnValue, float sideValue)
@@ -88,6 +92,8 @@ void HematologistDrive::drive(float linearValue, float turnValue, float sideValu
 	 backLeftMotor->Set(forward - side + spin);
 	 backRightMotor->Set(-forward - side + spin);
 }
+
+
 
 //for performing gyro testing, will be removed when test is successful
 void HematologistDrive::testDrive()

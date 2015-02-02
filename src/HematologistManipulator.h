@@ -18,7 +18,15 @@ private:
 
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
+	Joystick* manipulatorJoystick;
+	double liftHeight;
+	
+	DoubleSolenoid* binHuggerSolenoid;
 
+	Talon* rightForkliftMotor;
+	Talon* leftForkliftMotor; 
+
+	HematologistOperatorInterface* oi;
 public:
 
 	HematologistManipulator();

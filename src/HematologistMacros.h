@@ -38,4 +38,12 @@
 #define PRE_SET_MID							(30)		//TODO: get correct number
 #define PRE_SET_HIGH						(50)		//TODO: get correct number
 
+
+#define MANIP_JOYSTICK						(0)			//TODO: get correct number
+#define TOGGLE_BIN_HUGGER_BUTTON			(1)			//TODO: DO THAT ^
+#define MOVE_FORKLIFT_BUTTON				(2)			//TODO: ^^^^^^^^^^^^^^^
+#define LEFT_FORKLIFT_MOTOR_CHANNEL			(3)			//TODO: dsjglnm;sda
+#define RIGHT_FORKLIFT_MOTOR_CHANNEL		(4)			//fckung
+
+
 #endif
