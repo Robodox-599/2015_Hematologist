@@ -2,47 +2,40 @@
 #define HEMATOLOGIST_MANIPULATOR_H_
 
 #include "WPILib.h"
-#include "HematologistOperatorInterface.h"
 #include "HematologistMacros.h"
 
 class HematologistManipulator
 {
 private:
+
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	DoubleSolenoid* secondTierSol;
-	Encoder* liftEncoder;
-	Joystick* manipulatorJoystick;
-	bool buttonPressed; //true = button is pressed
-	int presetValue;
-	
-	DoubleSolenoid* forkLiftSol;
-
 	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor; 
+	Talon* leftForkliftMotor;
 
-	HematologistOperatorInterface* oi;
+	DoubleSolenoid* secondTierSol;
+	DoubleSolenoid* binHuggerSol;
+
+	Encoder* leftLiftEncoder;
+	Encoder* rightLiftEncoder;
 
 public:
+
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
 
-	void moveLiftUp();
-	void moveLiftDown();
+	void manualLiftControl(bool up, bool down, float power);
+	void setLiftToPosition(int target, float power);
+	void preSetHeight(bool low, bool mid, bool high, float power);
 
-	void secondTierClawClosed();
-	void secondTierClawOpen();
+	void moveForklift(bool up, bool down, float power);
+
+	void secondTierSolForward();
+	void secondTierSolBackward();
 	void secondTierSolStop();
-
-	void setLiftToPosition();
-	void preSetHeight();
 	void activateSecondTier(int target);
-	void buttonIsPressed();
-	
-	HematologistManipulator(HematologistOperatorInterface* oi);
-	void toggleBinHugger();
-	void moveForklift(float power);
 
+	void toggleBinHugger(bool on, bool off);
 };
 
 

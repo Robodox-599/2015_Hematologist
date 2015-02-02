@@ -9,10 +9,10 @@ public:
 	HematologistDrive();
 	~HematologistDrive();
 
-     void setLinearDrive();
-     void setTurn();
-     void setStrafe();
-	 void drive();
+     void setLinearDrive(float linearValue);
+     void setTurn(float turnValue);
+     void setStrafe(float sideValue);
+	 void drive(float linearValue, float turnValue, float sideValue);
 	 void testDrive();
 
 	 Gyro* gyro;
@@ -21,7 +21,8 @@ public:
 	 float spin;
 	 float side;
 	 double initTime;
-	 float Kp = .06;
+	 float Kp = .1;
+	 float Kd = .01;
 
 	 Timer* timer;
 

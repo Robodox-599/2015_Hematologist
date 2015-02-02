@@ -18,6 +18,10 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	dashboard = NULL;
 }
 
+void HematologistOperatorInterface::printForkliftPower()
+{
+	//dashboard->PutNumber("Forklift Power: ", leftForkliftMotor->Get());
+}
 
 
 

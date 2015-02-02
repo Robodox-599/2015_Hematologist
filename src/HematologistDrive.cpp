@@ -2,11 +2,10 @@
 
  HematologistDrive::HematologistDrive()
 {
-
-     frontLeftMotor = new Talon(2);
-	 backLeftMotor = new Talon(3);
-	 frontRightMotor = new Talon(0);
-	 backRightMotor = new Talon(1);
+     frontLeftMotor = new Talon(FRONT_LEFT_MOTOR_CHANNEL);
+	 backLeftMotor = new Talon(BACK_LEFT_MOTOR_CHANNEL);
+	 frontRightMotor = new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
+	 backRightMotor = new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
 	 gyro = new Gyro(1);
      gyro_ref = 0;
@@ -39,11 +38,11 @@
 	 gyro = NULL;
 }
 
-void HematologistDrive::setLinearDrive()
+void HematologistDrive::setLinearDrive(float linearValue)
 {
-	 if(oi->rightJoystick->GetY() > DEADZONE || oi->rightJoystick->GetY() < -DEADZONE)
+	 if(linearValue > DEADZONE || linearValue < -DEADZONE)
 	 {
-		 forward = -(oi->rightJoystick->GetY());
+		 forward = -(linearValue);
 	 }
 	 else
 	 {
@@ -52,11 +51,11 @@ void HematologistDrive::setLinearDrive()
 }
 
 
-void HematologistDrive::setTurn()
+void HematologistDrive::setTurn(float turnValue)
 {
-	 if (oi->rightJoystick->GetX() > DEADZONE || oi->rightJoystick->GetX() < -DEADZONE)
+	 if (turnValue > DEADZONE || turnValue < -DEADZONE)
 	 {
-		 spin = oi->rightJoystick->GetX();
+		 spin = turnValue;
 		 gyro_ref = gyro->GetAngle();
 	 }
 	 else
@@ -65,11 +64,11 @@ void HematologistDrive::setTurn()
 	 }
 }
 
-void HematologistDrive::setStrafe()
+void HematologistDrive::setStrafe(float sideValue)
 {
-	 if (oi->leftJoystick->GetX() > DEADZONE || oi->leftJoystick->GetX() < -DEADZONE)
+	 if (sideValue > DEADZONE || sideValue < -DEADZONE)
 	 {
-		 side = oi->leftJoystick->GetX();
+		 side = sideValue;
 	 }
 	 else
 	 {
@@ -79,15 +78,15 @@ void HematologistDrive::setStrafe()
 
 
 
-void HematologistDrive::drive()
+void HematologistDrive::drive(float linearValue, float turnValue, float sideValue)
 {
-	 setLinearDrive();
-	 setTurn();
-	 setStrafe();
-	 frontLeftMotor->Set(forward - side + spin);
-	 frontRightMotor->Set(-forward - side + spin);
-	 backLeftMotor->Set(forward + side + spin);
-	 backRightMotor->Set(-forward + side + spin);
+	 setLinearDrive(linearValue);
+	 setTurn(turnValue);
+	 setStrafe(sideValue);
+	 frontLeftMotor->Set(forward + side + spin);
+	 frontRightMotor->Set(-forward + side + spin);
+	 backLeftMotor->Set(forward - side + spin);
+	 backRightMotor->Set(-forward - side + spin);
 }
 
 //for performing gyro testing, will be removed when test is successful
@@ -104,7 +103,9 @@ void HematologistDrive::testDrive()
     	frontRightMotor->Set(-.24 + spin);
     	backLeftMotor->Set(.24 + spin);
     	backRightMotor->Set(-.24 + spin);
-    } else {
+    }
+
+    else {
     	frontLeftMotor->Set(0);
     	frontRightMotor->Set(0);
     	backLeftMotor->Set(0);

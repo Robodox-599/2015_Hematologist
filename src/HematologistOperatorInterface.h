@@ -12,5 +12,10 @@ public:
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
 	SmartDashboard* dashboard;
+
+	void printForkliftPower();
+
+
+private:
 };
 #endif
