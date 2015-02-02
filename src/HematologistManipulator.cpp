@@ -3,18 +3,22 @@
 HematologistManipulator::HematologistManipulator()
 {
 	//Motor-based manipulators
-	leftLiftMotor = new Talon(0);
-	rightLiftMotor = new Talon(1);
-	leftForkliftMotor = new Talon(2);
-	rightForkliftMotor = new Talon (3);
+	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
+	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
+	leftForkliftMotor = new Talon(LEFT_FORKLIFT_MOTOR_CHANNEL);
+	rightForkliftMotor = new Talon (RIGHT_FORKLIFT_MOTOR_CHANNEL);
 
 	//Solenoids
-	binHuggerSol = new DoubleSolenoid(5, 6);
-	secondTierSol = new DoubleSolenoid(2, 3);
+	binHuggerSol = new DoubleSolenoid(BIN_HUGGER_SOL_CHANNEL_A, BIN_HUGGER_SOL_CHANNEL_B);
+	secondTierSol = new DoubleSolenoid(SECOND_TIER_SOL_CHANNEL_A, SECOND_TIER_SOL_CHANNEL_B);
 
-	//Encoders
-	encLift = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-	count = 0;
+	leftLiftEncoder = new Encoder(LEFT_LIFT_ENCODER_CHANNEL_A, LEFT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	rightLiftEncoder = new Encoder(RIGHT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	rightLiftEncoder->Encoder::SetMaxPeriod(1);
+	rightLiftEncoder->Encoder::SetMinRate(10);
+	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
+	rightLiftEncoder->Encoder::SetReverseDirection(true);
+	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
 }
 
 
@@ -134,19 +138,19 @@ void HematologistManipulator::setLiftToPosition(int target, float power)
 	}
 }
 
-void HematologistManipulator::preSetHeight(bool low, bool mid, bool high)
+void HematologistManipulator::preSetHeight(bool low, bool mid, bool high, float power)
 {
 	if(low)
 	{
-		setLiftToPosition(0, 0.5);
+		setLiftToPosition(PRE_SET_LOW, power);
 	}
 	if(mid)
 	{
-		setLiftToPosition(30, 0.5);
+		setLiftToPosition(PRE_SET_MID, power);
 	}
 	if(high)
 	{
-		setLiftToPosition(50, 0.5);
+		setLiftToPosition(PRE_SET_HIGH, power);
 	}
 }
 

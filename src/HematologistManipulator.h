@@ -24,7 +24,7 @@ public:
 
 	void manualLiftControl(bool up, bool down, float power);
 	void setLiftToPosition(int target, float power);
-	void preSetHeight(bool low, bool mid, bool high);
+	void preSetHeight(bool low, bool mid, bool high, float power);
 
 	void moveForklift(bool up, bool down, float power);
 
