@@ -6,6 +6,7 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 {
 	this->drive = drive;
 	this->manip = manip;
+	timer = new Timer();
 }
 
 virtual HematologistAutonomous::~HematologistAutonomous()
@@ -16,9 +17,13 @@ virtual HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::strafeRight()
 {
+	timer->Reset();
+	timer->Start();
+	while(timer->Get() < 5000)
+	{
+		drive(.5, 0, 0);
+	}
+	drive(0, 0, 0);
 
-	drive(0, 0, .2);
 }
-/*
-12.5 feet per sec
-*/
+/

@@ -11,6 +11,7 @@ private:
 	Encoder* encBackLeft;
 	Encoder* encBackRight;
 	Encoder* encLift;
+	Timer* timer;
 
 public:
 	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
