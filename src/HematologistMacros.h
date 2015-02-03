@@ -26,17 +26,19 @@
 #define SECOND_TIER_SOL_CHANNEL_B			(3)			//TODO: get correct number
 
 //Encoders
-#define LEFT_LIFT_ENCODER_CHANNEL_A			(0)			//TODO: get correct number
-#define LEFT_LIFT_ENCODER_CHANNEL_B			(1)			//TODO: get correct number
-#define RIGHT_LIFT_ENCODER_CHANNEL_A		(2)			//TODO: get correct number
-#define RIGHT_LIFT_ENCODER_CHANNEL_B		(3)			//TODO: get correct number
+#define LIFT_ENCODER_CHANNEL_A				(0)			//TODO: get correct number
+#define LIFT_ENCODER_CHANNEL_B				(1)			//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_A			(2)			//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_B			(3)			//TODO: get correct number
 
 //Misc Constants
 #define DEADZONE                   		    (.1)
-#define LIFTDEADZONE           				(10)
-#define SLOPE_ADJUSTMENT					(1.111111111111111111111111111111111111) // 1/.9
+#define LIFT_DEADZONE           			(10)
+#define SLOPE_ADJUSTMENT					(1.1111111111111111111111111111111)
 #define PRE_SET_LOW							(0)			//TODO: get correct number
 #define PRE_SET_MID							(30)		//TODO: get correct number
 #define PRE_SET_HIGH						(50)		//TODO: get correct number
+
+#define PI									(3.1415926535897932384626433832795)
 
 #endif

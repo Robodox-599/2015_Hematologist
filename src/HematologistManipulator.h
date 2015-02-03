@@ -16,8 +16,8 @@ private:
 	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
 
-	Encoder* leftLiftEncoder;
-	Encoder* rightLiftEncoder;
+	Encoder* liftEncoder;
+	Encoder* forkliftEncoder;
 
 public:
 
@@ -30,9 +30,9 @@ public:
 
 	void moveForklift(bool up, bool down, float power);
 
-	void secondTierSolForward();
-	void secondTierSolBackward();
-	void secondTierSolStop();
+	void openSecondTierSol();
+	void closeSecondTierSol();
+	void stopSecondTierSol();
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);

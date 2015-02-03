@@ -13,13 +13,13 @@ HematologistManipulator::HematologistManipulator()
 	secondTierSol = new DoubleSolenoid(SECOND_TIER_SOL_CHANNEL_A, SECOND_TIER_SOL_CHANNEL_B);
 
 	//Encoders
-	leftLiftEncoder = new Encoder(LEFT_LIFT_ENCODER_CHANNEL_A, LEFT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder = new Encoder(RIGHT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder->Encoder::SetMaxPeriod(1);
-	rightLiftEncoder->Encoder::SetMinRate(10);
-	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
-	rightLiftEncoder->Encoder::SetReverseDirection(true);
-	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
+	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	forkliftEncoder = new Encoder(FORKLIFT_ENCODER_CHANNEL_A, FORKLIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	liftEncoder->Encoder::SetMaxPeriod(1);
+	liftEncoder->Encoder::SetMinRate(10);
+	liftEncoder->Encoder::SetDistancePerPulse(5);
+	liftEncoder->Encoder::SetReverseDirection(true);
+	liftEncoder->Encoder::SetSamplesToAverage(7);
 }
 
 
@@ -31,8 +31,8 @@ HematologistManipulator::~HematologistManipulator()
 	delete rightForkliftMotor;
 	delete binHuggerSol;
 	delete secondTierSol;
-	delete leftLiftEncoder;
-	delete rightLiftEncoder;
+	delete liftEncoder;
+	delete forkliftEncoder;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
@@ -40,8 +40,8 @@ HematologistManipulator::~HematologistManipulator()
 	rightForkliftMotor = NULL;
 	binHuggerSol = NULL;
 	secondTierSol = NULL;
-	leftLiftEncoder = NULL;
-	rightLiftEncoder = NULL;
+	liftEncoder = NULL;
+	forkliftEncoder = NULL;
 }
 
 void HematologistManipulator::moveForklift(bool up, bool down, float power)
@@ -66,33 +66,30 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-void HematologistManipulator::secondTierSolForward()
+void HematologistManipulator::openSecondTierSol()
 {
 	secondTierSol->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::secondTierSolBackward()
+void HematologistManipulator::closeSecondTierSol()
 {
 	secondTierSol->Set(DoubleSolenoid::kReverse);
 }
 
-void HematologistManipulator::secondTierSolStop()
+void HematologistManipulator::stopSecondTierSol()
 {
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
 void HematologistManipulator::activateSecondTier(int target)
 {
-	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
+	if(liftEncoder->Get() > target && liftEncoder->Get() < target + LIFT_DEADZONE)
 	{
-		secondTierSolForward();
+		closeSecondTierSol();
 	}
 	else
 	{
-		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
-		{
-			secondTierSolBackward();
-		}
+		openSecondTierSol();
 	}
 }
 
@@ -121,14 +118,14 @@ void HematologistManipulator::manualLiftControl(bool up, bool down, float power)
 
 void HematologistManipulator::setLiftToPosition(int target, float power)
 {
-	if(rightLiftEncoder->Get() < target && leftLiftEncoder->Get() < target)
+	if(liftEncoder->Get() < target)
 	{
 		leftLiftMotor->Set(power);
 		rightLiftMotor->Set(power);
 	}
 	else
 	{
-		if(rightLiftEncoder->Get() < target + LIFTDEADZONE && rightLiftEncoder->Get() < target + LIFTDEADZONE)
+		if(liftEncoder->Get() < target + LIFT_DEADZONE)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
