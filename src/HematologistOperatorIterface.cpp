@@ -27,12 +27,14 @@ HematologistOperatorInterface::getJoystickValue(string whichOne, char whichAxis)
 	if (whichOne.compare("Left"))
 	{
 		joystick = leftDriveJoystick;
-	}else
+	}
+	else
 	{
 		if (whichOne.compare("Right"))
 		{
 			joystick = rightDriveJoystick;
-		}else
+		}
+		else
 		{
 			joystick = manipJoystick;
 		}
@@ -41,7 +43,8 @@ HematologistOperatorInterface::getJoystickValue(string whichOne, char whichAxis)
 	if (whichAxis == X)
 	{
 		return joystick->GetX();
-	}else
+	}
+	else
 	{
 		return joystick->GetY();
 	}
