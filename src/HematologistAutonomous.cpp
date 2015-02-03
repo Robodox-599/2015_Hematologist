@@ -44,41 +44,42 @@ HematologistAutonomous::~HematologistAutonomous()
 void HematologistAutonomous::secondHemanAuto()
 {
 	manip->secondTierOpen();
-	manip->toggleForkLift(on);
+	manip->toggleForkLift(open);
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0.05, 0 , 0);
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
+			manip->toggleForkLift(closed);
 			manip->moveForkLift(true, false, 0.5);
 		}
 		else
 		{
 				manip->secondTierClosed();
-				manip->toggleForkLift(off);
+				manip->toggleForkLift(open);
 				manip->moveForkLift(false, true, 0.5);
 		}
 	}
 
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		manip->toggleForkLift(on);
 		manip->moveForkLift(false, false, 0);
 		drive->drive(0, 0, 0.1);
 	}
 
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		drive->drive(0.1, 0, 0);
+		drive->drive(0.05, 0, 0);
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->moveForkLift(true, false, 0.5);
+			manip->toggleForkLift(closed);
 			manip->secondTierOpen();
 		}
 		else
 		{
 			manip->secondTierClosed();
-			manip->toggleForkLift(off);
+			manip->toggleForkLift(open);
 			manip->moveForkLift(false, true, 0.5);
 		}
 	}
@@ -90,7 +91,17 @@ void HematologistAutonomous::secondHemanAuto()
 
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		drive->drive(0.1, 0, 0);
+		drive->drive(0.05, 0, 0);
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
+		{
+			manip->toggleForkLift(closed);
+			manip->moveForkLift(true, false, 0.5);
+		}
+		else
+		{
+			manip->toggleForkLift(open);
+			manip->moveForkLift(false, true, 0.5);
+		}
 	}
 
 	while(/*encoder value is less than certain value tbd*/)

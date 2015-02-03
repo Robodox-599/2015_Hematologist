@@ -169,13 +169,13 @@ void HematologistManipulator::toggleBinHugger(bool on, bool off)
 	}
 }
 
-void HematologistManipulator::toggleForkLift(bool on, bool off)
+void HematologistManipulator::toggleForkLift(bool open, bool closed)
 {
-	if (on)
+	if (open)
 	{ 
 		forkLiftSol->Set(DoubleSolenoid::kReverse);
 	}
-	else if (off)
+	else if (closed)
 	{
 		forkLiftSol->Set(DoubleSolenoid::kForward);
 	}

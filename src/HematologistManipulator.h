@@ -35,7 +35,7 @@ public:
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
-	void toggleForkLift(bool on, bool off);
+	void toggleForkLift(bool open, bool closed); 
 };
 
 
