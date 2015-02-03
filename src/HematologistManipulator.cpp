@@ -66,17 +66,17 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-void HematologistManipulator::secondTierSolForward()
+void HematologistManipulator::secondTierClosed()
 {
 	secondTierSol->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::secondTierSolBackward()
+void HematologistManipulator::secondTierOpen()
 {
 	secondTierSol->Set(DoubleSolenoid::kReverse);
 }
 
-void HematologistManipulator::secondTierSolStop()
+void HematologistManipulator::secondTierStop()
 {
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
@@ -85,13 +85,13 @@ void HematologistManipulator::activateSecondTier(int target)
 {
 	if(leftLiftEncoder->Get() < target && rightLiftEncoder->Get() < target)
 	{
-		secondTierSolForward();
+		secondTierClosed();
 	}
 	else
 	{
 		if(leftLiftEncoder->Get() > target && rightLiftEncoder->Get() > target)
 		{
-			secondTierSolBackward();
+			secondTierOpen();
 		}
 	}
 }

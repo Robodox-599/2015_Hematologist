@@ -13,12 +13,9 @@ private:
 	Encoder* backLeftEnc;
 	Encoder* backRightEnc;
 
-	double averageEncVal; //all four Enc Value divided by four
-
 public:
 	HematologistAutonomous();
 	~HematologistAutonomous();
 
-	void secondHemanAuto(); // gets 2-3 totes and stack it
-	void setAverageEncVal();
+	void secondHemanAuto(); // gets 2 totes and stack it
 };

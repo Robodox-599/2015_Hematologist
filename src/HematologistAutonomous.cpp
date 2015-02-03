@@ -1,11 +1,7 @@
 #include "HematologistAutonomous.h" // all values for the autonomous is not set. Thus need accurate calculation to replace
 
-HematologistAutonomous::HematologistAutonomous()
+HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
 {
-	drive = new HematologistDrive();
-
-	averageEncVal = 0;
-
 	frontLeftEnc = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
 	frontRightEnc = new Encoder(3, 4, true, Encoder::EncodingType::k4X);
 	backLeftEnc = new Encoder(5, 6, false, Encoder::EncodingType::k4X);
@@ -47,76 +43,45 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::secondHemanAuto()
 {
-	frontLeftEnc->Reset();
-	frontRightEnc->Reset();
-	backLeftEnc->Reset();
-	backRightEnc->Reset();
-	man->secondTierClawOpen();
-
-	if(averageEncVal < 20)
+	while(/*encoder value is less than certain value tbd*/)
 	{
-		drive->frontLeftMotor->Set(.5);
-		drive->frontRightMotor->Set(-.5);
-		drive->backLeftMotor->Set(.5);
-		drive->backRightMotor->Set(-.5);
-		//if pressure button is pressed, then activateSecondTier
-	}
-	else
-	{
-		if(averageEncVal < 25)
+		manip->
+		drive->drive(0.05, 0 , 0);
+		if(/*encoder value is less than certain value tbd*/)
 		{
-			drive->frontLeftMotor->Set(.5);
-			drive->frontRightMotor->Set(.5);
-			drive->backLeftMotor->Set(.5);
-			drive->backRightMotor->Set(.5);
-		}
-		else
-		{
-			if(averageEncVal < 30)
-			{
-				drive->frontLeftMotor->Set(.5);
-				drive->frontRightMotor->Set(-.5);
-				drive->backLeftMotor->Set(.5);
-				drive->backRightMotor->Set(-.5);
-				//if pressure button is pressed, then activateSecondTier
-			}
-			else
-			{
-				if(averageEncVal < 35)
-				{
-					drive->frontLeftMotor->Set(.5);
-					drive->frontRightMotor->Set(.5);
-					drive->backLeftMotor->Set(.5);
-					drive->backRightMotor->Set(.5);
-				}
-				else
-				{
-					if(averageEncVal < 50)
-					{
-						drive->frontLeftMotor->Set(.5);
-						drive->frontRightMotor->Set(-.5);
-						drive->backLeftMotor->Set(.5);
-						drive->backRightMotor->Set(-.5);
-					}
-					else
-					{
-						drive->frontLeftMotor->Set(0);
-						drive->frontRightMotor->Set(0);
-						drive->backLeftMotor->Set(0);
-						drive->backRightMotor->Set(0);
-
-						frontLeftEnc->Reset();
-						frontRightEnc->Reset();
-						backLeftEnc->Reset();
-						backRightEnc->Reset();
-					}
-				}
-			}
+			manip->moveForkLift(true, false, 0.5);
 		}
 	}
+
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0, 0, 0.1);
+	}
+	
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0.1, 0, 0);
+	}
+	
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0, 0, 0.1);
+	}
+
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0.1, 0, 0);
+	}
+
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0, 0, 0);
+		manip->secondTierClosed();
+		if(/*encoder value is less than certain value tbd*/)
+		{
+			drive->drive(-0.1, 0, 0);
+		}
+	}
+	drive->drive(0, 0, 0);	
 }
 
-void HematologistAutonomous::setAverageEncVal()
-{
-	(frontLeftEnc-> Get() + frontRightEnc-> Get() + backLeftEnc-> Get() + backRightEnc-> Get()) / 4 = averageEncVal;
-}

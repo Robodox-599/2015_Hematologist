@@ -30,9 +30,9 @@ public:
 
 	void moveForklift(bool up, bool down, float power);
 
-	void secondTierSolForward();
-	void secondTierSolBackward();
-	void secondTierSolStop();
+	void secondTierClosed();
+	void secondTierOpen();
+	void secondTierStop();
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
