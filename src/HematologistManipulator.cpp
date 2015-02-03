@@ -77,7 +77,7 @@ void HematologistManipulator::toggleSecondTierSolenoid(TARGET)
 		{
 			if(forkliftEncoder->Get() > (TARGET + LIFTDEADZONE))
 			{
-				secondTierSol->Set(DoubleSolenoid::kOff);
+				secondTierSol->Set(DoubleSolenoid::kForward);
 			}
 		}
 	}
@@ -98,7 +98,7 @@ void HematologistManipulator::activateSecondTier()
 	}
 	else
 	{
-		secondTierSol->Set(DoubleSolenoid::kOff);
+		secondTierSol->Set(DoubleSolenoid::kForward);
 	}
 }
 
