@@ -62,15 +62,25 @@ void HematologistAutonomous::secondHemanAuto()
 	{
 		drive->drive(0, 0, 0.1);
 	}
-	
+
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0.1, 0, 0);
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
+		{
+			manip->moveForkLift(true, false, 0.5);
+			manip->secondTierOpen();
+		}
+		else
+		{
+			manip->secondTierClosed();
+			manip->moveForkLift(false, true, 0.5);
+		}
 	}
 	
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		drive->drive(0, 0, 0.1);
+		drive->drive(0, 0, -0.1);
 	}
 
 	while(/*encoder value is less than certain value tbd*/)
