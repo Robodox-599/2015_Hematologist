@@ -38,3 +38,6 @@
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
 
+//Gyro
+#define GYRO_KP								(.1)
+
