@@ -31,6 +31,7 @@ public:
 	void moveForklift(bool up, bool down, float power);
 
 	void toggleSecondTierSolenoid();
+
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);

@@ -68,18 +68,22 @@ void HematologistManipulator::toggleSecondTierSolenoid()
 	secondTierSol->Set(DoubleSolenoid::kOff);
 }
 
-void HematologistManipulator::activateSecondTier(int target)
+void HematologistManipulator::activateSecondTier(int LIFTDEADZONE)
 {
-	if(liftEncoder->Get() < target && liftEncoder->Get() < target)
+	if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
 	{
-		secondTierSolForward();
+		secondTierSol->Set(DoubleSolenoid::kForward);
 	}
 	else
 	{
-		if(liftEncoder->Get() > target && liftEncoder->Get() > target)
+		if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
 		{
-			secondTierSolBackward();
+			secondTierSol->Set(DoubleSolenoid::kReverse);
 		}
+	}
+	else
+	{
+		secondTierSol->Set(DoubleSolenoid::kOff);
 	}
 }
 
