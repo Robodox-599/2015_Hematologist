@@ -43,13 +43,18 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::secondHemanAuto()
 {
+	manip->secondTierOpen();
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		manip->
 		drive->drive(0.05, 0 , 0);
-		if(/*encoder value is less than certain value tbd*/)
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->moveForkLift(true, false, 0.5);
+		}
+		else
+		{
+				manip->secondTierClosed();
+				manip->moveForkLift(false, true, 0.5);
 		}
 	}
 
