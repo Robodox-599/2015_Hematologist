@@ -44,9 +44,10 @@ float HematologistDrive::setTurn(float turn)
 	if (turn > DEADZONE || turn < -DEADZONE)
 	{
 		this->turn = turn;
+		gyro_ref = gyro->GetAngle();
 	}else
 	{
-		turn = 0;
+		turn = kP * (gyro_ref - (gyro->GetAngle()));
 	}
 	return turn;
 }
