@@ -7,8 +7,9 @@ public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
 private:
-	Joystick* leftJoystick;
-	Joystick* rightJoystick;
+	Joystick* leftDriveJoystick;
+	Joystick* rightDriveJoystick;
+	Joystick* manipJoystick;
 	SmartDashboard* dashboard;
 };
 
