@@ -26,3 +26,24 @@ HematologistDrive::~HematologistDrive()
 	backLeftMotor 	= NULL;
 	frontRightMotor = NULL;
 }
+
+float HematologistDrive::setForward(float forward)
+{
+	this->forward = forward;
+	return forward;
+}
+
+float HematologistDrive::setTurn(float turn)
+{
+	this->turn = turn;
+	return turn;
+}
+
+
+float HematologistDrive::setStrafe(float strafe)
+{
+	this->strafe = strafe;
+	return strafe;
+}
+
+void  HematologistDrive::drive(float forward, float turn, float strafe);
