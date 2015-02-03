@@ -9,4 +9,20 @@ HematologistDrive::HematologistDrive()
 
 	gyro = new Gyro(1);
 	gyro_ref = 0;
+
+	forward = turn = strafe = 0;
+}
+
+HematologistDrive::~HematologistDrive()
+{
+	delete frontLeftMotor;
+	delete backRightMotor;
+	delete backLeftMotor;
+	delete backRightMotor;
+	delete gyro;
+
+	frontLeftMotor 	= NULL;
+	backRightMotor 	= NULL;
+	backLeftMotor 	= NULL;
+	frontRightMotor = NULL;
 }
