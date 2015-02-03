@@ -13,6 +13,7 @@ public:
      void setTurn(float turnValue);
      void setStrafe(float sideValue);
 	 void drive(float linearValue, float turnValue, float sideValue);
+	 float linearizeDrive(float driveInput);
 	 void testDrive();
 
 	 Gyro* gyro;
@@ -20,6 +21,7 @@ public:
 	 float forward;
 	 float spin;
 	 float side;
+
 	 double initTime;
 	 float Kp = .1;
 	 float Kd = .01;

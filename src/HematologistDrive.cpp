@@ -76,18 +76,22 @@ void HematologistDrive::setStrafe(float sideValue)
 	 }
 }
 
-
-
 void HematologistDrive::drive(float linearValue, float turnValue, float sideValue)
 {
 	 setLinearDrive(linearValue);
 	 setTurn(turnValue);
 	 setStrafe(sideValue);
-	 frontLeftMotor->Set(forward + side + spin);
-	 frontRightMotor->Set(-forward + side + spin);
-	 backLeftMotor->Set(forward - side + spin);
-	 backRightMotor->Set(-forward - side + spin);
+	 frontLeftMotor->Set(linearizeDrive(forward + side + spin));
+	 frontRightMotor->Set(linearizeDrive(-forward + side + spin));
+	 backLeftMotor->Set(linearizeDrive(forward - side + spin));
+	 backRightMotor->Set(linearizeDrive(-forward - side + spin));
 }
+
+float HematologistDrive::linearizeDrive(float driveInput)
+{
+	return ((driveInput * SLOPE_ADJUSTMENT) - SLOPE_ADJUSTMENT);
+}
+
 
 //for performing gyro testing, will be removed when test is successful
 void HematologistDrive::testDrive()

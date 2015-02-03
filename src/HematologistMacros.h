@@ -34,6 +34,7 @@
 //Misc Constants
 #define DEADZONE                   		    (.1)
 #define LIFTDEADZONE           				(10)
+#define SLOPE_ADJUSTMENT					(1.111111111111111111111111111111111111) // 1/.9
 #define PRE_SET_LOW							(0)			//TODO: get correct number
 #define PRE_SET_MID							(30)		//TODO: get correct number
 #define PRE_SET_HIGH						(50)		//TODO: get correct number
