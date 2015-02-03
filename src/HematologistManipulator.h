@@ -35,6 +35,7 @@ public:
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
+
 };
 
 
