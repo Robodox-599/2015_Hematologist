@@ -6,6 +6,9 @@ class HematologistOperatorInterface
 public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
+
+	float getJoystickValue(string whichJoystick, char whichAxis);
+
 private:
 	Joystick* leftDriveJoystick;
 	Joystick* rightDriveJoystick;
