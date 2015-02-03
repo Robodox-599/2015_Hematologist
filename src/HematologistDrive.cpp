@@ -29,21 +29,42 @@ HematologistDrive::~HematologistDrive()
 
 float HematologistDrive::setForward(float forward)
 {
-	this->forward = forward;
+	if (forward > DEADZONE || forward < -DEADZONE)
+	{
+		this->forward = forward;
+	}else
+	{
+		forward = 0;
+	}
 	return forward;
 }
 
 float HematologistDrive::setTurn(float turn)
 {
-	this->turn = turn;
+	if (turn > DEADZONE || turn < -DEADZONE)
+	{
+		this->turn = turn;
+	}else
+	{
+		turn = 0;
+	}
 	return turn;
 }
 
 
 float HematologistDrive::setStrafe(float strafe)
 {
-	this->strafe = strafe;
+	if (strafe > DEADZONE || strafe < -DEADZONE)
+	{
+		this->strafe = strafe;
+	}else
+	{
+		strafe = 0;
+	}
 	return strafe;
 }
 
-void  HematologistDrive::drive(float forward, float turn, float strafe);
+void  HematologistDrive::drive(float forward, float turn, float strafe)
+{
+
+}
