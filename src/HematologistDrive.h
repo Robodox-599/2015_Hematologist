@@ -25,8 +25,7 @@ private:
 	float strafe;
 
 	float kP;
-	float kD;
-
+	
 	HematologistOperatorInterface* oi;
 
 	Talon* frontLeftMotor;
