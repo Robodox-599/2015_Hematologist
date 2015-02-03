@@ -1,4 +1,4 @@
-
+#include "HematologistMacros.h"
 
 class Hematologist: public IterativeRobot
 {
