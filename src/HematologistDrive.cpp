@@ -11,6 +11,8 @@ HematologistDrive::HematologistDrive()
 	gyro_ref = 0;
 
 	forward = turn = strafe = 0;
+
+	kP = GYRO_KP;
 }
 
 HematologistDrive::~HematologistDrive()
