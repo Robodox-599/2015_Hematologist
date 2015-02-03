@@ -10,11 +10,10 @@ private:
 
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor;
 
 	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
+	DoubleSolenoid* forkLiftSol;
 
 	Encoder* leftLiftEncoder;
 	Encoder* rightLiftEncoder;
@@ -36,6 +35,7 @@ public:
 	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
+	void toggleForkLift(bool on, bool off);
 };
 
 
