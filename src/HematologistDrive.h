@@ -34,4 +34,6 @@ private:
 
 	double gyro_ref;
 
-}
+};
+
+#endif
