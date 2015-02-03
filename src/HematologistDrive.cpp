@@ -6,4 +6,7 @@ HematologistDrive::HematologistDrive()
 	backLeftMotor 	= new Talon(BACK_LEFT_MOTOR_CHANNEL);
 	frontRightMotor	= new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
 	backRightMotor	= new Talon(BACK_RIGHT_MOTOR_CHANNEL);
+
+	gyro = new Gyro(1);
+	gyro_ref = 0;
 }
