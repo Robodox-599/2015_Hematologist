@@ -28,8 +28,8 @@
 //Encoders
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
 #define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
-#define FORKLIFT_ENCODER_CHANNEL_A		(2)		//TODO: get correct number
-#define FORKLIFT_ENCODER_CHANNEL_B		(3)		//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_A			(2)		//TODO: get correct number
+#define FORKLIFT_ENCODER_CHANNEL_B			(3)		//TODO: get correct number
 
 //Misc Constants
 #define DEADZONE                   		    (.1)
