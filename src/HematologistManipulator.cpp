@@ -61,21 +61,21 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-void HematologistManipulator::toggleSecondTierSolenoid(int target)
+void HematologistManipulator::toggleSecondTierSolenoid(TARGET)
 {
-	if(liftEncoder->Get() < (LIFTDEADZONE + target) && liftEncoder->Get() > target)
+	if(forkliftEncoder->Get() < (TARGET - LIFTDEADZONE))
 	{
 		secondTierSol->Set(DoubleSolenoid::kForward);
 	}
 	else
 	{
-		if(liftEncoder->Get() < target && liftEncoder->Get() > (-LIFTDEADZONE + target))
+		if(forkliftEncoder->Get() > (TARGET - LIFTDEADZONE) && forkliftEncoder->Get() < (TARGET + LIFTDEADZONE))
 		{
 			secondTierSol->Set(DoubleSolenoid::kReverse);
 		}
 		else
 		{
-			if(liftEncoder->Get() = 0)
+			if(forkliftEncoder->Get() > (TARGET + LIFTDEADZONE))
 			{
 				secondTierSol->Set(DoubleSolenoid::kOff);
 			}
@@ -85,13 +85,13 @@ void HematologistManipulator::toggleSecondTierSolenoid(int target)
 
 void HematologistManipulator::activateSecondTier()
 {
-	if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
+	if(forkliftEncoder->Get() < LIFTDEADZONE && forkliftEncoder->Get() > -LIFTDEADZONE)
 	{
 		secondTierSol->Set(DoubleSolenoid::kForward);
 	}
 	else
 	{
-		if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
+		if(forkliftEncoder->Get() < LIFTDEADZONE && forkliftEncoder->Get() > -LIFTDEADZONE)
 		{
 			secondTierSol->Set(DoubleSolenoid::kReverse);
 		}
