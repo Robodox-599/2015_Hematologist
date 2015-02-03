@@ -32,4 +32,6 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
+	double gyro_ref;
+
 }
