@@ -10,32 +10,29 @@ private:
 
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor;
 
-	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
+	DoubleSolenoid* secondTierSol;
+	DoubleSolenoid* forkliftSol;
 
 	Encoder* liftEncoder;
-	Encoder* forkliftEncoder;
 
 public:
 
 	HematologistManipulator();
 	virtual ~HematologistManipulator();
 
+	void setForkliftSol(int input);
+	void setSecondTierSol(int input);
+	void setBinHuggerSol(int input);
+
+	void activateSecondTier(int target);
+	void activateBinHugger(bool open, bool close);
+
 	void manualLiftControl(bool up, bool down, float power);
 	void setLiftToPosition(int target, float power);
 	void preSetHeight(bool low, bool mid, bool high, float power);
 
-	void moveForklift(bool up, bool down, float power);
-
-	void openSecondTierSol();
-	void closeSecondTierSol();
-	void stopSecondTierSol();
-	void activateSecondTier(int target);
-
-	void toggleBinHugger(bool on, bool off);
 };
 
 

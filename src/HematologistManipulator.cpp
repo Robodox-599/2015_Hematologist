@@ -5,16 +5,14 @@ HematologistManipulator::HematologistManipulator()
 	//Motor-based manipulators
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
-	leftForkliftMotor = new Talon(LEFT_FORKLIFT_MOTOR_CHANNEL);
-	rightForkliftMotor = new Talon (RIGHT_FORKLIFT_MOTOR_CHANNEL);
 
 	//Solenoids
 	binHuggerSol = new DoubleSolenoid(BIN_HUGGER_SOL_CHANNEL_A, BIN_HUGGER_SOL_CHANNEL_B);
 	secondTierSol = new DoubleSolenoid(SECOND_TIER_SOL_CHANNEL_A, SECOND_TIER_SOL_CHANNEL_B);
+	forkliftSol = new DoubleSolenoid(FORKLIFT_SOL_CHANNEL_A, FORKLIFT_SOL_CHANNEL_B);
 
 	//Encoders
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	forkliftEncoder = new Encoder(FORKLIFT_ENCODER_CHANNEL_A, FORKLIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
 	liftEncoder->Encoder::SetMaxPeriod(1);
 	liftEncoder->Encoder::SetMinRate(10);
 	liftEncoder->Encoder::SetDistancePerPulse(5);
@@ -27,69 +25,97 @@ HematologistManipulator::~HematologistManipulator()
 {
 	delete leftLiftMotor;
 	delete rightLiftMotor;
-	delete leftForkliftMotor;
-	delete rightForkliftMotor;
 	delete binHuggerSol;
 	delete secondTierSol;
+	delete forkliftSol;
 	delete liftEncoder;
-	delete forkliftEncoder;
 
 	leftLiftMotor = NULL;
 	rightLiftMotor = NULL;
-	leftForkliftMotor = NULL;
-	rightForkliftMotor = NULL;
 	binHuggerSol = NULL;
 	secondTierSol = NULL;
+	forkliftSol = NULL;
 	liftEncoder = NULL;
-	forkliftEncoder = NULL;
 }
 
-void HematologistManipulator::moveForklift(bool up, bool down, float power)
+void HematologistManipulator::setBinHuggerSol(int input)
 {
-	if(up)
+	if(input == 0)
 	{
-		leftForkliftMotor->Set(power);
-		rightForkliftMotor->Set(-power);
+		binHuggerSol->Set(DoubleSolenoid::kForward);
 	}
 	else
 	{
-		if(down)
+		if(input == 1)
 		{
-			leftForkliftMotor->Set(-power);
-			rightForkliftMotor->Set(power);
+			binHuggerSol->Set(DoubleSolenoid::kReverse);
 		}
 		else
 		{
-			leftForkliftMotor->Set(0);
-			rightForkliftMotor->Set(0);
+			binHuggerSol->Set(DoubleSolenoid::kOff);
 		}
 	}
 }
 
-void HematologistManipulator::openSecondTierSol()
+void HematologistManipulator::setSecondTierSol(int input)
 {
-	secondTierSol->Set(DoubleSolenoid::kForward);
+	if(input == 0)
+	{
+		secondTierSol->Set(DoubleSolenoid::kReverse);
+	}
+	else
+	{
+		if(input == 1)
+		{
+			secondTierSol->Set(DoubleSolenoid::kForward);
+		}
+		else
+		{
+			secondTierSol->Set(DoubleSolenoid::kOff);
+		}
+	}
 }
 
-void HematologistManipulator::closeSecondTierSol()
+void HematologistManipulator::setForkliftSol(int input)
 {
-	secondTierSol->Set(DoubleSolenoid::kReverse);
-}
-
-void HematologistManipulator::stopSecondTierSol()
-{
-	secondTierSol->Set(DoubleSolenoid::kOff);
+	if(input == 0)
+	{
+		forkliftSol->Set(DoubleSolenoid::kReverse);
+	}
+	else
+	{
+		if(input == 1)
+		{
+			forkliftSol->Set(DoubleSolenoid::kForward);
+		}
+		else
+		{
+			forkliftSol->Set(DoubleSolenoid::kOff);
+		}
+	}
 }
 
 void HematologistManipulator::activateSecondTier(int target)
 {
 	if(liftEncoder->Get() > target && liftEncoder->Get() < target + LIFT_DEADZONE)
 	{
-		closeSecondTierSol();
+		setSecondTierSol(0);
 	}
 	else
 	{
-		openSecondTierSol();
+		setSecondTierSol(1);
+	}
+}
+
+void HematologistManipulator::activateBinHugger(bool open, bool close)
+{
+	if(open)
+	{
+		setBinHuggerSol(1);
+	}
+	else if(close)
+	{
+		setBinHuggerSol(0);
 	}
 }
 
@@ -151,18 +177,6 @@ void HematologistManipulator::preSetHeight(bool low, bool mid, bool high, float 
 	if(high)
 	{
 		setLiftToPosition(PRE_SET_HIGH, power);
-	}
-}
-
-void HematologistManipulator::toggleBinHugger(bool on, bool off)
-{
-	if (on)
-	{ 
-		binHuggerSol->Set(DoubleSolenoid::kReverse);
-	}
-	else if (off)
-	{
-		binHuggerSol->Set(DoubleSolenoid::kForward);
 	}
 }
 
