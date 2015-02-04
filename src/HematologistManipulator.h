@@ -6,6 +6,11 @@
 class HematologistManipulator
 {
 private:
+	Talon* leftLiftMotor;
+	Talon* rightLiftMotor;
+
+
+
 public:
 };
 
