@@ -69,5 +69,11 @@ float HematologistDrive::setStrafe(float strafe)
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-
+	setForward(forward);
+	setTurn(turn);
+	setStrafe(strafe);
+	frontLeftMotor->Set(forward + side + spin);
+	frontRightMotor->Set(-forward + side + spin);
+	backLeftMotor->Set(forward - side + spin);
+	backRightMotor->Set(-forward - side + spin);
 }
