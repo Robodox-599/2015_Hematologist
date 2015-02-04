@@ -55,40 +55,40 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 		else
 		{
-				manip->secondTierClosed();
-				manip->toggleForkLift(open);
-				manip->moveForkLift(false, true, 0.5);
+			manip->toggleForkLift(open);
+			manip->secondTierClosed();
+			manip->moveForkLift(false, true, 0.5);
 		}
 	}
-
+	//got first tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		manip->moveForkLift(false, false, 0);
 		drive->drive(0, 0, 0.1);
 	}
-
+	//first turn 
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0.05, 0, 0);
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
-			manip->moveForkLift(true, false, 0.5);
 			manip->toggleForkLift(closed);
+			manip->moveForkLift(true, false, 0.5);
 			manip->secondTierOpen();
 		}
 		else
 		{
-			manip->secondTierClosed();
 			manip->toggleForkLift(open);
+			manip->secondTierClosed();
 			manip->moveForkLift(false, true, 0.5);
 		}
 	}
-	
+	//picked up second tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0, 0, -0.1);
 	}
-
+	//second turn
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0.05, 0, 0);
@@ -100,14 +100,36 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->toggleForkLift(open);
+			manip->secondTierClosed();
 			manip->moveForkLift(false, true, 0.5);
 		}
 	}
-
+	//picked up third tote
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(0, 0, -0.01);
+	}
+	//third turn(last turn) turning left and go bakcward
+	while(/*encoder value is less than certain value tbd*/)
+	{
+		drive->drive(-0.05, 0, 0);
+	}
+	//drive backward
 	while(/*encoder value is less than certain value tbd*/)
 	{
 		drive->drive(0, 0, 0);
-		manip->secondTierClosed();
+		while(/*encoder value is less than certain value tbd*/)
+		{
+			manip->moveForkLift(true, false, 0.5);
+		}
+		
+		manidp->secondTierOpen();
+
+		while(/*encoder value is less than certain value tbd*/)
+		{
+			manip->moveForkLift(false, true, 0.5);
+		}
+
 		if(/*encoder value is less than certain value tbd*/)
 		{
 			drive->drive(-0.1, 0, 0);
