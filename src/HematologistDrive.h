@@ -16,10 +16,10 @@ public:
 	 void testDrive();
 
 	 Gyro* gyro;
-	 Encoder *encFrontLeft;
+	/* Encoder *encFrontLeft;
 	 Encoder *encBackLeft;
 	 Encoder *encFrontRight;
-	 Encoder *encBackRight;
+	 Encoder *encBackRight;*/
 
 	 float forward;
 	 float spin;
@@ -38,10 +38,10 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
-	double countFrontLeft;
+	/*double countFrontLeft;
 	double countFrontRight;
 	double countBackLeft;
-	double countBackRight;
+	double countBackRight;*/
 
 	double gyro_ref;
 };

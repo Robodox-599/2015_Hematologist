@@ -7,7 +7,7 @@
 	 frontRightMotor = new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
 	 backRightMotor = new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
-	 encFrontLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	/* encFrontLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
 	 encBackLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
 	 encFrontRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
 	 encBackRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
@@ -15,7 +15,7 @@
 	 countFrontLeft = 0;
 	 countFrontRight = 0;
 	 countBackLeft = 0;
-	 countBackRight = 0;
+	 countBackRight = 0;*/
 
 	 gyro = new Gyro(1);
      gyro_ref = 0;
@@ -102,7 +102,7 @@ void HematologistDrive::drive(float linearValue, float turnValue, float sideValu
 }
 
 //for performing gyro testing, will be removed when test is successful
-void HematologistDrive::testDrive()
+/*void HematologistDrive::testDrive()
 {   //speed: .24
     if(oi->rightJoystick->GetRawButton(3)){
     	gyro_ref = gyro->GetAngle();
@@ -123,4 +123,4 @@ void HematologistDrive::testDrive()
     	backLeftMotor->Set(0);
     	backRightMotor->Set(0);
     }
-}
+}*/
