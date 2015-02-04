@@ -86,6 +86,7 @@ void HematologistAutonomous::secondHemanAuto()
 	//picked up second tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
+		manip->moveForkLift(false, false, 0);
 		drive->drive(0, 0, -0.1);
 	}
 	//second turn
@@ -107,6 +108,7 @@ void HematologistAutonomous::secondHemanAuto()
 	//picked up third tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
+		manip->moveForkLift(false, false, 0);
 		drive->drive(0, 0, -0.01);
 	}
 	//third turn(last turn) turning left and go bakcward
@@ -132,6 +134,7 @@ void HematologistAutonomous::secondHemanAuto()
 
 		if(/*encoder value is less than certain value tbd*/)
 		{
+			manip->moveForkLift(false, false, 0);
 			drive->drive(-0.1, 0, 0);
 		}
 	}
