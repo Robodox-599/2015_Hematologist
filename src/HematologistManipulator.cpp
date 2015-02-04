@@ -58,15 +58,6 @@ void HematologistManipulator::moveForklift(bool up, bool down, float power)
 	}
 }
 
-void HematologistManipulator::toggleSecondTierSolenoid(TARGET)
-{
-	
-}
-
-void HematologistManipulator::activateSecondTier()
-{
-
-}
 
 void HematologistManipulator::manualLiftControl(bool up, bool down, float power)
 {

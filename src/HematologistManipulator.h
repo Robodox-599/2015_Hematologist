@@ -10,8 +10,6 @@ private:
 
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor;
 
 	DoubleSolenoid* secondTierSol;
 	DoubleSolenoid* binHuggerSol;
@@ -28,10 +26,6 @@ public:
 	void preSetHeight(bool low, bool mid, bool high, float power);
 
 	void moveForklift(bool up, bool down, float power);
-
-	void toggleSecondTierSolenoid();
-
-	void activateSecondTier(int target);
 
 	void toggleBinHugger(bool on, bool off);
 
