@@ -10,10 +10,10 @@
 #define FORKLIFT_DOWN_BUTTON				(4)			//TODO: get correct number
 
 //Motor Channels
-#define FRONT_LEFT_MOTOR_CHANNEL			(2)
-#define BACK_LEFT_MOTOR_CHANNEL				(3)
-#define FRONT_RIGHT_MOTOR_CHANNEL			(0)
-#define BACK_RIGHT_MOTOR_CHANNEL			(1)
+#define FRONT_LEFT_MOTOR_CHANNEL			(1)
+#define BACK_LEFT_MOTOR_CHANNEL				(0)
+#define FRONT_RIGHT_MOTOR_CHANNEL			(3)
+#define BACK_RIGHT_MOTOR_CHANNEL			(2)
 #define LEFT_LIFT_MOTOR_CHANNEL				(5)			//TODO: get correct number
 #define RIGHT_LIFT_MOTOR_CHANNEL			(6)			//TODO: get correct number
 #define LEFT_FORKLIFT_MOTOR_CHANNEL			(7)			//TODO: get correct number

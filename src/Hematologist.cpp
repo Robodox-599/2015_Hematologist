@@ -45,14 +45,10 @@ public:
 
 	void TeleopPeriodic()
 	{
-		if(oi->rightJoystick->GetTrigger())
-		{
-			drive->drive(oi->rightJoystick->GetY(), oi->rightJoystick->GetX(), oi->leftJoystick->GetX());
-		}
-		else
-		{
-			drive->testDrive();
-		}
+		drive->backLeftMotor->Set(oi->rightJoystick->GetY());
+		drive->frontLeftMotor->Set(oi->rightJoystick->GetY());
+		drive->backRightMotor->Set(oi->rightJoystick->GetY());
+		drive->frontRightMotor->Set(oi->rightJoystick->GetY());
 
 		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
 		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());

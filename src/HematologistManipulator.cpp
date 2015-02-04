@@ -12,13 +12,13 @@ HematologistManipulator::HematologistManipulator()
 	binHuggerSol = new DoubleSolenoid(BIN_HUGGER_SOL_CHANNEL_A, BIN_HUGGER_SOL_CHANNEL_B);
 	secondTierSol = new DoubleSolenoid(SECOND_TIER_SOL_CHANNEL_A, SECOND_TIER_SOL_CHANNEL_B);
 
-	leftLiftEncoder = new Encoder(LEFT_LIFT_ENCODER_CHANNEL_A, LEFT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder = new Encoder(RIGHT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
-	rightLiftEncoder->Encoder::SetMaxPeriod(1);
-	rightLiftEncoder->Encoder::SetMinRate(10);
-	rightLiftEncoder->Encoder::SetDistancePerPulse(5);
-	rightLiftEncoder->Encoder::SetReverseDirection(true);
-	rightLiftEncoder->Encoder::SetSamplesToAverage(7);
+	//leftLiftEncoder = new Encoder(LEFT_LIFT_ENCODER_CHANNEL_A, LEFT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	//rightLiftEncoder = new Encoder(RIGHT_LIFT_ENCODER_CHANNEL_A, RIGHT_LIFT_ENCODER_CHANNEL_B, false, Encoder::EncodingType::k4X);
+	//rightLiftEncoder->Encoder::SetMaxPeriod(1);
+	//rightLiftEncoder->Encoder::SetMinRate(10);
+	//rightLiftEncoder->Encoder::SetDistancePerPulse(5);
+	//rightLiftEncoder->Encoder::SetReverseDirection(true);
+	//rightLiftEncoder->Encoder::SetSamplesToAverage(7);
 }
 
 
