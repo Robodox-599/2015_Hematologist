@@ -41,7 +41,7 @@ HematologistAutonomous::~HematologistAutonomous()
 	backRightEnc = NULL;
 }
 
-void HematologistAutonomous::secondHemanAuto()
+void HematologistAutonomous::secondHemanAuto() 
 {
 	manip->secondTierOpen();
 	manip->toggleForkLift(open);
@@ -51,19 +51,19 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->toggleForkLift(closed);
-			manip->moveForkLift(true, false, 0.5);
+			manip->manualLiftControl(true, false, 0.5);
 		}
 		else
 		{
 			manip->toggleForkLift(open);
 			manip->secondTierClosed();
-			manip->moveForkLift(false, true, 0.5);
+			manip->manualLiftControl(false, true, 0.5);
 		}
 	}
 	//got first tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		manip->moveForkLift(false, false, 0);
+		manip->manualLiftControl(false, false, 0);
 		drive->drive(0, 0, 0.1);
 	}
 	//first turn 
@@ -73,20 +73,20 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->toggleForkLift(closed);
-			manip->moveForkLift(true, false, 0.5);
+			manip->manualLiftControl(true, false, 0.5);
 			manip->secondTierOpen();
 		}
 		else
 		{
 			manip->toggleForkLift(open);
 			manip->secondTierClosed();
-			manip->moveForkLift(false, true, 0.5);
+			manip->manualLiftControl(false, true, 0.5);
 		}
 	}
 	//picked up second tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		manip->moveForkLift(false, false, 0);
+		manip->manualLiftControl(false, false, 0);
 		drive->drive(0, 0, -0.1);
 	}
 	//second turn
@@ -96,19 +96,19 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->toggleForkLift(closed);
-			manip->moveForkLift(true, false, 0.5);
+			manip->manualLiftControl(true, false, 0.5);
 		}
 		else
 		{
 			manip->toggleForkLift(open);
 			manip->secondTierClosed();
-			manip->moveForkLift(false, true, 0.5);
+			manip->manualLiftControl(false, true, 0.5);
 		}
 	}
 	//picked up third tote
 	while(/*encoder value is less than certain value tbd*/)
 	{
-		manip->moveForkLift(false, false, 0);
+		manip->manualLiftControl(false, false, 0);
 		drive->drive(0, 0, -0.01);
 	}
 	//third turn(last turn) turning left and go bakcward
@@ -122,19 +122,19 @@ void HematologistAutonomous::secondHemanAuto()
 		drive->drive(0, 0, 0);
 		while(/*encoder value is less than certain value tbd*/)
 		{
-			manip->moveForkLift(true, false, 0.5);
+			manip->manualLiftControl(true, false, 0.5);
 		}
 		
 		manidp->secondTierOpen();
 
 		while(/*encoder value is less than certain value tbd*/)
 		{
-			manip->moveForkLift(false, true, 0.5);
+			manip->manualLiftControl(false, true, 0.5);
 		}
 
 		if(/*encoder value is less than certain value tbd*/)
 		{
-			manip->moveForkLift(false, false, 0);
+			manip->manualLiftControl(false, false, 0);
 			drive->drive(-0.1, 0, 0);
 		}
 	}
