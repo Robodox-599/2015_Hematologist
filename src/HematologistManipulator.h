@@ -9,9 +9,21 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	DoubleSolenoid* secondTierPiston;
+	DoubleSolenoid* binHuggerPiston;
+	DoubleSolenoid* forkliftPiston;
+	Joystick* manipJoystick;
+
+	bool disableEncoders;
 
 
 public:
+	void openBinHugger();
+	void openForklift();
+	void openSecondTier();
+
+	void resetEncoders();
+
 };
 
 #endif
