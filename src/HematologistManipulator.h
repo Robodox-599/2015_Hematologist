@@ -24,6 +24,9 @@ public:
 	void openForkliftButton();
 	void openSecondTierButton();
 
+	void ignoreEncoders();
+	void resetEncoders();
+
 };
 
 #endif

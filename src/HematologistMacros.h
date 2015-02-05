@@ -11,7 +11,8 @@
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
 #define RIGHT_DRIVE_JOYSTICK				(2)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_OPEN_BUTTON				(3)		//you know hwat
-#define SECOND_TIER_OPEN_BUTTON				(0)		//BYE 
+#define SECOND_TIER_OPEN_BUTTON				(0)		//BYE
+#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
 
 //Motor Channels
 #define FRONT_LEFT_MOTOR_CHANNEL			(2)
