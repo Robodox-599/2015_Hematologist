@@ -24,7 +24,6 @@ public:
 	void openForkliftButton();
 	void openSecondTierButton();
 
-
 };
 
 #endif
