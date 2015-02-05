@@ -9,9 +9,14 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	DoubleSolenoid* secondTierPiston;
+	DoubleSolenoid* binHuggerPiston;
+	DoubleSolenoid* forkliftPiston;
+
 
 
 public:
+	
 };
 
 #endif
