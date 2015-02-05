@@ -16,7 +16,15 @@ private:
 
 
 public:
-	
+	void openBinHugger();
+	void openForklift();
+	void openSecondTier();
+
+	void openBinHuggerButton();
+	void openForkliftButton();
+	void openSecondTierButton();
+
+
 };
 
 #endif
