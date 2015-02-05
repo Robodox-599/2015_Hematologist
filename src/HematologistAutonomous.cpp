@@ -56,7 +56,7 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->openForklLift(true);
-			//manip->openSecondTier(false);
+			manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
@@ -79,7 +79,7 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->openForklLift(true);
-			//manip->openSecondTier(false);
+			manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
@@ -101,7 +101,7 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->openForklLift(true);
-			//manip->openSecondTier(false);
+			manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
