@@ -9,6 +9,7 @@ HematologistDrive::HematologistDrive()
 
 	gyro = new Gyro(1);
 	gyro_ref = 0;
+	gyroButton = true;
 
 	forward = turn = strafe = 0;
 
@@ -22,6 +23,7 @@ HematologistDrive::~HematologistDrive()
 	delete backLeftMotor;
 	delete backRightMotor;
 	delete gyro;
+	delete gyroButton;
 
 	frontLeftMotor 	= NULL;
 	backRightMotor 	= NULL;
@@ -43,13 +45,23 @@ float HematologistDrive::setForward(float forward)
 
 float HematologistDrive::setTurn(float turn)
 {
-	if (turn > DEADZONE || turn < -DEADZONE)
+	if(gyroButton){
+		if (turn > DEADZONE || turn < -DEADZONE)
+		{
+			this->turn = turn;
+			gyro_ref = gyro->GetAngle();
+		}
+		else
+		{
+			turn = kP * (gyro_ref - (gyro->GetAngle()));
+		}
+	}
+	else
 	{
-		this->turn = turn;
-		gyro_ref = gyro->GetAngle();
-	}else
-	{
-		turn = kP * (gyro_ref - (gyro->GetAngle()));
+		if(turn > DEADZONE || turn < -DEADZONE)
+			this->turn = turn;
+		else
+			turn = 0;
 	}
 	return turn;
 }
@@ -77,3 +89,4 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	backLeftMotor->Set(forward - strafe + turn);
 	backRightMotor->Set(-forward - strafe + turn);
 }
+
