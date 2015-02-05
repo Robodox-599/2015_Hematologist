@@ -20,10 +20,6 @@ public:
 	void openForklift();
 	void openSecondTier();
 
-	void openBinHuggerButton();
-	void openForkliftButton();
-	void openSecondTierButton();
-
 	bool ignoreEncoders();
 	void resetEncoders();
 
