@@ -43,7 +43,7 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::secondHemanAuto()
 {
-	//manip->secondTierOpen();
+	manip->openSeocndTier(true);
 	manip->openForklLift(true); // true opens the grabber
 	while(/*encoder value is less than certain value tbd*/) 
 	{
@@ -56,7 +56,7 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->openForklLift(true);
-			//manip->secondTierClosed();
+			//manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
@@ -74,12 +74,12 @@ void HematologistAutonomous::secondHemanAuto()
 		{
 			manip->openForklLift(false);
 			//manip->manualLiftControl(true, false, 0.5);
-			//manip->secondTierOpen();
+			manip->openSeocndTier(true);
 		}
 		else
 		{
 			manip->openForklLift(true);
-			//manip->secondTierClosed();
+			//manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
@@ -101,7 +101,7 @@ void HematologistAutonomous::secondHemanAuto()
 		else
 		{
 			manip->openForklLift(true);
-			//manip->secondTierClosed();
+			//manip->openSecondTier(false);
 			//manip->manualLiftControl(false, true, 0.5);
 		}
 	}
@@ -125,7 +125,7 @@ void HematologistAutonomous::secondHemanAuto()
 			//manip->manualLiftControl(true, false, 0.5);
 		}
 		
-		//manip->secondTierOpen();
+		manip->openSeocndTier(true);
 
 		while(/*encoder value is less than certain value tbd*/)
 		{
