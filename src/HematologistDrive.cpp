@@ -71,7 +71,7 @@ void HematologistDrive::setTurn(float turnValue)
 	 }
 	 else
 	 {
-		 spin = Kp * (gyro_ref-(gyro->GetAngle()));
+		 spin = 0; //Kp * (gyro_ref-(gyro->GetAngle()));
 	 }
 }
 

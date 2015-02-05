@@ -30,13 +30,14 @@ public:
 
 	 Timer* timer;
 
-private:
-	HematologistOperatorInterface* oi;
-
 	Talon* frontLeftMotor;
 	Talon* backLeftMotor;
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
+private:
+	HematologistOperatorInterface* oi;
+
+
 
 	/*double countFrontLeft;
 	double countFrontRight;
