@@ -136,15 +136,19 @@ void HematologistManipulator::openSecondTierButton()
 	}
 }
 
-void HematologistManipulators::ignoreEncoders()
+bool HematologistManipulators::ignoreEncoders()
 {
-	if(manipJoystick->GetRawButton(IGNORE_ENCODERS_BUTTON))
+	if( manipJoystick->GetRawButton(IGNORE_ENCODERS_BUTTON))
 	{
 		//ignore encoders thing
+	}
+	else
+	{
+
 	}
 }
 
 void HematologistManipulators::resetEncoders()
 {
-	
+
 }
