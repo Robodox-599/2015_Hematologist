@@ -12,7 +12,9 @@ private:
 	DoubleSolenoid* secondTierPiston;
 	DoubleSolenoid* binHuggerPiston;
 	DoubleSolenoid* forkliftPiston;
+	Joystick* manipJoystick;
 
+	bool disableEncoders;
 
 
 public:
@@ -20,7 +22,6 @@ public:
 	void openForklift();
 	void openSecondTier();
 
-	bool ignoreEncoders();
 	void resetEncoders();
 
 };
