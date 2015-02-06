@@ -66,6 +66,9 @@ void HematologistAutonomous::secondHemanAuto()
 		manip->moveLift(false, false, 0);
 		drive->drive(0, 0, 0.1);
 	}
+
+
+
 	//first turn 
 	while(/*encoder value is less than certain value tbd*/)
 	{
@@ -141,3 +144,76 @@ void HematologistAutonomous::secondHemanAuto()
 	drive->drive(0, 0, 0);	
 }
 
+/*
+// all encoders are drive encoders
+
+//first tote
+while(in autonomous)
+{
+	//initial drive
+	if(encoder value is less than certain value tbd)
+	{
+		drive->drive(0.05, 0 , 0);
+	}
+	if(encoder value is between certain value tbd) 
+	{
+		manip->openForklLift(false);
+	}	
+	if(encoder value is between certain value tbd)
+	{
+		manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
+	}
+	if(encoder value is between certain value tbd)
+	{
+		manip->openForklLift(true);
+	}
+	if(encoder value is between certain value tbd)
+	{	
+		manip->openSecondTier(false);
+	}	
+	if(encoder value is between certain value tbd)
+	{	
+		manip->moveLift(false, true, 0.7);
+	}
+	if(encoder value is between certain value tbd)
+	{
+		manip->moveLift(false, false, 0);
+	}
+	if(encoder value is between certain value tbd)
+	{
+		drive->drive(0, 0, 0.1);
+	}
+}	
+//second tote
+while()
+{
+	if(encoder value is between certain value tbd)
+	{
+		drive->drive(0.05, 0, 0);
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}
+	if(encoder value is between certain value tbd)
+	{
+	
+	}				
+}
+*/
