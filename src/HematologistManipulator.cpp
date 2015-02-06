@@ -48,6 +48,7 @@ void HematologistManipulator::openBinHugger()
 				binHuggerPiston->Set(DoubleSolenoid::kOff);
 			}
 		}
+	}
 		else
 		{
 			if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
@@ -92,6 +93,7 @@ void HematologistManipulator::openSecondTier()
 				secondTierPiston->Set(DoubleSolenoid::kOff);
 			}
 		}
+	}
 		else
 		{
 			if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
@@ -105,6 +107,7 @@ void HematologistManipulator::openSecondTier()
 				secondTierPiston->Set(DoubleSolenoid::kBackward);
 				}
 			}
+		}
 			else
 			{
 				secondTierPiston->Set(DoubleSolenoid::kOff);
@@ -137,6 +140,7 @@ void HematologistManipulator::openForklift()
 				forkliftPiston->Set(DoubleSolenoid::kOff);
 			}
 		}
+	}
 		else
 		{
 			if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)

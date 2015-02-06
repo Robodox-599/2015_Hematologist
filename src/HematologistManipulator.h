@@ -14,6 +14,8 @@ private:
 	DoubleSolenoid* forkliftPiston;
 	Joystick* manipJoystick;
 
+
+
 	bool disableEncoders;
 
 
