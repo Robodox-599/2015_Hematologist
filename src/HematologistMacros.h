@@ -10,6 +10,7 @@
 #define FORKLIFT_DOWN_BUTTON				(4)		//TODO: FIND CORRECT VALUE
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
 #define RIGHT_DRIVE_JOYSTICK				(2)		//TODO: FIND CORRECT VALUE
+#define GYRO_TOGGLE_BUTTON          (3)   //TODO: get correct number
 
 //Motor Channels
 #define FRONT_LEFT_MOTOR_CHANNEL			(2)
