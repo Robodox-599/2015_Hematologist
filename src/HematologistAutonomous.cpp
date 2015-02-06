@@ -50,7 +50,7 @@ void HematologistAutonomous::secondHemanAuto()
 		drive->drive(0.05, 0 , 0);
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/) 
 		{
-			manip->openForklLift(false); 
+			manip->openForklLift(false);
 			manip->moveLift(true, false, 0.5); // first parameter means to move up, seoncd go down, third the motor speed.
 		}
 		else
