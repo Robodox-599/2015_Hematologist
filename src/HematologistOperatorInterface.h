@@ -1,6 +1,8 @@
 #ifndef HEMATOLOGIST_OPERATOR_INTERFACE_H_
 #define HEMATOLOGIST_OPERATOR_INTERFACE_H_
 
+#include "HematologistMacros.h"
+
 class HematologistOperatorInterface
 {
 public:

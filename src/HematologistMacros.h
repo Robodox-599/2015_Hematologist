@@ -13,6 +13,8 @@
 #define FORKLIFT_OPEN_BUTTON				(3)		//you know hwat
 #define SECOND_TIER_OPEN_BUTTON				(0)		//BYE
 #define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
+#define GYRO_TOGGLE_BUTTON          (3)   //TODO: get correct number
+
 
 //Motor Channels
 #define FRONT_LEFT_MOTOR_CHANNEL			(2)
@@ -42,4 +44,6 @@
 
 //Gyro
 #define GYRO_KP								(.1)
+
+#endif
 

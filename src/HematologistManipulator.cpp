@@ -1,7 +1,7 @@
 #include "HematologistManipulator.h"
 #include "HematologistMacros.h"
 
-HematologistManipulator::HematologistManipulator(Joystick*manipJoystick)
+HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 {
 	secondTierPiston = new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A);
 	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A);
@@ -26,7 +26,7 @@ virtual HematologistManipulator::~HematologistManipulator()
 
 void HematologistManipulator::openBinHugger()
 {
-	if (IGNORE_ENCODERS_BUTTON)
+	if (manipJoystick->GetRawButton(IGNORE_ENCODERS_BUTTON))
 	{
 		disableEncoders != disableEncoders; 
 	}

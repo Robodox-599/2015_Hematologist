@@ -26,6 +26,8 @@ private:
 
 	float kP;
 	
+	bool gyroButton;
+
 	HematologistOperatorInterface* oi;
 
 	Talon* frontLeftMotor;
