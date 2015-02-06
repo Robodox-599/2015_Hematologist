@@ -51,13 +51,13 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/) 
 		{
 			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.5); // first parameter means to move up, seoncd go down, third the motor speed.
+			manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
 		}
 		else
 		{
 			manip->openForklLift(true);
 			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.5);
+			manip->moveLift(false, true, 0.7);
 		}
 	}
 	//got first tote
@@ -76,14 +76,14 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.5);
+			manip->moveLift(true, false, 0.7);
 			manip->openSeocndTier(true);
 		}
 		else
 		{
 			manip->openForklLift(true);
 			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.5);
+			manip->moveLift(false, true, 0.7);
 		}
 	}
 	//picked up second tote
@@ -99,13 +99,13 @@ void HematologistAutonomous::secondHemanAuto()
 		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
 		{
 			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.5);
+			manip->moveLift(true, false, 0.7);
 		}
 		else
 		{
 			manip->openForklLift(true);
 			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.5);
+			manip->moveLift(false, true, 0.7);
 		}
 	}
 	//picked up third tote
@@ -125,14 +125,14 @@ void HematologistAutonomous::secondHemanAuto()
 		drive->drive(0, 0, 0);
 		while(/*encoder value is less than certain value tbd*/)
 		{
-			manip->moveLift(true, false, 0.5);
+			manip->moveLift(true, false, 0.7);
 		}
 		
 		manip->openSeocndTier(true);
 
 		while(/*encoder value is less than certain value tbd*/)
 		{
-			manip->moveLift(false, true, 0.5);
+			manip->moveLift(false, true, 0.7);
 		}
 
 		if(/*encoder value is less than certain value tbd*/)
