@@ -43,7 +43,7 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::secondHemanAuto()
 {
-	manip->openSeocndTier(true);
+	manip->openSeocndTier(true); // true opens the grabber
 	manip->openForklLift(true); // true opens the grabber
 	while(/*encoder value is less than certain value tbd*/) 
 	{
