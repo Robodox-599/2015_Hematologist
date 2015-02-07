@@ -45,7 +45,7 @@ void HematologistManipulator::openBinHugger()
 		{
 			if(manipJoystick->GetRawButton(BIN_HUGGER_CLOSE_BUTTON))
 			{
-				binHuggerPiston->Set(DoubleSolenoid::kBackward);
+				binHuggerPiston->Set(DoubleSolenoid::kReverse);
 			}
 			else
 			{
@@ -90,7 +90,7 @@ void HematologistManipulator::openSecondTier()
 		{
 			if(manipJoystick->GetRawButton(SECOND_TIER_CLOSE_BUTTON))
 			{
-				secondTierPiston->Set(DoubleSolenoid::kBackward);
+				secondTierPiston->Set(DoubleSolenoid::kReverse);
 			}
 			else
 			{
@@ -137,7 +137,7 @@ void HematologistManipulator::openForklift()
 		{
 			if(manipJoystick->GetRawButton(FORKLIFT_CLOSE_BUTTON))
 			{
-				forkliftPiston->Set(DoubleSolenoid::kBackward);
+				forkliftPiston->Set(DoubleSolenoid::kReverse);
 			}
 			else
 			{
@@ -155,7 +155,7 @@ void HematologistManipulator::openForklift()
 		{
 			if(liftEncoder->Get < LIFTDEADZONE < -LIFTDEADZONE && liftEncoder->Get() > LIFTDEADZONE)
 			{
-				forkliftPiston->Set(DoubleSolenoid::kBackward);
+				forkliftPiston->Set(DoubleSolenoid::kReverse);
 			}
 			else
 			{
