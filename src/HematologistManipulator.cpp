@@ -3,9 +3,9 @@
 
 HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 {
-	secondTierPiston = new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A);
-	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A);
-	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A);
+	secondTierPiston = new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A, SECOND_TIER_PISTON_CHANNEL_B);
+	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A, BIN_HUGGER_PISTON_CHANNEL_B);
+	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
@@ -17,7 +17,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	disableEncoders = false;
 }
 
-virtual HematologistManipulator::~HematologistManipulator()
+HematologistManipulator::~HematologistManipulator()
 {
 	delete secondTierPiston;
 	delete binHuggerPiston;
@@ -63,7 +63,7 @@ void HematologistManipulator::openBinHugger()
 			}
 			else
 			{
-			if(liftEncoder->Get < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
+			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -108,7 +108,7 @@ void HematologistManipulator::openSecondTier()
 		}
 		else
 		{
-			if(liftEncoder->Get < LIFT_DEADZONE < -LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
+			if(liftEncoder->Get() < LIFT_DEADZONE < -LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -121,7 +121,7 @@ void HematologistManipulator::openForklift()
 {
 	if (IGNORE_ENCODERS_BUTTON)
 	{
-		disableEncoders != disableEncoders; 
+		disableEncoders = !disableEncoders;
 	}
 
 	if (disableEncoders)
@@ -150,7 +150,7 @@ void HematologistManipulator::openForklift()
 			}
 		else
 		{
-			if(liftEncoder->Get < LIFT_DEADZONE < -LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
+			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				forkliftPiston->Set(DoubleSolenoid::kReverse);
 			}
