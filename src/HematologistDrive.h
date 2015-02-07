@@ -6,7 +6,7 @@
 class HematologistDrive
 {
 public:
-	HematologistDrive();
+	HematologistDrive(HematologistOperatorInterface* oi);
 	~HematologistDrive();
 
 	float setForward(float forward);

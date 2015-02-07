@@ -1,6 +1,6 @@
 #include "HematologistDrive.h"
 
-HematologistDrive::HematologistDrive()
+HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 {
 	frontLeftMotor 	= new Talon(FRONT_LEFT_MOTOR_CHANNEL);
 	backLeftMotor 	= new Talon(BACK_LEFT_MOTOR_CHANNEL);
@@ -12,6 +12,8 @@ HematologistDrive::HematologistDrive()
 	gyroButton = true;
 
 	forward = turn = strafe = 0;
+
+	this->oi = oi;
 
 	kP = GYRO_KP;
 }
@@ -46,7 +48,7 @@ float HematologistDrive::setForward(float forward)
 float HematologistDrive::setTurn(float turn)
 {
 
-	if (oi->leftJoystick->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
+	if (oi->getJoystick('L')->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
 	{
 		gyroButton = !gyroButton;
 	}
