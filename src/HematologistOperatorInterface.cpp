@@ -13,7 +13,7 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	delete leftDriveJoystick;
 	delete rightDriveJoystick;
 	delete manipJoystick;
-	delete dashboard;
+	//delete dashboard;
 
 	leftDriveJoystick = NULL;
 	rightDriveJoystick = NULL;
