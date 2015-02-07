@@ -41,14 +41,14 @@ HematologistAutonomous::~HematologistAutonomous()
 	backRightEnc = NULL;
 }
 
-void HematologistAutonomous::secondHemanAuto()
+void HematologistAutonomous::thirdHemanAuto()
 {
-	manip->openSeocndTier(true); // true opens the grabber
+	/*manip->openSeocndTier(true); // true opens the grabber
 	manip->openForklLift(true); // true opens the grabber
-	while(/*encoder value is less than certain value tbd*/) 
+	while(/*encoder value is less than certain value tbd) 
 	{
 		drive->drive(0.05, 0 , 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/) 
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd) 
 		{
 			manip->openForklLift(false);
 			manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
@@ -61,19 +61,16 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 	}
 	//got first tote
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		manip->moveLift(false, false, 0);
 		drive->drive(0, 0, 0.1);
 	}
-
-
-
 	//first turn 
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		drive->drive(0.05, 0, 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
 		{
 			manip->openForklLift(false);
 			manip->moveLift(true, false, 0.7);
@@ -87,23 +84,16 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 	}
 	//picked up second tote
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		manip->moveLift(false, false, 0);
 		drive->drive(0, 0, -0.1);
 	}
-
-
-
-
-
-
-
 	//second turn
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		drive->drive(0.05, 0, 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd*/)
+		if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
 		{
 			manip->openForklLift(false);
 			manip->moveLift(true, false, 0.7);
@@ -116,28 +106,13 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 	}
 	//picked up third tote
-
-
-
-
-
-
-
-
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		manip->moveLift(false, false, 0);
 		drive->drive(0, 0, -0.01);
 	}
 	//third turn(last turn) turning left and go bakcward
-
-
-
-
-
-
-
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		drive->drive(-0.05, 0, 0);
 		drive->drive(0, 0, 0);
@@ -148,179 +123,175 @@ void HematologistAutonomous::secondHemanAuto()
 		drive->drive(-0.1, 0, 0);
 	}
 	//drive backward
-	while(/*encoder value is less than certain value tbd*/)
+	while(/*encoder value is less than certain value tbd)
 	{
 		drive->drive(0, 0, 0);
-		while(/*encoder value is less than certain value tbd*/)
+		while(/*encoder value is less than certain value tbd)
 		{
 			manip->moveLift(true, false, 0.7);
 		}
 		
 		manip->openSeocndTier(true);
 
-		while(/*encoder value is less than certain value tbd*/)
+		while(/*encoder value is less than certain value tbd)
 		{
 			manip->moveLift(false, true, 0.7);
 		}
 
-		if(/*encoder value is less than certain value tbd*/)
+		if(/*encoder value is less than certain value tbd)
 		{
 			manip->moveLift(false, false, 0);
 			drive->drive(-0.1, 0, 0);
 		}
 	}
 	drive->drive(0, 0, 0);	
-}
+	*/
 
-/*
-// all encoders are drive encoders
+	// all encoders are drive encoders
 
-//first tote
-while()
-{
-	//initial drive
-	if(encoder value is less than certain value tbd)
+	//first tote
+	frontRightEnc->Reset();
+	while()
 	{
-		drive->drive(0.05, 0 , 0);
-	}
-	if(encoder value is between certain value tbd) 
-	{
-		manip->openForklLift(false);
+		//initial drive
+		if(encoder value is less than certain value tbd)
+		{
+			drive->drive(0.05, 0 , 0);
+		}
+		if(encoder value is between certain value tbd) 
+		{
+			manip->openForklLift(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
+		}
+		if(encoder value is between certain value tbd)
+		{
+			manip->openForklLift(true);
+		}
+		if(encoder value is between certain value tbd)
+		{	
+			manip->openSecondTier(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{	
+			manip->moveLift(false, true, 0.7);
+		}
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, false, 0);
+		}
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0, 0, 0.1);
+		}
 	}	
-	if(encoder value is between certain value tbd)
+	//second tote
+	frontRightEnc->Reset();
+	while()
 	{
-		manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->openForklLift(true);
-	}
-	if(encoder value is between certain value tbd)
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0.05, 0, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openForklLift(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(true, false, 0.7);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openForklLift(true);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openSecondTier(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, true, 0.7);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, false, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0, 0, -0.01);
+		}
+	}	
+	//third tote; the turn would be to the left since it will drive backward
+	frontRightEnc->Reset();
+	while()
 	{	
-		manip->openSecondTier(false);
-	}	
-	if(encoder value is between certain value tbd)
-	{	
-		manip->moveLift(false, true, 0.7);
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0.05, 0, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openForklLift(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(true, false, 0.7);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openForklLift(true);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openSecondTier(false);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, true, 0.7);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, false, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0, 0, -0.01);
+		}
 	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0, 0, 0.1);
-	}
-}	
-//second tote
-while()
-{
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0.05, 0, 0);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->openForklLift(false);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(true, false, 0.7);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->openSeocndTier(true);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->openForklLift(true);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->openSecondTier(false);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, true, 0.7);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0, 0, -0.1);
-	}
-}	
-//third tote	
-while()
-{	
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0.05, 0, 0);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->openForklLift(false);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(true, false, 0.7);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->openForklLift(true);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->openSecondTier(false);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, true, 0.7);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0, 0, -0.01);
+	//drop off
+	frontRightEnc->Reset();
+	while()
+	{				
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(-0.05, 0, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0, 0, 0);
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(true, false, 0.7);	
+		}	
+		if(encoder value is between certain value tbd)
+		{
+			manip->openSeocndTier(true);
+		}
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, true, 0.7);	
+		}
+		if(encoder value is between certain value tbd)
+		{
+			manip->moveLift(false, false, 0);	
+		}
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(-0.1, 0, 0);
+		}	
 	}
 }
-while()
-{				
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(-0.05, 0, 0);
-		
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(0, 0, 0);
-		
-	}	
-
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(true, false, 0.7);
-		
-	}	
-	if(encoder value is between certain value tbd)
-	{
-		manip->openSeocndTier(true);
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, true, 0.7);	
-	}
-	if(encoder value is between certain value tbd)
-	{
-		manip->moveLift(false, false, 0);	
-	}
-	if(encoder value is between certain value tbd)
-	{
-		drive->drive(-0.1, 0, 0);
-	}	
-}
-*/
