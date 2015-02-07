@@ -25,7 +25,6 @@ HematologistDrive::~HematologistDrive()
 	delete backLeftMotor;
 	delete backRightMotor;
 	delete gyro;
-	delete gyroButton;
 
 	frontLeftMotor 	= NULL;
 	backRightMotor 	= NULL;
