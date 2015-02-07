@@ -57,13 +57,13 @@ void HematologistManipulator::openBinHugger()
 	}
 		else
 		{
-			if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
+			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kForward);
 			}
 			else
 			{
-			if(liftEncoder->Get < LIFTDEADZONE && liftEncoder->Get() > LIFTDEADZONE)
+			if(liftEncoder->Get < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -102,13 +102,13 @@ void HematologistManipulator::openSecondTier()
 	}
 	else
 	{
-		if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
+		if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
 		{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
 		}
 		else
 		{
-			if(liftEncoder->Get < LIFTDEADZONE < -LIFTDEADZONE && liftEncoder->Get() > LIFTDEADZONE)
+			if(liftEncoder->Get < LIFT_DEADZONE < -LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -144,13 +144,13 @@ void HematologistManipulator::openForklift()
 	}
 		else
 		{
-			if(liftEncoder->Get() < LIFTDEADZONE && liftEncoder->Get() > -LIFTDEADZONE)
+			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
 			{
 			forkliftPiston->Set(DoubleSolenoid::kForward);
 			}
 		else
 		{
-			if(liftEncoder->Get < LIFTDEADZONE < -LIFTDEADZONE && liftEncoder->Get() > LIFTDEADZONE)
+			if(liftEncoder->Get < LIFT_DEADZONE < -LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				forkliftPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -163,7 +163,7 @@ void HematologistManipulator::openForklift()
 }
 
 
-void HematologistManipulators::resetEncoders()
+void HematologistManipulator::resetEncoders()
 {
 	liftEncoder->Reset();
 }
