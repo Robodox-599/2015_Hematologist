@@ -21,7 +21,7 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	dashboard = NULL;
 }
 
-HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
+float HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
 {
 	Joystick* joystick;
 	if (whichOne == 'L')
@@ -40,7 +40,7 @@ HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
 		}
 	}
 
-	if (whichAxis == X)
+	if (whichAxis == 'X')
 	{
 		return joystick->GetX();
 	}
