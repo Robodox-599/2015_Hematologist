@@ -11,6 +11,8 @@ public:
 
 	float getJoystickValue(char whichJoystick, char whichAxis);
 
+	Joystick* getJoystick(char whichJoystick);
+
 private:
 	Joystick* leftDriveJoystick;
 	Joystick* rightDriveJoystick;

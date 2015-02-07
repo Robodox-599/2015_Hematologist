@@ -49,3 +49,20 @@ HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
 		return joystick->GetY();
 	}
 }
+
+Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
+{
+	if (whichJoystick == 'L')
+	{
+		return leftDriveJoystick;
+	}else
+	{
+		if (whichJoystick == 'R')
+		{
+			return rightDriveJoystick;
+		}else
+		{
+			return manipJoystick;
+		}
+	}
+}
