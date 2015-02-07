@@ -2,6 +2,7 @@
 #define HEMATOLOGIST_DRIVE_H
 
 #include "HematologistMacros.h"
+#include "HematologistOperatorInterface.h"
 
 class HematologistDrive
 {
