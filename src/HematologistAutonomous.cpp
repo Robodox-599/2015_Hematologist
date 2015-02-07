@@ -131,7 +131,16 @@ void HematologistAutonomous::thirdHemanAuto()
 		if(encoder value is between certain value tbd)
 		{
 			manip->openForklLift(false);
-		}	
+		}		
+		if(encoder value is between certain value tbd)
+		{
+			drive->drive(0, 0, -0.01);
+		}
+	}
+	//drop off
+	frontRightEnc->Reset();
+	while()
+	{
 		if(encoder value is between certain value tbd)
 		{
 			manip->moveLift(true, false, 0.7);
@@ -151,16 +160,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		if(encoder value is between certain value tbd)
 		{
 			manip->moveLift(false, false, 0);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			drive->drive(0, 0, -0.01);
-		}
-	}
-	//drop off
-	frontRightEnc->Reset();
-	while()
-	{				
+		}			
 		if(encoder value is between certain value tbd)
 		{
 			drive->drive(-0.05, 0, 0);
