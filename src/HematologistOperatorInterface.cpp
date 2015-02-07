@@ -21,16 +21,16 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	dashboard = NULL;
 }
 
-HematologistOperatorInterface::getJoystickValue(string whichOne, char whichAxis)
+HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
 {
 	Joystick* joystick;
-	if (whichOne.compare("Left"))
+	if (whichOne == 'L')
 	{
 		joystick = leftDriveJoystick;
 	}
 	else
 	{
-		if (whichOne.compare("Right"))
+		if (whichOne == 'R')
 		{
 			joystick = rightDriveJoystick;
 		}

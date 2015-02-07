@@ -9,7 +9,7 @@ public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
 
-	float getJoystickValue(string whichJoystick, char whichAxis);
+	float getJoystickValue(char whichJoystick, char whichAxis);
 
 private:
 	Joystick* leftDriveJoystick;
