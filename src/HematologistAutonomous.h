@@ -18,4 +18,5 @@ public:
 	~HematologistAutonomous();
 
 	void thirdHemanAuto(); // gets 3 totes and stack it
+	void firstHemanAuto();
 };

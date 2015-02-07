@@ -41,6 +41,23 @@ HematologistAutonomous::~HematologistAutonomous()
 	backRightEnc = NULL;
 }
 
+void HematologistAutonomous::firstHemanAuto()
+{
+	while(encoder value is less than certain value tbd)
+	{
+		if(encoder value is less than certain value tbd)
+		{
+			drive(0, 0, 0.1);
+		}
+		else
+		{
+			drive(0, 0, -0.1);
+		}
+	}
+	drive(0, 0, 0);
+
+}
+
 void HematologistAutonomous::thirdHemanAuto()
 {
 	// all encoders are drive encoders
@@ -80,7 +97,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}
 		if(encoder value is between certain value tbd)
 		{
-			drive->drive(0, 0, 0.1);
+			drive->drive(0, 0.1, 0);
 		}
 	}	
 	//second tote
@@ -117,7 +134,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(encoder value is between certain value tbd)
 		{
-			drive->drive(0, 0, -0.01);
+			drive->drive(0, -0.01, 0);
 		}
 	}	
 	//third tote; the turn would be to the left since it will drive backward
@@ -134,7 +151,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}		
 		if(encoder value is between certain value tbd)
 		{
-			drive->drive(0, 0, -0.01);
+			drive->drive(0, -0.01, 0);
 		}
 	}
 	//drop off
