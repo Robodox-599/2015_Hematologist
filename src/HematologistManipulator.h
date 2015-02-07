@@ -26,6 +26,9 @@ public:
 
 	void resetEncoders();
 
+	HematologistManipulator(Joystick* manipJoystick);
+	~HematologistManipulator();
+
 };
 
 #endif
