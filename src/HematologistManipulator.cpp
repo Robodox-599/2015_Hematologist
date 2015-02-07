@@ -6,6 +6,10 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	secondTierPiston = new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A);
 	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A);
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A);
+
+	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
+	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
+
 	this->manipJoystick = manipJoystick;
 
 	disableEncoders = false;
