@@ -43,110 +43,6 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::thirdHemanAuto()
 {
-	/*manip->openSeocndTier(true); // true opens the grabber
-	manip->openForklLift(true); // true opens the grabber
-	while(/*encoder value is less than certain value tbd) 
-	{
-		drive->drive(0.05, 0 , 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd) 
-		{
-			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
-		}
-		else
-		{
-			manip->openForklLift(true);
-			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.7);
-		}
-	}
-	//got first tote
-	while(/*encoder value is less than certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-		drive->drive(0, 0, 0.1);
-	}
-	//first turn 
-	while(/*encoder value is less than certain value tbd)
-	{
-		drive->drive(0.05, 0, 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
-		{
-			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.7);
-			manip->openSeocndTier(true);
-		}
-		else
-		{
-			manip->openForklLift(true);
-			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.7);
-		}
-	}
-	//picked up second tote
-	while(/*encoder value is less than certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-		drive->drive(0, 0, -0.1);
-	}
-	//second turn
-	while(/*encoder value is less than certain value tbd)
-	{
-		drive->drive(0.05, 0, 0);
-		if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
-		{
-			manip->openForklLift(false);
-			manip->moveLift(true, false, 0.7);
-		}
-		else
-		{
-			manip->openForklLift(true);
-			manip->openSecondTier(false);
-			manip->moveLift(false, true, 0.7);
-		}
-	}
-	//picked up third tote
-	while(/*encoder value is less than certain value tbd)
-	{
-		manip->moveLift(false, false, 0);
-		drive->drive(0, 0, -0.01);
-	}
-	//third turn(last turn) turning left and go bakcward
-	while(/*encoder value is less than certain value tbd)
-	{
-		drive->drive(-0.05, 0, 0);
-		drive->drive(0, 0, 0);
-		manip->moveLift(true, false, 0.7);
-		manip->openSeocndTier(true);
-		manip->moveLift(false, true, 0.7);
-		manip->moveLift(false, false, 0);
-		drive->drive(-0.1, 0, 0);
-	}
-	//drive backward
-	while(/*encoder value is less than certain value tbd)
-	{
-		drive->drive(0, 0, 0);
-		while(/*encoder value is less than certain value tbd)
-		{
-			manip->moveLift(true, false, 0.7);
-		}
-		
-		manip->openSeocndTier(true);
-
-		while(/*encoder value is less than certain value tbd)
-		{
-			manip->moveLift(false, true, 0.7);
-		}
-
-		if(/*encoder value is less than certain value tbd)
-		{
-			manip->moveLift(false, false, 0);
-			drive->drive(-0.1, 0, 0);
-		}
-	}
-	drive->drive(0, 0, 0);	
-	*/
-
 	// all encoders are drive encoders
 
 	//first tote
@@ -295,3 +191,107 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 	}
 }
+//was third autonomous
+/*manip->openSeocndTier(true); // true opens the grabber
+manip->openForklLift(true); // true opens the grabber
+while(/*encoder value is less than certain value tbd) 
+{
+	drive->drive(0.05, 0 , 0);
+	if(/*encoder value is greater than value tbd & encoder value is less than value tbd) 
+	{
+		manip->openForklLift(false);
+		manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
+	}
+	else
+	{
+		manip->openForklLift(true);
+		manip->openSecondTier(false);
+		manip->moveLift(false, true, 0.7);
+	}
+}
+//got first tote
+while(/*encoder value is less than certain value tbd)
+{
+	manip->moveLift(false, false, 0);
+	drive->drive(0, 0, 0.1);
+}
+//first turn 
+while(/*encoder value is less than certain value tbd)
+{
+	drive->drive(0.05, 0, 0);
+	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
+	{
+		manip->openForklLift(false);
+		manip->moveLift(true, false, 0.7);
+		manip->openSeocndTier(true);
+	}
+	else
+	{
+		manip->openForklLift(true);
+		manip->openSecondTier(false);
+		manip->moveLift(false, true, 0.7);
+	}
+}
+//picked up second tote
+while(/*encoder value is less than certain value tbd)
+{
+	manip->moveLift(false, false, 0);
+	drive->drive(0, 0, -0.1);
+}
+//second turn
+while(/*encoder value is less than certain value tbd)
+{
+	drive->drive(0.05, 0, 0);
+	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
+	{
+		manip->openForklLift(false);
+		manip->moveLift(true, false, 0.7);
+	}
+	else
+	{
+		manip->openForklLift(true);
+		manip->openSecondTier(false);
+		manip->moveLift(false, true, 0.7);
+	}
+}
+//picked up third tote
+while(/*encoder value is less than certain value tbd)
+{
+	manip->moveLift(false, false, 0);
+	drive->drive(0, 0, -0.01);
+}
+//third turn(last turn) turning left and go bakcward
+while(/*encoder value is less than certain value tbd)
+{
+	drive->drive(-0.05, 0, 0);
+	drive->drive(0, 0, 0);
+	manip->moveLift(true, false, 0.7);
+	manip->openSeocndTier(true);
+	manip->moveLift(false, true, 0.7);
+	manip->moveLift(false, false, 0);
+	drive->drive(-0.1, 0, 0);
+}
+//drive backward
+while(/*encoder value is less than certain value tbd)
+{
+	drive->drive(0, 0, 0);
+	while(/*encoder value is less than certain value tbd)
+	{
+		manip->moveLift(true, false, 0.7);
+	}
+	
+	manip->openSeocndTier(true);
+
+	while(/*encoder value is less than certain value tbd)
+	{
+		manip->moveLift(false, true, 0.7);
+	}
+
+	if(/*encoder value is less than certain value tbd)
+	{
+		manip->moveLift(false, false, 0);
+		drive->drive(-0.1, 0, 0);
+	}
+}
+drive->drive(0, 0, 0);	
+*/
