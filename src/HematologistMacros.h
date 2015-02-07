@@ -4,12 +4,19 @@
 
 //Joystick
 #define MANIP_JOYSTICK						(0)		//TODO: FIND CORRECT VALUE
-#define BIG_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE		
-#define BIG_HUGGER_CLOSE_BUTTON				(2)		//TODO: FIND CORRECT VALUE
+#define BIN_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE
+#define BIN_HUGGER_CLOSE_BUTTON				(2)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_UP_BUTTON					(3)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_DOWN_BUTTON				(4)		//TODO: FIND CORRECT VALUE
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
 #define RIGHT_DRIVE_JOYSTICK				(2)		//TODO: FIND CORRECT VALUE
+#define FORKLIFT_OPEN_BUTTON				(3)		//you know hwat
+#define SECOND_TIER_OPEN_BUTTON				(0)		//BYE
+#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
+#define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
+#define SECOND_TIER_CLOSE_BUTTON			(3)		//TODO: get correct number
+#define FORKLIFT_CLOSE_BUTTON				(4)		//TODO: get correct number
+
 
 //Motor Channels
 #define FRONT_LEFT_MOTOR_CHANNEL			(2)
@@ -22,16 +29,13 @@
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
 //Solenoids
-#define BIN_HUGGER_SOL_CHANNEL_A			(0)		//TODO: get correct number
-#define BIN_HUGGER_SOL_CHANNEL_B			(1)		//TODO: get correct number
-#define SECOND_TIER_SOL_CHANNEL_A			(2)		//TODO: get correct number
-#define SECOND_TIER_SOL_CHANNEL_B			(3)		//TODO: get correct number
+#define SECOND_TIER_PISTON_CHANNEL_A		(1)		// /? ? numBer?
+#define BIN_HUGGER_PISTON_CHANNEL_A			(2)		//TODO: get correct number
+#define FORKLIFT_PISTON_CHANNEL_A			(3)		//TODO: get correct number
 
 //Encoders
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
 #define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
-#define FORKLIFT_ENCODER_CHANNEL_A			(2)		//TODO: get correct number
-#define FORKLIFT_ENCODER_CHANNEL_B			(3)		//TODO: get correct number
 
 //Misc Constants
 #define DEADZONE                   		    (.1)
@@ -42,4 +46,6 @@
 
 //Gyro
 #define GYRO_KP								(.1)
+
+#endif
 

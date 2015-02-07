@@ -1,6 +1,6 @@
 #include "HematologistDrive.h"
 
-HematologistDrive::HematologistDrive()
+HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 {
 	frontLeftMotor 	= new Talon(FRONT_LEFT_MOTOR_CHANNEL);
 	backLeftMotor 	= new Talon(BACK_LEFT_MOTOR_CHANNEL);
@@ -9,8 +9,11 @@ HematologistDrive::HematologistDrive()
 
 	gyro = new Gyro(1);
 	gyro_ref = 0;
+	gyroButton = true;
 
 	forward = turn = strafe = 0;
+
+	this->oi = oi;
 
 	kP = GYRO_KP;
 }
@@ -22,6 +25,7 @@ HematologistDrive::~HematologistDrive()
 	delete backLeftMotor;
 	delete backRightMotor;
 	delete gyro;
+	delete gyroButton;
 
 	frontLeftMotor 	= NULL;
 	backRightMotor 	= NULL;
@@ -43,13 +47,28 @@ float HematologistDrive::setForward(float forward)
 
 float HematologistDrive::setTurn(float turn)
 {
-	if (turn > DEADZONE || turn < -DEADZONE)
+
+	if (oi->getJoystick('L')->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
 	{
-		this->turn = turn;
-		gyro_ref = gyro->GetAngle();
-	}else
+		gyroButton = !gyroButton;
+	}
+	if(gyroButton){
+		if (turn > DEADZONE || turn < -DEADZONE)
+		{
+			this->turn = turn;
+			gyro_ref = gyro->GetAngle();
+		}
+		else
+		{
+			turn = kP * (gyro_ref - (gyro->GetAngle()));
+		}
+	}
+	else
 	{
-		turn = kP * (gyro_ref - (gyro->GetAngle()));
+		if(turn > DEADZONE || turn < -DEADZONE)
+			this->turn = turn;
+		else
+			turn = 0;
 	}
 	return turn;
 }
@@ -72,8 +91,9 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	setForward(forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(forward + side + spin);
-	frontRightMotor->Set(-forward + side + spin);
-	backLeftMotor->Set(forward - side + spin);
-	backRightMotor->Set(-forward - side + spin);
+	frontLeftMotor->Set(forward + strafe + turn);
+	frontRightMotor->Set(-forward + strafe + turn);
+	backLeftMotor->Set(forward - strafe + turn);
+	backRightMotor->Set(-forward - strafe + turn);
 }
+

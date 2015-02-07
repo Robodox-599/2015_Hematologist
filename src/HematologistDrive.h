@@ -6,7 +6,7 @@
 class HematologistDrive
 {
 public:
-	HematologistDrive();
+	HematologistDrive(HematologistOperatorInterface* oi);
 	~HematologistDrive();
 
 	float setForward(float forward);
@@ -26,6 +26,8 @@ private:
 
 	float kP;
 	
+	bool gyroButton;
+
 	HematologistOperatorInterface* oi;
 
 	Talon* frontLeftMotor;

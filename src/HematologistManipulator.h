@@ -9,9 +9,27 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	DoubleSolenoid* secondTierPiston;
+	DoubleSolenoid* binHuggerPiston;
+	DoubleSolenoid* forkliftPiston;
+	Joystick* manipJoystick;
+
+	Encoder* liftEncoder;
+
+
+	bool disableEncoders;
 
 
 public:
+	void openBinHugger();
+	void openForklift();
+	void openSecondTier();
+
+	void resetEncoders();
+
+	HematologistManipulator(Joystick* manipJoystick);
+	~HematologistManipulator();
+
 };
 
 #endif
