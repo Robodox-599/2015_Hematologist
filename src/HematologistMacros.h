@@ -4,8 +4,8 @@
 
 //Joystick
 #define MANIP_JOYSTICK						(0)		//TODO: FIND CORRECT VALUE
-#define BIG_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE		
-#define BIG_HUGGER_CLOSE_BUTTON				(2)		//TODO: FIND CORRECT VALUE
+#define BIN_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE
+#define BIN_HUGGER_CLOSE_BUTTON				(2)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_UP_BUTTON					(3)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_DOWN_BUTTON				(4)		//TODO: FIND CORRECT VALUE
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
@@ -13,7 +13,9 @@
 #define FORKLIFT_OPEN_BUTTON				(3)		//you know hwat
 #define SECOND_TIER_OPEN_BUTTON				(0)		//BYE
 #define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
-#define GYRO_TOGGLE_BUTTON          (3)   //TODO: get correct number
+#define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
+#define SECOND_TIER_CLOSE_BUTTON			(3)		//TODO: get correct number
+#define FORKLIFT_CLOSE_BUTTON				(4)		//TODO: get correct number
 
 
 //Motor Channels
