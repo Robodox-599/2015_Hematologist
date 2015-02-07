@@ -30,8 +30,11 @@
 
 //Solenoids
 #define SECOND_TIER_PISTON_CHANNEL_A		(1)		// /? ? numBer?
+#define SECOND_TIER_PISTON_CHANNEL_B 		(2)		//TODO: get correct number
 #define BIN_HUGGER_PISTON_CHANNEL_A			(2)		//TODO: get correct number
+#define BIN_HUGGER_PISTON_CHANNEL_B			(3)		//TODO: get correct number
 #define FORKLIFT_PISTON_CHANNEL_A			(3)		//TODO: get correct number
+#define FORKLIFT_PISTON_CHANNEL_B			(4)		//TODO: get correct number
 
 //Encoders
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
@@ -39,10 +42,11 @@
 
 //Misc Constants
 #define DEADZONE                   		    (.1)
-#define LIFT_DEADZONE          				(10)
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
+#define LIFT_DEADZONE						(10.0)	//TODO: get correct number
+
 
 //Gyro
 #define GYRO_KP								(.1)
