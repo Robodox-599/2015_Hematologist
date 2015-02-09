@@ -25,8 +25,8 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
-		//drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
-		manip->moveLift(oi->getJoystick('L')->GetY());
+		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		manip->moveLift(oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Joystick Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Left Lift:", manip->leftLiftMotor->GetRaw());
 		oi->getDashboard()->PutNumber("Right Lift:", manip->rightLiftMotor->GetRaw());
