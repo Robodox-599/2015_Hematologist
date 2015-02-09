@@ -43,9 +43,9 @@ HematologistAutonomous::~HematologistAutonomous()
 
 void HematologistAutonomous::firstHemanAuto()
 {
-	while(encoder value is less than certain value tbd)
+	while(he->getEncoder()->getRate() < 360)
 	{
-		if(encoder value is less than certain value tbd)
+		if(he->getEncoder()->getRate() < 270)
 		{
 			drive(0, 0, 0.1);
 		}
@@ -60,260 +60,267 @@ void HematologistAutonomous::firstHemanAuto()
 
 void HematologistAutonomous::secondHemanAuto()
 {
+	manip->openForkLift(true);
+	manip->openScondTier(true);
+
 	frontRightEnc->Reset();
-	while()
+
+	while(he->getEncoder()->getRate() < 10000)
 	{
 		//initial drive
-		if(encoder value is less than certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0.05, 0 , 0);
 		}
-		if(encoder value is between certain value tbd) 
+		if(he->getEncoder()->getRate() < 10000) 
 		{
 			manip->openForklLift(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openForklLift(true);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{	
 			manip->openSecondTier(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{	
 			manip->moveLift(false, true, 0.7);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, false, 0);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0, 0.1, 0);
 		}
 	}	
 	//second tote
 	frontRightEnc->Reset();
-	while()
+	while(he->getEncoder()->getRate() < 10000)
 	{
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->openForklLift(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->moveLift(true, false, 0.7);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->openForklLift(true);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->openSecondTier(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->moveLift(false, true, 0.7);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			manip->moveLift(false, false, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
 		{
 			drive->drive(0, -0.01, 0);
 		}
+	}
+	//drop off
+	frontRightEnc->Reset();
+	while(he->getEncoder()->getRate() < 10000)
+	{
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			drive->drive(-0.05, 0, 0);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(true, false, 0.7);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->openForklLift(true);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->openSecondTier(false);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(false, true, 0.7);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(false, false, 0);
+		}			
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			drive->drive(0, 0, 0);
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(true, false, 0.7);	
+		}	
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->openSeocndTier(true);
+		}
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(false, true, 0.7);	
+		}
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			manip->moveLift(false, false, 0);	
+		}
+		if(he->getEncoder()->getRate() < 10000)
+		{
+			drive->drive(-0.1, 0, 0);
+		}	
 	}	
 }
 
 void HematologistAutonomous::thirdHemanAuto()
 {
 	// all encoders are drive encoders
+	manip->openForkLift(true);
+	manip->openScondTier(true);
 
 	//first tote
 	frontRightEnc->Reset();
-	while()
+
+	while(he->getEncoder()->getRate() < 10000)
 	{
 		//initial drive
-		if(encoder value is less than certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0.05, 0 , 0);
 		}
-		if(encoder value is between certain value tbd) 
+		if(he->getEncoder()->getRate() < 10000) 
 		{
 			manip->openForklLift(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openForklLift(true);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{	
 			manip->openSecondTier(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{	
 			manip->moveLift(false, true, 0.7);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, false, 0);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0, 0.1, 0);
 		}
 	}	
 	//second tote
 	frontRightEnc->Reset();
-	while()
+	while(he->getEncoder()->getRate() < 10000)
 	{	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openForklLift(false);
 		}		
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0, -0.01, 0);
 		}
-	}
-	//drop off
-	frontRightEnc->Reset();
-	while()
-	{
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(true, false, 0.7);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->openForklLift(true);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->openSecondTier(false);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(false, true, 0.7);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(false, false, 0);
-		}			
-		if(encoder value is between certain value tbd)
-		{
-			drive->drive(-0.05, 0, 0);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			drive->drive(0, 0, 0);
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(true, false, 0.7);	
-		}	
-		if(encoder value is between certain value tbd)
-		{
-			manip->openSeocndTier(true);
-		}
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(false, true, 0.7);	
-		}
-		if(encoder value is between certain value tbd)
-		{
-			manip->moveLift(false, false, 0);	
-		}
-		if(encoder value is between certain value tbd)
-		{
-			drive->drive(-0.1, 0, 0);
-		}	
 	}
 	//third tote; the turn would be to the left since it will drive backward
 	frontRightEnc->Reset();
-	while()
+	while(he->getEncoder()->getRate() < 10000)
 	{	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openForklLift(false);
 		}		
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0, -0.01, 0);
 		}
 	}
 	//drop off
 	frontRightEnc->Reset();
-	while()
+	while(he->getEncoder()->getRate() < 10000)
 	{
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(true, false, 0.7);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openForklLift(true);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openSecondTier(false);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, true, 0.7);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, false, 0);
 		}			
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(-0.05, 0, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(0, 0, 0);
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(true, false, 0.7);	
 		}	
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->openSeocndTier(true);
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, true, 0.7);	
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			manip->moveLift(false, false, 0);	
 		}
-		if(encoder value is between certain value tbd)
+		if(he->getEncoder()->getRate() < 10000)
 		{
 			drive->drive(-0.1, 0, 0);
 		}	
