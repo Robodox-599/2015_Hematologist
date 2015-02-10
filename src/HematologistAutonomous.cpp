@@ -45,7 +45,7 @@ void HematologistAutonomous::firstHemanAuto()
 {
 	while(he->getEncoder()->getRate() < 360)
 	{
-		if(he->getEncoder()->getRate() < 270)
+		if(he->getEncoder()->getRate() < 300)
 		{
 			drive(0, 0, 0.1);
 		}
@@ -65,88 +65,69 @@ void HematologistAutonomous::secondHemanAuto()
 
 	frontRightEnc->Reset();
 
-	while(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 720)
 	{
 		//initial drive
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 700)
 		{
 			drive->drive(0.05, 0 , 0);
 		}
-		if(he->getEncoder()->getRate() < 10000) 
+		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
 		{
 			manip->openForklLift(false);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
 			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
 			manip->openForklLift(true);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
 		{	
 			manip->openSecondTier(false);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
 		{	
 			manip->moveLift(false, true, 0.7);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 427)
 		{
 			manip->moveLift(false, false, 0);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() >700 )
 		{
 			drive->drive(0, 0.1, 0);
 		}
+// stop everything?
 	}	
 	//second tote
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 540)
 	{
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
+		if(he->getEncoder()->getRate() <520)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
+		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
 			manip->openForklLift(false);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
+		}		
+		if(he->getEncoder()->getRate() > 520)
 		{
-			manip->moveLift(true, false, 0.7);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
-		{
-			manip->openForklLift(true);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
-		{
-			manip->openSecondTier(false);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
-		{
-			manip->moveLift(false, true, 0.7);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
-		{
-			manip->moveLift(false, false, 0);
-		}	
-		if(he->getEncoder()->getRate() < 10000 && he->getEncoder()->getRate() > 5000)
-		{
-			drive->drive(0, -0.01, 0);
+			drive->drive(0, 0.01, 0);
 		}
 	}
 	//drop off
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 720)
 	{
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 670)
 		{
 			drive->drive(-0.05, 0, 0);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < )
 		{
 			manip->moveLift(true, false, 0.7);
 		}	
@@ -202,38 +183,38 @@ void HematologistAutonomous::thirdHemanAuto()
 	//first tote
 	frontRightEnc->Reset();
 
-	while(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 720)
 	{
 		//initial drive
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 700)
 		{
 			drive->drive(0.05, 0 , 0);
 		}
-		if(he->getEncoder()->getRate() < 10000) 
+		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
 		{
 			manip->openForklLift(false);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
 			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
 			manip->openForklLift(true);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
 		{	
 			manip->openSecondTier(false);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
 		{	
 			manip->moveLift(false, true, 0.7);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 427)
 		{
 			manip->moveLift(false, false, 0);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() >700 )
 		{
 			drive->drive(0, 0.1, 0);
 		}
