@@ -78,7 +78,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
-			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
+			manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
 		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
@@ -90,11 +90,11 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
 		{	
-			manip->moveLift(false, true, 0.7);
+			manip->moveLift(-0.7);
 		}
 		if(he->getEncoder()->getRate() < 427)
 		{
-			manip->moveLift(false, false, 0);
+			manip->moveLift(0);
 		}
 		if(he->getEncoder()->getRate() >700 )
 		{
@@ -129,7 +129,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() > 450)
 		{
-			manip->moveLift(true, false, 0.7);
+			manip->moveLift(0.7);
 		}	
 		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
 		{
@@ -141,11 +141,11 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 470 && he->getEncoder()->getRate() < 490)
 		{
-			manip->moveLift(false, true, 0.7);
+			manip->moveLift(-0.7);
 		}					
 		if(he->getEncoder()->getRate() > 510 && he->getEncoder()->getRate() < 530)
 		{
-			manip->moveLift(true, false, 0.7);	
+			manip->moveLift(0.7);	
 		}	
 		if(he->getEncoder()->getRate() > 530 && he->getEncoder()->getRate() < 540)
 		{
@@ -153,7 +153,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 		if(he->getEncoder()->getRate() > 670 && he->getEncoder()->getRate() < 690)
 		{
-			manip->moveLift(false, true, 0.7);	
+			manip->moveLift(-0.7);	
 		}
 		if(he->getEncoder()->getRate() > 690)
 		{
@@ -192,7 +192,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
-			manip->moveLift(true, false, 0.7); // first parameter means to move up, second go down, third the motor speed.
+			manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
 		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
@@ -204,7 +204,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
 		{	
-			manip->moveLift(false, true, 0.7);
+			manip->moveLift(-0.7);
 		}
 		if(he->getEncoder()->getRate() < 427)
 		{
@@ -259,7 +259,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() > 450)
 		{
-			manip->moveLift(true, false, 0.7);
+			manip->moveLift(0.7);
 		}	
 		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
 		{
@@ -271,11 +271,11 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 470 && he->getEncoder()->getRate() < 490)
 		{
-			manip->moveLift(false, true, 0.7);
+			manip->moveLift(-0.7);
 		}					
 		if(he->getEncoder()->getRate() > 510 && he->getEncoder()->getRate() < 530)
 		{
-			manip->moveLift(true, false, 0.7);	
+			manip->moveLift(0.7);	
 		}	
 		if(he->getEncoder()->getRate() > 530 && he->getEncoder()->getRate() < 540)
 		{
@@ -283,11 +283,11 @@ void HematologistAutonomous::thirdHemanAuto()
 		}
 		if(he->getEncoder()->getRate() > 670 && he->getEncoder()->getRate() < 690)
 		{
-			manip->moveLift(false, true, 0.7);	
+			manip->moveLift(-0.7);	
 		}
 		if(he->getEncoder()->getRate() > 690)
 		{
-			manip->moveLift(false, false, 0);	
+			manip->moveLift(0);	
 		}
 		if(he->getEncoder()->getRate() < 690)
 		{
