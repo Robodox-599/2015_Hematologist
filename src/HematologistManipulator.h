@@ -6,9 +6,6 @@
 class HematologistManipulator
 {
 private:
-	Talon* leftLiftMotor;
-	Talon* rightLiftMotor;
-
 	DoubleSolenoid* secondTierPiston;
 	DoubleSolenoid* binHuggerPiston;
 	DoubleSolenoid* forkliftPiston;
@@ -30,6 +27,9 @@ public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
 
+	void moveLift(float speed);
+	Talon* leftLiftMotor;
+	Talon* rightLiftMotor;
 };
 
 #endif

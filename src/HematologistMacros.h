@@ -40,8 +40,11 @@
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
 #define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
 
-//Misc Constants
+//Misc
 #define DEADZONE                   		    (.1)
+#define LIFT_DEADZONE           			(10)
+#define PI									(3.141592653589793238462643383279502884197)
+#define SLOPE_ADJUSTMENT					(1.1)   //TODO: get correct number
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
@@ -53,4 +56,3 @@
 #define GYRO_KP								(.1)
 
 #endif
-

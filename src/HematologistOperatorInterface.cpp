@@ -66,3 +66,8 @@ Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
 		}
 	}
 }
+
+SmartDashboard* HematologistOperatorInterface::getDashboard()
+{
+	return dashboard;
+}
