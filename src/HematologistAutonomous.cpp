@@ -217,91 +217,87 @@ void HematologistAutonomous::thirdHemanAuto()
 	}	
 	//second tote
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 10000)
-	{	
-		if(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 540)
+	{
+		if(he->getEncoder()->getRate() <520)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
 			manip->openForklLift(false);
 		}		
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 520)
 		{
-			drive->drive(0, -0.01, 0);
+			drive->drive(0, 0.01, 0);
 		}
 	}
 	//third tote; the turn would be to the left since it will drive backward
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 10000)
-	{	
-		if(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 540)
+	{
+		if(he->getEncoder()->getRate() <520)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
 			manip->openForklLift(false);
 		}		
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 520)
 		{
 			drive->drive(0, -0.01, 0);
 		}
 	}
 	//drop off
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 10000)
+	while(he->getEncoder()->getRate() < 720)
 	{
-		if(he->getEncoder()->getRate() < 10000)
-		{
-			manip->moveLift(true, false, 0.7);
-		}	
-		if(he->getEncoder()->getRate() < 10000)
-		{
-			manip->openForklLift(true);
-		}	
-		if(he->getEncoder()->getRate() < 10000)
-		{
-			manip->openSecondTier(false);
-		}	
-		if(he->getEncoder()->getRate() < 10000)
-		{
-			manip->moveLift(false, true, 0.7);
-		}	
-		if(he->getEncoder()->getRate() < 10000)
-		{
-			manip->moveLift(false, false, 0);
-		}			
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 670)
 		{
 			drive->drive(-0.05, 0, 0);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() > 450)
 		{
-			drive->drive(0, 0, 0);
+			manip->moveLift(true, false, 0.7);
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
+		{
+			manip->openForklLift(true);
+		}	
+		if(he->getEncoder()->getRate() > 465 && he->getEncoder()->getRate() < 470)
+		{
+			manip->openSecondTier(false);
+		}	
+		if(he->getEncoder()->getRate() > 470 && he->getEncoder()->getRate() < 490)
+		{
+			manip->moveLift(false, true, 0.7);
+		}					
+		if(he->getEncoder()->getRate() > 510 && he->getEncoder()->getRate() < 530)
 		{
 			manip->moveLift(true, false, 0.7);	
 		}	
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 530 && he->getEncoder()->getRate() < 540)
 		{
 			manip->openSeocndTier(true);
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 670 && he->getEncoder()->getRate() < 690)
 		{
 			manip->moveLift(false, true, 0.7);	
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() > 690)
 		{
 			manip->moveLift(false, false, 0);	
 		}
-		if(he->getEncoder()->getRate() < 10000)
+		if(he->getEncoder()->getRate() < 690)
 		{
 			drive->drive(-0.1, 0, 0);
-		}	
-	}
+		}
+		if(he->getEncoder()->getRate() > 719)
+		{
+			drive->drive(0, 0, 0);
+		}
+	}	
 }
 //was third autonomous
 /*manip->openSeocndTier(true); // true opens the grabber
