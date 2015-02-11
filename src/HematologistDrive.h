@@ -15,7 +15,7 @@ public:
 	float setStrafe(float strafe);
 
 	void drive(float forward, float turn, float strafe);
-
+	float linearizeDrive(float driveInput);
 
 private:
 
