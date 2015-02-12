@@ -180,11 +180,9 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 	if (start)
 	{
 		compressor->SetClosedLoopControl(start);
-		return;
 	}
 	if (stop)
 	{
-		compressor->SetClosedLoopControl(!stop);
-		return;
+		compressor->SetClosedLoopControl(stop);
 	}
 }
