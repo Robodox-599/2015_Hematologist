@@ -6,9 +6,9 @@ HematologistAutonomous::~HematologistAutonomous(){}
 
 void HematologistAutonomous::firstHemanAuto()
 {
-	while(he->getEncoder()->getRate() < 360)
+	while(he->getEncoder()->getRate() < 1840) //actual value is 1089.05
 	{
-		if(he->getEncoder()->getRate() < 300)
+		if(he->getEncoder()->getRate() < 1800)
 		{
 			drive(0, 0, 0.1);
 		}
@@ -30,7 +30,7 @@ void HematologistAutonomous::secondHemanAuto()
 	frontLeftEnc->Reset();
 	rearLeftEnc->Reset();
 
-	while(he->getEncoder()->getRate() < 720)
+	while(he->getEncoder()->getRate() < 1090) //exact value is 1089.05
 	{
 	//initial drive
 		if(he->getEncoder()->getRate() < 700) 
@@ -86,7 +86,7 @@ void HematologistAutonomous::secondHemanAuto()
 	}
 	//drop off
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 720)
+	while(he->getEncoder()->getRate() < 1840) //exact value is 1836.54
 	{
 		if(he->getEncoder()->getRate() < 670)
 		{
@@ -144,7 +144,7 @@ void HematologistAutonomous::thirdHemanAuto()
 	//first tote
 	frontRightEnc->Reset();
 
-	while(he->getEncoder()->getRate() < 720)
+	while(he->getEncoder()->getRate() < 1090)
 	{
 		//initial drive
 		if(he->getEncoder()->getRate() < 700)
@@ -182,24 +182,44 @@ void HematologistAutonomous::thirdHemanAuto()
 	}	
 	//second tote
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 540)
+	while(he->getEncoder()->getRate() < 1482) // original value is 1480.74
 	{
-		if(he->getEncoder()->getRate() <520)
+		if(he->getEncoder()->getRate() < 700)
 		{
-			drive->drive(0.05, 0, 0);
-		}	
-		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
+			drive->drive(0.05, 0 , 0);
+		}
+		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
 		{
 			manip->openForkLift(false);
-		}		
-		if(he->getEncoder()->getRate() > 520)
+		}	
+		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
-			drive->drive(0, 0.01, 0);
+			manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
+		}
+		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
+		{
+			manip->openForkLift(true);
+		}
+		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
+		{	
+			manip->openSecondTier(false);
+		}	
+		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
+		{	
+			manip->moveLift(-0.7);
+		}
+		if(he->getEncoder()->getRate() < 427)
+		{
+			manip->moveLift(false, false, 0);
+		}
+		if(he->getEncoder()->getRate() >700 )
+		{
+			drive->drive(0, 0.1, 0);
 		}
 	}
 	//third tote; the turn would be to the left since it will drive backward
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 540)
+	while(he->getEncoder()->getRate() < 970) // original value is 968.80
 	{
 		if(he->getEncoder()->getRate() <520)
 		{
@@ -216,7 +236,7 @@ void HematologistAutonomous::thirdHemanAuto()
 	}
 	//drop off
 	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 720)
+	while(he->getEncoder()->getRate() < 1838) // original value is 1836.54
 	{
 		if(he->getEncoder()->getRate() < 670)
 		{
