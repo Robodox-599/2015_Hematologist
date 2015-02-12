@@ -31,6 +31,7 @@ private:
 	void TeleopPeriodic(){
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 		manip->moveLift(oi->getJoystick('R')->GetY());
+		manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(6));
 	}
 
 	void TestPeriodic(){}
