@@ -40,11 +40,12 @@ Manip Joystick:
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
 #define RIGHT_DRIVE_JOYSTICK				(2)		//TODO: FIND CORRECT VALUE
 #define FORKLIFT_OPEN_BUTTON				(1)
+#define FORKLIFT_CLOSE_BUTTON				(4)		//TODO: get correct number
+#define FORKLIFT_TOGGLE_BUTTON				(1)
 #define SECOND_TIER_OPEN_BUTTON				(4)
-#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
+#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get
 #define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
 #define SECOND_TIER_CLOSE_BUTTON			(5)
-#define FORKLIFT_CLOSE_BUTTON				(4)		//TODO: get correct number
 
 
 //Motor Channels

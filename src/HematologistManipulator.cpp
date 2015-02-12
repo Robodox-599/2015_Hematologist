@@ -33,6 +33,19 @@ HematologistManipulator::~HematologistManipulator()
 	compressor = NULL;
 }
 
+void HematologistManipulator::moveLift(float speed)
+{
+	if (speed > DEADZONE || speed < -DEADZONE)
+	{
+		leftLiftMotor->Set(speed);
+		rightLiftMotor->Set(speed);
+	}else
+	{
+		leftLiftMotor->Set(0);
+		rightLiftMotor->Set(0);
+	}
+}
+
 void HematologistManipulator::openBinHugger()
 {
 	if (manipJoystick->GetRawButton(IGNORE_ENCODERS_BUTTON))

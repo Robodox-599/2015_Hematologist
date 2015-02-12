@@ -13,7 +13,6 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	delete leftDriveJoystick;
 	delete rightDriveJoystick;
 	delete manipJoystick;
-	//delete dashboard;
 
 	leftDriveJoystick = NULL;
 	rightDriveJoystick = NULL;
@@ -65,4 +64,9 @@ Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
 			return manipJoystick;
 		}
 	}
+}
+
+SmartDashboard* HematologistOperatorInterface::getDashboard()
+{
+	return dashboard;
 }
