@@ -1,45 +1,8 @@
 #include "HematologistAutonomous.h" // all values for the autonomous is not set. Thus need accurate calculation to replace
 
-HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
-{
-	frontLeftEnc = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
-	frontRightEnc = new Encoder(3, 4, true, Encoder::EncodingType::k4X);
-	backLeftEnc = new Encoder(5, 6, false, Encoder::EncodingType::k4X);
-	backRightEnc = new Encoder(7, 8, true, Encoder::EncodingType::k4X);
+HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip){}
 
-	frontLeftEnc->SetMaxPeriod(1);
-	frontLeftEnc->SetMinRate(10);
-	frontLeftEnc->SetDistancePerPulse(5);
-	frontLeftEnc->SetSamplesToAverage(7);
-
-	frontRightEnc->SetMaxPeriod(1);
-	frontRightEnc->SetMinRate(10);
-	frontRightEnc->SetDistancePerPulse(5);
-	frontRightEnc->SetSamplesToAverage(7);
-
-	backLeftEnc->SetMaxPeriod(1);
-	backLeftEnc->SetMinRate(10);
-	backLeftEnc->SetDistancePerPulse(5);
-	backLeftEnc->SetSamplesToAverage(7);
-
-	backRightEnc->SetMaxPeriod(1);
-	backRightEnc->SetMinRate(10);
-	backRightEnc->SetDistancePerPulse(5);
-	backRightEnc->SetSamplesToAverage(7);
-}
-
-HematologistAutonomous::~HematologistAutonomous()
-{
-	delete frontLeftEnc;
-	delete frontRightEnc;
-	delete backLeftEnc;
-	delete backRightEnc;
-
-	frontLeftEnc = NULL;
-	frontRightEnc = NULL;
-	backLeftEnc = NULL;
-	backRightEnc = NULL;
-}
+HematologistAutonomous::~HematologistAutonomous(){}
 
 void HematologistAutonomous::firstHemanAuto()
 {
@@ -55,7 +18,6 @@ void HematologistAutonomous::firstHemanAuto()
 		}
 	}
 	drive(0, 0, 0);
-
 }
 
 void HematologistAutonomous::secondHemanAuto()
@@ -64,25 +26,28 @@ void HematologistAutonomous::secondHemanAuto()
 	manip->openScondTier(true);
 
 	frontRightEnc->Reset();
+	rearRightEnc->Reset();
+	frontLeftEnc->Reset();
+	rearLeftEnc->Reset();
 
 	while(he->getEncoder()->getRate() < 720)
 	{
-		//initial drive
-		if(he->getEncoder()->getRate() < 700)
+	//initial drive
+		if(he->getEncoder()->getRate() < 700) 
 		{
 			drive->drive(0.05, 0 , 0);
 		}
 		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
 		{
-			manip->openForklLift(false);
-		}	
+			manip->openForkLift(false);
+		}
 		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
 			manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
 		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
-			manip->openForklLift(true);
+			manip->openForkLift(true);
 		}
 		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
 		{	
@@ -112,7 +77,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
-			manip->openForklLift(false);
+			manip->openForkLift(false);
 		}		
 		if(he->getEncoder()->getRate() > 520)
 		{
@@ -133,7 +98,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
 		{
-			manip->openForklLift(true);
+			manip->openForkLift(true);
 		}	
 		if(he->getEncoder()->getRate() > 465 && he->getEncoder()->getRate() < 470)
 		{
@@ -188,7 +153,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}
 		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
 		{
-			manip->openForklLift(false);
+			manip->openForkLift(false);
 		}	
 		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
 		{
@@ -196,7 +161,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}
 		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
 		{
-			manip->openForklLift(true);
+			manip->openForkLift(true);
 		}
 		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
 		{	
@@ -225,7 +190,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
-			manip->openForklLift(false);
+			manip->openForkLift(false);
 		}		
 		if(he->getEncoder()->getRate() > 520)
 		{
@@ -242,7 +207,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
 		{
-			manip->openForklLift(false);
+			manip->openForkLift(false);
 		}		
 		if(he->getEncoder()->getRate() > 520)
 		{
@@ -263,7 +228,7 @@ void HematologistAutonomous::thirdHemanAuto()
 		}	
 		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
 		{
-			manip->openForklLift(true);
+			manip->openForkLift(true);
 		}	
 		if(he->getEncoder()->getRate() > 465 && he->getEncoder()->getRate() < 470)
 		{
@@ -301,18 +266,18 @@ void HematologistAutonomous::thirdHemanAuto()
 }
 //was third autonomous
 /*manip->openSeocndTier(true); // true opens the grabber
-manip->openForklLift(true); // true opens the grabber
+manip->openForkLift(true); // true opens the grabber
 while(/*encoder value is less than certain value tbd) 
 {
 	drive->drive(0.05, 0 , 0);
 	if(/*encoder value is greater than value tbd & encoder value is less than value tbd) 
 	{
-		manip->openForklLift(false);
+		manip->openForkLift(false);
 		manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
 	}
 	else
 	{
-		manip->openForklLift(true);
+		manip->openForkLift(true);
 		manip->openSecondTier(false);
 		manip->moveLift(false, true, 0.7);
 	}
@@ -329,13 +294,13 @@ while(/*encoder value is less than certain value tbd)
 	drive->drive(0.05, 0, 0);
 	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
 	{
-		manip->openForklLift(false);
+		manip->openForkLift(false);
 		manip->moveLift(true, false, 0.7);
 		manip->openSeocndTier(true);
 	}
 	else
 	{
-		manip->openForklLift(true);
+		manip->openForkLift(true);
 		manip->openSecondTier(false);
 		manip->moveLift(false, true, 0.7);
 	}
@@ -352,12 +317,12 @@ while(/*encoder value is less than certain value tbd)
 	drive->drive(0.05, 0, 0);
 	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
 	{
-		manip->openForklLift(false);
+		manip->openForkLift(false);
 		manip->moveLift(true, false, 0.7);
 	}
 	else
 	{
-		manip->openForklLift(true);
+		manip->openForkLift(true);
 		manip->openSecondTier(false);
 		manip->moveLift(false, true, 0.7);
 	}
