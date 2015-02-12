@@ -85,14 +85,18 @@ float HematologistDrive::setStrafe(float strafe)
 	return strafe;
 }
 
+float HematologistDrive::linearizeDrive(float driveInput)
+{
+	return ((driveInput * SLOPE_ADJUSTMENT) - SLOPE_ADJUSTMENT);
+}
+
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
 	setForward(forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(forward + strafe + turn);
-	frontRightMotor->Set(-forward + strafe + turn);
-	backLeftMotor->Set(forward - strafe + turn);
-	backRightMotor->Set(-forward - strafe + turn);
+	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn));
+	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
+	backLeftMotor->Set(linearizeDrive(forward - strafe + turn));
+	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
 }
-

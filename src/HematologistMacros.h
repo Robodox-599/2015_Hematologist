@@ -46,6 +46,8 @@ Manip Joystick:
 #define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get
 #define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
 #define SECOND_TIER_CLOSE_BUTTON			(5)
+#define START_COMPRESSOR_BUTTON				(6)
+#define STOP_COMPRESSOR_BUTTON				(7)	
 
 
 //Motor Channels
