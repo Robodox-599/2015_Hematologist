@@ -13,7 +13,6 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	delete leftDriveJoystick;
 	delete rightDriveJoystick;
 	delete manipJoystick;
-	//delete dashboard;
 
 	leftDriveJoystick = NULL;
 	rightDriveJoystick = NULL;
@@ -43,8 +42,7 @@ float HematologistOperatorInterface::getJoystickValue(char whichOne, char whichA
 	if (whichAxis == 'X')
 	{
 		return joystick->GetX();
-	}
-	else
+	}else
 	{
 		return joystick->GetY();
 	}
@@ -55,7 +53,8 @@ Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
 	if (whichJoystick == 'L')
 	{
 		return leftDriveJoystick;
-	}else
+	}
+	else
 	{
 		if (whichJoystick == 'R')
 		{

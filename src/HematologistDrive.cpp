@@ -7,9 +7,14 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	frontRightMotor	= new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
 	backRightMotor	= new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
+	frontLeftEncoder = new Encoder(FRONT_LEFT_ENCODER_CHANNEL_A, FRONT_LEFT_ENCODER_CHANNEL_B);
+	backLeftEncoder = new Encoder(BACK_LEFT_ENCODER_CHANNEL_A, BACK_LEFT_ENCODER_CHANNEL_B);
+	frontRightEncoder = new Encoder(FRONT_RIGHT_ENCODER_CHANNEL_A, FRONT_RIGHT_ENCODER_CHANNEL_B);
+	backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, BACK_RIGHT_ENCODER_CHANNEL_B);
+
 	gyro = new Gyro(1);
 	gyro_ref = 0;
-	gyroButton = true;
+	gyroButton = false;
 
 	forward = turn = strafe = 0;
 
@@ -87,7 +92,7 @@ float HematologistDrive::setStrafe(float strafe)
 
 float HematologistDrive::linearizeDrive(float driveInput)
 {
-	return ((driveInput * SLOPE_ADJUSTMENT) - SLOPE_ADJUSTMENT);
+	return (1/.9)*(driveInput - .1);
 }
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
@@ -95,8 +100,8 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	setForward(forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn));
-	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
-	backLeftMotor->Set(linearizeDrive(forward - strafe + turn));
-	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
+	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn) * .5);
+	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn)* .5);
+	backLeftMotor->Set(linearizeDrive(forward - strafe + turn)* .5);
+	backRightMotor->Set(linearizeDrive(-forward - strafe + turn)* .5);
 }
