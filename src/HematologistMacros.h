@@ -2,20 +2,52 @@
 #define HEMATOLOGIST_MACROS_H_
 #include "WPILib.h"
 
+/*Joystick button mapping (for reference)
+Drive Joystick:
+	1 -
+	2 -
+	3 -
+	4 -
+	5 -
+	6 - start compressor
+	7 - stop compressor
+	8 -
+	9 -
+	10 -
+	11 -
+
+Manip Joystick:
+	1 - Forklift toggle
+	2 - Lower Lift
+	3 - Raise Lift
+	4 - Open Second Tier
+	5 - Close Second Tier
+	6 -
+	7 -
+	8 -
+	9 -
+	10 -
+	11 -
+	throttle -  roller speed
+*/
+
 //Joystick
 #define MANIP_JOYSTICK						(0)		//TODO: FIND CORRECT VALUE
 #define BIN_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE
 #define BIN_HUGGER_CLOSE_BUTTON				(2)		//TODO: FIND CORRECT VALUE
-#define FORKLIFT_UP_BUTTON					(3)		//TODO: FIND CORRECT VALUE
-#define FORKLIFT_DOWN_BUTTON				(4)		//TODO: FIND CORRECT VALUE
+#define FORKLIFT_UP_BUTTON					(3)
+#define FORKLIFT_DOWN_BUTTON				(2)
 #define LEFT_DRIVE_JOYSTICK					(1)		//TODO: FIND CORRECT VALUE
 #define RIGHT_DRIVE_JOYSTICK				(2)		//TODO: FIND CORRECT VALUE
-#define FORKLIFT_OPEN_BUTTON				(3)		//you know hwat
-#define SECOND_TIER_OPEN_BUTTON				(0)		//BYE
-#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get #####digits;)
-#define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
-#define SECOND_TIER_CLOSE_BUTTON			(3)		//TODO: get correct number
+#define FORKLIFT_OPEN_BUTTON				(1)
 #define FORKLIFT_CLOSE_BUTTON				(4)		//TODO: get correct number
+#define FORKLIFT_TOGGLE_BUTTON				(1)
+#define SECOND_TIER_OPEN_BUTTON				(4)
+#define IGNORE_ENCODERS_BUTTON				(1)		//TODO: get
+#define GYRO_TOGGLE_BUTTON          		(3)   	//TODO: get correct number
+#define SECOND_TIER_CLOSE_BUTTON			(5)
+#define START_COMPRESSOR_BUTTON				(6)
+#define STOP_COMPRESSOR_BUTTON				(7)	
 
 
 //Motor Channels

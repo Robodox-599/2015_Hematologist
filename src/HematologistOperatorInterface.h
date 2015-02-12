@@ -20,5 +20,4 @@ private:
 	Joystick* manipJoystick;
 	SmartDashboard* dashboard;
 };
-
 #endif
