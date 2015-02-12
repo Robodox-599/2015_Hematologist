@@ -2,6 +2,35 @@
 #define HEMATOLOGIST_MACROS_H_
 #include "WPILib.h"
 
+/*Joystick button mapping (for reference)
+Drive Joystick:
+	1 -
+	2 -
+	3 -
+	4 -
+	5 -
+	6 - start compressor
+	7 - stop compressor
+	8 -
+	9 -
+	10 -
+	11 -
+
+Manip Joystick:
+	1 - Forklift toggle
+	2 - Lower Lift
+	3 - Raise Lift
+	4 - Open Second Tier
+	5 - Close Second Tier
+	6 -
+	7 -
+	8 -
+	9 -
+	10 -
+	11 -
+	throttle -  roller speed
+*/
+
 //Joystick
 #define MANIP_JOYSTICK						(0)		//TODO: FIND CORRECT VALUE
 #define BIN_HUGGER_OPEN_BUTTON				(1)		//TODO: FIND CORRECT VALUE
@@ -40,16 +69,17 @@
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
 #define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
 
-//Misc Constants
+//Misc
 #define DEADZONE                   		    (.1)
+#define LIFT_DEADZONE           			(10)
+#define PI									(3.1415926535897932384626433832795)
+#define SLOPE_ADJUSTMENT					(1.1)   //TODO: get correct number
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
-#define LIFT_DEADZONE						(10.0)	//TODO: get correct number
 
 
 //Gyro
 #define GYRO_KP								(.1)
 
 #endif
-

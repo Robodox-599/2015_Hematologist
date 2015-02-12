@@ -12,10 +12,12 @@ private:
 	DoubleSolenoid* secondTierPiston;
 	DoubleSolenoid* binHuggerPiston;
 	DoubleSolenoid* forkliftPiston;
+
 	Joystick* manipJoystick;
 
 	Encoder* liftEncoder;
 
+	Compressor* compressor;
 
 	bool disableEncoders;
 
@@ -26,6 +28,7 @@ public:
 	void openSecondTier();
 
 	void resetEncoders();
+	void toggleCompressor(bool start, bool stop);
 
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
