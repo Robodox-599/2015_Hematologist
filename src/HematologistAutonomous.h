@@ -6,12 +6,8 @@
 class HematologistAutonomous
 {
 private:
-	HematologistManipulator *man;
+	HematologistManipulator *manip;
 	HematologistDrive* drive;
-	Encoder* frontLeftEnc; //encoders for drive motor
-	Encoder* frontRightEnc;
-	Encoder* backLeftEnc;
-	Encoder* backRightEnc;
 
 public:
 	HematologistAutonomous();
