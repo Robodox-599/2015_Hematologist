@@ -15,6 +15,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	this->manipJoystick = manipJoystick;
 
+	limitSwitch = new HematologistAnalogLimitSwitch;
+
 	disableEncoders = false;
 }
 
@@ -24,39 +26,45 @@ HematologistManipulator::~HematologistManipulator()
 	delete binHuggerPiston;
 	delete forkliftPiston;
 	delete manipJoystick;
+	delete limitSwitch;
 	delete 	compressor;
 
 	secondTierPiston = NULL;
 	binHuggerPiston = NULL;
 	forkliftPiston = NULL;
 	manipJoystick = NULL;
+	limitSwitch= NULL;
 	compressor = NULL;
 }
 
 void HematologistManipulator::moveLift(float speed)
 {
-	if (speed > DEADZONE || speed < -DEADZONE)
+	if (limitSwitch->limitSwitchIsPressed() == false)
 	{
-		leftLiftMotor->Set(speed);
-		rightLiftMotor->Set(speed);
-	}else
-	{
-		leftLiftMotor->Set(0);
-		rightLiftMotor->Set(0);
-	}
-}
 
-void HematologistManipulator::moveLift(float speed)
-{
-	if (speed > DEADZONE || speed < -DEADZONE)
-	{
-		leftLiftMotor->Set(speed);
-		rightLiftMotor->Set(speed);
-	}else
-	{
-		leftLiftMotor->Set(0);
-		rightLiftMotor->Set(0);
+		if (speed > DEADZONE || speed < -DEADZONE)
+		{
+			leftLiftMotor->Set(speed);
+			rightLiftMotor->Set(speed);
+		}else
+		{
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
+		}
 	}
+	else
+	{
+		if (speed > DEADZONE)
+		{
+			leftLiftMotor->Set(speed);
+			rightLiftMotor->Set(speed);
+		}else
+		{
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
+		}
+	}
+
 }
 
 void HematologistManipulator::openBinHugger()
@@ -65,7 +73,6 @@ void HematologistManipulator::openBinHugger()
 	{
 		disableEncoders = !disableEncoders;
 	}
-
 	if (disableEncoders)
 	{
 		if(manipJoystick->GetRawButton(BIN_HUGGER_OPEN_BUTTON))
@@ -84,15 +91,17 @@ void HematologistManipulator::openBinHugger()
 			}
 		}
 	}
+	else
+	{
+		/*
+		if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
+		{
+			binHuggerPiston->Set(DoubleSolenoid::kForward);
+		}
 		else
 		{
-			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
-			{
-				binHuggerPiston->Set(DoubleSolenoid::kForward);
-			}
-			else
-			{
-			if(liftEncoder->Get() < -LIFT_DEADZONE || liftEncoder->Get() > LIFT_DEADZONE)
+<<<<<<< HEAD
+			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kReverse);
 			}
@@ -100,9 +109,22 @@ void HematologistManipulator::openBinHugger()
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kOff);
 			}
+=======
+			if(liftEncoder->Get() < -LIFT_DEADZONE || liftEncoder->Get() > LIFT_DEADZONE)
+			{
+				binHuggerPiston->Set(DoubleSolenoid::kReverse);
+			}
+			else
+			{
+				binHuggerPiston->Set(DoubleSolenoid::kOff);
+>>>>>>> master
+			}
 		}
+		*/
 	}
 }
+
+
 
 void HematologistManipulator::openSecondTier()
 {
@@ -110,7 +132,6 @@ void HematologistManipulator::openSecondTier()
 	{
 		disableEncoders = !disableEncoders;
 	}
-
 	if (disableEncoders)
 	{
 		if(manipJoystick->GetRawButton(SECOND_TIER_OPEN_BUTTON))
@@ -130,7 +151,8 @@ void HematologistManipulator::openSecondTier()
 		}
 	}
 	else
-	{
+	{	
+		/*
 		if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
 		{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
@@ -146,6 +168,7 @@ void HematologistManipulator::openSecondTier()
 				secondTierPiston->Set(DoubleSolenoid::kOff);
 			}
 		}
+		*/
 	}
 }
 
@@ -175,12 +198,13 @@ void HematologistManipulator::openForklift()
 			}
 		}
 	}
-		else
+	else
+	{	
+		/*
+		if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
 		{
-			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > -LIFT_DEADZONE)
-			{
 			forkliftPiston->Set(DoubleSolenoid::kForward);
-			}
+		}
 		else
 		{
 			if(liftEncoder->Get() < LIFT_DEADZONE || liftEncoder->Get() > LIFT_DEADZONE)
@@ -192,6 +216,7 @@ void HematologistManipulator::openForklift()
 				forkliftPiston->Set(DoubleSolenoid::kOff);
 			}
 		}
+		*/
 	}
 }
 

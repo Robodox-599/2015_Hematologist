@@ -2,6 +2,7 @@
 #define HEMATOLOGIST_MANIPULATOR_H_
 
 #include "HematologistMacros.h"
+#include "HematologistAnalogLimitSwitch.h"
 
 class HematologistManipulator
 {
@@ -18,11 +19,15 @@ private:
 
 	bool disableEncoders;
 
+	HematologistAnalogLimitSwitch* limitSwitch;
+
 
 public:
 	void openBinHugger();
 	void openForklift();
 	void openSecondTier();
+
+	bool limitSwitchIsPressed();
 
 	void resetEncoders();
 	void toggleCompressor(bool start, bool stop);
