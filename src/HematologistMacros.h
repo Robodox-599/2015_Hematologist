@@ -29,7 +29,7 @@
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
 //Solenoids
-#define SECOND_TIER_PISTON_CHANNEL_A		(1)		// /? ? numBer?
+#define SECOND_TIER_PISTON_CHANNEL_A		(1)		//TODO:? ? numBer?
 #define SECOND_TIER_PISTON_CHANNEL_B 		(2)		//TODO: get correct number
 #define BIN_HUGGER_PISTON_CHANNEL_A			(2)		//TODO: get correct number
 #define BIN_HUGGER_PISTON_CHANNEL_B			(3)		//TODO: get correct number
@@ -43,11 +43,13 @@
 //Misc
 #define DEADZONE                   		    (.1)
 #define LIFT_DEADZONE           			(10)
-#define PI									(3.1415926535897932384626433832795)
+#define PI									(3.141592653589793238462643383279502884197)
 #define SLOPE_ADJUSTMENT					(1.1)   //TODO: get correct number
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
+#define LIFT_DEADZONE						(10.0)	//TODO: get correct number
+#define LIMIT_SWITCH_CHANNEL				(10)	//TODO: get numberrrrr
 
 
 //Gyro
