@@ -23,7 +23,10 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 float HematologistOperatorInterface::getJoystickValue(char whichOne, char whichAxis)
 {
 	Joystick* joystick;
-	(whichOne == 'L') ? (joystick = leftDriveJoystick) : ();
+	if (whichOne == 'L')
+	{
+		joystick = leftDriveJoystick;
+	}
 	else
 	{
 		if (whichOne == 'R')
@@ -36,7 +39,13 @@ float HematologistOperatorInterface::getJoystickValue(char whichOne, char whichA
 		}
 	}
 
-	(whichAxis == 'X') ? (return joystick->GetX()) : (return joystick->GetY());
+	if (whichAxis == 'X')
+	{
+		return joystick->GetX();
+	}else
+	{
+		return joystick->GetY();
+	}
 }
 
 Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
@@ -47,7 +56,13 @@ Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
 	}
 	else
 	{
-		(whichJoystick == 'R') ? (return rightDriveJoystick) : (return manipJoystick);
+		if (whichJoystick == 'R')
+		{
+			return rightDriveJoystick;
+		}else
+		{
+			return manipJoystick;
+		}
 	}
 }
 
