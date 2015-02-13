@@ -38,6 +38,8 @@ public:
 	void moveLift(float speed);
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
+
+	HematologistAnalogLimitSwitch* getLimitSwitch();
 };
 
 #endif
