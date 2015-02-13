@@ -11,7 +11,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
 
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
-	compressor = new Compressor(0);
+	//compressor = new Compressor(0);
 
 	this->manipJoystick = manipJoystick;
 
