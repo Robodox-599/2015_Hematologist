@@ -1,126 +1,103 @@
 #include "HematologistDrive.h"
 
- HematologistDrive::HematologistDrive()
+HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 {
-     frontLeftMotor = new Talon(FRONT_LEFT_MOTOR_CHANNEL);
-	 backLeftMotor = new Talon(BACK_LEFT_MOTOR_CHANNEL);
-	 frontRightMotor = new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
-	 backRightMotor = new Talon(BACK_RIGHT_MOTOR_CHANNEL);
+	frontLeftMotor 	= new Talon(FRONT_LEFT_MOTOR_CHANNEL);
+	backLeftMotor 	= new Talon(BACK_LEFT_MOTOR_CHANNEL);
+	frontRightMotor	= new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
+	backRightMotor	= new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
-	/* encFrontLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-	 encBackLeft = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-	 encFrontRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
-	 encBackRight = new Encoder(0,1,false, Encoder::EncodingType::k4X);
+	gyro = new Gyro(1);
+	gyro_ref = 0;
+	gyroButton = true;
 
-	 countFrontLeft = 0;
-	 countFrontRight = 0;
-	 countBackLeft = 0;
-	 countBackRight = 0;*/
+	forward = turn = strafe = 0;
 
-	 gyro = new Gyro(1);
-     gyro_ref = 0;
+	this->oi = oi;
 
-     forward = 0;
-     spin = 0;
-     side = 0;
-
-	 oi = new HematologistOperatorInterface;
-
-	 timer = new Timer();
-	 timer->Start();
-	 initTime = 0;
+	kP = GYRO_KP;
 
 }
 
- HematologistDrive::~HematologistDrive()
+HematologistDrive::~HematologistDrive()
 {
-	 delete frontLeftMotor;
-	 delete backLeftMotor;
-	 delete frontRightMotor;
-	 delete backRightMotor;
-     delete timer;
-	 delete gyro;
+	delete frontLeftMotor;
+	delete backRightMotor;
+	delete backLeftMotor;
+	delete backRightMotor;
+	delete gyro;
 
-	 frontLeftMotor = NULL;
-	 backLeftMotor = NULL;
-	 frontRightMotor = NULL;
-	 backRightMotor = NULL;
-     timer = NULL;
-	 gyro = NULL;
+	frontLeftMotor 	= NULL;
+	backRightMotor 	= NULL;
+	backLeftMotor 	= NULL;
+	frontRightMotor = NULL;
 }
 
-void HematologistDrive::setLinearDrive(float linearValue)
+float HematologistDrive::setForward(float forward)
 {
-	 if(linearValue > DEADZONE || linearValue < -DEADZONE)
-	 {
-		 forward = -(linearValue);
-	 }
-	 else
-	 {
-		 forward = 0;
-	 }
+	if (forward > DEADZONE || forward < -DEADZONE)
+	{
+		this->forward = forward;
+	}else
+	{
+		forward = 0;
+	}
+	return forward;
+}
+
+float HematologistDrive::setTurn(float turn)
+{
+	if (oi->getJoystick('L')->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
+	{
+		gyroButton = !gyroButton;
+	}
+	if(gyroButton){
+		if (turn > DEADZONE || turn < -DEADZONE)
+		{
+			this->turn = turn;
+			gyro_ref = gyro->GetAngle();
+		}
+		else
+		{
+			turn = kP * (gyro_ref - (gyro->GetAngle()));
+		}
+	}
+	else
+	{
+		if(turn > DEADZONE || turn < -DEADZONE)
+			this->turn = turn;
+		else
+			turn = 0;
+	}
+	return turn;
 }
 
 
-void HematologistDrive::setTurn(float turnValue)
+float HematologistDrive::setStrafe(float strafe)
 {
-	 if (turnValue > DEADZONE || turnValue < -DEADZONE)
-	 {
-		 spin = turnValue;
-		 gyro_ref = gyro->GetAngle();
-	 }
-	 else
-	 {
-		 spin = 0; //Kp * (gyro_ref-(gyro->GetAngle()));
-	 }
+	if (strafe > DEADZONE || strafe < -DEADZONE)
+	{
+		this->strafe = strafe;
+	}else
+	{
+		strafe = 0;
+	}
+	return strafe;
 }
 
-void HematologistDrive::setStrafe(float sideValue)
+float HematologistDrive::linearizeDrive(float driveInput)
 {
-	 if (sideValue > DEADZONE || sideValue < -DEADZONE)
-	 {
-		 side = sideValue;
-	 }
-	 else
-	 {
-		 side = 0;
-	 }
+	return ((driveInput * SLOPE_ADJUSTMENT) - SLOPE_ADJUSTMENT);
 }
 
-
-
-void HematologistDrive::drive(float linearValue, float turnValue, float sideValue)
+void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-
-	 setLinearDrive(linearValue);
-	 setTurn(turnValue);
-	 setStrafe(sideValue);
-	 frontLeftMotor->Set(forward + side + spin);
-	 frontRightMotor->Set(-forward + side + spin);
-	 backLeftMotor->Set(forward - side + spin);
-	 backRightMotor->Set(-forward - side + spin);
+	setForward(forward);
+	setTurn(turn);
+	setStrafe(strafe);
+	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn));
+	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
+	backLeftMotor->Set(linearizeDrive(forward - strafe + turn));
+	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
 }
 
-//for performing gyro testing, will be removed when test is successful
-/*void HematologistDrive::testDrive()
-{   //speed: .24
-    if(oi->rightJoystick->GetRawButton(3)){
-    	gyro_ref = gyro->GetAngle();
-    	initTime = timer->Get();
-    }
-
-    if(timer->Get() > 0 + initTime && timer->Get() < 3 + initTime){
-    	spin = Kp * (gyro_ref - (gyro->GetAngle()));
-    	frontLeftMotor->Set(.24 + spin);
-    	frontRightMotor->Set(-.24 + spin);
-    	backLeftMotor->Set(.24 + spin);
-    	backRightMotor->Set(-.24 + spin);
-    }
-
-    else {
-    	frontLeftMotor->Set(0);
-    	frontRightMotor->Set(0);
-    	backLeftMotor->Set(0);
-    	backRightMotor->Set(0);
-    }
-}*/

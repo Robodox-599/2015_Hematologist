@@ -1,42 +1,44 @@
 #ifndef HEMATOLOGIST_MANIPULATOR_H_
 #define HEMATOLOGIST_MANIPULATOR_H_
 
-#include "WPILib.h"
 #include "HematologistMacros.h"
+#include "HematologistAnalogLimitSwitch.h"
 
 class HematologistManipulator
 {
 private:
+	DoubleSolenoid* secondTierPiston;
+	DoubleSolenoid* binHuggerPiston;
+	DoubleSolenoid* forkliftPiston;
 
+	Joystick* manipJoystick;
+
+	Encoder* liftEncoder;
+
+	Compressor* compressor;
+
+	bool disableEncoders;
+
+	HematologistAnalogLimitSwitch* limitSwitch;
+
+
+public:
+	void openBinHugger();
+	void openForklift();
+	void openSecondTier();
+
+	bool limitSwitchIsPressed();
+
+
+	void resetEncoders();
+	void toggleCompressor(bool start, bool stop);
+
+	HematologistManipulator(Joystick* manipJoystick);
+	~HematologistManipulator();
+
+	void moveLift(float speed);
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-	Talon* rightForkliftMotor;
-	Talon* leftForkliftMotor;
-
-	DoubleSolenoid* secondTierSol;
-	DoubleSolenoid* binHuggerSol;
-
-	double count;
-public:
-
-	HematologistManipulator();
-	virtual ~HematologistManipulator();
-
-	void manualLiftControl(bool up, bool down, float power);
-	void setLiftToPosition(int target, float power);
-	void preSetHeight(bool low, bool mid, bool high, float power);
-
-	void moveForklift(bool up, bool down, float power);
-
-	void secondTierSolForward();
-	void secondTierSolBackward();
-	void secondTierSolStop();
-	void activateSecondTier(int target);
-
-	void toggleBinHugger(bool on, bool off);
-
-	Encoder* encLift;
 };
-
 
 #endif

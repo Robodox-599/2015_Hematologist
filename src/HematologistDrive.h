@@ -1,49 +1,44 @@
 #ifndef HEMATOLOGIST_DRIVE_H
 #define HEMATOLOGIST_DRIVE_H
+
 #include "HematologistMacros.h"
 #include "HematologistOperatorInterface.h"
 
 class HematologistDrive
 {
 public:
-	HematologistDrive();
+	HematologistDrive(HematologistOperatorInterface* oi);
 	~HematologistDrive();
 
-     void setLinearDrive(float linearValue);
-     void setTurn(float turnValue);
-     void setStrafe(float sideValue);
-	 void drive(float linearValue, float turnValue, float sideValue);
-	 void testDrive();
+	float setForward(float forward);
+	float setTurn(float turn);
+	float setStrafe(float strafe);
 
-	 Gyro* gyro;
-	/* Encoder *encFrontLeft;
-	 Encoder *encBackLeft;
-	 Encoder *encFrontRight;
-	 Encoder *encBackRight;*/
+	void drive(float forward, float turn, float strafe);
+	float linearizeDrive(float driveInput);
+	
 
-	 float forward;
-	 float spin;
-	 float side;
-	 double initTime;
-	 float Kp = .1;
-	 float Kd = .01;
+private:
 
-	 Timer* timer;
+	Gyro* gyro;
+
+	float forward;
+	float turn;
+	float strafe;
+
+	float kP;
+	
+	bool gyroButton;
+
+	HematologistOperatorInterface* oi;
 
 	Talon* frontLeftMotor;
 	Talon* backLeftMotor;
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
-private:
-	HematologistOperatorInterface* oi;
 
+	float gyro_ref;
 
-
-	/*double countFrontLeft;
-	double countFrontRight;
-	double countBackLeft;
-	double countBackRight;*/
-
-	double gyro_ref;
 };
+
 #endif

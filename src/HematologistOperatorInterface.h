@@ -1,7 +1,7 @@
-#ifndef HEMATOLOGIST_OPERATOR_INTERFACE_H
-#define HEMATOLOGIST_OPERATOR_INTERFACE_H
+#ifndef HEMATOLOGIST_OPERATOR_INTERFACE_H_
+#define HEMATOLOGIST_OPERATOR_INTERFACE_H_
+
 #include "HematologistMacros.h"
-#include "WPILib.h"
 
 class HematologistOperatorInterface
 {
@@ -9,14 +9,15 @@ public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
 
-	Joystick *leftJoystick;
-	Joystick *rightJoystick;
-	SmartDashboard* dashboard;
+	float getJoystickValue(char whichJoystick, char whichAxis);
 
-	void printForkliftPower();
+	Joystick* getJoystick(char whichJoystick);
 
-
+	SmartDashboard* getDashboard();
 private:
-
+	Joystick* leftDriveJoystick;
+	Joystick* rightDriveJoystick;
+	Joystick* manipJoystick;
+	SmartDashboard* dashboard;
 };
 #endif

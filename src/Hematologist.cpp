@@ -1,71 +1,43 @@
-#include "HematologistDrive.h"
+#include "HematologistMacros.h"
 #include "HematologistOperatorInterface.h"
-
-bool autonInit = true;
-double autonInitTime = 0;
-float angle = 0;
+#include "HematologistDrive.h"
+#include "HematologistManipulator.h"
 
 class Hematologist: public IterativeRobot
 {
-	HematologistDrive *drive;
-	HematologistOperatorInterface *oi;
-	LiveWindow *lw;
-
+private:
+	HematologistOperatorInterface* oi;
+	HematologistManipulator* manip;
+	HematologistDrive* drive;
 
 public:
 	Hematologist()
 	{
+	void RobotInit(){
 		oi = new HematologistOperatorInterface();
-		drive = new HematologistDrive();
-		lw = LiveWindow::GetInstance();
-		oi->dashboard->init();
-	}
-
-	void RobotInit()
-	{
-		drive->gyro->Reset();
-	}
-
-	void AutonomousInit()
-	{
+		manip = new HematologistManipulator(oi->getJoystick('M'));
+		drive = new HematologistDrive(oi);
 
 	}
 
-	void AutonomousPeriodic()
-	{
-
-
-
+	void AutonomousInit(){
 
 	}
 
-	void TeleopInit()
-	{
+	void AutonomousPeriodic(){}
+
+	void TeleopInit(){}
+
+	void TeleopPeriodic(){
+		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		manip->moveLift(oi->getJoystick('R')->GetY());
+		manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
+		oi->getDashboard()->PutNumber("Joystick Y:", oi->getJoystick('L')->GetY());
+		oi->getDashboard()->PutNumber("Left Lift:", manip->leftLiftMotor->GetRaw());
+		oi->getDashboard()->PutNumber("Right Lift:", manip->rightLiftMotor->GetRaw());
 	}
 
-	void TeleopPeriodic()
-	{
-		drive->backLeftMotor->Set(oi->rightJoystick->GetY());
-		drive->frontLeftMotor->Set(oi->rightJoystick->GetY());
-		drive->backRightMotor->Set(oi->rightJoystick->GetY());
-		drive->frontRightMotor->Set(oi->rightJoystick->GetY());
-
-		oi->dashboard->PutNumber("Gyro Angle: ", drive->gyro->GetAngle());
-		oi->dashboard->PutNumber("Gyro Rate: ", drive->gyro->GetRate());
-		oi->dashboard->PutNumber("Forward: ", drive->forward);
-		oi->dashboard->PutNumber("Side", drive->side);
-		oi->dashboard->PutNumber("Spin", drive->spin);
-		oi->dashboard->PutNumber("Right Joystick X", oi->rightJoystick->GetX());
-		oi->dashboard->PutNumber("Right Joystick Y", oi->rightJoystick->GetY());
-		oi->dashboard->PutNumber("Left Joystick X", oi->leftJoystick->GetX());
-		oi->dashboard->PutNumber("Left Joystick Y", oi->leftJoystick->GetY());
-		oi->dashboard->PutNumber("Timer", drive->timer->Get());
-	}
-
-	void TestPeriodic()
-	{
-		drive->drive(oi->rightJoystick->GetY(), oi->rightJoystick->GetX(), oi->leftJoystick->GetX());
-	}
+	void TestPeriodic(){}
 };
 
 START_ROBOT_CLASS(Hematologist);
