@@ -24,6 +24,13 @@ void HematologistAutonomous::firstHemanAuto()
 	drive->drive(0, 0, 0);
 }
 
+int HematologistAutonomous::encoderAverage()
+{
+	int distance;
+	distance = (drive->backLeftEncoder->Get() + drive->backRightEncoder->Get() + drive->frontRightEncoder->Get() + drive->frontLeftEncoder->Get()) / 4;
+	return distance;
+}
+
 void HematologistAutonomous::secondHemanAuto()
 {
 	//manip->openForkLift(true);
@@ -34,105 +41,107 @@ void HematologistAutonomous::secondHemanAuto()
 	drive->frontRightEncoder->Reset();
 	drive->backLeftEncoder->Reset();
 
-	while(drive->backRightEncoder->Get() < 1090) //exact value is 1089.05
+
+
+	while(drive->frontRightEncoder->Get() < 1090) //exact value is 1089.05
 	{
 	//initial drive
-		if(drive->backRightEncoder->Get() < 700) 
+		if(drive->frontRightEncoder->Get() < 700) 
 		{
 			drive->drive(-0.3, 0 , 0);
 		}
-		if(drive->backRightEncoder->Get() > 360 && drive->backRightEncoder->Get() < 380) 
+		if(drive->frontRightEncoder->Get() > 360 && drive->frontRightEncoder->Get() < 380) 
 		{
 			//manip->openForkLift(false);
 		}
-		if(drive->backRightEncoder->Get() > 380 && drive->backRightEncoder->Get() < 390)
+		if(drive->frontRightEncoder->Get() > 380 && drive->frontRightEncoder->Get() < 390)
 		{
 			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(drive->backRightEncoder->Get() > 390 && drive->backRightEncoder->Get() < 400)
+		if(drive->frontRightEncoder->Get() > 390 && drive->frontRightEncoder->Get() < 400)
 		{
 			//manip->openForkLift(true);
 		}
-		if(drive->backRightEncoder->Get() > 400 && drive->backRightEncoder->Get() < 405)
+		if(drive->frontRightEncoder->Get() > 400 && drive->frontRightEncoder->Get() < 405)
 		{	
 			//manip->openSecondTier(false);
 		}	
-		if(drive->backRightEncoder->Get() < 405 && drive->backRightEncoder->Get() < 425)
+		if(drive->frontRightEncoder->Get() < 405 && drive->frontRightEncoder->Get() < 425)
 		{	
 			//manip->moveLift(-0.7);
 		}
-		if(drive->backRightEncoder->Get() < 427)
+		if(drive->frontRightEncoder->Get() < 427)
 		{
 			//manip->moveLift(0);
 		}
-		if(drive->backRightEncoder->Get() >700 )
+		if(drive->frontRightEncoder->Get() >700 )
 		{
 			drive->drive(0, 0.1, 0);
 		}
 // stop everything?
 	}	
 	//second tote
-	drive->backRightEncoder->Reset();
-	while(drive->backRightEncoder->Get() < 540)
+	drive->frontRightEncoder->Reset();
+	while(drive->frontRightEncoder->Get() < 540)
 	{
-		if(drive->backRightEncoder->Get() <520)
+		if(drive->frontRightEncoder->Get() <520)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(drive->backRightEncoder->Get() < 250 && drive->backRightEncoder->Get() > 260)
+		if(drive->frontRightEncoder->Get() < 250 && drive->frontRightEncoder->Get() > 260)
 		{
 			//manip->openForkLift(false);
 		}		
-		if(drive->backRightEncoder->Get() > 520)
+		if(drive->frontRightEncoder->Get() > 520)
 		{
 			drive->drive(0, 0.01, 0);
 		}
 	}
 	//drop off
-	drive->backRightEncoder->Reset();
-	while(drive->backRightEncoder->Get() < 1840) //exact value is 1836.54
+	drive->frontRightEncoder->Reset();
+	while(drive->frontRightEncoder->Get() < 1840) //exact value is 1836.54
 	{
-		if(drive->backRightEncoder->Get() < 670)
+		if(drive->frontRightEncoder->Get() < 670)
 		{
 			drive->drive(-0.05, 0, 0);
 		}	
-		if(drive->backRightEncoder->Get() > 400 && drive->backRightEncoder->Get() > 450)
+		if(drive->frontRightEncoder->Get() > 400 && drive->frontRightEncoder->Get() > 450)
 		{
 			//manip->moveLift(0.7);
 		}	
-		if(drive->backRightEncoder->Get() > 450 && drive->backRightEncoder->Get() < 460)
+		if(drive->frontRightEncoder->Get() > 450 && drive->frontRightEncoder->Get() < 460)
 		{
 			//manip->openForkLift(true);
 		}	
-		if(drive->backRightEncoder->Get() > 465 && drive->backRightEncoder->Get() < 470)
+		if(drive->frontRightEncoder->Get() > 465 && drive->frontRightEncoder->Get() < 470)
 		{
 			//manip->openSecondTier(false);
 		}	
-		if(drive->backRightEncoder->Get() > 470 && drive->backRightEncoder->Get() < 490)
+		if(drive->frontRightEncoder->Get() > 470 && drive->frontRightEncoder->Get() < 490)
 		{
 			//manip->moveLift(-0.7);
 		}					
-		if(drive->backRightEncoder->Get() > 510 && drive->backRightEncoder->Get() < 530)
+		if(drive->frontRightEncoder->Get() > 510 && drive->frontRightEncoder->Get() < 530)
 		{
 			//manip->moveLift(0.7);	
 		}	
-		if(drive->backRightEncoder->Get() > 530 && drive->backRightEncoder->Get() < 540)
+		if(drive->frontRightEncoder->Get() > 530 && drive->frontRightEncoder->Get() < 540)
 		{
 			//manip->openSeocndTier(true);
 		}
-		if(drive->backRightEncoder->Get() > 670 && drive->backRightEncoder->Get() < 690)
+		if(drive->frontRightEncoder->Get() > 670 && drive->frontRightEncoder->Get() < 690)
 		{
 			//manip->moveLift(-0.7);	
 		}
-		if(drive->backRightEncoder->Get() > 690)
+		if(drive->frontRightEncoder->Get() > 690)
 		{
 			//manip->moveLift(false, false, 0);	
 		}
-		if(drive->backRightEncoder->Get() < 690)
+		if(drive->frontRightEncoder->Get() < 690)
 		{
 			drive->drive(-0.1, 0, 0);
 		}
-		if(drive->backRightEncoder->Get() > 719)
+		if(drive->frontRightEncoder->Get() > 719)
 		{
 			drive->drive(0, 0, 0);
 		}

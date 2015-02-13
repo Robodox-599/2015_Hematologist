@@ -14,7 +14,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	this->manipJoystick = manipJoystick;
 
-	disableEncoders = false;
+	disableEncoders = true;
 }
 
 HematologistManipulator::~HematologistManipulator()
