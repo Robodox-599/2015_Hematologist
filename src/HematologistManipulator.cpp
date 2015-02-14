@@ -266,6 +266,7 @@ bool HematologistManipulator::controlCompressor(bool turnOnOrOff)
 	}
 
 	activateCompressor(compressorOn);
+	return compressorOn;
 }
 
 
