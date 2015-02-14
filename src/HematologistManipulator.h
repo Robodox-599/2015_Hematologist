@@ -42,6 +42,7 @@ public:
 	Talon* rightLiftMotor;
 
 	HematologistAnalogLimitSwitch* getLimitSwitch();
+	
 	void activateCompressor(bool start);
 
 	void controlComprossor(bool change);

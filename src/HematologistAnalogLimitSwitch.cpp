@@ -27,22 +27,22 @@ bool HematologistAnalogLimitSwitch::topLimitSwitchIsPressed()
 		}
 	}
 	
-	return false;
+	return true;
 }
 
 bool HematologistAnalogLimitSwitch::bottLimitSwitchIsPressed()
 {
 	if (aiBottom->GetVoltage() > 4)
 	{
-		return true;
+		return false;
 	}
 	else
 	{
 		if (aiBottom->GetVoltage() < 1)
 		{
-			return false;
+			return true;
 		}
 	}
 	
-	return false;
+	return true;
 }
