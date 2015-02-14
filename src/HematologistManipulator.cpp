@@ -260,7 +260,7 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 		compressor->SetClosedLoopControl(stop);
 }
 
-HematologistAnalogLimitSwitch* getLimitSwitch()
+HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch()
 {
 	return limitSwitch;
 }
