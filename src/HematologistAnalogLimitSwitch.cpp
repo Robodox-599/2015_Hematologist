@@ -1,8 +1,8 @@
 #include "HematologistAnalogLimitSwitch.h"
 
-HematologistAnalogLimitSwitch::HematologistAnalogLimitSwitch()
+HematologistAnalogLimitSwitch::HematologistAnalogLimitSwitch(int limitSwitchChannel)
 {
-	ai = new AnalogInput(LIMIT_SWITCH_CHANNEL);
+	ai = new AnalogInput(limitSwitchChannel);
 
 }
 
