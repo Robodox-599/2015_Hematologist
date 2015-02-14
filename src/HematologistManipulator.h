@@ -19,7 +19,8 @@ private:
 
 	bool disableEncoders;
 
-	HematologistAnalogLimitSwitch* limitSwitch;
+	HematologistAnalogLimitSwitch* topLimitSwitch;
+	HematologistAnalogLimitSwitch* bottomLimitSwitch;
 
 	bool compressorOn;
 
