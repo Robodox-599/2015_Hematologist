@@ -38,7 +38,6 @@ public:
 	void moveLift(float speed);
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
-
 };
 
 #endif
