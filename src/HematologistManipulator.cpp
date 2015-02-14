@@ -17,7 +17,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	this->manipJoystick = manipJoystick;
 
-	limitSwitch = new HematologistAnalogLimitSwitch();
+	topLimitSwitch = new HematologistAnalogLimitSwitch(TOP_LIMIT_SWITCH_CHANNEL);
+	bottomLimitSwitch = new HematologistAnalogLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
 
 	disableEncoders = false;
 }
@@ -41,18 +42,58 @@ HematologistManipulator::~HematologistManipulator()
 
 void HematologistManipulator::moveLift(float speed)
 {
-	if (!limitSwitch->limitSwitchIsPressed())
+	if (topLimitSwitch->limitSwitchIsPressed())
 	{
-
-		if (speed > DEADZONE || speed < -DEADZONE)
-		{
-			leftLiftMotor->Set(speed);
-			rightLiftMotor->Set(speed);
-		}
-		else
+		if (speed > DEADZONE)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
+		}
+		else
+		{
+			if(speed < -DEADZONE)
+			{
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
+			}
+		}
+	}
+	else
+	{
+		if (bottomLimitSwitch->limitSwitchIsPressed())
+		{
+			if (speed > DEADZONE)
+			{
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
+			}
+			else
+			{
+				if(speed < -DEADZONE)
+				{
+					leftLiftMotor->Set(0);
+					rightLiftMotor->Set(0);
+				}
+			}
+		}
+	}
+	else
+	{
+		if (!bottomLimitSwitch->limitSwitchIsPressed() && !topLimitSwitch->limitSwitchIsPressed())
+		{
+			if (speed > DEADZONE)
+			{
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
+			}
+			else
+			{
+				if(speed < -DEADZONE)
+				{
+					leftLiftMotor->Set(speed);
+					rightLiftMotor->Set(speed);
+				}
+			}
 		}
 	}
 }
