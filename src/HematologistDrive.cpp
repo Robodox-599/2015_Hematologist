@@ -105,10 +105,10 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	setForward(forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn) * .5);
-	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn)* .5);
-	backLeftMotor->Set(linearizeDrive(forward - strafe + turn)* .5);
-	backRightMotor->Set(linearizeDrive(-forward - strafe + turn)* .5);
+	frontLeftMotor->Set(linearizeDrive(forward + strafe + turn));
+	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
+	backLeftMotor->Set(linearizeDrive(forward - strafe + turn));
+	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
 }
 
 Encoder* HematologistDrive::getEncoder(bool front, bool right)
