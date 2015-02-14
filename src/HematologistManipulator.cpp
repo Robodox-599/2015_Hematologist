@@ -48,51 +48,48 @@ void HematologistManipulator::moveLift(float speed)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
-		}
-		else
+		}else
 		{
-			if(speed < -DEADZONE)
+			if (speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(speed);
 				rightLiftMotor->Set(speed);
+			}else
+			{
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
 			}
 		}
-	}
-	else
+	}else
 	{
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
-			if (speed > DEADZONE)
+			if (speed < -DEADZONE)
 			{
-				leftLiftMotor->Set(speed);
-				rightLiftMotor->Set(speed);
-			}
-			else
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
+			}else
 			{
-				if(speed < -DEADZONE)
+				if (speed > DEADZONE)
+				{
+					leftLiftMotor->Set(speed);
+					rightLiftMotor->Set(speed);
+				}else
 				{
 					leftLiftMotor->Set(0);
 					rightLiftMotor->Set(0);
 				}
 			}
-		}
-	}
-	else
-	{
-		if (!bottomLimitSwitch->limitSwitchIsPressed() && !topLimitSwitch->limitSwitchIsPressed())
+		}else
 		{
-			if (speed > DEADZONE)
+			if (speed > DEADZONE || speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(speed);
 				rightLiftMotor->Set(speed);
-			}
-			else
+			}else
 			{
-				if(speed < -DEADZONE)
-				{
-					leftLiftMotor->Set(speed);
-					rightLiftMotor->Set(speed);
-				}
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
 			}
 		}
 	}
