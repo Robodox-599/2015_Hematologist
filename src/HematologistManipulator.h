@@ -41,7 +41,7 @@ public:
 
 	void moveLift(float speed);
 
-	HematologistAnalogLimitSwitch* getLimitSwitch();
+	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
 
 	HematologistAnalogLimitSwitch* topLimitSwitch;
 	HematologistAnalogLimitSwitch* bottomLimitSwitch;
