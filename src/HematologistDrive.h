@@ -17,11 +17,17 @@ public:
 	void drive(float forward, float turn, float strafe);
 	float linearizeDrive(float driveInput);
 
+<<<<<<< HEAD
 	Encoder* frontLeftEncoder;
 	Encoder* backLeftEncoder;
 	Encoder* frontRightEncoder;
 	Encoder* backRightEncoder;
 
+=======
+  Encoder* getEncoder(bool front, bool right);
+
+  Talon* getDriveTalon(bool front, bool right);
+>>>>>>> 1f4d656223a8cde35ece4019f3a8ee1e32aebbe8
 
 private:
 
@@ -41,6 +47,12 @@ private:
 	Talon* backLeftMotor;
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
+
+	Encoder* frontLeftEncoder;
+	Encoder* backLeftEncoder;
+	Encoder* frontRightEncoder;
+	Encoder* backRightEncoder;
+
 
 	double gyro_ref;
 
