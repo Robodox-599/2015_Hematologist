@@ -72,7 +72,7 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 		if(drive->backRightEncoder->Get() > 380 && drive->backRightEncoder->Get() < 390)
 		{
-			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
+			//manip->moveLift(0.7);
 		}
 		if(drive->backRightEncoder->Get() > 390 && drive->backRightEncoder->Get() < 400)
 		{
