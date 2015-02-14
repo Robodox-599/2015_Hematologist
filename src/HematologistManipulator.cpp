@@ -13,6 +13,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
 	compressor = new Compressor(0);
 
+	togglecompressor(true, false);
+
 	this->manipJoystick = manipJoystick;
 
 	limitSwitch = new HematologistAnalogLimitSwitch;
