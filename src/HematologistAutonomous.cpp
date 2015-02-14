@@ -13,15 +13,15 @@ void HematologistAutonomous::graberAutomomous()
 {
 	while(drive->backLeftEncoder->Get() < 1840)
 	{
-		if(drive->backLeftEncoder->Get() < 1840)
+		if(drive->backLeftEncoder->Get() < 1000)
 		{
 			drive->drive(0.3,0,0);
 		}
-		if(drive->backLeftEncoder->Get() < 1840)
+		if(drive->backLeftEncoder->Get() < 1300)
 		{
 			//activate solenoid
 		}
-		if(drive->backLeftEncoder->Get() < 1840)
+		if(drive->backLeftEncoder->Get() < 1400)
 		{
 			//deactivate solenoid
 		}
