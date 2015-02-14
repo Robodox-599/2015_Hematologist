@@ -21,8 +21,6 @@ private:
 
 	HematologistAnalogLimitSwitch* limitSwitch;
 
-	bool compressorOn;
-
 
 public:
 	void openBinHugger();
@@ -41,11 +39,6 @@ public:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
-	HematologistAnalogLimitSwitch* getLimitSwitch();
-
-	void activateCompressor(bool start);
-
-	bool controlCompressor(bool turnOnOrOff);
 };
 
 #endif
