@@ -13,11 +13,11 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
 	compressor = new Compressor(0);
 
-	togglecompressor(true, false);
+	toggleCompressor(true, false);
 
 	this->manipJoystick = manipJoystick;
 
-	limitSwitch = new HematologistAnalogLimitSwitch;
+	limitSwitch = new HematologistAnalogLimitSwitch();
 
 	disableEncoders = false;
 }
@@ -41,7 +41,7 @@ HematologistManipulator::~HematologistManipulator()
 
 void HematologistManipulator::moveLift(float speed)
 {
-	if (limitSwitch->limitSwitchIsPressed() == false)
+	if (!limitSwitch->limitSwitchIsPressed())
 	{
 
 		if (speed > DEADZONE || speed < -DEADZONE)
@@ -236,6 +236,11 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 		compressor->SetClosedLoopControl(stop);
 }
 
+HematologistAnalogLimitSwitch* getLimitSwitch()
+{
+	return limitSwitch;
+}
+
 void HematologistManipulator::activateCompressor(bool start)
 {
 	if (start)
@@ -255,3 +260,4 @@ bool HematologistManipulator::getCompressorOn()
 {
 	return compressorOn;
 }
+
