@@ -42,6 +42,7 @@ public:
 	void moveLift(float speed);
 
 	HematologistAnalogLimitSwitch* getLimitSwitch();
+	
 	void activateCompressor(bool start);
 
 	void controlCompressor(bool change);
