@@ -29,14 +29,16 @@ HematologistManipulator::~HematologistManipulator()
 	delete binHuggerPiston;
 	delete forkliftPiston;
 	delete manipJoystick;
-	delete limitSwitch;
+	delete topLimitSwitch;
+	delete bottomLimitSwitch;
 	delete 	compressor;
 
 	secondTierPiston = NULL;
 	binHuggerPiston = NULL;
 	forkliftPiston = NULL;
 	manipJoystick = NULL;
-	limitSwitch= NULL;
+	topLimitSwitch= NULL;
+	bottomLimitSwitch = NULL;
 	compressor = NULL;
 }
 
