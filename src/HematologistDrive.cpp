@@ -119,11 +119,30 @@ Encoder* HematologistDrive::getEncoder(bool front, bool right)
       return frontRightEncoder;
     else
       return frontLeftEncoder;
-  }else
+  }
+  else
   {
     if (right)
       return backRightEncoder;
     else
       return backLeftEncoder;
+  }
+}
+
+Talon* HematologistDrive::getDriveTalon(bool front, bool right)
+{
+  if (front)
+  {
+    if (right)
+      return frontRightMotor;
+    else
+      return frontLeftMotor;
+  }
+  else
+  {
+    if (right)
+      return backRightMotor;
+    else
+      return backLeftMotor;
   }
 }
