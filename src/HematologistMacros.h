@@ -55,8 +55,8 @@ Manip Joystick:
 #define BACK_LEFT_MOTOR_CHANNEL				(3)
 #define FRONT_RIGHT_MOTOR_CHANNEL			(0)
 #define BACK_RIGHT_MOTOR_CHANNEL			(1)
-#define LEFT_LIFT_MOTOR_CHANNEL				(5)		//TODO: get correct number
-#define RIGHT_LIFT_MOTOR_CHANNEL			(6)		//TODO: get correct number
+#define LEFT_LIFT_MOTOR_CHANNEL				(5)
+#define RIGHT_LIFT_MOTOR_CHANNEL			(6)
 #define LEFT_FORKLIFT_MOTOR_CHANNEL			(7)		//TODO: get correct number
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
