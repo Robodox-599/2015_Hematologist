@@ -44,6 +44,8 @@ public:
 	HematologistAnalogLimitSwitch* getLimitSwitch();
 
 	void activateCompressor(bool start);
+
+	bool controlCompressor(bool turnOnOrOff);
 };
 
 #endif
