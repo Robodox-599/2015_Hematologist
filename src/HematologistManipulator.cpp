@@ -241,8 +241,6 @@ HematologistAnalogLimitSwitch* getLimitSwitch()
 	return limitSwitch;
 }
 
-}
-
 void HematologistManipulator::activateCompressor(bool start)
 {
 	if (start)
