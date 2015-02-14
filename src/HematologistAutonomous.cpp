@@ -32,7 +32,7 @@ void HematologistAutonomous::graberAutomomous()
 		}
 	}
 }
-*/
+
 
 void HematologistAutonomous::firstHemanAuto()
 {
