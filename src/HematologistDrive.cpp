@@ -7,7 +7,12 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	frontRightMotor	= new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
 	backRightMotor	= new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
-	gyro = new Gyro(1);
+  frontLeftEncoder = new Encoder(FRONT_LEFT_ENCODER_CHANNEL_A, FRONT_LEFT_ENCODER_CHANNEL_B);
+  backLeftEncoder = new Encoder(BACK_LEFT_ENCODER_CHANNEL_A, BACK_LEFT_ENCODER_CHANNEL_B);
+  frontRightEncoder = new Encoder(FRONT_RIGHT_ENCODER_CHANNEL_A, FRONT_RIGHT_ENCODER_CHANNEL_B);
+  backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, FRONT_LEFT_ENCODER_CHANNEL_B);
+	
+  gyro = new Gyro(1);
 	gyro_ref = 0;
 	gyroButton = true;
 
@@ -99,4 +104,21 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
 	backLeftMotor->Set(linearizeDrive(forward - strafe + turn));
 	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
+}
+
+Encoder* HematologistDrive::getEncoder(bool front, bool right)
+{
+  if (front)
+  {
+    if (right)
+      return frontRightEncoder;
+    else
+      return frontLeftEncoder;
+  }else
+  {
+    if (right)
+      return backRightEncoder;
+    else
+      return backLeftEncoder;
+  }
 }
