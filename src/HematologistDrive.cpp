@@ -7,11 +7,12 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	frontRightMotor	= new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
 	backRightMotor	= new Talon(BACK_RIGHT_MOTOR_CHANNEL);
 
-  frontLeftEncoder = new Encoder();
-  backLeftEncoder = new Encoder();
-  frontRightEncoder = new Encoder();
-  backRightEncoder = new Encoder();
-	gyro = new Gyro(1);
+  frontLeftEncoder = new Encoder(FRONT_LEFT_ENCODER_CHANNEL_A, FRONT_LEFT_ENCODER_CHANNEL_B);
+  backLeftEncoder = new Encoder(BACK_LEFT_ENCODER_CHANNEL_A, BACK_LEFT_ENCODER_CHANNEL_B);
+  frontRightEncoder = new Encoder(FRONT_RIGHT_ENCODER_CHANNEL_A, FRONT_RIGHT_ENCODER_CHANNEL_B);
+  backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, FRONT_LEFT_ENCODER_CHANNEL_B);
+	
+  gyro = new Gyro(1);
 	gyro_ref = 0;
 	gyroButton = true;
 
