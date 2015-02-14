@@ -19,6 +19,8 @@ public:
 
   Encoder* getEncoder(bool front, bool right);
 
+  Talon* getDriveTalon(bool front, bool right);
+
 private:
 
 	Gyro* gyro;
@@ -38,10 +40,11 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
-  Encoder* frontLeftEncoder;
-  Encoder* backLeftEncoder;
-  Encoder* frontRightEncoder;
-  Encoder* backRightEncoder;
+	Encoder* frontLeftEncoder;
+	Encoder* backLeftEncoder;
+	Encoder* frontRightEncoder;
+	Encoder* backRightEncoder;
+
 
 	double gyro_ref;
 
