@@ -36,6 +36,11 @@ private:
 	Talon* frontRightMotor;
 	Talon* backRightMotor;
 
+  Encoder* frontLeftEncoder;
+  Encoder* backLeftEncoder;
+  Encoder* frontRightEncoder;
+  Encoder* backRightEncoder;
+
 	double gyro_ref;
 
 };
