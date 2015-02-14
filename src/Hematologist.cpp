@@ -37,6 +37,7 @@ private:
 		oi->getDashboard()->PutNumber("Left Lift:", manip->leftLiftMotor->GetRaw());
 		oi->getDashboard()->PutNumber("Right Lift:", manip->rightLiftMotor->GetRaw());
 		oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
+		oi->getDashboard()->PutBoolean("Comopressor On:", manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6)));
 	}
 
 	void TestPeriodic(){}
