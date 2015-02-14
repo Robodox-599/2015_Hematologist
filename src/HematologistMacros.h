@@ -69,17 +69,16 @@ Manip Joystick:
 #define FORKLIFT_PISTON_CHANNEL_B			(4)		//TODO: get correct number
 
 //Encoders
-#define FRONT_RIGHT_ENCODER_CHANNEL_A (0)   //TODO: confirm value  
-#define FRONT_RIGHT_ENCODER_CHANNEL_B (1)   //TODO: confirm value 
-#define FRONT_LEFT_ENCODER_CHANNEL_A  (2)   //TODO: confirm value 
-#define FRONT_LEFT_ENCODER_CHANNEL_B  (3)   //TODO: confirm value 
-#define BACK_RIGHT_ENCODER_CHANNEL_A  (4)   //TODO: confirm value 
-#define BACK_RIGHT_ENCODER_CHANNEL_B  (5)   //TODO: confirm value 
-#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   //TODO: confirm value 
-#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   //TODO: confirm value 
+#define FRONT_RIGHT_ENCODER_CHANNEL_A (0)   //TODO: confirm value
+#define FRONT_RIGHT_ENCODER_CHANNEL_B (1)   //TODO: confirm value
+#define FRONT_LEFT_ENCODER_CHANNEL_A  (2)   //TODO: confirm value
+#define FRONT_LEFT_ENCODER_CHANNEL_B  (3)   //TODO: confirm value
+#define BACK_RIGHT_ENCODER_CHANNEL_A  (4)   //TODO: confirm value
+#define BACK_RIGHT_ENCODER_CHANNEL_B  (5)   //TODO: confirm value
+#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   //TODO: confirm value
+#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   //TODO: confirm value
 #define LIFT_ENCODER_CHANNEL_A        (8)   //TODO: confirm value
 #define LIFT_ENCODER_CHANNEL_B        (9)   //TODO: confirm value
-
 
 
 //Misc
