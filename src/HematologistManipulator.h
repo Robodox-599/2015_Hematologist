@@ -38,6 +38,9 @@ public:
 	void moveLift(float speed);
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
+
+	void activateCompressor(bool start);
+
 };
 
 #endif

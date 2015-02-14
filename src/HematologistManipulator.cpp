@@ -237,3 +237,14 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 		compressor->SetClosedLoopControl(stop);
 	}
 }
+
+void HematologistManipulator::activateCompressor(bool start)
+{
+	if (start)
+	{
+		compressor->Start();
+	}else
+	{
+		compressor->Stop();
+	}
+}
