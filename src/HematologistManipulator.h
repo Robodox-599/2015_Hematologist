@@ -42,9 +42,6 @@ public:
 
 	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
 
-	HematologistAnalogLimitSwitch* topLimitSwitch;
-	HematologistAnalogLimitSwitch* bottomLimitSwitch;
-	
 	void activateCompressor(bool start);
 
 	void controlCompressor(bool change);
