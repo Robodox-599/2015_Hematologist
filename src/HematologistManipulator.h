@@ -21,6 +21,8 @@ private:
 
 	HematologistAnalogLimitSwitch* limitSwitch;
 
+	bool compressorOn;
+
 
 public:
 	void openBinHugger();

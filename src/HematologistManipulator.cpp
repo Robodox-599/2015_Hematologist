@@ -20,6 +20,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	limitSwitch = new HematologistAnalogLimitSwitch();
 
 	disableEncoders = false;
+
+	compressorOn = true;
 }
 
 HematologistManipulator::~HematologistManipulator()
