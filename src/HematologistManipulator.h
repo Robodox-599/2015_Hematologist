@@ -19,7 +19,8 @@ private:
 
 	bool disableEncoders;
 
-	HematologistAnalogLimitSwitch* limitSwitch;
+	HematologistAnalogLimitSwitch* topLimitSwitch;
+	HematologistAnalogLimitSwitch* bottomLimitSwitch;
 
 	bool compressorOn;
 
@@ -34,18 +35,13 @@ public:
 	void openForklift();
 	void openSecondTier();
 
-	bool limitSwitchIsPressed();
-
 	void resetEncoders();
 	void toggleCompressor(bool start, bool stop);
 
 	void moveLift(float speed);
 
-	HematologistAnalogLimitSwitch* getLimitSwitch();
+	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
 
-	HematologistAnalogLimitSwitch* topLimitSwitch;
-	HematologistAnalogLimitSwitch* bottomLimitSwitch;
-	
 	void activateCompressor(bool start);
 
 	void controlCompressor(bool change);

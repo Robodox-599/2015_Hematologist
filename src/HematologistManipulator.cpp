@@ -29,14 +29,16 @@ HematologistManipulator::~HematologistManipulator()
 	delete binHuggerPiston;
 	delete forkliftPiston;
 	delete manipJoystick;
-	delete limitSwitch;
+	delete topLimitSwitch;
+	delete bottomLimitSwitch;
 	delete 	compressor;
 
 	secondTierPiston = NULL;
 	binHuggerPiston = NULL;
 	forkliftPiston = NULL;
 	manipJoystick = NULL;
-	limitSwitch= NULL;
+	topLimitSwitch= NULL;
+	bottomLimitSwitch = NULL;
 	compressor = NULL;
 }
 
@@ -260,9 +262,12 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 		compressor->SetClosedLoopControl(stop);
 }
 
-HematologistAnalogLimitSwitch* getLimitSwitch()
+HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch(bool top)
 {
-	return limitSwitch;
+	if (top)
+		return topLimitSwitch;
+	else
+		return bottomLimitSwitch;
 }
 
 void HematologistManipulator::activateCompressor(bool start)
