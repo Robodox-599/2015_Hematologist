@@ -17,6 +17,8 @@ public:
 	void drive(float forward, float turn, float strafe);
 	float linearizeDrive(float driveInput);
 
+  Encoder* getEncoder(bool front, bool right);
+
 private:
 
 	Gyro* gyro;
