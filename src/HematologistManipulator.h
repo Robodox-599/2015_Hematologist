@@ -35,8 +35,6 @@ public:
 	void openForklift();
 	void openSecondTier();
 
-	bool limitSwitchIsPressed();
-
 	void resetEncoders();
 	void toggleCompressor(bool start, bool stop);
 
