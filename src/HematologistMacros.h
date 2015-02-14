@@ -71,6 +71,17 @@ Manip Joystick:
 //Encoders
 #define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
 #define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
+#define FRONT_RIGHT_ENCODER_CHANNEL_A (1)   //TODO: get correct number  
+#define FRONT_RIGHT_ENCODER_CHANNEL_B (1)   //TODO: get correct number 
+#define FRONT_LEFT_ENCODER_CHANNEL_A  (1)   //TODO: get correct number 
+#define FRONT_LEFT_ENCODER_CHANNEL_B  (1)   //TODO: get correct number 
+#define BACK_RIGHT_ENCODER_CHANNEL_A  (1)   //TODO: get correct number 
+#define BACK_RIGHT_ENCODER_CHANNEL_B  (1)   //TODO: get correct number 
+#define BACK_LEFT_ENCODER_CHANNEL_A   (1)   //TODO: get correct number 
+#define BACK_LEFT_ENCODER_CHANNEL_B   (1)   //TODO: get correct number 
+
+
+
 
 //Misc
 #define DEADZONE                   		    (.1)
