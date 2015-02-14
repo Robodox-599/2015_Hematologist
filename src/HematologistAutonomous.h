@@ -18,6 +18,7 @@ public:
 	void firstHemanAuto();
 	void secondHemanAuto();
 	void thirdHemanAuto(); // gets 3 totes and stack it
+
 	int encoderAverage();
 };
 

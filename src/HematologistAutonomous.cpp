@@ -8,6 +8,31 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 
 HematologistAutonomous::~HematologistAutonomous(){}
 
+/*
+void HematologistAutonomous::graberAutomomous()
+{
+	while(drive->backLeftEncoder->Get() < 1840)
+	{
+		if(drive->backLeftEncoder->Get() < 1840)
+		{
+			drive->drive(0.3,0,0);
+		}
+		if(drive->backLeftEncoder->Get() < 1840)
+		{
+			//activate solenoid
+		}
+		if(drive->backLeftEncoder->Get() < 1840)
+		{
+			//deactivate solenoid
+		}
+		if(drive->backLeftEncoder->Get() < 1840)
+		{
+			drive->drive(-0.3,0,0);
+		}
+	}
+}
+*/
+
 void HematologistAutonomous::firstHemanAuto()
 {
 	while(drive->backLeftEncoder->Get() < 1840) //actual value is 1089.05
