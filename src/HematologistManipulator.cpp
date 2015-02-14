@@ -248,3 +248,17 @@ void HematologistManipulator::activateCompressor(bool start)
 		compressor->Stop();
 	}
 }
+
+void HematologistManipulator::controlCompressor(bool change)
+{
+	if (change)
+	{
+		compressorOn = !compressorOn;
+	}
+	activateCompressor(compressorOn);
+}
+
+bool HematologistManipulator::getCompressorOn()
+{
+	return compressorOn;
+}

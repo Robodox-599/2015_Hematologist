@@ -43,6 +43,10 @@ public:
 
 	void activateCompressor(bool start);
 
+	void controlComprossor(bool change);
+
+	bool getCompressorOn();
+
 };
 
 #endif
