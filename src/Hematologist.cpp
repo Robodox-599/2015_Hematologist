@@ -29,7 +29,7 @@ private:
 
 	void TeleopPeriodic(){
 		//drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
-		manip->moveLift(oi->getJoystick('M')->GetY());
+		manip->moveLift(-oi->getJoystick('M')->GetY());
 		//manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
