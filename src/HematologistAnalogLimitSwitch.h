@@ -9,10 +9,12 @@ public:
 	HematologistAnalogLimitSwitch();
 	~HematologistAnalogLimitSwitch();
 
-	bool limitSwitchIsPressed();
+	bool topLimitSwitchIsPressed();
+	bool bottomLimitSwitchIsPressed();
 
 private:
-	AnalogInput* ai;
+	AnalogInput* aiTop;
+	AnalogInput* aiBottom;
 
 
 

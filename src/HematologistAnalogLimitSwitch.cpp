@@ -13,15 +13,32 @@ HematologistAnalogLimitSwitch::~HematologistAnalogLimitSwitch()
 	ai = NULL;
 }
 
-bool HematologistAnalogLimitSwitch::limitSwitchIsPressed()
+bool HematologistAnalogLimitSwitch::topLimitSwitchIsPressed()
 {
-	if (ai->GetVoltage() > 4)
+	if (aiTop->GetVoltage() > 4)
+	{
+		return false;
+	}
+	else
+	{
+		if (aiTop->GetVoltage() < 1)
+		{
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+bool HematologistAnalogLimitSwitch::bottLimitSwitchIsPressed()
+{
+	if (aiBottom->GetVoltage() > 4)
 	{
 		return true;
 	}
 	else
 	{
-		if (ai->GetVoltage() < 1)
+		if (aiBottom->GetVoltage() < 1)
 		{
 			return false;
 		}

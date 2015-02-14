@@ -55,20 +55,6 @@ void HematologistManipulator::moveLift(float speed)
 			rightLiftMotor->Set(0);
 		}
 	}
-	else
-	{
-		if (speed > DEADZONE)
-		{
-			leftLiftMotor->Set(speed);
-			rightLiftMotor->Set(speed);
-		}
-		else
-		{
-			leftLiftMotor->Set(0);
-			rightLiftMotor->Set(0);
-		}
-	}
-
 }
 
 void HematologistManipulator::openBinHugger()
