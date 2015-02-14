@@ -261,3 +261,15 @@ bool HematologistManipulator::getCompressorOn()
 	return compressorOn;
 }
 
+Talon* getManipTalon(bool right)
+{
+  if (right)
+    return rightLiftMotor;
+  else
+    return leftLiftMotor;
+}
+
+Encoder* getLiftEncoder()
+{
+  return liftEncoder;
+}  
