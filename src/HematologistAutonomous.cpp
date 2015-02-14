@@ -58,14 +58,10 @@ int HematologistAutonomous::encoderAverage()
 
 void HematologistAutonomous::secondHemanAuto()
 {
-	//manip->openForkLift(true);
-	//manip->openScondTier(true);
-
-	drive->frontRightEncoder->Reset();
-	drive->backRightEncoder->Reset();
-	drive->frontRightEncoder->Reset();
-	drive->backLeftEncoder->Reset();
-
+	drive->getEncoder(true, true)->Reset() 
+	drive->getEncoder(true, false)->Reset() 
+	drive->getEncoder(false, true)->Reset() 
+	drive->getEncoder(false, false)->Reset())
 
 
 	while(drive->frontRightEncoder->Get() < 1090) //exact value is 1089.05
