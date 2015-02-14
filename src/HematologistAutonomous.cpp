@@ -64,38 +64,38 @@ void HematologistAutonomous::secondHemanAuto()
 	drive->getEncoder(false, false)->Reset())
 
 
-	while(drive->frontRightEncoder->Get() < 1090) //exact value is 1089.05
+	while(encoderAverage() < 1090) //exact value is 1089.05
 	{
 	//initial drive
-		if(drive->frontRightEncoder->Get() < 700) 
+		if(encoderAverage() < 700) 
 		{
 			drive->drive(-0.3, 0 , 0);
 		}
-		if(drive->frontRightEncoder->Get() > 360 && drive->frontRightEncoder->Get() < 380) 
+		if(encoderAverage() > 360 && encoderAverage() < 380) 
 		{
 			//manip->openForkLift(false);
 		}
-		if(drive->frontRightEncoder->Get() > 380 && drive->frontRightEncoder->Get() < 390)
+		if(encoderAverage() > 380 && encoderAverage() < 390)
 		{
 			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
 		}
-		if(drive->frontRightEncoder->Get() > 390 && drive->frontRightEncoder->Get() < 400)
+		if(encoderAverage() > 390 && encoderAverage() < 400)
 		{
 			//manip->openForkLift(true);
 		}
-		if(drive->frontRightEncoder->Get() > 400 && drive->frontRightEncoder->Get() < 405)
+		if(encoderAverage() > 400 && encoderAverage() < 405)
 		{	
 			//manip->openSecondTier(false);
 		}	
-		if(drive->frontRightEncoder->Get() < 405 && drive->frontRightEncoder->Get() < 425)
+		if(encoderAverage() < 405 && encoderAverage() < 425)
 		{	
 			//manip->moveLift(-0.7);
 		}
-		if(drive->frontRightEncoder->Get() < 427)
+		if(encoderAverage() < 427)
 		{
 			//manip->moveLift(0);
 		}
-		if(drive->frontRightEncoder->Get() >700 )
+		if(encoderAverage() >700 )
 		{
 			drive->drive(0, 0.1, 0);
 		}
@@ -103,66 +103,66 @@ void HematologistAutonomous::secondHemanAuto()
 	}	
 	//second tote
 	drive->frontRightEncoder->Reset();
-	while(drive->frontRightEncoder->Get() < 540)
+	while(encoderAverage() < 540)
 	{
-		if(drive->frontRightEncoder->Get() <520)
+		if(encoderAverage() <520)
 		{
 			drive->drive(0.05, 0, 0);
 		}	
-		if(drive->frontRightEncoder->Get() < 250 && drive->frontRightEncoder->Get() > 260)
+		if(encoderAverage() < 250 && encoderAverage() > 260)
 		{
 			//manip->openForkLift(false);
 		}		
-		if(drive->frontRightEncoder->Get() > 520)
+		if(encoderAverage() > 520)
 		{
 			drive->drive(0, 0.01, 0);
 		}
 	}
 	//drop off
 	drive->frontRightEncoder->Reset();
-	while(drive->frontRightEncoder->Get() < 1840) //exact value is 1836.54
+	while(encoderAverage() < 1840) //exact value is 1836.54
 	{
-		if(drive->frontRightEncoder->Get() < 670)
+		if(encoderAverage() < 670)
 		{
 			drive->drive(-0.05, 0, 0);
 		}	
-		if(drive->frontRightEncoder->Get() > 400 && drive->frontRightEncoder->Get() > 450)
+		if(encoderAverage() > 400 && encoderAverage() > 450)
 		{
 			//manip->moveLift(0.7);
 		}	
-		if(drive->frontRightEncoder->Get() > 450 && drive->frontRightEncoder->Get() < 460)
+		if(encoderAverage() > 450 && encoderAverage() < 460)
 		{
 			//manip->openForkLift(true);
 		}	
-		if(drive->frontRightEncoder->Get() > 465 && drive->frontRightEncoder->Get() < 470)
+		if(encoderAverage() > 465 && encoderAverage() < 470)
 		{
 			//manip->openSecondTier(false);
 		}	
-		if(drive->frontRightEncoder->Get() > 470 && drive->frontRightEncoder->Get() < 490)
+		if(encoderAverage() > 470 && encoderAverage() < 490)
 		{
 			//manip->moveLift(-0.7);
 		}					
-		if(drive->frontRightEncoder->Get() > 510 && drive->frontRightEncoder->Get() < 530)
+		if(encoderAverage() > 510 && encoderAverage() < 530)
 		{
 			//manip->moveLift(0.7);	
 		}	
-		if(drive->frontRightEncoder->Get() > 530 && drive->frontRightEncoder->Get() < 540)
+		if(encoderAverage() > 530 && encoderAverage() < 540)
 		{
 			//manip->openSeocndTier(true);
 		}
-		if(drive->frontRightEncoder->Get() > 670 && drive->frontRightEncoder->Get() < 690)
+		if(encoderAverage() > 670 && encoderAverage() < 690)
 		{
 			//manip->moveLift(-0.7);	
 		}
-		if(drive->frontRightEncoder->Get() > 690)
+		if(encoderAverage() > 690)
 		{
 			//manip->moveLift(false, false, 0);	
 		}
-		if(drive->frontRightEncoder->Get() < 690)
+		if(encoderAverage() < 690)
 		{
 			drive->drive(-0.1, 0, 0);
 		}
-		if(drive->frontRightEncoder->Get() > 719)
+		if(encoderAverage() > 719)
 		{
 			drive->drive(0, 0, 0);
 		}
