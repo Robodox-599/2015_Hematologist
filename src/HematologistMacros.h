@@ -51,12 +51,12 @@ Manip Joystick:
 
 
 //Motor Channels
-#define FRONT_LEFT_MOTOR_CHANNEL			(2)
-#define BACK_LEFT_MOTOR_CHANNEL				(3)
-#define FRONT_RIGHT_MOTOR_CHANNEL			(0)
-#define BACK_RIGHT_MOTOR_CHANNEL			(1)
-#define LEFT_LIFT_MOTOR_CHANNEL				(5)		//TODO: get correct number
-#define RIGHT_LIFT_MOTOR_CHANNEL			(6)		//TODO: get correct number
+#define FRONT_LEFT_MOTOR_CHANNEL			(0)
+#define BACK_LEFT_MOTOR_CHANNEL				(1)
+#define FRONT_RIGHT_MOTOR_CHANNEL			(3)
+#define BACK_RIGHT_MOTOR_CHANNEL			(2)
+#define LEFT_LIFT_MOTOR_CHANNEL				(5)		
+#define RIGHT_LIFT_MOTOR_CHANNEL			(6)		
 #define LEFT_FORKLIFT_MOTOR_CHANNEL			(7)		//TODO: get correct number
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
@@ -69,18 +69,16 @@ Manip Joystick:
 #define FORKLIFT_PISTON_CHANNEL_B			(4)		//TODO: get correct number
 
 //Encoders
-#define LIFT_ENCODER_CHANNEL_A				(0)		//TODO: get correct number
-#define LIFT_ENCODER_CHANNEL_B				(1)		//TODO: get correct number
-#define FRONT_RIGHT_ENCODER_CHANNEL_A (0)   //TODO: get correct number  
-#define FRONT_RIGHT_ENCODER_CHANNEL_B (1)   //TODO: get correct number 
-#define FRONT_LEFT_ENCODER_CHANNEL_A  (2)   //TODO: get correct number 
-#define FRONT_LEFT_ENCODER_CHANNEL_B  (3)   //TODO: get correct number 
-#define BACK_RIGHT_ENCODER_CHANNEL_A  (4)   //TODO: get correct number 
-#define BACK_RIGHT_ENCODER_CHANNEL_B  (5)   //TODO: get correct number 
-#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   //TODO: get correct number 
-#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   //TODO: get correct number 
-
-
+#define FRONT_RIGHT_ENCODER_CHANNEL_A (0)   //TODO: confirm value
+#define FRONT_RIGHT_ENCODER_CHANNEL_B (1)   //TODO: confirm value
+#define FRONT_LEFT_ENCODER_CHANNEL_A  (2)   //TODO: confirm value
+#define FRONT_LEFT_ENCODER_CHANNEL_B  (3)   //TODO: confirm value
+#define BACK_RIGHT_ENCODER_CHANNEL_A  (4)   //TODO: confirm value
+#define BACK_RIGHT_ENCODER_CHANNEL_B  (5)   //TODO: confirm value
+#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   //TODO: confirm value
+#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   //TODO: confirm value
+#define LIFT_ENCODER_CHANNEL_A        (8)   //TODO: confirm value
+#define LIFT_ENCODER_CHANNEL_B        (9)   //TODO: confirm value
 
 
 //Misc
@@ -94,7 +92,6 @@ Manip Joystick:
 #define LIFT_DEADZONE						(10.0)	//TODO: get correct number
 #define TOP_LIMIT_SWITCH_CHANNEL			(10)	//TODO: get numberrrrr
 #define BOTTOM_LIMIT_SWITCH_CHANNEL			(1)		//TODO: trouves nombre
-
 
 //Gyro
 #define GYRO_KP								(.1)

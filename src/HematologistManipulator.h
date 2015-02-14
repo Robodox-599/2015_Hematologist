@@ -23,8 +23,13 @@ private:
 
 	bool compressorOn;
 
+	Talon* leftLiftMotor;
+	Talon* rightLiftMotor;
 
 public:
+	HematologistManipulator(Joystick* manipJoystick);
+	~HematologistManipulator();
+
 	void openBinHugger();
 	void openForklift();
 	void openSecondTier();
@@ -34,20 +39,19 @@ public:
 	void resetEncoders();
 	void toggleCompressor(bool start, bool stop);
 
-	HematologistManipulator(Joystick* manipJoystick);
-	~HematologistManipulator();
-
 	void moveLift(float speed);
-	Talon* leftLiftMotor;
-	Talon* rightLiftMotor;
 
 	HematologistAnalogLimitSwitch* getLimitSwitch();
 	
 	void activateCompressor(bool start);
 
-	void controlComprossor(bool change);
+	void controlCompressor(bool change);
 
 	bool getCompressorOn();
+
+  Talon* getManipTalon(bool right);
+  Encoder* getLiftEncoder();
+
 };
 
 #endif
