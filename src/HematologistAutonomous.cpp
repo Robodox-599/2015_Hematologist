@@ -35,9 +35,9 @@ void HematologistAutonomous::graberAutomomous()
 
 void HematologistAutonomous::firstHemanAuto()
 {
-	while(drive->backLeftEncoder->Get() < 1840) //actual value is 1089.05
+	while(encoderAverage() < 1840) //actual value is 1089.05
 	{
-		if(drive->backLeftEncoder->Get() < 1800)
+		if(encoderAverage() < 1800)
 		{
 			drive->drive(0, 0, 0.1);
 		}
