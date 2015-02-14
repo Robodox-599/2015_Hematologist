@@ -52,7 +52,7 @@ void HematologistAutonomous::firstHemanAuto()
 int HematologistAutonomous::encoderAverage()
 {
 	int distance;
-	distance = (drive->backLeftEncoder->Get() + drive->backRightEncoder->Get() + drive->frontRightEncoder->Get() + drive->frontLeftEncoder->Get()) / 4;
+	distance = (drive->getEncoder(true, true)->Get() + drive->getEncoder(true, false)->Get() + drive->getEncoder(false, true)->Get() + drive->getEncoder(false, false)->Get()) / 4;
 	return distance;
 }
 
