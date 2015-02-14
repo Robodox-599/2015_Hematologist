@@ -15,7 +15,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	this->manipJoystick = manipJoystick;
 
-	limitSwitch = new HematologistAnalogLimitSwitch;
+	limitSwitch = new HematologistAnalogLimitSwitch();
 
 	disableEncoders = false;
 }
@@ -237,3 +237,4 @@ void HematologistManipulator::toggleCompressor(bool start, bool stop)
 		compressor->SetClosedLoopControl(stop);
 	}
 }
+
