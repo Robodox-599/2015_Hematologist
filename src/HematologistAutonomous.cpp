@@ -102,7 +102,10 @@ void HematologistAutonomous::secondHemanAuto()
 // stop everything?
 	}	
 	//second tote
-	drive->frontRightEncoder->Reset();
+	drive->getEncoder(true, true)->Reset(); 
+	drive->getEncoder(true, false)->Reset(); 
+	drive->getEncoder(false, true)->Reset(); 
+	drive->getEncoder(false, false)->Reset();
 	while(encoderAverage() < 540)
 	{
 		if(encoderAverage() <520)
@@ -119,7 +122,10 @@ void HematologistAutonomous::secondHemanAuto()
 		}
 	}
 	//drop off
-	drive->frontRightEncoder->Reset();
+	drive->getEncoder(true, true)->Reset(); 
+	drive->getEncoder(true, false)->Reset(); 
+	drive->getEncoder(false, true)->Reset(); 
+	drive->getEncoder(false, false)->Reset();
 	while(encoderAverage() < 1840) //exact value is 1836.54
 	{
 		if(encoderAverage() < 670)
