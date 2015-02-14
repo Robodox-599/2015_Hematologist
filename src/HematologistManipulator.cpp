@@ -39,7 +39,7 @@ HematologistManipulator::~HematologistManipulator()
 
 void HematologistManipulator::moveLift(float speed)
 {
-	if (limitSwitch->limitSwitchIsPressed() == false)
+	if (!limitSwitch->limitSwitchIsPressed())
 	{
 
 		if (speed > DEADZONE || speed < -DEADZONE)
