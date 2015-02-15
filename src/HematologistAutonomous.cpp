@@ -14,7 +14,7 @@ HematologistAutonomous::~HematologistAutonomous(){
 	manip = NULL;
 }
 
-
+/*
 void HematologistAutonomous::graberAutomomous()
 {
 	while(drive->backLeftEncoder->Get() < 1840)
@@ -434,3 +434,4 @@ while(/*encoder value is less than certain value tbd)
 }
 drive->drive(0, 0, 0);	
 */
+
