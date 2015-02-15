@@ -339,3 +339,9 @@ bool HematologistManipulator::getForkliftState()
 {
 	return forkliftOpen;
 }
+
+void HematologistManipulator::automaticallyActivate(bool activate)
+{
+	if (activate)
+		automaticActivation = !automaticActivation;
+}

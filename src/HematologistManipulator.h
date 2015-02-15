@@ -62,6 +62,8 @@ public:
   Talon* getManipTalon(bool right);
   Encoder* getLiftEncoder();
 
+  	  void automaticallyActivate(bool activate);
+
 };
 
 #endif
