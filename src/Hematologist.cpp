@@ -45,7 +45,7 @@ private:
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(7));	//close forklift
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
-#if 1
+#if 0
 		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(4));
 		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(4));
 		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
