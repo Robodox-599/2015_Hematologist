@@ -98,6 +98,11 @@ public:
 
   	void longArmMoveOut();
 
+  	void longArmCloseStep1(bool step1);
+	void longArmCloseStep2(bool step2);
+	void longArmCloseStep3(bool step3);
+
+	void longArmMoveIn();
 };
 
 #endif
