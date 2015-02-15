@@ -31,11 +31,18 @@ private:
 
 	void TeleopPeriodic(){
 		drive->drive(-oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
-		manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
-		manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
-		manip->moveLift(-oi->getJoystick('M')->GetY());
+
+		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
+		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
+		//manip->moveLift(-oi->getJoystick('M')->GetY());
 		manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6));
-		//manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
+
+		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift
+		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(10));	//close forklift
+
+		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(8));	//open second tier
+		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(9));	//close second tier
+
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
