@@ -35,7 +35,8 @@ private:
 		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
 		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
 		manip->moveLift(-oi->getJoystick('M')->GetY());
-		manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6));
+		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(6));
+		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(7));
 
 		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift 2
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(10));	//close forklift	1
@@ -48,6 +49,7 @@ private:
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
+		oi->getDashboard()->PutNumer("Left Drive X:", oi->getJoystick('L')->GetX());
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
 		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
 		oi->getDashboard()->PutNumber("BackRight Encoder:", drive->getEncoder(false, true)->Get());
@@ -56,7 +58,7 @@ private:
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
 		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
-		oi->getDashboard()->PutBoolean("second tier staet:", manip->getSecondTierState());
+		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
 
