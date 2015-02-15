@@ -33,6 +33,10 @@ private:
 	bool longArmOpen2;
 	bool longArmOpen3;
 
+	bool longArmClose1;
+	bool longArmClose2;
+	bool longArmClose3;
+
 	bool automaticActivation;
 	bool disableEncoders;
 
@@ -86,9 +90,9 @@ public:
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
 
-  	void longArmStep1(bool step1);
-  	void longArmStep2(bool step2);
-  	void longArmStep3(bool step3);
+  	void longArmOpenStep1(bool step1);
+  	void longArmOpenStep2(bool step2);
+  	void longArmOpenStep3(bool step3);
 
   	std::string warningFromLongArm();
 

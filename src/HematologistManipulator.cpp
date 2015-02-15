@@ -473,23 +473,23 @@ bool HematologistManipulator::secondTierIsOpen()
 	return secondTierOpen;
 }
 
-void HematologistManipulator::longArmStep1(bool step1)
+void HematologistManipulator::longArmOpenStep1(bool step1)
 {
-	longArmStep1 = step1;
+	longArmOpen1 = step1;
 }
-void HematologistManipulator::longArmStep2(bool step2)
+void HematologistManipulator::longArmOpenStep2(bool step2)
 {
-	longArmStep2 = step2;
+	longArmOpen2 = step2;
 }
-void HematologistManipulator::longArmStep3(bool step3)
+void HematologistManipulator::longArmOpenStep3(bool step3)
 {
-	if (!(longArmStep1 && longArmStep2))
-		longArmStep3 = false;
+	if (!(longArmOpen1 && longArmOpen2))
+		longArmOpen3= false;
 	else{
 		if (step3)
-			longArmStep3 = step3;
+			longArmOpen3 = step3;
 		else
-			longArmStep3 = step3;
+			longArmOpen3 = step3;
 	}
 
 }
