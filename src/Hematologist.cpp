@@ -34,7 +34,7 @@ private:
 
 		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
 		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
-		//manip->moveLift(-oi->getJoystick('M')->GetY());
+		manip->moveLift(-oi->getJoystick('M')->GetY());
 		manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6));
 
 		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift
@@ -61,6 +61,8 @@ private:
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
 		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
 		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
+
+		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
 		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
