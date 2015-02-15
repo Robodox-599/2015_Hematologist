@@ -35,14 +35,14 @@ private:
 		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
 		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
 		manip->moveLift(-oi->getJoystick('M')->GetY());
-		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(6));
-		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(7));
+		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(7));
+		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(6));
 
-		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift 2
-		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(10));	//close forklift	1
+		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(11));		//open forklift 2
+		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(10));	//close forklift	1
 
-		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(8));	//open second tier	2
-		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(9));	//close second tier	1
+		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(8));	//open second tier	2
+		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(9));	//close second tier	1
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
 
@@ -67,10 +67,12 @@ private:
 		//forklift
 		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
+		oi->getDashboard()->PutBoolean("forklift open:", manip->forkliftIsOpen());
 
 		//second tier
 		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
+		oi->getDashboard()->PutNumber("second tier is open", manip->secondTierIsOpen());
 
 		//constants
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
