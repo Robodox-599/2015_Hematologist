@@ -25,8 +25,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	disableEncoders = false;
 
-	forkliftOpen = false;
-	secondTierOpen = false;
+	forkliftOpen = true;
+	secondTierOpen = true;
 
 	automaticActivation = false;
 }
