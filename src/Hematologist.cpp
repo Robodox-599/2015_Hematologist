@@ -50,6 +50,10 @@ private:
 		oi->getDashboard()->PutBoolean("second tier staet:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
+
+		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
+		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
+		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
 		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
