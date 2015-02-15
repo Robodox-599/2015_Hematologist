@@ -503,3 +503,11 @@ std::string HematologistManipulator::warningFromLongArm()
 		return "Press buttons 3 or 2 to begin process of moving the long arm";
 	}
 }
+
+void HematologistManipulator::longArmMoveOut()
+{
+	if (step1 && step2 && step3)
+	{
+		longArmPiston->Set(kForward);
+	}
+}

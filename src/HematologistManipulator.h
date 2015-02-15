@@ -92,6 +92,8 @@ public:
 
   	std::string warningFromLongArm();
 
+  	void longArmMoveOut();
+
 };
 
 #endif
