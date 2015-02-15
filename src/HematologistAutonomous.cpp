@@ -435,3 +435,9 @@ while(/*encoder value is less than certain value tbd)
 drive->drive(0, 0, 0);	
 */
 
+void HematologistAutonomous::strafeRight()
+{
+	drive->drive(0, 0, .4);
+	Wait(.3);
+	drive->drive(0, 0, 0);
+}
