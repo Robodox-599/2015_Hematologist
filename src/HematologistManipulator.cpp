@@ -508,6 +508,33 @@ void HematologistManipulator::longArmMoveOut()
 {
 	if (step1 && step2 && step3)
 	{
-		longArmPiston->Set(kForward);
+		longArmPiston->Set(DoubleSolenoid::kForward);
 	}
+}
+
+void HematologistManipulator::longArmCloseStep1(bool step1)
+{
+	longArmClose1 = step1
+}
+void HematologistManipulator::longArmCloseStep2(bool step2)
+{
+	longArmClose2 = step2
+}
+void HematologistManipulator::longArmCloseStep3(bool step3)
+{
+	if (!(longArmClose1 && longArmClose2))
+	{
+		longArmClose3 = false;
+	}else
+	{
+		if (step3)
+			longArmClose3 = step3;
+		else
+			longArmStep3 = step3;
+	}
+}
+void longArmMoveIn()
+{
+	if (longArmClose1 && longArmClose2 && longArmClose2)
+		longArmPiston->Set(DoubleSolenoid::kReverse);
 }
