@@ -7,7 +7,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A, BIN_HUGGER_PISTON_CHANNEL_B);
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 
-	secondTierPiston->Set(DoubleSolenoid::kReverse);
+	secondTierPiston->Set(DoubleSolenoid::kForward);
 	forkliftPiston->Set(DoubleSolenoid::kReverse);
 
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
