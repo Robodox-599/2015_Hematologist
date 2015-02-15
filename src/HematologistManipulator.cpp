@@ -385,9 +385,13 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 	if (open)
 	{
 		if (forklift)
+		{
 			forkliftPiston->Set(DoubleSolenoid::kReverse);
-		else
+			forkliftIsOpen = true;
+		}else{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
+			secondTierIsOpen = true;
+		}
 	}else
 		return;
 }
@@ -396,10 +400,14 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 {
 	if (open)
 	{
-		if (forklift)
+		if (forklift){
 			forkliftPiston->Set(DoubleSolenoid::kForward);
-		else
+			forkliftIsOpen = false;
+		}
+		else{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
+			forkliftIsOpen = false;
+		}
 	}else
 		return;
 }
@@ -428,3 +436,22 @@ bool HematologistManipulator::compressorIsOn()
 	return compressorOn;
 }
 
+void HematologistManipulator::openBinHugger(bool open)
+{
+	if (open)
+	{
+		binHuggerPiston->Set(DoubleSolenoid::kReverse);
+		binHuggerIsOpen = false;
+	}else
+		return;
+}
+
+void HematologistManipulator::closeBinHugger(bool close)
+{
+	if (close)
+	{
+		binHuggerPiston->Set(DoubleSolenoid:kForward);
+		binHuggerIsOpen = false;
+	}else
+		return;
+}

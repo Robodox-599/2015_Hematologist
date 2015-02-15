@@ -17,20 +17,19 @@ private:
 
 	Compressor* compressor;
 
-	bool disableEncoders;
-
 	HematologistAnalogLimitSwitch* topLimitSwitch;
 	HematologistAnalogLimitSwitch* bottomLimitSwitch;
-
-	bool compressorOn;
 
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	bool compressorOn;
 	bool secondTierOpen;
 	bool forkliftOpen;
+	bool binHuggerOpen;
 
 	bool automaticActivation;
+	bool disableEncoders;
 
 public:
 	HematologistManipulator(Joystick* manipJoystick);
@@ -74,6 +73,13 @@ public:
   	void turnOffCompressor(bool stop);
 
   	bool compressorIsOn();
+
+  	void openBinHugger(bool open);
+  	void closeBinHugger(bool close);
+
+  	bool binHuggerIsOpen();
+  	bool forkliftIsOpen();
+  	bool secondTierIsOpen();
 
 };
 
