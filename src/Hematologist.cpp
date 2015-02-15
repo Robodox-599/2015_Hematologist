@@ -45,20 +45,29 @@ private:
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(7));	//close forklift
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
-
-		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(3));
-		manip->longArmOpenStep1(oi->getJoystick('R')->GetRawButton(3));
-		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+#if 1
+		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(4));
+		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(4));
+		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
 
 		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(2));
-		manip->longArmCloseStep1(oi->getJoystick('R')->GetRawButton(2));
-		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+		manip->longArmCloseStep2(oi->getJoystick('R')->GetRawButton(2));
+		manip->longArmCloseStep3(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
 
+		manip->longArmMoveIn();	//close
+		manip->longArmMoveOut();	//open
+#endif
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
 		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
+		oi->getDashboard()->PutBoolean("joystick L button 3",oi->getJoystick('L')->GetRawButton(3));
+		oi->getDashboard()->PutBoolean("joystick L button 2",oi->getJoystick('L')->GetRawButton(2));
+		oi->getDashboard()->PutBoolean("joystick L button 1",oi->getJoystick('L')->GetRawButton(1));
+		oi->getDashboard()->PutBoolean("joystick R button 3",oi->getJoystick('R')->GetRawButton(3));
+		oi->getDashboard()->PutBoolean("joystick R button 2",oi->getJoystick('R')->GetRawButton(2));
+		oi->getDashboard()->PutBoolean("joystick R button 1",oi->getJoystick('R')->GetRawButton(1));
 
 		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
