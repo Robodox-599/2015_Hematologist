@@ -6,7 +6,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	secondTierPiston = new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A, SECOND_TIER_PISTON_CHANNEL_B);
 	binHuggerPiston = new DoubleSolenoid(BIN_HUGGER_PISTON_CHANNEL_A, BIN_HUGGER_PISTON_CHANNEL_B);
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
-	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
+	//longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
 	secondTierPiston->Set(DoubleSolenoid::kForward);
 	forkliftPiston->Set(DoubleSolenoid::kReverse);
@@ -31,7 +31,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	automaticActivation = false;
 
-	longArmStep1 = longArmStep2 = longArmStep3 = false;
+	longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
+	longArmClose1 = longArmClose2 = longArmClose3 = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -509,17 +510,18 @@ void HematologistManipulator::longArmMoveOut()
 {
 	if (longArmOpen1 && longArmOpen2 && longArmOpen3)
 	{
-		longArmPiston->Set(DoubleSolenoid::kForward);
+		forkliftPiston->Set(DoubleSolenoid::kForward);
+		longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
 	}
 }
 
 void HematologistManipulator::longArmCloseStep1(bool step1)
 {
-	longArmClose1 = step1
+	longArmClose1 = step1;
 }
 void HematologistManipulator::longArmCloseStep2(bool step2)
 {
-	longArmClose2 = step2
+	longArmClose2 = step2;
 }
 void HematologistManipulator::longArmCloseStep3(bool step3)
 {
@@ -536,6 +538,9 @@ void HematologistManipulator::longArmCloseStep3(bool step3)
 }
 void HematologistManipulator::longArmMoveIn()
 {
-	if (longArmClose1 && longArmClose2 && longArmClose2)
-		longArmPiston->Set(DoubleSolenoid::kReverse);
+	if (longArmClose1 && longArmClose2 && longArmClose3)
+	{
+		forkliftPiston->Set(DoubleSolenoid::kReverse);
+		longArmClose1 = longArmClose2 = longArmClose3 = false;
+	}
 }
