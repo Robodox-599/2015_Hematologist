@@ -450,13 +450,27 @@ void HematologistAutonomous::getTwoTotes()
 	drive->getEncoder(false, false)->Reset();
 
 	/*
-	 * bring lift down
+	 * move forward up to bin
 	 * close forklift
 	 * start moving forward
 	 * raise forklift
 	 * close second tier at appropriate time
-	 * put forklift dow
-	 *
+	 * hit poit where you are to turn
+	 * reset encoders
+	 * turn as necessary using encoders
+	 * put forklift down all the way down to hit limit switch - move forward when done turning
+	 * Be at the second tote
+	 * repeat process
 	 *
 	 */
 }
+
+void HematologistAutonomous::getThreeTotes()
+{
+	getTwoTotes();
+	/*
+	 * continue logic of the previous totes.
+	 * */
+}
+
+
