@@ -28,7 +28,7 @@ private:
 	Talon* rightLiftMotor;
 
 	bool secondTierOpen;
-	bool forkLiftOpen;
+	bool forkliftOpen;
 
 public:
 	HematologistManipulator(Joystick* manipJoystick);
@@ -38,7 +38,7 @@ public:
 	void openForklift();
 	void openSecondTier();
 
-	void activateForkLift(bool open);
+	void activateForklift(bool open);
 	void activateSecondTier(bool open);
 
 	void resetEncoders();

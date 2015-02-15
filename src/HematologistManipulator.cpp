@@ -21,6 +21,9 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	bottomLimitSwitch = new HematologistAnalogLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
 
 	disableEncoders = false;
+
+	forkliftOpen = false;
+	secondTierOpen = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -290,4 +293,21 @@ Talon* HematologistManipulator::getManipTalon(bool right)
 Encoder* HematologistManipulator::getLiftEncoder()
 {
   return liftEncoder;
+}
+
+void HematologistManipulator::activateForklift(bool change)
+{
+	if (change)
+		forkliftOpen = !forkliftOpen;
+	if (forkliftOpen){
+		forkliftPiston->Set(DoubleSolenoid::kReverse);
+	}else
+	{
+		forkliftPiston->Set(DoubleSolenoid::kForward);
+	}
+}
+
+void HematologistManipulator::activateSecondTier(bool change)
+{
+
 }
