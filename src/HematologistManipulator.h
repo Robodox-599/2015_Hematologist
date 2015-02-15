@@ -90,6 +90,8 @@ public:
   	void longArmStep2(bool step2);
   	void longArmStep3(bool step3);
 
+  	std::string warningFromLongArm();
+
 };
 
 #endif
