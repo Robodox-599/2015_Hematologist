@@ -13,7 +13,7 @@ private:
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
-		//manip = new HematologistManipulator(oi->getJoystick('M'));
+		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 		camera->SetQuality(50);
 		camera->StartAutomaticCapture("cam0");
@@ -31,6 +31,8 @@ private:
 
 	void TeleopPeriodic(){
 		drive->drive(-oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
+		manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
 		//manip->moveLift(-oi->getJoystick('M')->GetY());
 		//manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6))
 		//manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
@@ -44,7 +46,8 @@ private:
 		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
-
+		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
+		oi->getDashboard()->PutBoolean("second tier staet:", manip->getSecondTierState());
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
 		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
