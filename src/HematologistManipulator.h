@@ -86,6 +86,10 @@ public:
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
 
+  	void longArmStep1(bool step1);
+  	void longArmStep2(bool step2);
+  	void longArmStep3(bool step3);
+
 };
 
 #endif
