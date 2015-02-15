@@ -387,7 +387,7 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 		if (forklift)
 			forkliftPiston->Set(DoubleSolenoid::kReverse);
 		else
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
+			secondTierPiston->Set(DoubleSolenoid::kForward);
 	}else
 		return;
 }
@@ -399,7 +399,7 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 		if (forklift)
 			forkliftPiston->Set(DoubleSolenoid::kForward);
 		else
-			secondTierPiston->Set(DoubleSolenoid::kForward);
+			secondTierPiston->Set(DoubleSolenoid::kReverse);
 	}else
 		return;
 }
