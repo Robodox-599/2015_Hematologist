@@ -37,11 +37,13 @@ private:
 		manip->moveLift(-oi->getJoystick('M')->GetY());
 		manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6));
 
-		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift
-		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(10));	//close forklift
+		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(11));		//open forklift 2
+		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(10));	//close forklift	1
 
-		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(8));	//open second tier
-		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(9));	//close second tier
+		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(8));	//open second tier	2
+		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(9));	//close second tier	1
+
+		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
 
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
