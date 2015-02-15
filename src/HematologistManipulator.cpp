@@ -319,3 +319,13 @@ void HematologistManipulator::activateSecondTier(bool change)
 		secondTierPiston->Set(DoubleSolenoid::kForward);
 	}
 }
+
+bool HematologistManipulator::getSecondTierState()
+{
+	return secondTierOpen;
+}
+
+bool HematologistManipulator::getForkliftState()
+{
+	return forkliftOpen;
+}
