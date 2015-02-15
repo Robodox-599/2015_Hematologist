@@ -309,5 +309,13 @@ void HematologistManipulator::activateForklift(bool change)
 
 void HematologistManipulator::activateSecondTier(bool change)
 {
-
+	if (change)
+		secondTierOpen = !secondTierOpen;
+	if (secondTierOpen)
+	{
+		secondTierPiston->Set(DoubleSolenoid::kReverse);
+	}else
+	{
+		secondTierPiston->Set(DoubleSolenoid::kForward);
+	}
 }
