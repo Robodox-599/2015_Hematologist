@@ -8,7 +8,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
-	secondTierPiston->Set(DoubleSolenoid::kForward);
+	secondTierPiston->Set(DoubleSolenoid::kReverse);
 	forkliftPiston->Set(DoubleSolenoid::kReverse);
 
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
@@ -393,7 +393,7 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 			forkliftPiston->Set(DoubleSolenoid::kReverse);
 			forkliftOpen = true;
 		}else{
-			secondTierPiston->Set(DoubleSolenoid::kForward);
+			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			secondTierOpen = true;
 		}
 	}else
@@ -409,7 +409,7 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 			forkliftOpen = false;
 		}
 		else{
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
+			secondTierPiston->Set(DoubleSolenoid::kForward);
 			secondTierOpen = false;
 		}
 	}else
