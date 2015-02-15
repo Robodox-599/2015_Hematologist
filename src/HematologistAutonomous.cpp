@@ -8,7 +8,7 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
-	delete manip
+	delete manip;
 
 	drive = NULL;
 	manip = NULL;
@@ -440,4 +440,23 @@ void HematologistAutonomous::strafeRight()
 	drive->drive(0, 0, .4);
 	Wait(.3);
 	drive->drive(0, 0, 0);
+}
+
+void HematologistAutonomous::getTwoTotes()
+{
+	drive->getEncoder(true, true)->Reset();
+	drive->getEncoder(true, false)->Reset();
+	drive->getEncoder(false, true)->Reset();
+	drive->getEncoder(false, false)->Reset();
+
+	/*
+	 * bring lift down
+	 * close forklift
+	 * start moving forward
+	 * raise forklift
+	 * close second tier at appropriate time
+	 * put forklift dow
+	 *
+	 *
+	 */
 }
