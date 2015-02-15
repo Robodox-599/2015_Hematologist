@@ -450,8 +450,23 @@ void HematologistManipulator::closeBinHugger(bool close)
 {
 	if (close)
 	{
-		binHuggerPiston->Set(DoubleSolenoid:kForward);
+		binHuggerPiston->Set(DoubleSolenoid::kForward);
 		binHuggerIsOpen = false;
 	}else
 		return;
+}
+
+bool HematologistManipulator::binHuggerIsOpen()
+{
+	return binHuggerIsOpen;
+}
+
+bool HematologistManipulator::forkliftIsOpen()
+{
+	return forkliftIsOpen;
+}
+
+bool HematologistManipulator::secondTierIsOpen()
+{
+	return secondTierIsOpen;
 }
