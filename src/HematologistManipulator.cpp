@@ -409,6 +409,7 @@ void HematologistManipulator::turnOffCompressor(bool stop)
 	if (stop)
 	{
 		compressor->Stop();
+		compressorOn = false;
 	}
 	return;
 }
@@ -417,7 +418,13 @@ void HematologistManipulator::turnOnCompressor(bool start)
 {
 	if (start){
 		compressor->Start();
+		compressorOn = true;
 	}
 	return;
+}
+
+bool HematologistManipulator::compressorIsOn()
+{
+	return compressorOn;
 }
 

@@ -73,7 +73,7 @@ public:
   	void turnOnCompressor(bool start);
   	void turnOffCompressor(bool stop);
 
-
+  	bool compressorIsOn();
 
 };
 
