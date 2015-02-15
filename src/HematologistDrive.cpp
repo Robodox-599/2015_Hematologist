@@ -13,6 +13,7 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, BACK_RIGHT_ENCODER_CHANNEL_B);
 
 	frontRightEncoder->SetReverseDirection(true);
+	backRightEncoder->SetReverseDirection(true);
 
 	gyro = new Gyro(1);
 	gyro_ref = 0;
