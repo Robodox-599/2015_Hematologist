@@ -1,4 +1,3 @@
-/*
 #include "HematologistAutonomous.h" // all values for the autonomous is not set. Thus need accurate calculation to replace
 
 HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
@@ -7,9 +6,15 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 	this->manip = manip;
 }
 
-HematologistAutonomous::~HematologistAutonomous(){}
+HematologistAutonomous::~HematologistAutonomous(){
+	delete drive;
+	delete manip
 
-/*
+	drive = NULL;
+	manip = NULL;
+}
+
+
 void HematologistAutonomous::graberAutomomous()
 {
 	while(drive->backLeftEncoder->Get() < 1840)
