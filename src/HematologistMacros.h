@@ -67,10 +67,8 @@ Manip Joystick:
 #define BIN_HUGGER_PISTON_CHANNEL_B			(3)		//TODO: get correct number
 #define FORKLIFT_PISTON_CHANNEL_A			(0)		
 #define FORKLIFT_PISTON_CHANNEL_B			(1)		
-#define RIGHT_LONG_ARM_PISTON_CHANNEL_A			(4)		//TODO: get correct number
-#define RIGHT_LONG_ARM_PISTON_CHANNEL_B			(5)		//TODO: get correct number
-#define LEFT_LONG_ARM_PISTON_CHANNEL_A			(4)		//TODO: get correct number
-#define LEFT_LONG_ARM_PISTON_CHANNEL_B			(5)		//TODO: get correct number
+#define LONG_ARM_PISTON_CHANNEL_A			(4)		//TODO: get correct number
+#define LONG_ARM_PISTON_CHANNEL_B			(5)		//TODO: get correct number
 
 //Encoders
 #define FRONT_RIGHT_ENCODER_CHANNEL_A (2)   //TODO: confirm value

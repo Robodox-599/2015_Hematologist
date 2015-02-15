@@ -10,8 +10,7 @@ private:
 	DoubleSolenoid* secondTierPiston;
 	DoubleSolenoid* binHuggerPiston;
 	DoubleSolenoid* forkliftPiston;
-	DoubleSolenoid* leftLongArmPiston;
-	DoubleSolenoid* rightLongArmPiston;
+	DoubleSolenoid* longArmPiston;
 
 	Joystick* manipJoystick;
 
