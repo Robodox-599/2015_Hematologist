@@ -345,6 +345,7 @@ bool HematologistManipulator::getForkliftState()
 
 void HematologistManipulator::automaticallyActivate(bool activate)
 {
+	//wrong number
 	if (activate)
 		automaticActivation = !automaticActivation;
 	if (automaticActivation)
