@@ -27,6 +27,9 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	bool secondTierOpen;
+	bool forkLiftOpen;
+
 public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
