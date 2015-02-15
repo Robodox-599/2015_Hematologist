@@ -59,7 +59,7 @@ private:
 		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
 		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
 
-		//values given to joysticks
+		//values given to motors
 		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
@@ -76,6 +76,10 @@ private:
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
 		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
 		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
+
+		//switches
+		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
+		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
 
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
