@@ -347,6 +347,26 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 {
 	if (activate)
 		automaticActivation = !automaticActivation;
+	if (automaticActivation)
+	{
+		if (liftEncoder->Get() < 100 - LIFT_DEADZONE)
+		{
+			leftLiftMotor->Set(.3);
+			rightLiftMotor->Set(.3);
+		}
+		if (liftEncoder->Get() > 100 - LIFT_DEADZONE && liftEncoder->Get() < 100 + LIFT_DEADZONE)
+		{
+			secondTierPiston->Set(DoubleSolenoid::kForward);
+		}
+		if (liftEncoder->Get() > 200 - LIFT_DEADZONE && liftEncoder->Get() < 200 - LIFT_DEADZONE)
+		{
+			secondTierPiston->Set(DoubleSolenoid::kReverse);
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
+			automaticActivation = false;
+		}
+	}else
+		return;
 }
 
 DoubleSolenoid* HematologistManipulator::getSecondTierPiston()
