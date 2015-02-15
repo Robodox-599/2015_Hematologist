@@ -29,6 +29,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	secondTierOpen = true;
 
 	automaticActivation = false;
+
+	longArmStep1 = longArmStep2 = longArmStep3 = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -469,4 +471,35 @@ bool HematologistManipulator::forkliftIsOpen()
 bool HematologistManipulator::secondTierIsOpen()
 {
 	return secondTierOpen;
+}
+
+void HematologistManipulator::longArmStep1(bool step1)
+{
+	longArmStep1 = step1;
+}
+void HematologistManipulator::longArmStep2(bool step2)
+{
+	longArmStep2 = step2;
+}
+void HematologistManipulator::longArmStep3(bool step3)
+{
+	if (!(longArmStep1 && longArmStep2))
+		longArmStep3 = false;
+	else{
+		if (step3)
+			longArmStep3 = step3;
+		else
+			longArmStep3 = step3;
+	}
+
+}
+std::string HematologistManipulator::warningFromLongArm()
+{
+	if (step1 && step2)
+	{
+		return "Press the trigger and the long arm will come out";
+	}else
+	{
+		return "Press buttons 3 or 2 to begin process of moving the long arm";
+	}
 }
