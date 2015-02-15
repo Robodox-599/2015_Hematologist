@@ -59,10 +59,13 @@ public:
 
 	bool getCompressorOn();
 
-  Talon* getManipTalon(bool right);
-  Encoder* getLiftEncoder();
+	Talon* getManipTalon(bool right);
+	Encoder* getLiftEncoder();
 
-  	  void automaticallyActivate(bool activate);
+  	void automaticallyActivate(bool activate);
+
+  	DoubleSolenoid* getForkliftPiston();
+  	DoubleSolenoid* getSecondTierPiston();
 
 };
 
