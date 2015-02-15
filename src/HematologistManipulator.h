@@ -35,6 +35,9 @@ public:
 	void openForklift();
 	void openSecondTier();
 
+	void activateForkLift(bool open);
+	void activateSecondTier(bool open);
+
 	void resetEncoders();
 	void toggleCompressor(bool start, bool stop);
 
