@@ -12,7 +12,7 @@ private:
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
-		manip = new HematologistManipulator(oi->getJoystick('M'));
+		//manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 
 	}
@@ -28,16 +28,25 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
-		//drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
-		manip->moveLift(-oi->getJoystick('M')->GetY());
+		drive->drive(-oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		//manip->moveLift(-oi->getJoystick('M')->GetY());
+		//manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6))
 		//manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
-		oi->getDashboard()->PutNumber("Left Lift:", manip->leftLiftMotor->GetRaw());
-		oi->getDashboard()->PutNumber("Right Lift:", manip->rightLiftMotor->GetRaw());
-		oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
-		oi->getDashboard()->PutBoolean("Comopressor On:", manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6)));
+		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
+		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
+		oi->getDashboard()->PutNumber("BackRight Encoder:", drive->getEncoder(false, true)->Get());
+		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
+		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
+		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
+		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
+
+		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
+		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
+		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
+		//oi->getDashboard()->PutBoolean("Comopressor On:", manip->getCompressorOn());
 	}
 
 	void TestPeriodic(){}

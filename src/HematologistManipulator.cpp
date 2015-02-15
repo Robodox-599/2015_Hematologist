@@ -130,16 +130,6 @@ void HematologistManipulator::openBinHugger()
 		}
 		else
 		{
-<<<<<<< HEAD
-			if(liftEncoder->Get() < LIFT_DEADZONE && liftEncoder->Get() > LIFT_DEADZONE)
-			{
-				binHuggerPiston->Set(DoubleSolenoid::kReverse);
-			}
-			else
-			{
-				binHuggerPiston->Set(DoubleSolenoid::kOff);
-			}
-=======
 			if(liftEncoder->Get() < -LIFT_DEADZONE || liftEncoder->Get() > LIFT_DEADZONE)
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kReverse);
@@ -147,7 +137,6 @@ void HematologistManipulator::openBinHugger()
 			else
 			{
 				binHuggerPiston->Set(DoubleSolenoid::kOff);
->>>>>>> master
 			}
 		}
 		*/
