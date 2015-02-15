@@ -30,6 +30,8 @@ private:
 	bool secondTierOpen;
 	bool forkliftOpen;
 
+	bool automaticActivation;
+
 public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();

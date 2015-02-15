@@ -24,6 +24,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	forkliftOpen = false;
 	secondTierOpen = false;
+
+	automaticActivation = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -69,6 +71,7 @@ void HematologistManipulator::moveLift(float speed)
 	{
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
+			liftEncoder->Reset();
 			if (speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(0);
