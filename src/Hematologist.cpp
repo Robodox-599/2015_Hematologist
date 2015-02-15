@@ -46,27 +46,37 @@ private:
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
 
+		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
-		oi->getDashboard()->PutNumer("Left Drive X:", oi->getJoystick('L')->GetX());
+		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
+
+		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
 		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
 		oi->getDashboard()->PutNumber("BackRight Encoder:", drive->getEncoder(false, true)->Get());
 		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
+		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
+
+		//values given to joysticks
 		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
+
+		//forklift
 		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
-		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
+
+		//second tier
+		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
 
+		//constants
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
 		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
 		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
 
-		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
 		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
