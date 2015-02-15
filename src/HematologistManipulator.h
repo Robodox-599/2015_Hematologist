@@ -29,6 +29,10 @@ private:
 	bool forkliftOpen;
 	bool binHuggerOpen;
 
+	bool longArmOpen1;
+	bool longArmOpen2;
+	bool longArmOpen3;
+
 	bool automaticActivation;
 	bool disableEncoders;
 
