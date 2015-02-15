@@ -61,8 +61,8 @@ Manip Joystick:
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
 //Solenoids
-#define SECOND_TIER_PISTON_CHANNEL_A		(6)
-#define SECOND_TIER_PISTON_CHANNEL_B 		(7)
+#define SECOND_TIER_PISTON_CHANNEL_A		(7)
+#define SECOND_TIER_PISTON_CHANNEL_B 		(6)
 #define BIN_HUGGER_PISTON_CHANNEL_A			(2)		//TODO: get correct number
 #define BIN_HUGGER_PISTON_CHANNEL_B			(3)		//TODO: get correct number
 #define FORKLIFT_PISTON_CHANNEL_A			(0)
