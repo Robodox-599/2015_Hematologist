@@ -72,7 +72,7 @@ private:
 		//second tier
 		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
-		oi->getDashboard()->PutNumber("second tier is open", manip->secondTierIsOpen());
+		oi->getDashboard()->PutBoolean("second tier is open", manip->secondTierIsOpen());
 
 		//constants
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
