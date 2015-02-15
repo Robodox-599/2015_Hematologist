@@ -77,9 +77,9 @@ public:
   	void openBinHugger(bool open);
   	void closeBinHugger(bool close);
 
-  	bool binHuggerIsOpen();
-  	bool forkliftIsOpen();
-  	bool secondTierIsOpen();
+  	bool getBinHuggerIsOpen();
+  	bool getForkliftIsOpen();
+  	bool getSecondTierIsOpen();
 
 };
 
