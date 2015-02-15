@@ -46,6 +46,14 @@ private:
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
 
+		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(3));
+		manip->longArmOpenStep1(oi->getJoystick('R')->GetRawButton(3));
+		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+
+		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(2));
+		manip->longArmCloseStep1(oi->getJoystick('R')->GetRawButton(2));
+		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
