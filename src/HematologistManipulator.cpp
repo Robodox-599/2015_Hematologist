@@ -403,3 +403,21 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 	}else
 		return;
 }
+
+void HematologistManipulator::turnOffCompressor(bool stop)
+{
+	if (stop)
+	{
+		compressor->Stop();
+	}
+	return;
+}
+
+void HematologistManipulator::turnOnCompressor(bool start)
+{
+	if (start){
+		compressor->Start();
+	}
+	return;
+}
+

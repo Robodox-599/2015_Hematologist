@@ -70,6 +70,11 @@ public:
   	void openPiston(bool forklift, bool open);
   	void closePiston(bool forklift, bool close);
 
+  	void turnOnCompressor(bool start);
+  	void turnOffCompressor(bool stop);
+
+
+
 };
 
 #endif
