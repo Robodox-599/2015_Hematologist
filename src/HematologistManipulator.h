@@ -67,6 +67,9 @@ public:
   	DoubleSolenoid* getForkliftPiston();
   	DoubleSolenoid* getSecondTierPiston();
 
+  	void openPiston(bool forklift, bool open);
+  	void closePiston(bool forklift, bool close);
+
 };
 
 #endif
