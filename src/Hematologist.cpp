@@ -33,8 +33,8 @@ private:
 		drive->drive(-oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 		manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
 		manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
-		//manip->moveLift(-oi->getJoystick('M')->GetY());
-		//manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6))
+		manip->moveLift(-oi->getJoystick('M')->GetY());
+		manip->controlCompressor(oi->getJoystick('M')->GetRawButton(6));
 		//manip->toggleCompressor(oi->getJoystick('M')->GetRawButton(6), oi->getJoystick('M')->GetRawButton(7));
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
