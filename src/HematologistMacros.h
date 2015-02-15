@@ -61,12 +61,12 @@ Manip Joystick:
 #define RIGHT_FORKLIFT_MOTOR_CHANNEL		(8)		//TODO: get correct number
 
 //Solenoids
-#define SECOND_TIER_PISTON_CHANNEL_A		(1)		//TODO:? ? numBer?
-#define SECOND_TIER_PISTON_CHANNEL_B 		(2)		//TODO: get correct number
+#define SECOND_TIER_PISTON_CHANNEL_A		(6)
+#define SECOND_TIER_PISTON_CHANNEL_B 		(7)
 #define BIN_HUGGER_PISTON_CHANNEL_A			(2)		//TODO: get correct number
 #define BIN_HUGGER_PISTON_CHANNEL_B			(3)		//TODO: get correct number
-#define FORKLIFT_PISTON_CHANNEL_A			(3)		//TODO: get correct number
-#define FORKLIFT_PISTON_CHANNEL_B			(4)		//TODO: get correct number
+#define FORKLIFT_PISTON_CHANNEL_A			(0)
+#define FORKLIFT_PISTON_CHANNEL_B			(1)
 
 //Encoders
 #define FRONT_RIGHT_ENCODER_CHANNEL_A (2)   //TODO: confirm value
