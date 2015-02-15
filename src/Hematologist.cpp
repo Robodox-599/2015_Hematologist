@@ -9,12 +9,14 @@ private:
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
+	CameraServer* camera = CameraServer::GetInstance();
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		//manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
-
+		camera->SetQuality(50);
+		camera->StartAutomaticCapture("cam0");
 	}
 
 	void AutonomousInit(){
