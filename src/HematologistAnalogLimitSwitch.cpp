@@ -17,13 +17,13 @@ bool HematologistAnalogLimitSwitch::limitSwitchIsPressed()
 {
 	if (ai->GetVoltage() > 4)
 	{
-		return false;
+		return true;
 	}
 	else
 	{
 		if (ai->GetVoltage() < 1)
 		{
-			return true;
+			return false;
 		}
 	}
 	
