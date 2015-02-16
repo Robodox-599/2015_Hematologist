@@ -48,6 +48,7 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
+#if 1
 		// acquire images
 		IMAQdxStartAcquisition(session);
 	        // grab an image, draw the circle, and provide it for the camera server which will
@@ -61,6 +62,7 @@ private:
 			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
+#endif
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
 
