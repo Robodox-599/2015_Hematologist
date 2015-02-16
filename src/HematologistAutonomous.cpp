@@ -55,6 +55,16 @@ void HematologistAutonomous::getThreeTotes()
 
 
 
-int getStrafeAverage(bool right);
-int getTurnAverage(bool right);
-int getForwardAverage();
+int HematologistAutonomous::getStrafeAverage()
+{
+	return abs(drive->getEncoder(true, true)->Get() + drive->getEncoder(false, false)->Get() - drive->getEncoder(true, false)->Get() - drive->getEncoder(false, true)->Get());
+	
+}
+int HematologistAutonomous::getTurnAverage()
+{
+
+}
+int HematologistAutonomous::getForwardAverage()
+{
+
+}

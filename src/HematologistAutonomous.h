@@ -27,8 +27,8 @@ public:
 	void getTwoTotes();
 	void getThreeTotes();
 
-	int getStrafeAverage(bool right);
-	int getTurnAverage(bool right);
+	int getStrafeAverage();
+	int getTurnAverage();
 	int getForwardAverage();
 };
 
