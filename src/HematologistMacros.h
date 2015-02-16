@@ -43,6 +43,7 @@ Manip Joystick:
 #define STOP_COMPRESSOR_BUTTON				(9)	
 #define SECOND_TIER_OPEN_BUTTON				(11)
 #define SECOND_TIER_CLOSE_BUTTON			(10)
+#define AUTOMATIC_LIFT_BUTTON				(1)
 
 
 //Motor Channels

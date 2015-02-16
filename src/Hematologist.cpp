@@ -33,16 +33,16 @@ private:
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 
 		manip->moveLift(oi->getJoystick('M')->GetY());
-		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(9));
-		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(8));
+		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(STOP_COMPRESSOR_BUTTON));
+		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(START_COMPRESSOR_BUTTON));
 
-		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(11));	//open second tier
-		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(10));	//close second tier
+		manip->openPiston(false, oi->getJoystick('M')->GetRawButton(SECOND_TIER_OPEN_BUTTON));	//open second tier
+		manip->closePiston(false, oi->getJoystick('M')->GetRawButton(SECOND_TIER_CLOSE_BUTTON));	//close second tier
 
-		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(6));		//open forklift
-		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(7));	//close forklift
+		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_OPEN_BUTTON));		//open forklift
+		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_CLOSE_BUTTON));	//close forklift
 
-		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(1));
+		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
 
 #if 0
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(5));
