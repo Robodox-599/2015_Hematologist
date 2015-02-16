@@ -12,7 +12,16 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 	step6 = false;	//this step will not start, must be told when to
 	step7 = false;	//this step will not start, must be told when to
 	step8 = false;	//this step will not start, must be told when to
-	step9 = false;
+	step9 = false;	//this step will not start, must be told when to
+	step10 = false;	//this step will not start, must be told when to	
+	step11 = false;	//this step will not start, must be told when to	
+	step12 = false;	//this step will not start, must be told when to	
+	step13 = false;	//this step will not start, must be told when to	
+	step14 = false;	//this step will not start, must be told when to	
+	step15 = false;	//this step will not start, must be told when to	
+	step16 = false;	//this step will not start, must be told when to	
+	step17 = false;	//this step will not start, must be told when to	
+	step18 = false;	//this step will not start, must be told when to		
 }
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
@@ -24,9 +33,23 @@ HematologistAutonomous::~HematologistAutonomous(){
 
 void HematologistAutonomous::strafeRight()
 {
-	drive->drive(0, 0, .4);
-	Wait(.3);
-	drive->drive(0, 0, 0);
+	if (step1)
+	{
+		step1 = false;
+		step2 = true;
+	}
+	if (step2)
+	{
+		if (getStrafeAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(0, 0, .2);
+		else if (getStrafeAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(0, 0, -.2);
+		else
+		{
+			drive->drive(0, 0, 0);
+			step2 = false;
+		}
+	}
 }
 
 void HematologistAutonomous::getTwoTotes()
@@ -178,10 +201,7 @@ void HematologistAutonomous::getTwoTotes()
 
 void HematologistAutonomous::getThreeTotes()
 {
-	getTwoTotes();
-	/*
-	 * continue logic of the previous totes.
-	 * */
+	
 }
 
 
