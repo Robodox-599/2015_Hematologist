@@ -50,13 +50,13 @@ private:
 #endif
 
 #if 0
-		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(4));
-		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(4));
-		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
+		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
+		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
 
-		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(2));
-		manip->longArmCloseStep2(oi->getJoystick('R')->GetRawButton(2));
-		manip->longArmCloseStep3(oi->getJoystick('L')->GetRawButton(1) || oi->getJoystick('R')->GetRawButton(1));
+		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_ENABLE_BUTTON));
+		manip->longArmCloseStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_CLOSE_ENABLE_BUTTON));
+		manip->longArmCloseStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
 
 		manip->longArmMoveIn();	//close
 		manip->longArmMoveOut();	//open
