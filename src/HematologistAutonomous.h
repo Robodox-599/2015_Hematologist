@@ -11,6 +11,15 @@ private:
 	HematologistManipulator *manip;
 	HematologistDrive* drive;
 
+	bool step1;
+	bool step2;
+	bool step3;
+	bool step4;
+	bool step5;
+	bool step6;
+	bool step7;
+	bool step8;
+
 public:
 	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
 	~HematologistAutonomous();
