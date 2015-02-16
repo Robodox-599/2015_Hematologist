@@ -4,24 +4,24 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 {
 	this->drive = drive;
 	this->manip = manip;
-	step1 = true;	
-	step2 = false;	//this step will not start, must be told when to
-	step3 = false;	//this step will not start, must be told when to
-	step4 = false;	//this step will not start, must be told when to
-	step5 = false;	//this step will not start, must be told when to
-	step6 = false;	//this step will not start, must be told when to
-	step7 = false;	//this step will not start, must be told when to
-	step8 = false;	//this step will not start, must be told when to
-	step9 = false;	//this step will not start, must be told when to
-	step10 = false;	//this step will not start, must be told when to	
-	step11 = false;	//this step will not start, must be told when to	
-	step12 = false;	//this step will not start, must be told when to	
-	step13 = false;	//this step will not start, must be told when to	
-	step14 = false;	//this step will not start, must be told when to	
-	step15 = false;	//this step will not start, must be told when to	
-	step16 = false;	//this step will not start, must be told when to	
-	step17 = false;	//this step will not start, must be told when to	
-	step18 = false;	//this step will not start, must be told when to		
+	step1 	= true;	
+	step2 	= false;	//this step will not start, must be told when to
+	step3 	= false;	//this step will not start, must be told when to
+	step4 	= false;	//this step will not start, must be told when to
+	step5 	= false;	//this step will not start, must be told when to
+	step6 	= false;	//this step will not start, must be told when to
+	step7 	= false;	//this step will not start, must be told when to
+	step8 	= false;	//this step will not start, must be told when to
+	step9 	= false;	//this step will not start, must be told when to
+	step10	= false;	//this step will not start, must be told when to	
+	step11	= false;	//this step will not start, must be told when to	
+	step12	= false;	//this step will not start, must be told when to	
+	step13	= false;	//this step will not start, must be told when to	
+	step14	= false;	//this step will not start, must be told when to	
+	step15	= false;	//this step will not start, must be told when to	
+	step16	= false;	//this step will not start, must be told when to	
+	step17	= false;	//this step will not start, must be told when to	
+	step18	= false;	//this step will not start, must be told when to		
 }
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
