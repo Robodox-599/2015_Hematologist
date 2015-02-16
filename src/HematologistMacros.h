@@ -44,6 +44,7 @@ Manip Joystick:
 #define SECOND_TIER_OPEN_BUTTON				(11)
 #define SECOND_TIER_CLOSE_BUTTON			(10)
 #define AUTOMATIC_LIFT_BUTTON				(1)
+#define GYRO_TOGGLE_BUTTON					(3)		//TODO: get correct number
 
 
 //Motor Channels
