@@ -54,7 +54,7 @@ float HematologistDrive::setForward(float forward)
 {
 	if (forward > DEADZONE || forward < -DEADZONE)
 	{
-		this->forward = forward;
+		this->forward = -forward;
 	}
 	else
 	{
@@ -181,4 +181,9 @@ void HematologistDrive::resetEncoders(bool reset)
 		frontRightEncoder->Reset();	
 		backRightEncoder->Reset();	
 	}
+}
+
+Gyro* HematologistDrive::getGyro()
+{
+	return gyro;
 }

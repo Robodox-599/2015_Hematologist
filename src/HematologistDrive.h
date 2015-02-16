@@ -26,6 +26,8 @@ public:
 	bool gyroIsOn();
 
 	void resetEncoders(bool reset);
+
+	Gyro* getGyro();
 private:
 
 	Gyro* gyro;

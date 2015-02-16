@@ -12,19 +12,19 @@ private:
 	HematologistDrive* drive;
 	HematologistAutonomous* auton;
 	//CameraServer* camera = CameraServer::GetInstance();
-	IMAQdxSession session;
-	Image *frame;
-	IMAQdxError imaqError;
+//	IMAQdxSession session;
+//	Image *frame;
+//	IMAQdxError imaqError;
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 		auton = new HematologistAutonomous(drive, manip);
-#if 1
+#if 0
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
-#endif
+
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
 		//the camera name (ex "cam0") can be found through the roborio web interface
 		imaqError = IMAQdxOpenCamera("cam0", IMAQdxCameraControlModeController, &session);
@@ -35,6 +35,7 @@ private:
 		if(imaqError != IMAQdxErrorSuccess) {
 			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
 		}
+#endif
 	}
 
 	void AutonomousInit(){
@@ -48,7 +49,7 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
-#if 1
+#if 0
 		// acquire images
 		IMAQdxStartAcquisition(session);
 	        // grab an image, draw the circle, and provide it for the camera server which will
@@ -148,6 +149,8 @@ private:
 		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
 		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
 		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
+
+		oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
 	}
 
 
