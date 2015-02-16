@@ -455,7 +455,7 @@ void HematologistAutonomous::getThreeTotes()
 		turn to move to loading zone
 		stop, reset encoders
 	*/
-	if (stop10)
+	if (step10)
 	{
 		if (getTurnAverage() < 100 - LIFT_DEADZONE)
 			drive->drive(.1, 0, 0);
