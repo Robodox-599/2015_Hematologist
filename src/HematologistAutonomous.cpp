@@ -4,8 +4,15 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 {
 	this->drive = drive;
 	this->manip = manip;
+	step1 = true;	
+	step2 = false;	//this step will not start, must be told when to
+	step3 = false;	//this step will not start, must be told when to
+	step4 = false;	//this step will not start, must be told when to
+	step5 = false;	//this step will not start, must be told when to
+	step6 = false;	//this step will not start, must be told when to
+	step7 = false;	//this step will not start, must be told when to
+	step8 = false;	//this step will not start, must be told when to
 }
-
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
 	delete manip;
@@ -28,6 +35,14 @@ void HematologistAutonomous::getTwoTotes()
 	drive->getEncoder(false, true)->Reset();
 	drive->getEncoder(false, false)->Reset();
 
+
+
+	//step1 = going up to bin
+	//step2 = is moving forward up to a point
+	//step3 = is rasing the forklift until second tier is to close
+	//step4 = is turning correctly
+	//step5 = moving the forklift down until the limit switch is pressed
+	//step6 = is moving the robot up to the second tote
 
 	/*
 	 * move forward up to bin
