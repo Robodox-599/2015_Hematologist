@@ -24,6 +24,8 @@ public:
 	void turnOnGyro(bool turnOn);
 	void turnOffGyro(bool turnOff);
 	bool gyroIsOn();
+
+	void resetEncoders(bool reset);
 private:
 
 	Gyro* gyro;

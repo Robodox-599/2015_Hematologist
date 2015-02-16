@@ -171,3 +171,14 @@ void HematologistDrive::turnOffGyro(bool turnOff)
 	if (turnOff)
 		gyroOn = false;
 }
+
+void HematologistDrive::resetEncoders(bool reset)
+{
+	if(reset)
+	{
+		frontLeftEncoder->Reset();	
+		backLeftEncoder->Reset();	
+		frontRightEncoder->Reset();	
+		backRightEncoder->Reset();	
+	}
+}
