@@ -54,26 +54,26 @@ Manip Joystick:
 #define RIGHT_LIFT_MOTOR_CHANNEL			(6)		
 
 //Solenoids
-#define SECOND_TIER_PISTON_CHANNEL_A		(7)
-#define SECOND_TIER_PISTON_CHANNEL_B 		(6)
-#define BIN_HUGGER_PISTON_CHANNEL_A			(4)		//TODO: get correct number
-#define BIN_HUGGER_PISTON_CHANNEL_B			(5)		//TODO: get correct number
 #define FORKLIFT_PISTON_CHANNEL_A			(0)		
 #define FORKLIFT_PISTON_CHANNEL_B			(1)		
-#define LONG_ARM_PISTON_CHANNEL_A			(2)		//TODO: get correct number
-#define LONG_ARM_PISTON_CHANNEL_B			(3)		//TODO: get correct number
+#define LONG_ARM_PISTON_CHANNEL_A			(2)
+#define LONG_ARM_PISTON_CHANNEL_B			(3)
+#define BIN_HUGGER_PISTON_CHANNEL_A			(4)	
+#define BIN_HUGGER_PISTON_CHANNEL_B			(5)	
+#define SECOND_TIER_PISTON_CHANNEL_A		(7)
+#define SECOND_TIER_PISTON_CHANNEL_B 		(6)
 
 //Encoders
-#define FRONT_RIGHT_ENCODER_CHANNEL_A (2)   //TODO: confirm value
-#define FRONT_RIGHT_ENCODER_CHANNEL_B (3)   //TODO: confirm value
-#define FRONT_LEFT_ENCODER_CHANNEL_A  (4)   //TODO: confirm value
-#define FRONT_LEFT_ENCODER_CHANNEL_B  (5)   //TODO: confirm value
-#define BACK_RIGHT_ENCODER_CHANNEL_A  (0)   //TODO: confirm value
-#define BACK_RIGHT_ENCODER_CHANNEL_B  (1)   //TODO: confirm value
-#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   //TODO: confirm value
-#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   //TODO: confirm value
-#define LIFT_ENCODER_CHANNEL_A        (8)   //TODO: confirm value
-#define LIFT_ENCODER_CHANNEL_B        (9)   //TODO: confirm value
+#define BACK_RIGHT_ENCODER_CHANNEL_A  (0)   
+#define BACK_RIGHT_ENCODER_CHANNEL_B  (1)   
+#define FRONT_RIGHT_ENCODER_CHANNEL_A (2)   
+#define FRONT_RIGHT_ENCODER_CHANNEL_B (3)   
+#define FRONT_LEFT_ENCODER_CHANNEL_A  (4)   
+#define FRONT_LEFT_ENCODER_CHANNEL_B  (5)   
+#define BACK_LEFT_ENCODER_CHANNEL_A   (6)   
+#define BACK_LEFT_ENCODER_CHANNEL_B   (7)   
+#define LIFT_ENCODER_CHANNEL_A        (8)   
+#define LIFT_ENCODER_CHANNEL_B        (9)   
 
 
 //Misc
@@ -84,7 +84,6 @@ Manip Joystick:
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
-#define LIFT_DEADZONE						(10.0)	//TODO: get correct number
 #define TOP_LIMIT_SWITCH_CHANNEL			(0)
 #define BOTTOM_LIMIT_SWITCH_CHANNEL			(1)
 
