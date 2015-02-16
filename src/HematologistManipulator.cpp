@@ -205,19 +205,19 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 {
 	//wrong number
 	if (activate)
-		automaticActivation = !automaticActivation;
+		automaticActivation = true;
 	if (automaticActivation)
 	{
-		if (liftEncoder->Get() < 100 - LIFT_DEADZONE)
+		if (liftEncoder->Get() < 2000 - LIFT_DEADZONE)
 		{
 			leftLiftMotor->Set(.3);
 			rightLiftMotor->Set(.3);
 		}
-		if (liftEncoder->Get() > 100 - LIFT_DEADZONE && liftEncoder->Get() < 100 + LIFT_DEADZONE)
+		if (liftEncoder->Get() > 2000 - LIFT_DEADZONE && liftEncoder->Get() < 2000 + LIFT_DEADZONE)
 		{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
 		}
-		if (liftEncoder->Get() > 200 - LIFT_DEADZONE && liftEncoder->Get() < 200 - LIFT_DEADZONE)
+		if (liftEncoder->Get() > 2500 - LIFT_DEADZONE && liftEncoder->Get() < 2500 + LIFT_DEADZONE)
 		{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			leftLiftMotor->Set(0);
