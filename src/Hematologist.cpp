@@ -62,7 +62,7 @@ private:
 			CameraServer::GetInstance()->SetImage(frame);
 		}
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
-		drive->drive(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
+		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
 
 		manip->moveLift(oi->getJoystick('M')->GetY());
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(STOP_COMPRESSOR_BUTTON));
