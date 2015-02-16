@@ -49,6 +49,7 @@ Manip Joystick:
 #define LONG_ARM_TRIGGER_BUTTON				(1)
 #define GYRO_ON_BUTTON						(11)
 #define GYRO_OFF_BUTTON						(10)
+#define RESET_ENCODER_BUTTON				(9)
 
 
 //Motor Channels
