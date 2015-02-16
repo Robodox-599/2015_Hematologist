@@ -141,8 +141,11 @@ private:
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
 
 		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
-		oi->getDashboard()->PutNumber("Encoder Average:", auton->getForwardAverage());
+		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
+		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
+		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
 	}
+
 
 	void TestPeriodic(){}
 };
