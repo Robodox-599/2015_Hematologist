@@ -32,9 +32,7 @@ private:
 	void TeleopPeriodic(){
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 
-		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
-		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
-		manip->moveLift(-oi->getJoystick('M')->GetY());
+		manip->moveLift(oi->getJoystick('M')->GetY());
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(9));
 		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(8));
 
