@@ -92,8 +92,8 @@ Manip Joystick:
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
 #define LIFT_DEADZONE						(10.0)	//TODO: get correct number
-#define TOP_LIMIT_SWITCH_CHANNEL			(0)	//TODO: get numberrrrr
-#define BOTTOM_LIMIT_SWITCH_CHANNEL			(1)		//TODO: trouves nombre
+#define TOP_LIMIT_SWITCH_CHANNEL			(0)
+#define BOTTOM_LIMIT_SWITCH_CHANNEL			(1)
 
 //Gyro
 #define GYRO_KP								(.1)
