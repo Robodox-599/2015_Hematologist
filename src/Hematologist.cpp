@@ -45,8 +45,8 @@ private:
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
 
 #if 0
-		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(5));
-		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(4));
+		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
+		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 #endif
 
 #if 0
