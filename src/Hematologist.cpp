@@ -9,6 +9,7 @@ private:
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
+	HematologistAutonomous* auton;
 	//CameraServer* camera = CameraServer::GetInstance();
 	IMAQdxSession session;
 	Image *frame;
@@ -18,6 +19,7 @@ private:
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
+		auton = HematologistAutonomous(drive, oi);
 #if 1
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
@@ -139,6 +141,7 @@ private:
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
 
 		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
+		oi->getDashboard()->PutNumber("Encoder Average:", auton->getForwardAverage());
 	}
 
 	void TestPeriodic(){}
