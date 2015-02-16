@@ -20,7 +20,7 @@ private:
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
-		auton = HematologistAutonomous(drive, oi);
+		auton = new HematologistAutonomous(drive, manip);
 #if 1
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
