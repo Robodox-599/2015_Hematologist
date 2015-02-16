@@ -45,8 +45,8 @@ Manip Joystick:
 #define SECOND_TIER_CLOSE_BUTTON			(10)
 #define AUTOMATIC_LIFT_BUTTON				(1)
 #define GYRO_TOGGLE_BUTTON					(3)		//TODO: get correct number
-#define LONG_ARM_OPEN_ENABLE_BUTTON			(4)		//TODO: get correct number
-#define LONG_ARM_CLOSE_ENABLE_BUTTON		(5)		//TODO: get correct number
+#define LONG_ARM_OPEN_ENABLE_BUTTON			(5)		//TODO: get correct number
+#define LONG_ARM_CLOSE_ENABLE_BUTTON		(4)		//TODO: get correct number
 #define LONG_ARM_TRIGGER_BUTTON				(1)		
 
 
@@ -82,7 +82,7 @@ Manip Joystick:
 
 
 //Misc
-#define DEADZONE                   		    (.1)
+#define DEADZONE                   		    (.05)
 #define LIFT_DEADZONE           			(10)
 #define PI									(3.141592653589793238462643383279502884197)
 #define PRE_SET_LOW							(0)		//TODO: get correct number
