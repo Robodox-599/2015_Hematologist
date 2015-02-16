@@ -208,6 +208,7 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 		automaticActivation = true;
 	if (automaticActivation)
 	{
+		closePiston(true, true);
 		if (liftEncoder->Get() < 2000 - LIFT_DEADZONE)
 		{
 			leftLiftMotor->Set(.3);
@@ -215,13 +216,13 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 		}
 		if (liftEncoder->Get() > 2000 - LIFT_DEADZONE && liftEncoder->Get() < 2000 + LIFT_DEADZONE)
 		{
-			secondTierPiston->Set(DoubleSolenoid::kForward);
+			openPiston(false, true);
 		}
 		if (liftEncoder->Get() > 2500 - LIFT_DEADZONE && liftEncoder->Get() < 2500 + LIFT_DEADZONE)
 		{
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
-			leftLiftMotor->Set(0);
-			rightLiftMotor->Set(0);
+			closePiston(false, true);
+			leftLiftMotor->Set(-.2);
+			rightLiftMotor->Set(-.2);
 			automaticActivation = false;
 		}
 	}else
@@ -247,7 +248,7 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 			forkliftPiston->Set(DoubleSolenoid::kReverse);
 			forkliftOpen = true;
 		}else{
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
+			secondTierPiston->Set(DoubleSolenoid::kForward);
 			secondTierOpen = true;
 		}
 	}else
@@ -263,7 +264,7 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 			forkliftOpen = false;
 		}
 		else{
-			secondTierPiston->Set(DoubleSolenoid::kForward);
+			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			secondTierOpen = false;
 		}
 	}else
