@@ -26,6 +26,10 @@ public:
 	void strafeRight();
 	void getTwoTotes();
 	void getThreeTotes();
+
+	int getStrafeAverage(bool right);
+	int getTurnAverage(bool right);
+	int getForwardAverage();
 };
 
 #endif
