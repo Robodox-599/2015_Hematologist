@@ -44,10 +44,11 @@ Manip Joystick:
 #define SECOND_TIER_OPEN_BUTTON				(11)
 #define SECOND_TIER_CLOSE_BUTTON			(10)
 #define AUTOMATIC_LIFT_BUTTON				(1)
-#define GYRO_TOGGLE_BUTTON					(3)		//TODO: get correct number
 #define LONG_ARM_OPEN_ENABLE_BUTTON			(5)		//TODO: get correct number
 #define LONG_ARM_CLOSE_ENABLE_BUTTON		(4)		//TODO: get correct number
-#define LONG_ARM_TRIGGER_BUTTON				(1)		
+#define LONG_ARM_TRIGGER_BUTTON				(1)
+#define GYRO_ON_BUTTON						(11)
+#define GYRO_OFF_BUTTON						(10)
 
 
 //Motor Channels
@@ -89,9 +90,10 @@ Manip Joystick:
 #define PRE_SET_MID							(30)	//TODO: get correct number
 #define PRE_SET_HIGH						(50)	//TODO: get correct number
 #define TOP_LIMIT_SWITCH_CHANNEL			(0)
-#define BOTTOM_LIMIT_SWITCH_CHANNEL			(1)
+#define BOTTOM_LIMIT_SWITCH_CHANNEL			(2)
 
 //Gyro
+#define GYRO_CHANNEL						(1)
 #define GYRO_KP								(.1)
 
 #endif

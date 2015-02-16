@@ -34,7 +34,7 @@ private:
 
 	float kP;
 	
-	bool gyroButton;
+	bool gyroOn;
 
 	HematologistOperatorInterface* oi;
 

@@ -9,14 +9,16 @@ private:
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
-	CameraServer* camera = CameraServer::GetInstance();
+	//CameraServer* camera = CameraServer::GetInstance();
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
+#if 0
 		camera->SetQuality(50);
 		camera->StartAutomaticCapture("cam0");
+#endif
 	}
 
 	void AutonomousInit(){
@@ -49,7 +51,7 @@ private:
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
 #endif
 
-#if 1
+#if 0
 		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
@@ -60,6 +62,12 @@ private:
 
 		manip->longArmMoveIn();		//close
 		manip->longArmMoveOut();	//open
+#endif
+
+/*gyro stuff*/
+#if 0
+		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
+		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
 #endif
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
@@ -97,6 +105,8 @@ private:
 		//switches
 		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
+
+		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
 
 		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
 		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());

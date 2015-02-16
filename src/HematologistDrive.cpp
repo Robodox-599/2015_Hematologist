@@ -15,9 +15,9 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	frontRightEncoder->SetReverseDirection(true);
 	backRightEncoder->SetReverseDirection(true);
 
-	gyro = new Gyro(1);
+	gyro = new Gyro(GYRO_CHANNEL);
 	gyro_ref = 0;
-	gyroButton = false;
+	gyroOn = true;
 
 	forward = turn = strafe = 0;
 
@@ -32,12 +32,22 @@ HematologistDrive::~HematologistDrive()
 	delete backRightMotor;
 	delete backLeftMotor;
 	delete backRightMotor;
+	delete frontLeftEncoder;
+	delete backLeftEncoder;
+	delete frontRightEncoder;
+	delete backRightEncoder;
+
 	delete gyro;
 
 	frontLeftMotor 	= NULL;
 	backRightMotor 	= NULL;
 	backLeftMotor 	= NULL;
 	frontRightMotor = NULL;
+	frontLeftEncoder = NULL;
+	backLeftEncoder = NULL;
+	frontRightEncoder = NULL;
+	backRightEncoder = NULL;
+	gyro = NULL;
 }
 
 float HematologistDrive::setForward(float forward)
@@ -45,7 +55,8 @@ float HematologistDrive::setForward(float forward)
 	if (forward > DEADZONE || forward < -DEADZONE)
 	{
 		this->forward = forward;
-	}else
+	}
+	else
 	{
 		this->forward = 0;
 	}
@@ -54,7 +65,7 @@ float HematologistDrive::setForward(float forward)
 
 float HematologistDrive::setTurn(float turn)
 {
-	if(gyroButton){
+	if(gyroOn){
 		if (turn > DEADZONE || turn < -DEADZONE)
 		{
 			this->turn = turn;
@@ -62,7 +73,7 @@ float HematologistDrive::setTurn(float turn)
 		}
 		else
 		{
-			turn = kP * (gyro_ref - (gyro->GetAngle()));
+			this->turn = kP * (gyro_ref - (gyro->GetAngle()));
 		}
 	}
 	else
@@ -79,12 +90,10 @@ float HematologistDrive::setTurn(float turn)
 float HematologistDrive::setStrafe(float strafe)
 {
 	if (strafe > DEADZONE || strafe < -DEADZONE)
-	{
 		this->strafe = strafe;
-	}else
-	{
+	else
 		this->strafe = 0;
-	}
+	
 	return this->strafe;
 }
 
@@ -101,7 +110,7 @@ float HematologistDrive::linearizeDrive(float driveInput)
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-	setForward(-forward);
+	setForward(forward);
 	setTurn(turn);
 	setStrafe(strafe);
 	frontLeftMotor->Set(linearizeDrive(forward - strafe + turn));
@@ -144,4 +153,21 @@ Talon* HematologistDrive::getDriveTalon(bool front, bool right)
     else
       return backLeftMotor;
   }
+}
+
+bool HematologistDrive::gyroIsOn()
+{
+	return gyroOn;
+}
+
+void HematologistDrive::turnOnGyro(bool turnOn)
+{
+	if (turnOn)
+		gyroOn = true;
+}
+
+void HematologistDrive::turnOffGyro(bool turnOff)
+{
+	if (turnOff)
+		gyroOn = false;
 }
