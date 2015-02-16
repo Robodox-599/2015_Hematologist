@@ -66,12 +66,6 @@ private:
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
 		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
-		oi->getDashboard()->PutBoolean("joystick L button 3",oi->getJoystick('L')->GetRawButton(3));
-		oi->getDashboard()->PutBoolean("joystick L button 2",oi->getJoystick('L')->GetRawButton(2));
-		oi->getDashboard()->PutBoolean("joystick L button 1",oi->getJoystick('L')->GetRawButton(1));
-		oi->getDashboard()->PutBoolean("joystick R button 3",oi->getJoystick('R')->GetRawButton(3));
-		oi->getDashboard()->PutBoolean("joystick R button 2",oi->getJoystick('R')->GetRawButton(2));
-		oi->getDashboard()->PutBoolean("joystick R button 1",oi->getJoystick('R')->GetRawButton(1));
 
 		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
