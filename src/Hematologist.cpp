@@ -2,6 +2,7 @@
 #include "HematologistOperatorInterface.h"
 #include "HematologistDrive.h"
 #include "HematologistManipulator.h"
+#include "HematologistAutonomous.h"
 
 class Hematologist: public IterativeRobot
 {
