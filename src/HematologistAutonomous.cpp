@@ -12,6 +12,7 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 	step6 = false;	//this step will not start, must be told when to
 	step7 = false;	//this step will not start, must be told when to
 	step8 = false;	//this step will not start, must be told when to
+	step9 = false;
 }
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
@@ -30,34 +31,149 @@ void HematologistAutonomous::strafeRight()
 
 void HematologistAutonomous::getTwoTotes()
 {
-	drive->getEncoder(true, true)->Reset();
-	drive->getEncoder(true, false)->Reset();
-	drive->getEncoder(false, true)->Reset();
-	drive->getEncoder(false, false)->Reset();
+	if (step1){
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		step1 = false;
+		step2 = true;
+	}
+	if (step2)
+	{
+		if (getForwardAverage() < 20 - LIFT_DEADZONE)
+			drive->drive(.1,0,0);
+		else if (getForwardAverage() > 20 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step3 = true;
+			step4 = true;
+			manip->closePiston(true, true);
+			step2 = false;
+		}
+	}
+	if (step3)
+	{
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			drive->drive(0, 0, 0);
+			step3 = false;
+			step5 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+		}
+	}
+	if (step4)
+	{
+		if (manip->getLiftEncoder()->Get() < 30 - LIFT_DEADZONE)
+			manip->moveLift(.1);
+		else if (manip->getLiftEncoder()->Get() > 30 + LIFT_DEADZONE)
+			manip->moveLift(-.1)
+		else
+		{
+			manip->moveLift(0);
+			step4 = false;
+			manip->getLiftEncoder()->Reset();
+			manip->closePiston(false, true);
+			step6 = true;
+		}
+	}
 
+	if (step5)
+	{
+		if (getTurnAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(0, .3, 0);
+		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(0, -.3, 0);
+		else
+		{
+			drive->drive(0,0,0);
+			step5 = false;
+			step7 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
 
+		}
+	}
 
-	//step1 = going up to bin
-	//step2 = is moving forward up to a point
-	//step3 = is rasing the forklift until second tier is to close
-	//step4 = is turning correctly
-	//step5 = moving the forklift down until the limit switch is pressed
-	//step6 = is moving the robot up to the second tote
+	if (step6)
+	{
+		if (manip->getLimitSwitch(false)->limitSwitchIsPressed())
+		{
+			manip->moveLift(-.1);
+		}else
+		{
+			manip->move(0);
+			manip->getLiftEncoder()->Reset();
+		}
+	}
 
-	/*
-	 * move forward up to bin
-	 * close forklift
-	 * start moving forward
-	 * raise forklift
-	 * close second tier at appropriate time
-	 * hit poit where you are to turn
-	 * reset encoders
-	 * turn as necessary using encoders
-	 * put forklift down all the way down to hit limit switch - move forward when done turning
-	 * Be at the second tote
-	 * repeat process
-	 *
-	 */
+	if (step7)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step7 = false;
+			drive->drive(0, 0, 0);
+			manip->closePiston(true, true);
+			step4 = true;
+			step8 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+
+		}
+	}
+
+	if (step8)
+	{
+		if (getTurnAverage() < 200 - LIFT_DEADZONE)
+			drive->drive(0, .3, 0);
+		else if (getTurnAverage() > 200 + LIFT_DEADZONE)
+			drive->drive(0, -.3, 0);
+		else
+		{
+			drive->drive(0,0,0);
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+			step9 = true;
+		}
+	}
+
+	if (step9)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			drive->drive(0, 0, 0);
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+	}
 }
 
 void HematologistAutonomous::getThreeTotes()

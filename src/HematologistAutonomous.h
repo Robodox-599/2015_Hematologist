@@ -19,6 +19,16 @@ private:
 	bool step6;
 	bool step7;
 	bool step8;
+	bool step9; 
+	bool step10; 
+	bool step11; 
+	bool step12; 
+	bool step13; 
+	bool step14; 
+	bool step15; 
+	bool step16; 
+	bool step17; 
+	bool step18;
 
 public:
 	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
