@@ -54,11 +54,6 @@ float HematologistDrive::setForward(float forward)
 
 float HematologistDrive::setTurn(float turn)
 {
-
-	if (oi->getJoystick('L')->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
-	{
-		gyroButton = !gyroButton;
-	}
 	if(gyroButton){
 		if (turn > DEADZONE || turn < -DEADZONE)
 		{
