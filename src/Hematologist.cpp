@@ -30,7 +30,7 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
-		drive->drive(-oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 
 		//manip->activateForklift(oi->getJoystick('M')->GetRawButton(3));
 		//manip->activateSecondTier(oi->getJoystick('M')->GetRawButton(2));
