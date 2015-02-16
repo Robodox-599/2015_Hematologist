@@ -10,15 +10,28 @@ private:
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
 	//CameraServer* camera = CameraServer::GetInstance();
+	IMAQdxSession session;
+	Image *frame;
+	IMAQdxError imaqError;
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
-#if 0
-		camera->SetQuality(50);
-		camera->StartAutomaticCapture("cam0");
+#if 1
+		//camera->SetQuality(50);
+		//camera->StartAutomaticCapture("cam0");
 #endif
+		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
+		//the camera name (ex "cam0") can be found through the roborio web interface
+		imaqError = IMAQdxOpenCamera("cam0", IMAQdxCameraControlModeController, &session);
+		if(imaqError != IMAQdxErrorSuccess) {
+			DriverStation::ReportError("IMAQdxOpenCamera error: " + std::to_string((long)imaqError) + "\n");
+		}
+		imaqError = IMAQdxConfigureGrab(session);
+		if(imaqError != IMAQdxErrorSuccess) {
+			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
+		}
 	}
 
 	void AutonomousInit(){
@@ -32,6 +45,19 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
+		// acquire images
+		IMAQdxStartAcquisition(session);
+	        // grab an image, draw the circle, and provide it for the camera server which will
+       // in turn send it to the dashboard.
+		IMAQdxGrab(session, frame, true, NULL);
+		if(imaqError != IMAQdxErrorSuccess) 
+		{
+			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
+		}else
+		{
+			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
+			CameraServer::GetInstance()->SetImage(frame);
+		}
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 
 		manip->moveLift(oi->getJoystick('M')->GetY());
@@ -65,53 +91,54 @@ private:
 #endif
 
 /*gyro stuff*/
-#if 0
+#if 1
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
 		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
 #endif
+#if 0
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
 		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
 		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
-
+#endif
+#if 1
 		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
 		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
 		oi->getDashboard()->PutNumber("BackRight Encoder:", drive->getEncoder(false, true)->Get());
 		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
 		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
-
+#endif
+#if 0
 		//values given to motors
 		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
-
+#endif
+#if 0
 		//forklift
 		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
 		oi->getDashboard()->PutBoolean("forklift open:", manip->forkliftIsOpen());
-
+#endif
+#if 0
 		//second tier
 		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
 		oi->getDashboard()->PutBoolean("second tier is open", manip->secondTierIsOpen());
-
+#endif
+#if 0
 		//constants
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
 		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
 		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
-
+#endif
 		//switches
 		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
 
 		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
-
-		//oi->getDashboard()->PutNumber("Left Lift:", manip->getManipTalon(true)->GetRaw());
-		//oi->getDashboard()->PutNumber("Right Lift:", manip->getManipTalon(false)->GetRaw());
-		//oi->getDashboard()->PutBoolean("LimitSwitch:", manip->getLimitSwitch()->limitSwitchIsPressed());
-		//oi->getDashboard()->PutBoolean("Comopressor On:", manip->getCompressorOn());
 	}
 
 	void TestPeriodic(){}
