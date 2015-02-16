@@ -420,7 +420,7 @@ void HematologistAutonomous::getThreeTotes()
 			drive->drive(0, -.1, 0);
 		else
 		{
-			step8 = 0;
+			step8 = false;
 			drive->drive(0, 0, 0);
 			drive->getEncoder(true, true)->Reset();
 			drive->getEncoder(true, false)->Reset();
