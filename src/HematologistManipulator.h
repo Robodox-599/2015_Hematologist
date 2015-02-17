@@ -103,6 +103,8 @@ public:
 	void longArmCloseStep3(bool step3);
 
 	void longArmMoveIn();
+
+	void automaticallyOpenTier();
 };
 
 #endif

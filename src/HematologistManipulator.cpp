@@ -399,3 +399,7 @@ void HematologistManipulator::longArmMoveIn()
 		longArmClose1 = longArmClose2 = longArmClose3 = false;
 	}
 }
+
+void HematologistManipulator::automaticallyOpenTier()
+{
+}
