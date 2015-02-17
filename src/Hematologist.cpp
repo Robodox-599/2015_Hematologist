@@ -49,12 +49,14 @@ private:
 
 	void TeleopInit(){}
 
-	void TeleopPeriodic(){
+	void TeleopPeriodic()
+	{
+
 #if 1
 		// acquire images
 		IMAQdxStartAcquisition(session);
-	        // grab an image, draw the circle, and provide it for the camera server which will
-       // in turn send it to the dashboard.
+		// grab an image, draw the circle, and provide it for the camera server which will
+		// in turn send it to the dashboard.
 		IMAQdxGrab(session, frame, true, NULL);
 		if(imaqError != IMAQdxErrorSuccess) 
 		{
@@ -78,7 +80,7 @@ private:
 		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_OPEN_BUTTON));		//open forklift
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_CLOSE_BUTTON));	//close forklift
 
-		//manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
+		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
 		manip->automaticallyOpenTier();
 
 #if 1
@@ -101,8 +103,8 @@ private:
 
 /*gyro stuff*/
 #if 1
-		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
-		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
+		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
+		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
 #endif
 		printSmartDashboard();
 	}
