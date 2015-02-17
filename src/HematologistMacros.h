@@ -44,8 +44,8 @@ Manip Joystick:
 #define SECOND_TIER_OPEN_BUTTON				(4)
 #define SECOND_TIER_CLOSE_BUTTON			(5)
 #define AUTOMATIC_LIFT_BUTTON				(1)
-#define LONG_ARM_OPEN_ENABLE_BUTTON			(5)		//TODO: get correct number
-#define LONG_ARM_CLOSE_ENABLE_BUTTON		(4)		//TODO: get correct number
+#define LONG_ARM_OPEN_ENABLE_BUTTON			(3)		//TODO: get correct number
+#define LONG_ARM_CLOSE_ENABLE_BUTTON		(7)		//TODO: get correct number
 #define LONG_ARM_TRIGGER_BUTTON				(1)
 #define GYRO_ON_BUTTON						(11)
 #define GYRO_OFF_BUTTON						(10)
