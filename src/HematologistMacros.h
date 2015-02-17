@@ -35,14 +35,14 @@ Manip Joystick:
 #define MANIP_JOYSTICK						(0)		
 #define LEFT_DRIVE_JOYSTICK					(1)		
 #define RIGHT_DRIVE_JOYSTICK				(2)		
-#define BIN_HUGGER_OPEN_BUTTON				(4)
-#define BIN_HUGGER_CLOSE_BUTTON				(5)
+#define BIN_HUGGER_OPEN_BUTTON				(3)
+#define BIN_HUGGER_CLOSE_BUTTON				(2)
 #define FORKLIFT_OPEN_BUTTON				(6)
 #define FORKLIFT_CLOSE_BUTTON				(7)	
 #define START_COMPRESSOR_BUTTON				(8)
 #define STOP_COMPRESSOR_BUTTON				(9)	
-#define SECOND_TIER_OPEN_BUTTON				(11)
-#define SECOND_TIER_CLOSE_BUTTON			(10)
+#define SECOND_TIER_OPEN_BUTTON				(4)
+#define SECOND_TIER_CLOSE_BUTTON			(5)
 #define AUTOMATIC_LIFT_BUTTON				(1)
 #define LONG_ARM_OPEN_ENABLE_BUTTON			(5)		//TODO: get correct number
 #define LONG_ARM_CLOSE_ENABLE_BUTTON		(4)		//TODO: get correct number
@@ -85,7 +85,7 @@ Manip Joystick:
 
 //Misc
 #define DEADZONE                   		    (.05)
-#define LIFT_DEADZONE           			(10)
+#define LIFT_DEADZONE           			(30)
 #define PI									(3.141592653589793238462643383279502884197)
 #define PRE_SET_LOW							(0)		//TODO: get correct number
 #define PRE_SET_MID							(30)	//TODO: get correct number
