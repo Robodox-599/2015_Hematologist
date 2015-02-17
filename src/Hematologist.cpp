@@ -112,16 +112,23 @@ private:
 
 	void printSmartDashboard()
 	{
-		//switches
-				oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
-				oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
 
-				oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
-				oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
-				oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
-				oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
+#if 1
+		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
+		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
+#endif
 
-				oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
+#if 1
+		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
+		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
+		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
+#endif 
+
+#if 1
+		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
+		oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
+#endif
+
 #if 0
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
@@ -129,32 +136,39 @@ private:
 		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
 		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
 #endif
+
+
 #if 1
 		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
 		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
 		oi->getDashboard()->PutNumber("BackRight Encoder:", drive->getEncoder(false, true)->Get());
 		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
+
 		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
 #endif
+
 #if 0
 		//values given to motors
 		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
 		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
 		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
 #endif
+
 #if 0
 		//forklift
 		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
 		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
 		oi->getDashboard()->PutBoolean("forklift open:", manip->forkliftIsOpen());
 #endif
+
 #if 0
 		//second tier
 		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
 		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
 		oi->getDashboard()->PutBoolean("second tier is open", manip->secondTierIsOpen());
 #endif
+
 #if 0
 		//constants
 		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
