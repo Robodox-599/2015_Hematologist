@@ -17,7 +17,7 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 
 	gyro = new Gyro(GYRO_CHANNEL);
 	gyro_ref = 0;
-	gyroOn = true;
+	gyroOn = false;
 
 	forward = turn = strafe = 0;
 
@@ -54,7 +54,7 @@ float HematologistDrive::setForward(float forward)
 {
 	if (forward > DEADZONE || forward < -DEADZONE)
 	{
-		this->forward = -forward;
+		this->forward = forward;
 	}
 	else
 	{
@@ -110,13 +110,18 @@ float HematologistDrive::linearizeDrive(float driveInput)
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-	setForward(forward);
+#if 1
+	setForward(-forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(linearizeDrive(forward - strafe + turn));
-	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
-	backLeftMotor->Set(linearizeDrive(forward + strafe + turn));
-	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
+#endif
+#if 0
+
+#endif
+	frontLeftMotor->Set(linearizeDrive(-forward - strafe + turn));
+	frontRightMotor->Set(linearizeDrive(forward + strafe + turn));
+	backLeftMotor->Set(linearizeDrive(-forward + strafe + turn));
+	backRightMotor->Set(linearizeDrive(forward - strafe + turn));
 }
 
 Encoder* HematologistDrive::getEncoder(bool front, bool right)
