@@ -1,9 +1,10 @@
 #include "HematologistAutonomous.h" // all values for the autonomous is not set. Thus need accurate calculation to replace
 
-HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
+HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip, HematologistOperatorInterface* oi)
 {
 	this->drive = drive;
 	this->manip = manip;
+	this->oi = oi;
 	step1 	= true;	
 	step2 	= false;	//this step will not start, must be told when to
 	step3 	= false;	//this step will not start, must be told when to
@@ -33,21 +34,48 @@ HematologistAutonomous::~HematologistAutonomous(){
 
 void HematologistAutonomous::strafeRight()
 {
+	oi->getDashboard()->PutBoolean("Step1", step1);
+	oi->getDashboard()->PutBoolean("Step2", step2);
+	oi->getDashboard()->PutBoolean("Step3", step3);
+	oi->getDashboard()->PutNumber("Strafe Avg Auto:", getStrafeAverage());
+
+
 	if (step1)
 	{
 		step1 = false;
-		step2 = true;
+		step2 = false;
+		step3 = true;
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
 	}
 	if (step2)
 	{
-		if (getStrafeAverage() < 100 - LIFT_DEADZONE)
-			drive->drive(0, 0, .2);
-		else if (getStrafeAverage() > 100 + LIFT_DEADZONE)
+		if (getStrafeAverage() < 690.25 - LIFT_DEADZONE)
 			drive->drive(0, 0, -.2);
+		else if (getStrafeAverage() > 690.25 + LIFT_DEADZONE)
+			drive->drive(0, 0, .2);
 		else
 		{
 			drive->drive(0, 0, 0);
 			step2 = false;
+		}
+	}
+	if (step3)
+	{
+		if (manip->getLiftEncoder()->Get() < 1500 - LIFT_DEADZONE)
+		{
+			manip->moveLift(-.5);
+		}else
+		{
+			if (manip->getLiftEncoder()->Get() > 1500 + LIFT_DEADZONE)
+				manip->moveLift(.5);
+			else{
+				manip->moveLift(0);
+				step3 = false;
+				step2 = true;
+			}
 		}
 	}
 }
@@ -495,5 +523,5 @@ int HematologistAutonomous::getTurnAverage()
 }
 int HematologistAutonomous::getForwardAverage()
 {
-	return (drive->getEncoder(true, true)->Get() + drive->getEncoder(false, true)->Get() - drive->getEncoder(true, false)->Get() - drive->getEncoder(false, false)->Get())/4;
+	return (drive->getEncoder(true, true)->Get() + drive->getEncoder(false, true)->Get() + drive->getEncoder(true, false)->Get() + drive->getEncoder(false, false)->Get())/4;
 }

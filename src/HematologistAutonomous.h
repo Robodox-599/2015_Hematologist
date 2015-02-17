@@ -3,6 +3,7 @@
 
 #include "HematologistMacros.h"
 #include "HematologistManipulator.h"
+#include "HematologistOperatorInterface.h"
 #include "HematologistDrive.h"
 
 class HematologistAutonomous
@@ -10,6 +11,7 @@ class HematologistAutonomous
 private:
 	HematologistManipulator *manip;
 	HematologistDrive* drive;
+	HematologistOperatorInterface* oi;
 
 	bool step1;
 	bool step2;
@@ -31,7 +33,7 @@ private:
 	bool step18;
 
 public:
-	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip);
+	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip, HematologistOperatorInterface* oi);
 	~HematologistAutonomous();
 	/*
 	void firstHemanAuto();
