@@ -12,16 +12,16 @@ private:
 	HematologistDrive* drive;
 	HematologistAutonomous* auton;
 	//CameraServer* camera = CameraServer::GetInstance();
-//	IMAQdxSession session;
-//	Image *frame;
-//	IMAQdxError imaqError;
+	IMAQdxSession session;
+	Image *frame;
+	IMAQdxError imaqError;
 
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
-		auton = new HematologistAutonomous(drive, manip);
-#if 0
+		auton = new HematologistAutonomous(drive, manip, oi);
+#if 1
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
 
@@ -43,13 +43,14 @@ private:
 	}
 
 	void AutonomousPeriodic(){
-
+		auton->strafeRight();
+		//printSmartDashboard();
 	}
 
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
-#if 0
+#if 1
 		// acquire images
 		IMAQdxStartAcquisition(session);
 	        // grab an image, draw the circle, and provide it for the camera server which will
@@ -79,6 +80,7 @@ private:
 
 		manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
 
+
 #if 1
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
@@ -102,6 +104,24 @@ private:
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
 		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
 #endif
+		printSmartDashboard();
+	}
+
+
+	void TestPeriodic(){}
+
+	void printSmartDashboard()
+	{
+		//switches
+				oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
+				oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
+
+				oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
+				oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
+				oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
+				oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
+
+				oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
 #if 0
 		//joysticks
 		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
@@ -141,20 +161,7 @@ private:
 		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
 		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
 #endif
-		//switches
-		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
-		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
-
-		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
-		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
-		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
-		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
-
-		oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
 	}
-
-
-	void TestPeriodic(){}
 };
 
 START_ROBOT_CLASS(Hematologist);
