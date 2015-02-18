@@ -402,8 +402,13 @@ void HematologistManipulator::longArmMoveIn()
 
 void HematologistManipulator::automaticallyOpenTier()
 {
-	if (liftEncoder->Get() > 1600 - LIFT_DEADZONE && liftEncoder->Get() < 1750 + LIFT_DEADZONE)
+	if (liftEncoder->Get() < 1700 - LIFT_DEADZONE)
+		automaticActivation = true;
+	if (liftEncoder->Get() > 1700 - LIFT_DEADZONE && liftEncoder->Get() < 1800 + LIFT_DEADZONE && automaticActivation)
 	{
 		openPiston(false, true);
+		automaticActivation = false;
 	}
+	if (liftEncoder->Get() > 1800 + LIFT_DEADZONE)
+		automaticActivation = false;
 }
