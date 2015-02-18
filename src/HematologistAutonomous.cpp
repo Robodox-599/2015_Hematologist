@@ -49,27 +49,47 @@ void HematologistAutonomous::strafeRight()
 		drive->getEncoder(true, false)->Reset();
 		drive->getEncoder(false, true)->Reset();
 		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		manip->closePiston(false, true);
+		manip->closePiston(true, true);
 	}
 	if (step2)
 	{
-		if (getStrafeAverage() < 690.25 - LIFT_DEADZONE)
-			drive->drive(0, 0, -.2);
-		else if (getStrafeAverage() > 690.25 + LIFT_DEADZONE)
-			drive->drive(0, 0, .2);
+		//strafe left
+#if 1
+		if (getStrafeAverage() < 2000 - LIFT_DEADZONE)
+			drive->drive(0, 0, -.8);
+		else if (getStrafeAverage() > 2000 + LIFT_DEADZONE)
+			drive->drive(0, 0, .8);
 		else
 		{
 			drive->drive(0, 0, 0);
 			step2 = false;
 		}
+#endif
+		//strafe right
+#if 0
+		if (getStrafeAverage() < 2000 - LIFT_DEADZONE)
+			drive->drive(0, 0, .6);
+		else if (getStrafeAverage() > 2000 + LIFT_DEADZONE)
+			drive->drive(0, 0, -.6);
+		else
+		{
+			drive->drive(0, 0, 0);
+			step2 = false;
+		}
+#endif
+
+
 	}
 	if (step3)
 	{
-		if (manip->getLiftEncoder()->Get() < 1500 - LIFT_DEADZONE)
+		if (manip->getLiftEncoder()->Get() < 750 - LIFT_DEADZONE)
 		{
 			manip->moveLift(-.5);
 		}else
 		{
-			if (manip->getLiftEncoder()->Get() > 1500 + LIFT_DEADZONE)
+			if (manip->getLiftEncoder()->Get() > 750 + LIFT_DEADZONE)
 				manip->moveLift(.5);
 			else{
 				manip->moveLift(0);
@@ -105,9 +125,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step2)
 	{
 		if (getForwardAverage() < 20 - LIFT_DEADZONE)
-			drive->drive(.1,0,0);
+			drive->drive(.5,0,0);
 		else if (getForwardAverage() > 20 + LIFT_DEADZONE)
-			drive->drive(-.1, 0, 0);
+			drive->drive(-.5, 0, 0);
 		else
 		{
 			step3 = true;
@@ -130,9 +150,9 @@ void HematologistAutonomous::getTwoTotes()
 		drive->getEncoder(false, true)->Reset();
 		drive->getEncoder(false, false)->Reset();
 		if (getForwardAverage() < 100 - LIFT_DEADZONE)
-			drive->drive(.1, 0, 0);
+			drive->drive(.5, 0, 0);
 		else if (getForwardAverage() > 100 + LIFT_DEADZONE)
-			drive->drive(-.1, 0, 0);
+			drive->drive(-.5, 0, 0);
 		else
 		{
 			drive->drive(0, 0, 0);
@@ -153,9 +173,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step4)
 	{
 		if (manip->getLiftEncoder()->Get() < 30 - LIFT_DEADZONE)
-			manip->moveLift(.1);
+			manip->moveLift(.2);
 		else if (manip->getLiftEncoder()->Get() > 30 + LIFT_DEADZONE)
-			manip->moveLift(-.1);
+			manip->moveLift(-.2);
 		else
 		{
 			manip->moveLift(0);
@@ -175,9 +195,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step5)
 	{
 		if (getTurnAverage() < 100 - LIFT_DEADZONE)
-			drive->drive(0, .3, 0);
+			drive->drive(0, .5, 0);
 		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
-			drive->drive(0, -.3, 0);
+			drive->drive(0, -.5, 0);
 		else
 		{
 			drive->drive(0,0,0);
@@ -199,7 +219,7 @@ void HematologistAutonomous::getTwoTotes()
 	{
 		if (!manip->getLimitSwitch(false)->limitSwitchIsPressed())
 		{
-			manip->moveLift(-.1);
+			manip->moveLift(-.3);
 		}else
 		{
 			manip->moveLift(0);
@@ -218,9 +238,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step7)
 	{
 		if (getForwardAverage() < 100 - LIFT_DEADZONE)
-			drive->drive(.1, 0, 0);
+			drive->drive(.5, 0, 0);
 		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
-			drive->drive(-.1, 0, 0);
+			drive->drive(-.5, 0, 0);
 		else
 		{
 			step7 = false;
@@ -243,9 +263,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step8)
 	{
 		if (getTurnAverage() < 200 - LIFT_DEADZONE)
-			drive->drive(0, .3, 0);
+			drive->drive(0, .5, 0);
 		else if (getTurnAverage() > 200 + LIFT_DEADZONE)
-			drive->drive(0, -.3, 0);
+			drive->drive(0, -.5, 0);
 		else
 		{
 			drive->drive(0,0,0);
@@ -266,9 +286,9 @@ void HematologistAutonomous::getTwoTotes()
 	if (step9)
 	{
 		if (getForwardAverage() < 100 - LIFT_DEADZONE)
-			drive->drive(.1, 0, 0);
+			drive->drive(.5, 0, 0);
 		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
-			drive->drive(-.1, 0, 0);
+			drive->drive(-.5, 0, 0);
 		else
 		{
 			drive->drive(0, 0, 0);
