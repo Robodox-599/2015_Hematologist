@@ -8,11 +8,14 @@ Checklist
   4. Smartdashboard + Default dashboard
   5. Limit switches turn green when pressed
   6. Lift moves up and down
-  7. Lift doesn't move down when bottom limit swtich pressed
+  7. Lift doesn't move down when bottom limit switch pressed
   8. Lift doesn't move up when top limit switch pressed
-  9. Every single piston open, closes
   10. Compressor can turn off and on
-  11. Compressor is at 120 (or whatever the highest legal value is)
-  12. All motors move forward when i move joystick forward
+  11. Compressor stops at 120
+  12. All motors move forward when I move joystick forward
   13. All motors move accordingly when I turn
   14. All motors move accordingly when I strafe
+  15. Forklift open and closes accordingly to appropriate buttons
+  16. Second tier opens and closes accordingly to appropriate buttons
+  17. Binhugger opens and closes accordingly to appropriate buttons
+  18. Autonomous mode functions by lifting lift then strafing right
