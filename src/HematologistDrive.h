@@ -17,10 +17,17 @@ public:
 	void drive(float forward, float turn, float strafe);
 	float linearizeDrive(float driveInput);
 
-  Encoder* getEncoder(bool front, bool right);
+	Encoder* getEncoder(bool front, bool right);
 
-  Talon* getDriveTalon(bool front, bool right);
+	Talon* getDriveTalon(bool front, bool right);
 
+	void turnOnGyro(bool turnOn);
+	void turnOffGyro(bool turnOff);
+	bool gyroIsOn();
+
+	void resetEncoders(bool reset);
+
+	Gyro* getGyro();
 private:
 
 	Gyro* gyro;
@@ -31,7 +38,7 @@ private:
 
 	float kP;
 	
-	bool gyroButton;
+	bool gyroOn;
 
 	HematologistOperatorInterface* oi;
 

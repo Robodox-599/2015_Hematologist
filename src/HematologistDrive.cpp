@@ -12,11 +12,12 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	frontRightEncoder = new Encoder(FRONT_RIGHT_ENCODER_CHANNEL_A, FRONT_RIGHT_ENCODER_CHANNEL_B);
 	backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, BACK_RIGHT_ENCODER_CHANNEL_B);
 
-	//frontRightEncoder->SetReverseDirection(true);
+	frontRightEncoder->SetReverseDirection(true);
+	backRightEncoder->SetReverseDirection(true);
 
-	gyro = new Gyro(1);
+	gyro = new Gyro(GYRO_CHANNEL);
 	gyro_ref = 0;
-	gyroButton = false;
+	gyroOn = false;
 
 	forward = turn = strafe = 0;
 
@@ -31,12 +32,22 @@ HematologistDrive::~HematologistDrive()
 	delete backRightMotor;
 	delete backLeftMotor;
 	delete backRightMotor;
+	delete frontLeftEncoder;
+	delete backLeftEncoder;
+	delete frontRightEncoder;
+	delete backRightEncoder;
+
 	delete gyro;
 
 	frontLeftMotor 	= NULL;
 	backRightMotor 	= NULL;
 	backLeftMotor 	= NULL;
 	frontRightMotor = NULL;
+	frontLeftEncoder = NULL;
+	backLeftEncoder = NULL;
+	frontRightEncoder = NULL;
+	backRightEncoder = NULL;
+	gyro = NULL;
 }
 
 float HematologistDrive::setForward(float forward)
@@ -44,7 +55,8 @@ float HematologistDrive::setForward(float forward)
 	if (forward > DEADZONE || forward < -DEADZONE)
 	{
 		this->forward = forward;
-	}else
+	}
+	else
 	{
 		this->forward = 0;
 	}
@@ -53,12 +65,7 @@ float HematologistDrive::setForward(float forward)
 
 float HematologistDrive::setTurn(float turn)
 {
-
-	if (oi->getJoystick('L')->GetRawButton(GYRO_TOGGLE_BUTTON) == true)
-	{
-		gyroButton = !gyroButton;
-	}
-	if(gyroButton){
+	if(gyroOn){
 		if (turn > DEADZONE || turn < -DEADZONE)
 		{
 			this->turn = turn;
@@ -66,7 +73,7 @@ float HematologistDrive::setTurn(float turn)
 		}
 		else
 		{
-			turn = kP * (gyro_ref - (gyro->GetAngle()));
+			this->turn = kP * (gyro_ref - (gyro->GetAngle()));
 		}
 	}
 	else
@@ -83,35 +90,38 @@ float HematologistDrive::setTurn(float turn)
 float HematologistDrive::setStrafe(float strafe)
 {
 	if (strafe > DEADZONE || strafe < -DEADZONE)
-	{
 		this->strafe = strafe;
-	}else
-	{
+	else
 		this->strafe = 0;
-	}
+	
 	return this->strafe;
 }
 
 float HematologistDrive::linearizeDrive(float driveInput)
 {
 	if (driveInput > DEADZONE)
-		return (1/.9)*(driveInput - .1);
+		return (1/(1-DEADZONE))*(driveInput - DEADZONE);
 	else
 		if (driveInput < -DEADZONE)
-			return (1/.9)*(driveInput + .1);
+			return (1/(1-DEADZONE))*(driveInput + DEADZONE);
 		else
 			return 0;
 }
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-	setForward(forward);
+#if 1
+	setForward(-forward);
 	setTurn(turn);
 	setStrafe(strafe);
-	frontLeftMotor->Set(linearizeDrive(forward - strafe + turn));
-	frontRightMotor->Set(linearizeDrive(-forward + strafe + turn));
-	backLeftMotor->Set(linearizeDrive(forward + strafe + turn));
-	backRightMotor->Set(linearizeDrive(-forward - strafe + turn));
+#endif
+#if 0
+
+#endif
+	frontLeftMotor->Set(linearizeDrive(-forward - strafe + turn));
+	frontRightMotor->Set(linearizeDrive(forward + strafe + turn));
+	backLeftMotor->Set(linearizeDrive(-forward + strafe + turn));
+	backRightMotor->Set(linearizeDrive(forward - strafe + turn));
 }
 
 Encoder* HematologistDrive::getEncoder(bool front, bool right)
@@ -148,4 +158,37 @@ Talon* HematologistDrive::getDriveTalon(bool front, bool right)
     else
       return backLeftMotor;
   }
+}
+
+bool HematologistDrive::gyroIsOn()
+{
+	return gyroOn;
+}
+
+void HematologistDrive::turnOnGyro(bool turnOn)
+{
+	if (turnOn)
+		gyroOn = true;
+}
+
+void HematologistDrive::turnOffGyro(bool turnOff)
+{
+	if (turnOff)
+		gyroOn = false;
+}
+
+void HematologistDrive::resetEncoders(bool reset)
+{
+	if(reset)
+	{
+		frontLeftEncoder->Reset();	
+		backLeftEncoder->Reset();	
+		frontRightEncoder->Reset();	
+		backRightEncoder->Reset();	
+	}
+}
+
+Gyro* HematologistDrive::getGyro()
+{
+	return gyro;
 }

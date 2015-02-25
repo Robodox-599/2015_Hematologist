@@ -1,431 +1,547 @@
-/*
 #include "HematologistAutonomous.h" // all values for the autonomous is not set. Thus need accurate calculation to replace
 
-HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip)
+HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip, HematologistOperatorInterface* oi)
 {
 	this->drive = drive;
 	this->manip = manip;
+	this->oi = oi;
+	step1 	= true;	
+	step2 	= false;	//this step will not start, must be told when to
+	step3 	= false;	//this step will not start, must be told when to
+	step4 	= false;	//this step will not start, must be told when to
+	step5 	= false;	//this step will not start, must be told when to
+	step6 	= false;	//this step will not start, must be told when to
+	step7 	= false;	//this step will not start, must be told when to
+	step8 	= false;	//this step will not start, must be told when to
+	step9 	= false;	//this step will not start, must be told when to
+	step10	= false;	//this step will not start, must be told when to	
+	step11	= false;	//this step will not start, must be told when to	
+	step12	= false;	//this step will not start, must be told when to	
+	step13	= false;	//this step will not start, must be told when to	
+	step14	= false;	//this step will not start, must be told when to	
+	step15	= false;	//this step will not start, must be told when to	
+	step16	= false;	//this step will not start, must be told when to	
+	step17	= false;	//this step will not start, must be told when to	
+	step18	= false;	//this step will not start, must be told when to		
+}
+HematologistAutonomous::~HematologistAutonomous(){
+	delete drive;
+	delete manip;
+
+	drive = NULL;
+	manip = NULL;
 }
 
-HematologistAutonomous::~HematologistAutonomous(){}
-
-/*
-void HematologistAutonomous::graberAutomomous()
+void HematologistAutonomous::strafeRight()
 {
-	while(drive->backLeftEncoder->Get() < 1840)
+	oi->getDashboard()->PutBoolean("Step1", step1);
+	oi->getDashboard()->PutBoolean("Step2", step2);
+	oi->getDashboard()->PutBoolean("Step3", step3);
+	oi->getDashboard()->PutNumber("Strafe Avg Auto:", getStrafeAverage());
+
+
+	if (step1)
 	{
-		if(drive->backLeftEncoder->Get() < 1840)
-		{
-			drive->drive(0.3,0,0);
-		}
-		if(drive->backLeftEncoder->Get() < 1840)
-		{
-			//activate solenoid
-		}
-		if(drive->backLeftEncoder->Get() < 1840)
-		{
-			//deactivate solenoid
-		}
-		if(drive->backLeftEncoder->Get() < 1840)
-		{
-			drive->drive(-0.3,0,0);
-		}
+		step1 = false;
+		step2 = false;
+		step3 = true;
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		manip->closePiston(false, true);
+		manip->closePiston(true, true);
 	}
-}
-
-
-void HematologistAutonomous::firstHemanAuto()
-{
-	while(encoderAverage() < 1840) //actual value is 1089.05
+	if (step2)
 	{
-		if(encoderAverage() < 1800)
-		{
-			drive->drive(0, 0, 0.1);
-		}
+		//strafe left
+#if 1
+		if (getStrafeAverage() < 2000 - LIFT_DEADZONE)
+			drive->drive(0, 0, -.8);
+		else if (getStrafeAverage() > 2000 + LIFT_DEADZONE)
+			drive->drive(0, 0, .8);
 		else
 		{
-			drive->drive(0, 0, -0.1);
+			drive->drive(0, 0, 0);
+			step2 = false;
 		}
-	}
-	drive->drive(0, 0, 0);
-}
-
-int HematologistAutonomous::encoderAverage()
-{
-	int distance;
-	distance = (drive->getEncoder(true, true)->Get() + drive->getEncoder(true, false)->Get() + drive->getEncoder(false, true)->Get() + drive->getEncoder(false, false)->Get()) / 4;
-	return distance;
-}
-
-void HematologistAutonomous::secondHemanAuto()
-{
-	drive->getEncoder(true, true)->Reset(); 
-	drive->getEncoder(true, false)->Reset(); 
-	drive->getEncoder(false, true)->Reset(); 
-	drive->getEncoder(false, false)->Reset();
-
-
-	while(encoderAverage() < 1090) //exact value is 1089.05
-	{
-	//initial drive
-		if(encoderAverage() < 700) 
-		{
-			drive->drive(-0.3, 0 , 0);
-		}
-		if(encoderAverage() > 360 && encoderAverage() < 380) 
-		{
-			//manip->openForkLift(false);
-		}
-		if(encoderAverage() > 380 && encoderAverage() < 390)
-		{
-			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
-		}
-		if(encoderAverage() > 390 && encoderAverage() < 400)
-		{
-			//manip->openForkLift(true);
-		}
-		if(encoderAverage() > 400 && encoderAverage() < 405)
-		{	
-			//manip->openSecondTier(false);
-		}	
-		if(encoderAverage() < 405 && encoderAverage() < 425)
-		{	
-			//manip->moveLift(-0.7);
-		}
-		if(encoderAverage() < 427)
-		{
-			//manip->moveLift(0);
-		}
-		if(encoderAverage() >700 )
-		{
-			drive->drive(0, 0.1, 0);
-		}
-// stop everything?
-	}	
-	//second tote
-	drive->getEncoder(true, true)->Reset(); 
-	drive->getEncoder(true, false)->Reset(); 
-	drive->getEncoder(false, true)->Reset(); 
-	drive->getEncoder(false, false)->Reset();
-	while(encoderAverage() < 540)
-	{
-		if(encoderAverage() <520)
-		{
-			drive->drive(0.05, 0, 0);
-		}	
-		if(encoderAverage() < 250 && encoderAverage() > 260)
-		{
-			//manip->openForkLift(false);
-		}		
-		if(encoderAverage() > 520)
-		{
-			drive->drive(0, 0.01, 0);
-		}
-	}
-	//drop off
-	drive->getEncoder(true, true)->Reset(); 
-	drive->getEncoder(true, false)->Reset(); 
-	drive->getEncoder(false, true)->Reset(); 
-	drive->getEncoder(false, false)->Reset();
-	while(encoderAverage() < 1840) //exact value is 1836.54
-	{
-		if(encoderAverage() < 670)
-		{
-			drive->drive(-0.05, 0, 0);
-		}	
-		if(encoderAverage() > 400 && encoderAverage() > 450)
-		{
-			//manip->moveLift(0.7);
-		}	
-		if(encoderAverage() > 450 && encoderAverage() < 460)
-		{
-			//manip->openForkLift(true);
-		}	
-		if(encoderAverage() > 465 && encoderAverage() < 470)
-		{
-			//manip->openSecondTier(false);
-		}	
-		if(encoderAverage() > 470 && encoderAverage() < 490)
-		{
-			//manip->moveLift(-0.7);
-		}					
-		if(encoderAverage() > 510 && encoderAverage() < 530)
-		{
-			//manip->moveLift(0.7);	
-		}	
-		if(encoderAverage() > 530 && encoderAverage() < 540)
-		{
-			//manip->openSeocndTier(true);
-		}
-		if(encoderAverage() > 670 && encoderAverage() < 690)
-		{
-			//manip->moveLift(-0.7);	
-		}
-		if(encoderAverage() > 690)
-		{
-			//manip->moveLift(false, false, 0);	
-		}
-		if(encoderAverage() < 690)
-		{
-			drive->drive(-0.1, 0, 0);
-		}
-		if(encoderAverage() > 719)
+#endif
+		//strafe right
+#if 0
+		if (getStrafeAverage() < 2000 - LIFT_DEADZONE)
+			drive->drive(0, 0, .6);
+		else if (getStrafeAverage() > 2000 + LIFT_DEADZONE)
+			drive->drive(0, 0, -.6);
+		else
 		{
 			drive->drive(0, 0, 0);
+			step2 = false;
 		}
-	}	
+#endif
+
+
+	}
+	if (step3)
+	{
+		if (manip->getLiftEncoder()->Get() < 750 - LIFT_DEADZONE)
+		{
+			manip->moveLift(-.5);
+		}else
+		{
+			if (manip->getLiftEncoder()->Get() > 750 + LIFT_DEADZONE)
+				manip->moveLift(.5);
+			else{
+				manip->moveLift(0);
+				step3 = false;
+				step2 = true;
+			}
+		}
+	}
 }
-/*
-void HematologistAutonomous::thirdHemanAuto()
+
+void HematologistAutonomous::getTwoTotes()
 {
-	// all encoders are drive encoders
-	//manip->openForkLift(true);
-	//manip->openScondTier(true);
-
-	//first tote
-	frontRightEnc->Reset();
-
-	while(he->getEncoder()->getRate() < 1090)
+	/*
+	step1
+		reset encoders
+		decide which step to go from there
+	*/
+	if (step1){
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		step1 = false;
+		step2 = true;
+	}
+	/*
+	step2
+		drive forward up to tote as needed
+		close piston when there
+		decide on next step
+	*/
+	if (step2)
 	{
-		//initial drive
-		if(he->getEncoder()->getRate() < 700)
+		if (getForwardAverage() < 20 - LIFT_DEADZONE)
+			drive->drive(.5,0,0);
+		else if (getForwardAverage() > 20 + LIFT_DEADZONE)
+			drive->drive(-.5, 0, 0);
+		else
 		{
-			drive->drive(0.05, 0 , 0);
-		}
-		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
-		{
-			//manip->openForkLift(false);
-		}	
-		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
-		{
-			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
-		}
-		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
-		{
-			//manip->openForkLift(true);
-		}
-		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
-		{	
-			//manip->openSecondTier(false);
-		}	
-		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
-		{	
-			//manip->moveLift(-0.7);
-		}
-		if(he->getEncoder()->getRate() < 427)
-		{
-			//manip->moveLift(false, false, 0);
-		}
-		if(he->getEncoder()->getRate() >700 )
-		{
-			drive->drive(0, 0.1, 0);
-		}
-	}	
-	//second tote
-	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 1482) // original value is 1480.74
-	{
-		if(he->getEncoder()->getRate() < 700)
-		{
-			drive->drive(0.05, 0 , 0);
-		}
-		if(he->getEncoder()->getRate() > 360 && he->getEncoder()->getRate() < 380) 
-		{
-			//manip->openForkLift(false);
-		}	
-		if(he->getEncoder()->getRate() > 380 && he->getEncoder()->getRate() < 390)
-		{
-			//manip->moveLift(0.7); // first parameter means to move up, second go down, third the motor speed.
-		}
-		if(he->getEncoder()->getRate() > 390 && he->getEncoder()->getRate() < 400)
-		{
-			//manip->openForkLift(true);
-		}
-		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() < 405)
-		{	
-			//manip->openSecondTier(false);
-		}	
-		if(he->getEncoder()->getRate() < 405 && he->getEncoder()->getRate() < 425)
-		{	
-			//manip->moveLift(-0.7);
-		}
-		if(he->getEncoder()->getRate() < 427)
-		{
-			//manip->moveLift(false, false, 0);
-		}
-		if(he->getEncoder()->getRate() >700 )
-		{
-			drive->drive(0, 0.1, 0);
+			step3 = true;
+			step4 = true;
+			manip->closePiston(true, true);
+			step2 = false;
 		}
 	}
-	//third tote; the turn would be to the left since it will drive backward
-	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 970) // original value is 968.80
+	/*
+	step3
+		reset drive encoders
+		move up to point where in we will turn to get the second tote
+		pick next step
+		reset drive encoders
+	*/
+	if (step3)
 	{
-		if(he->getEncoder()->getRate() <520)
-		{
-			drive->drive(0.05, 0, 0);
-		}	
-		if(he->getEncoder()->getRate() < 250 && he->getEncoder()->getRate() > 260)
-		{
-			//manip->openForkLift(false);
-		}		
-		if(he->getEncoder()->getRate() > 520)
-		{
-			drive->drive(0, -0.01, 0);
-		}
-	}
-	//drop off
-	frontRightEnc->Reset();
-	while(he->getEncoder()->getRate() < 1838) // original value is 1836.54
-	{
-		if(he->getEncoder()->getRate() < 670)
-		{
-			drive->drive(-0.05, 0, 0);
-		}	
-		if(he->getEncoder()->getRate() > 400 && he->getEncoder()->getRate() > 450)
-		{
-			//manip->moveLift(0.7);
-		}	
-		if(he->getEncoder()->getRate() > 450 && he->getEncoder()->getRate() < 460)
-		{
-			//manip->openForkLift(true);
-		}	
-		if(he->getEncoder()->getRate() > 465 && he->getEncoder()->getRate() < 470)
-		{
-			//manip->openSecondTier(false);
-		}	
-		if(he->getEncoder()->getRate() > 470 && he->getEncoder()->getRate() < 490)
-		{
-			//manip->moveLift(-0.7);
-		}					
-		if(he->getEncoder()->getRate() > 510 && he->getEncoder()->getRate() < 530)
-		{
-			//manip->moveLift(0.7);	
-		}	
-		if(he->getEncoder()->getRate() > 530 && he->getEncoder()->getRate() < 540)
-		{
-			//manip->openSeocndTier(true);
-		}
-		if(he->getEncoder()->getRate() > 670 && he->getEncoder()->getRate() < 690)
-		{
-			//manip->moveLift(-0.7);	
-		}
-		if(he->getEncoder()->getRate() > 690)
-		{
-			//manip->moveLift(0);	
-		}
-		if(he->getEncoder()->getRate() < 690)
-		{
-			drive->drive(-0.1, 0, 0);
-		}
-		if(he->getEncoder()->getRate() > 719)
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.5, 0, 0);
+		else if (getForwardAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(-.5, 0, 0);
+		else
 		{
 			drive->drive(0, 0, 0);
+			step3 = false;
+			step5 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
 		}
-	}	
-}
-//was third autonomous
-//manip->openSeocndTier(true); // true opens the grabber
-//manip->openForkLift(true); // true opens the grabber
-while(/*encoder value is less than certain value tbd) 
-{
-	drive->drive(0.05, 0 , 0);
-	if(/*encoder value is greater than value tbd & encoder value is less than value tbd) 
-	{
-		//manip->openForkLift(false);
-		//manip->moveLift(true, false, 0.7); // first parameter means to move up, seoncd go down, third the motor speed.
 	}
-	else
+	/*
+	step4
+		move lift up to the point in which second tier pistons will shut
+		reset lift encoder
+		decide which step
+	*/
+	if (step4)
 	{
-		//manip->openForkLift(true);
-		//manip->openSecondTier(false);
-		//manip->moveLift(false, true, 0.7);
+		if (manip->getLiftEncoder()->Get() < 30 - LIFT_DEADZONE)
+			manip->moveLift(.2);
+		else if (manip->getLiftEncoder()->Get() > 30 + LIFT_DEADZONE)
+			manip->moveLift(-.2);
+		else
+		{
+			manip->moveLift(0);
+			step4 = false;
+			manip->getLiftEncoder()->Reset();
+			manip->closePiston(false, true);
+			step6 = true;
+		}
+	}
+	/*
+	step5
+		turn until aligned to get to second tote
+		stop drive
+		reset encoders
+		decide next step
+	*/
+	if (step5)
+	{
+		if (getTurnAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(0, .5, 0);
+		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(0, -.5, 0);
+		else
+		{
+			drive->drive(0,0,0);
+			step5 = false;
+			step7 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+
+		}
+	}
+	/*
+	step6 
+		move lift down until limit swich is pressed
+		reset encoders, stop motor
+	*/
+	if (step6)
+	{
+		if (!manip->getLimitSwitch(false)->limitSwitchIsPressed())
+		{
+			manip->moveLift(-.3);
+		}else
+		{
+			manip->moveLift(0);
+			manip->openPiston(true, true);
+			manip->getLiftEncoder()->Reset();
+			step6 = false;
+		}
+	}
+	/*
+	step7
+		drive until you reach the next tote
+		close pistons
+		go to step 4 to repeat process with lift
+		reset encoders
+	*/
+	if (step7)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.5, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.5, 0, 0);
+		else
+		{
+			step7 = false;
+			drive->drive(0, 0, 0);
+			manip->closePiston(true, true);
+			step4 = true;
+			step8 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+
+		}
+	}
+	/*
+	step8
+		turn until we're ready to move forward across the bump
+		stop drive, reset encoders
+	*/
+	if (step8)
+	{
+		if (getTurnAverage() < 200 - LIFT_DEADZONE)
+			drive->drive(0, .5, 0);
+		else if (getTurnAverage() > 200 + LIFT_DEADZONE)
+			drive->drive(0, -.5, 0);
+		else
+		{
+			drive->drive(0,0,0);
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+			step8 = false;
+			step9 = true;
+		}
+	}
+	/*
+	step9
+		drive across bump
+		stop when across
+		reset encoders
+	*/
+	if (step9)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.5, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.5, 0, 0);
+		else
+		{
+			drive->drive(0, 0, 0);
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+			step9 = false;
+		}
 	}
 }
-//got first tote
-while(/*encoder value is less than certain value tbd)
+
+void HematologistAutonomous::getThreeTotes()
 {
-	//manip->moveLift(false, false, 0);
-	drive->drive(0, 0, 0.1);
-}
-//first turn 
-while(/*encoder value is less than certain value tbd)
-{
-	drive->drive(0.05, 0, 0);
-	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
-	{
-		//manip->openForkLift(false);
-		//manip->moveLift(true, false, 0.7);
-		//manip->openSeocndTier(true);
+	/*
+	step1
+		reset encoders
+		decide which step to go from there
+	*/
+	if (step1){
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		step1 = false;
+		step2 = true;
 	}
-	else
+	/*
+	step2
+		drive forward up to tote as needed
+		close piston when there
+		decide on next step
+	*/
+	if (step2)
 	{
-		//manip->openForkLift(true);
-		//manip->openSecondTier(false);
-		//manip->moveLift(false, true, 0.7);
+		if (getForwardAverage() < 20 - LIFT_DEADZONE)
+			drive->drive(.1,0,0);
+		else if (getForwardAverage() > 20 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step3 = true;
+			step4 = true;
+			manip->closePiston(true, true);
+			step2 = false;
+		}
+	}
+	/*
+	step3
+		reset drive encoders
+		move up to point where in we will turn to get the second tote
+		pick next step
+		reset drive encoders
+	*/
+	if (step3)
+	{
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			drive->drive(0, 0, 0);
+			step3 = false;
+			step5 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+		}
+	}
+	/*
+	step4
+		move lift up to the point in which second tier pistons will shut
+		reset lift encoder
+		decide which step
+	*/
+	if (step4)
+	{
+		if (manip->getLiftEncoder()->Get() < 30 - LIFT_DEADZONE)
+			manip->moveLift(.1);
+		else if (manip->getLiftEncoder()->Get() > 30 + LIFT_DEADZONE)
+			manip->moveLift(-.1);
+		else
+		{
+			manip->moveLift(0);
+			step4 = false;
+			manip->getLiftEncoder()->Reset();
+			manip->closePiston(false, true);
+			step6 = true;
+		}
+	}
+	/*
+	step5
+		turn until aligned to get to second tote
+		stop drive
+		reset encoders
+		decide next step
+	*/
+	if (step5)
+	{
+		if (getTurnAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(0, .3, 0);
+		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(0, -.3, 0);
+		else
+		{
+			drive->drive(0,0,0);
+			step5 = false;
+			step7 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+
+		}
+	}
+	/*
+	step6 
+		move lift down until limit swich is pressed
+		reset encoders, stop motor
+	*/
+	if (step6)
+	{
+		if (!manip->getLimitSwitch(false)->limitSwitchIsPressed())
+		{
+			manip->moveLift(-.1);
+		}else
+		{
+			manip->moveLift(0);
+			manip->openPiston(true, true);
+			manip->getLiftEncoder()->Reset();
+			step6 = false;
+		}
+	}
+	/*
+	step7
+		drive until you reach the next tote
+		close pistons
+		go to step 4 to repeat process with lift
+		reset encoders
+	*/
+	if (step7)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step7 = false;
+			drive->drive(0, 0, 0);
+			manip->closePiston(true, true);
+			step4 = true;
+			step8 = true;
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+		}
+	}
+	/*
+	step8
+		turn to align to third tote
+		reset encoders, stop motors
+	*/
+	if(step8)
+	{
+		if (getTurnAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(0, .1, 0);
+		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(0, -.1, 0);
+		else
+		{
+			step8 = false;
+			drive->drive(0, 0, 0);
+			drive->getEncoder(true, true)->Reset();
+			drive->getEncoder(true, false)->Reset();
+			drive->getEncoder(false, true)->Reset();
+			drive->getEncoder(false, false)->Reset();
+			step9 = true;
+		}
+	}
+	/*
+	step9
+		move towrard third tote
+		when there, close piston
+		reset encoders, start 4
+	*/
+	if (step9)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step9 = false;
+			drive->drive(0, 0, 0);
+			manip->closePiston(true, true);
+			step4 = true;
+			step10 = true;
+		}
+	}
+	/*
+	step10
+		turn to move to loading zone
+		stop, reset encoders
+	*/
+	if (step10)
+	{
+		if (getTurnAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getTurnAverage() > 100 + LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else 
+		{
+			step10 = false;
+			drive->drive(0, 0, 0);
+			step11 = true;
+		}
+	}
+	if (step11)
+	{
+		if (getForwardAverage() < 100 - LIFT_DEADZONE)
+			drive->drive(.1, 0, 0);
+		else if (getForwardAverage() > 100 - LIFT_DEADZONE)
+			drive->drive(-.1, 0, 0);
+		else
+		{
+			step11 = false;
+			drive->drive(0, 0, 0);
+		}
 	}
 }
-//picked up second tote
-while(/*encoder value is less than certain value tbd)
+
+
+
+int HematologistAutonomous::getStrafeAverage()
 {
-	//manip->moveLift(false, false, 0);
-	drive->drive(0, 0, -0.1);
-}
-//second turn
-while(/*encoder value is less than certain value tbd)
-{
-	drive->drive(0.05, 0, 0);
-	if(/*encoder value is greater than value tbd & encoder value is less than value tbd)
-	{
-		//manip->openForkLift(false);
-		//manip->moveLift(true, false, 0.7);
-	}
-	else
-	{
-		//manip->openForkLift(true);
-		//manip->openSecondTier(false);
-		//manip->moveLift(false, true, 0.7);
-	}
-}
-//picked up third tote
-while(/*encoder value is less than certain value tbd)
-{
-	//manip->moveLift(false, false, 0);
-	drive->drive(0, 0, -0.01);
-}
-//third turn(last turn) turning left and go bakcward
-while(/*encoder value is less than certain value tbd)
-{
-	drive->drive(-0.05, 0, 0);
-	drive->drive(0, 0, 0);
-	//manip->moveLift(true, false, 0.7);
-	//manip->openSeocndTier(true);
-	//manip->moveLift(false, true, 0.7);
-	//manip->moveLift(false, false, 0);
-	drive->drive(-0.1, 0, 0);
-}
-//drive backward
-while(/*encoder value is less than certain value tbd)
-{
-	drive->drive(0, 0, 0);
-	while(/*encoder value is less than certain value tbd)
-	{
-		//manip->moveLift(true, false, 0.7);
-	}
+	return abs(drive->getEncoder(true, true)->Get() + drive->getEncoder(false, false)->Get() - drive->getEncoder(true, false)->Get() - drive->getEncoder(false, true)->Get())/4;
 	
-	//manip->openSeocndTier(true);
-
-	while(/*encoder value is less than certain value tbd)
-	{
-		//manip->moveLift(false, true, 0.7);
-	}
-
-	if(/*encoder value is less than certain value tbd)
-	{
-		//manip->moveLift(false, false, 0);
-		drive->drive(-0.1, 0, 0);
-	}
 }
-drive->drive(0, 0, 0);	
-*/
+int HematologistAutonomous::getTurnAverage()
+{
+	return abs(drive->getEncoder(true, true)->Get() + drive->getEncoder(false, true)->Get() - drive->getEncoder(true, false)->Get() - drive->getEncoder(false, false)->Get())/4;
+}
+int HematologistAutonomous::getForwardAverage()
+{
+	return (drive->getEncoder(true, true)->Get() + drive->getEncoder(false, true)->Get() + drive->getEncoder(true, false)->Get() + drive->getEncoder(false, false)->Get())/4;
+}
