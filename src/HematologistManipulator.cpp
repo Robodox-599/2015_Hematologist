@@ -62,19 +62,22 @@ void HematologistManipulator::moveLift(float speed)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
-		}else
+		}
+		else
 		{
 			if (-speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(-speed);
 				rightLiftMotor->Set(-speed);
-			}else
+			}
+			else
 			{
 				leftLiftMotor->Set(0);
 				rightLiftMotor->Set(0);
 			}
 		}
-	}else
+	}
+	else
 	{
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
@@ -83,25 +86,29 @@ void HematologistManipulator::moveLift(float speed)
 			{
 				leftLiftMotor->Set(0);
 				rightLiftMotor->Set(0);
-			}else
+			}
+			else
 			{
 				if (-speed > DEADZONE)
 				{
 					leftLiftMotor->Set(-speed);
 					rightLiftMotor->Set(-speed);
-				}else
+				}
+				else
 				{
 					leftLiftMotor->Set(0);
 					rightLiftMotor->Set(0);
 				}
 			}
-		}else
+		}
+		else
 		{
 			if (-speed > DEADZONE || -speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(-speed);
 				rightLiftMotor->Set(-speed);
-			}else
+			}
+			else
 			{
 				leftLiftMotor->Set(0);
 				rightLiftMotor->Set(0);
@@ -167,7 +174,8 @@ void HematologistManipulator::activateForklift(bool change)
 		{
 			forkliftPiston->Set(DoubleSolenoid::kForward);
 			forkliftOpen = false;
-		}else
+		}
+		else
 		{
 			forkliftPiston->Set(DoubleSolenoid::kForward);
 			forkliftOpen = true;
@@ -183,7 +191,8 @@ void HematologistManipulator::activateSecondTier(bool change)
 		{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
 			secondTierOpen = false;
-		}else
+		}
+		else
 		{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			secondTierOpen = true;
@@ -225,7 +234,8 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 			rightLiftMotor->Set(-.2);
 			automaticActivation = false;
 		}
-	}else
+	}
+	else
 		return;
 }
 
@@ -251,7 +261,8 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 			secondTierPiston->Set(DoubleSolenoid::kForward);
 			secondTierOpen = true;
 		}
-	}else
+	}
+	else
 		return;
 }
 
@@ -263,11 +274,13 @@ void HematologistManipulator::closePiston(bool forklift, bool open)
 			forkliftPiston->Set(DoubleSolenoid::kForward);
 			forkliftOpen = false;
 		}
-		else{
+		else
+		{
 			secondTierPiston->Set(DoubleSolenoid::kReverse);
 			secondTierOpen = false;
 		}
-	}else
+	}
+	else
 		return;
 }
 
@@ -301,7 +314,8 @@ void HematologistManipulator::openBinHugger(bool open)
 	{
 		binHuggerPiston->Set(DoubleSolenoid::kReverse);
 		binHuggerOpen = false;
-	}else
+	}
+	else
 		return;
 }
 
@@ -311,7 +325,8 @@ void HematologistManipulator::closeBinHugger(bool close)
 	{
 		binHuggerPiston->Set(DoubleSolenoid::kForward);
 		binHuggerOpen = false;
-	}else
+	}
+	else
 		return;
 }
 
@@ -342,7 +357,8 @@ void HematologistManipulator::longArmOpenStep3(bool step3)
 {
 	if (!(longArmOpen1 && longArmOpen2))
 		longArmOpen3= false;
-	else{
+	else
+	{
 		if (step3)
 			longArmOpen3 = step3;
 		else
@@ -355,7 +371,8 @@ std::string HematologistManipulator::warningFromLongArm()
 	if (longArmOpen1&& longArmOpen2)
 	{
 		return "Press the trigger and the long arm will come out";
-	}else
+	}
+	else
 	{
 		return "Press buttons 3 or 2 to begin process of moving the long arm";
 	}
@@ -383,7 +400,8 @@ void HematologistManipulator::longArmCloseStep3(bool step3)
 	if (!(longArmClose1 && longArmClose2))
 	{
 		longArmClose3 = false;
-	}else
+	}
+	else
 	{
 		if (step3)
 			longArmClose3 = step3;
