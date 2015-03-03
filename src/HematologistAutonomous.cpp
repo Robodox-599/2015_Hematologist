@@ -24,6 +24,7 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 	step17	= false;	//this step will not start, must be told when to	
 	step18	= false;	//this step will not start, must be told when to		
 }
+
 HematologistAutonomous::~HematologistAutonomous(){
 	delete drive;
 	delete manip;

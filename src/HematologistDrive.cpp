@@ -50,6 +50,7 @@ HematologistDrive::~HematologistDrive()
 	gyro = NULL;
 }
 
+//set forward/backward speed
 float HematologistDrive::setForward(float forward)
 {
 	if (forward > DEADZONE || forward < -DEADZONE)
@@ -63,6 +64,7 @@ float HematologistDrive::setForward(float forward)
 	return this->forward;
 }
 
+//set turning speed
 float HematologistDrive::setTurn(float turn)
 {
 	if(gyroOn){
@@ -86,7 +88,7 @@ float HematologistDrive::setTurn(float turn)
 	return this->turn;
 }
 
-
+//set strafing speed
 float HematologistDrive::setStrafe(float strafe)
 {
 	if (strafe > DEADZONE || strafe < -DEADZONE)
@@ -97,6 +99,7 @@ float HematologistDrive::setStrafe(float strafe)
 	return this->strafe;
 }
 
+//instead of jumping to drive cmd out of deadzone this linearizes input
 float HematologistDrive::linearizeDrive(float driveInput)
 {
 	if (driveInput > DEADZONE)
@@ -110,14 +113,10 @@ float HematologistDrive::linearizeDrive(float driveInput)
 
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
-#if 1
 	setForward(-forward);
 	setTurn(turn);
 	setStrafe(strafe);
-#endif
-#if 0
 
-#endif
 	frontLeftMotor->Set(linearizeDrive(-forward - strafe + turn));
 	frontRightMotor->Set(linearizeDrive(forward + strafe + turn));
 	backLeftMotor->Set(linearizeDrive(-forward + strafe + turn));

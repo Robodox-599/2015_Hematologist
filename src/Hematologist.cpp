@@ -7,6 +7,7 @@
 class Hematologist: public IterativeRobot
 {
 private:
+	//Object initializations
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
@@ -17,11 +18,13 @@ private:
 	IMAQdxError imaqError;
 
 	void RobotInit(){
+		//Object declarations
 		oi = new HematologistOperatorInterface();
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 		auton = new HematologistAutonomous(drive, manip, oi);
-#if 1
+
+		// below is code Milee found online
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
 
@@ -35,7 +38,6 @@ private:
 		if(imaqError != IMAQdxErrorSuccess) {
 			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
 		}
-#endif
 	}
 
 	void AutonomousInit(){
@@ -52,8 +54,6 @@ private:
 
 	void TeleopPeriodic()
 	{
-
-#if 1
 		// acquire images
 		IMAQdxStartAcquisition(session);
 		// grab an image, draw the circle, and provide it for the camera server which will
@@ -67,7 +67,7 @@ private:
 			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
-#endif
+
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
 
@@ -81,15 +81,9 @@ private:
 		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_OPEN_BUTTON));		//open forklift
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_CLOSE_BUTTON));	//close forklift
 
-		//manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
-		//manip->automaticallyOpenTier();
-
-#if 1
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
-#endif
 
-#if 1
 		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
@@ -100,13 +94,10 @@ private:
 
 		manip->longArmMoveIn();		//close
 		manip->longArmMoveOut();	//open
-#endif
 
 /*gyro stuff*/
-#if 1
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
 		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
-#endif
 		printSmartDashboard();
 	}
 
@@ -116,32 +107,16 @@ private:
 	void printSmartDashboard()
 	{
 
-#if 1
 		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
-#endif
 
-#if 1
 		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
 		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
 		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
-#endif 
 
-#if 1
 		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
 		oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
-#endif
 
-#if 0
-		//joysticks
-		oi->getDashboard()->PutNumber("Left Drive Y:", oi->getJoystick('L')->GetY());
-		oi->getDashboard()->PutNumber("Right Drive Y:", oi->getJoystick('R')->GetY());
-		oi->getDashboard()->PutNumber("Manip Drive Y:", oi->getJoystick('M')->GetY());
-		oi->getDashboard()->PutNumber("Left Drive X:", oi->getJoystick('L')->GetX());
-#endif
-
-
-#if 1
 		//encoder values
 		oi->getDashboard()->PutNumber("FrontRight Encoder:", drive->getEncoder(true, true)->Get());
 		oi->getDashboard()->PutNumber("FrontLeft Encoder:", drive->getEncoder(true, false)->Get());
@@ -149,35 +124,7 @@ private:
 		oi->getDashboard()->PutNumber("BackLeft Encoder:", drive->getEncoder(false, false)->Get());
 
 		oi->getDashboard()->PutNumber("LiftEncoder", manip->getLiftEncoder()->Get());
-#endif
 
-#if 0
-		//values given to motors
-		oi->getDashboard()->PutNumber("Forward:", drive->setForward(-oi->getJoystick('L')->GetY()));
-		oi->getDashboard()->PutNumber("Turn:", drive->setForward(-oi->getJoystick('L')->GetX()));
-		oi->getDashboard()->PutNumber("Strafe:", drive->setForward(oi->getJoystick('R')->GetX()));
-#endif
-
-#if 0
-		//forklift
-		oi->getDashboard()->PutBoolean("forklift state:", manip->getForkliftState());
-		oi->getDashboard()->PutNumber("forklift value:", manip->getForkliftPiston()->Get());
-		oi->getDashboard()->PutBoolean("forklift open:", manip->forkliftIsOpen());
-#endif
-
-#if 0
-		//second tier
-		oi->getDashboard()->PutBoolean("second tier state:", manip->getSecondTierState());
-		oi->getDashboard()->PutNumber("second tier value:", manip->getSecondTierPiston()->Get());
-		oi->getDashboard()->PutBoolean("second tier is open", manip->secondTierIsOpen());
-#endif
-
-#if 0
-		//constants
-		oi->getDashboard()->PutNumber("kForward", DoubleSolenoid::kForward);
-		oi->getDashboard()->PutNumber("kOff", DoubleSolenoid::kOff);
-		oi->getDashboard()->PutNumber("kReverse", DoubleSolenoid::kReverse);
-#endif
 	}
 };
 
