@@ -123,6 +123,8 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	backRightMotor->Set(linearizeDrive(forward - strafe + turn));
 }
 
+//gets drive encoder
+//For example: If front and right encoder, call getEncoder(true,true)
 Encoder* HematologistDrive::getEncoder(bool front, bool right)
 {
   if (front)
@@ -141,6 +143,8 @@ Encoder* HematologistDrive::getEncoder(bool front, bool right)
   }
 }
 
+//gets drive Talon
+//For example: If front and right encoder, call getTalon(true,true)
 Talon* HematologistDrive::getDriveTalon(bool front, bool right)
 {
   if (front)

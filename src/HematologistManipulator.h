@@ -75,6 +75,8 @@ public:
   	DoubleSolenoid* getForkliftPiston();
   	DoubleSolenoid* getSecondTierPiston();
 
+  	//if params are true open forklift
+  	//if 1st param is false and 2nd is true open 2nd tier
   	void openPiston(bool forklift, bool open);
   	void closePiston(bool forklift, bool close);
 

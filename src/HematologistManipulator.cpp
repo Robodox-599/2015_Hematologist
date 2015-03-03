@@ -8,6 +8,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
+	//if params are true open forklift
+	//if 1st param is false and 2nd is true open 2nd tier
 	openPiston(true, true);
 	openPiston(false, true);
 
@@ -249,6 +251,8 @@ DoubleSolenoid* HematologistManipulator::getForkliftPiston()
 	return forkliftPiston;
 }
 
+//if params are true open forklift
+//if 1st param is false and 2nd is true open 2nd tier
 void HematologistManipulator::openPiston(bool forklift, bool open)
 {
 	if (open)
@@ -257,7 +261,9 @@ void HematologistManipulator::openPiston(bool forklift, bool open)
 		{
 			forkliftPiston->Set(DoubleSolenoid::kReverse);
 			forkliftOpen = true;
-		}else{
+		}
+		else
+		{
 			secondTierPiston->Set(DoubleSolenoid::kForward);
 			secondTierOpen = true;
 		}
