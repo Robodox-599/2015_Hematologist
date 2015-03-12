@@ -530,6 +530,11 @@ void HematologistAutonomous::getThreeTotes()
 	}
 }
 
+void HematologistAutonomous::longArmAuto()
+{
+	
+}
+
 
 
 int HematologistAutonomous::getStrafeAverage()
