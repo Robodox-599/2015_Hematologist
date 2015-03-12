@@ -43,7 +43,7 @@ private:
 	void AutonomousPeriodic(){
 		//auton->strafeRight();
 		//printSmartDashboard();
-		auton->getTwoTotes();
+		//auton->getTwoTotes();
 	}
 
 	void TeleopInit(){}
@@ -58,13 +58,12 @@ private:
 		if(imaqError != IMAQdxErrorSuccess) 
 		{
 			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
-		}else
-		{
+		}else{
 			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
 
-		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
+		drive->drive(oi->getJoystick('R')->GetY(), oi->getJoystick('R')->GetX(), oi->getJoystick('L')->GetX());
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
 
 		manip->moveLift(oi->getJoystick('M')->GetY());
@@ -83,23 +82,15 @@ private:
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
 
-		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
-		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
-		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
-
-		manip->longArmCloseStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_ENABLE_BUTTON));
-		manip->longArmCloseStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_CLOSE_ENABLE_BUTTON));
-		manip->longArmCloseStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
-
-		manip->longArmMoveIn();		//close
-		manip->longArmMoveOut();	//open
+		manip->longArmMoveIn(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
+		manip->longArmMoveOut(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
 
 		manip->openFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
 		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON));
 /*gyro stuff*/
-#if 1
+#if 0
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
 		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
 #endif
