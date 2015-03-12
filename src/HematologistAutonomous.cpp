@@ -571,10 +571,10 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (step4)
 	{
-		longArmOpenStep1(true);
-		longArmOpenStep2(true);
-		longArmOpenStep3(true);
-		longArmMoveOut();
+		manip->longArmOpenStep1(true);
+		manip->longArmOpenStep2(true);
+		manip->longArmOpenStep3(true);
+		manip->longArmMoveOut();
 		Wait(1000);
 		step4 = false;
 		step5 = true;
@@ -597,17 +597,17 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (step6)
 	{
-		longArmCloseStep1(true);
-		longArmCloseStep2(true);
-		longArmCloseStep3(true);
-		longArmMoveInt();
+		manip->longArmCloseStep1(true);
+		manip->longArmCloseStep2(true);
+		manip->longArmCloseStep3(true);
+		manip->longArmMoveIn();
 		Wait(1000);
 		step6 = false;
 		step7 = true;
 	}
 	if (step7)
 	{
-		closeFlaps(true);
+		manip->closeFlaps(true);
 		step7 = false;
 	}
 
