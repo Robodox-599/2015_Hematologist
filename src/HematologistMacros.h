@@ -3,13 +3,13 @@
 #include "WPILib.h"
 
 /*Joystick button mapping (for reference)
-Drive Joystick:
-	1 -		
-	2 -		
-	3 -		
-	4 -		
-	5 -		
-	6 -	 	
+Left Drive Joystick:
+	1 - activate
+	2 -	retract long arm
+	3 -	extend long arm
+	4 -	retract flaps
+	5 -	extend flaps
+	6 -
 	7 -	 	
 	8 -		
 	9 -		
@@ -46,20 +46,15 @@ Manip Joystick:
 #define FORKLIFT_CLOSE_BUTTON				(7)	
 #define START_COMPRESSOR_BUTTON				(8)
 #define STOP_COMPRESSOR_BUTTON				(9)
-#define FLAPS_CLOSE_BUTTON					(10)
-#define FLAPS_OPEN_BUTTON					(11)
 
 //drive
 
-//left + right
-#define LONG_ARM_TRIGGER_BUTTON				(1)
-#define LONG_ARM_OPEN_ENABLE_BUTTON			(3)		//TODO: get correct number
-#define LONG_ARM_CLOSE_ENABLE_BUTTON		(7)		//TODO: get correct number
-
-//left
-#define GYRO_ON_BUTTON						(11)
-#define GYRO_OFF_BUTTON						(10)
-#define RESET_ENCODER_BUTTON				(9)
+//left (but in code the right joystick)
+#define ACTIVATE_LONG_ARM					(1)
+#define LONG_ARM_OPEN_BUTTON				(3)
+#define LONG_ARM_CLOSE_BUTTON				(2)
+#define FLAPS_CLOSE_BUTTON					(4)
+#define FLAPS_OPEN_BUTTON					(5)
 
 
 //Motor Channels
