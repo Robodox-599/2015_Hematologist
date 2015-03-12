@@ -49,11 +49,12 @@ public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
 
+	//Open or Closed?
 	bool getSecondTierState();
 	bool getForkliftState();
 
+
 	void resetEncoders();
-	void toggleCompressor(bool start, bool stop);
 
 	void moveLift(float speed);
 
