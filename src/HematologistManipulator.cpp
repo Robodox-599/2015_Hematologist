@@ -8,16 +8,22 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
+	longArmFlapOpen = new Relay(LONG_ARM_RELAY_OPEN_CHANNEL);
+	longArmFlapClose = new Relay(LONG_ARM_RELAY_CLOSE_CHANNEL);
+
 	openPiston(true, true);
 	openPiston(false, true);
 
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
 
+	leftRollerMotor = new Talon(LEFT_ROLLER_MOTOR_CHANNEL);
+	rightRollerMotor = new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
+
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
 	compressor = new Compressor(0);
 
-	toggleCompressor(true, false);
+	compressor->SetClosedLoopControl(true);
 
 	this->manipJoystick = manipJoystick;
 
@@ -28,6 +34,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	forkliftOpen = true;
 	secondTierOpen = true;
+
+	flapsIsOpen = false;
 
 	automaticActivation = false;
 
@@ -117,35 +125,12 @@ void HematologistManipulator::moveLift(float speed)
 	}
 }
 
-void HematologistManipulator::toggleCompressor(bool start, bool stop)
-{
-	if (start)
-		compressor->SetClosedLoopControl(start);
-	if (stop)
-		compressor->SetClosedLoopControl(stop);
-}
-
 HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch(bool top)
 {
 	if (top)
 		return topLimitSwitch;
 	else
 		return bottomLimitSwitch;
-}
-
-void HematologistManipulator::activateCompressor(bool start)
-{
-	if (start)
-		compressor->Start();
-	else
-		compressor->Stop();
-}
-
-void HematologistManipulator::controlCompressor(bool change)
-{
-	if (change)
-		compressorOn = !compressorOn;
-	activateCompressor(compressorOn);
 }
 
 bool HematologistManipulator::getCompressorOn()
@@ -164,40 +149,6 @@ Talon* HematologistManipulator::getManipTalon(bool right)
 Encoder* HematologistManipulator::getLiftEncoder()
 {
   return liftEncoder;
-}
-
-void HematologistManipulator::activateForklift(bool change)
-{
-	if (change)
-	{
-		if (forkliftPiston->Get() == DoubleSolenoid::kReverse)
-		{
-			forkliftPiston->Set(DoubleSolenoid::kForward);
-			forkliftOpen = false;
-		}
-		else
-		{
-			forkliftPiston->Set(DoubleSolenoid::kForward);
-			forkliftOpen = true;
-		}
-	}
-}
-
-void HematologistManipulator::activateSecondTier(bool change)
-{
-	if (change)
-	{
-		if (secondTierPiston->Get() == DoubleSolenoid::kReverse)
-		{
-			secondTierPiston->Set(DoubleSolenoid::kForward);
-			secondTierOpen = false;
-		}
-		else
-		{
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
-			secondTierOpen = true;
-		}
-	}
 }
 
 bool HematologistManipulator::getSecondTierState()
@@ -298,7 +249,7 @@ void HematologistManipulator::turnOnCompressor(bool start)
 {
 	if (start){
 		compressor->Start();
-		compressorOn = true;
+		compressorOn = tru
 	}
 	return;
 }
@@ -429,4 +380,53 @@ void HematologistManipulator::automaticallyOpenTier()
 	}
 	if (liftEncoder->Get() > 1800 + LIFT_DEADZONE)
 		automaticActivation = false;
+}
+
+Relay* HematologistManipulator::getLongArmFlap(bool open)
+{
+	if (open)
+		return longArmFlapOpen;
+	else
+		return longArmFlapClose;
+}
+
+bool HematologistManipulator::flapsIsOpen()
+{
+	return flapsIsOpen;
+}
+
+void HematologistManipulator::openFlaps(bool open)
+{
+	if (open)
+	{
+		longArmFlapOpen->Set(Relay::kOn);
+		longArmFlapClose->Set(Relay::kOff);
+		flapsIsOpen = true;
+	}else
+		return;
+}
+
+void HematologistManipulator::closeFlaps(bool close)
+{
+	if (close)
+	{
+		longArmFlapOpen->Set(Relay::kOff);
+		longArmFlapClose->Set(Relay::kOn);
+		flapsIsOpen = false;
+	}else
+		return;
+}
+
+void HematologistManipulator::ToggleRollers(bool toggle)
+{
+	if(toggle)
+	{
+		leftRollerMotor->Set(1);
+		rightRollerMotor->Set(1);
+	}
+	else
+    {
+    	leftRollerMotor->Set(0);
+    	rightRollerMotor->Set(0);
+    }
 }

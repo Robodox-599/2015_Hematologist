@@ -59,6 +59,8 @@ Manip Joystick:
 #define BACK_RIGHT_MOTOR_CHANNEL			(2)
 #define LEFT_LIFT_MOTOR_CHANNEL				(5)		
 #define RIGHT_LIFT_MOTOR_CHANNEL			(6)		
+#define LEFT_ROLLER_MOTOR_CHANNEL           ()
+#define RIGHT_ROLLER_MOTOR_CHANNEL          ()
 
 //Solenoids
 #define FORKLIFT_PISTON_CHANNEL_A			(0)		
@@ -69,6 +71,10 @@ Manip Joystick:
 #define BIN_HUGGER_PISTON_CHANNEL_B			(4)	
 #define SECOND_TIER_PISTON_CHANNEL_A		(7)
 #define SECOND_TIER_PISTON_CHANNEL_B 		(6)
+
+//Relays
+#define LONG_ARM_RELAY_OPEN_CHANNEL			(1)	//TODO: get correct number
+#define LONG_ARM_RELAY_CLOSE_CHANNEL			(2)	//TODO: get correct number
 
 //Encoders
 #define BACK_RIGHT_ENCODER_CHANNEL_A  (0)   
