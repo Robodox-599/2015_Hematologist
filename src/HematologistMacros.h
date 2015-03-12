@@ -71,8 +71,8 @@ Manip Joystick:
 #define SECOND_TIER_PISTON_CHANNEL_B 		(6)
 
 //Relays
-#define LONG_ARM_RELAY_CHANNEL_1			(1)	//TODO: get correct number
-#define LONG_ARM_RELAY_CHANNEL_2			(2)	//TODO: get correct number
+#define LONG_ARM_RELAY_OPEN_CHANNEL			(1)	//TODO: get correct number
+#define LONG_ARM_RELAY_CLOSE_CHANNEL			(2)	//TODO: get correct number
 
 //Encoders
 #define BACK_RIGHT_ENCODER_CHANNEL_A  (0)   

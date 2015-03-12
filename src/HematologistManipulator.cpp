@@ -8,8 +8,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
-	longArmFlap1 = new Relay(LONG_ARM_RELAY_CHANNEL_1);
-	longArmFlap2 = new Relay(LONG_ARM_RELAY_CHANNEL_2);
+	longArmFlapOpen = new Relay(LONG_ARM_RELAY_OPEN_CHANNEL);
+	longArmFlapClose = new Relay(LONG_ARM_RELAY_CLOSE_CHANNEL);
 
 	openPiston(true, true);
 	openPiston(false, true);
@@ -407,4 +407,13 @@ Relay* HematologistManipulator::getRelay(int whichOne)
 bool HematologistManipulator::flapsIsOpen()
 {
 	return flapsIsOpen;
+}
+
+void HematologistManipulator::openFlaps(bool open)
+{
+	if (open)
+	{
+
+	}else
+		return;
 }

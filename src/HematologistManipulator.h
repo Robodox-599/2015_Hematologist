@@ -12,8 +12,8 @@ private:
 	DoubleSolenoid* forkliftPiston;
 	DoubleSolenoid* longArmPiston;
 
-	Relay* longArmFlap1;
-	Relay* longArmFlap2;
+	Relay* longArmFlapOpen;
+	Relay* longArmFlapClose;
 
 	Joystick* manipJoystick;
 
@@ -97,6 +97,9 @@ public:
 	void longArmMoveIn();
 
 	void automaticallyOpenTier();
+
+	void openFlaps(bool open);
+	void closeFlaps(bool close);
 
 
 };
