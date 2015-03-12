@@ -44,12 +44,10 @@ private:
 	bool disableEncoders;
 
 public:
+
+	//Constructor
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
-
-	void openBinHugger();
-	void openForklift();
-	void openSecondTier();
 
 	void activateForklift(bool open);
 	void activateSecondTier(bool open);
