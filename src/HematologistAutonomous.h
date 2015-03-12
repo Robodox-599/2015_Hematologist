@@ -47,6 +47,7 @@ public:
 	void strafeRight();
 	void getTwoTotes();
 	void getThreeTotes();
+	void longArmAuto();
 
 	int getStrafeAverage();
 	int getTurnAverage();

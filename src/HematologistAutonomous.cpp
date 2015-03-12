@@ -530,6 +530,96 @@ void HematologistAutonomous::getThreeTotes()
 	}
 }
 
+void HematologistAutonomous::longArmAuto()
+{
+	if (step1)
+	{
+		step1 = false;
+		step2 = true;
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		manip->getLiftEncoder()->Reset();
+		manip->closePiston(false, true);
+		manip->closePiston(true, true);
+		manip->openFlaps(true);
+	}
+	if  (step2)
+	{
+		if (manip->getLiftEncoder() < 750 + LIFT_DEADZONE)
+		{
+			manip->moveLift( -.4);
+		}else
+		{
+			manip->moveLift(0);
+			step2 = false;
+			step3 = true;
+		}
+	}
+	if (step3)
+	{
+		if (getForwardAverage() < 400 + LIFT_DEADZONE)
+		{
+			drive->drive(.5, 0, 0);
+		}else
+		{
+			drive->drive(0, 0, 0);
+			step3 = false;
+			step4 = true;
+		}
+	}
+	if (step4)
+	{
+		longArmOpenStep1(true);
+		longArmOpenStep2(true);
+		longArmOpenStep3(true);
+		longArmMoveOut();
+		Wait(1000);
+		step4 = false;
+		step5 = true;
+	}
+	if (step5)
+	{
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
+		if (getForwardAverage() > -1200 - LIFT_DEADZONE)
+		{
+			drive->drive(.5, 0, 0);
+		}else
+		{
+			step5 = false;
+			drive->drive(0, 0, 0);
+			step6 = true;
+		}
+	}
+	if (step6)
+	{
+		longArmCloseStep1(true);
+		longArmCloseStep2(true);
+		longArmCloseStep3(true);
+		longArmMoveInt();
+		Wait(1000);
+		step6 = false;
+		step7 = true;
+	}
+	if (step7)
+	{
+		closeFlaps(true);
+		step7 = false;
+	}
+
+	//step1: actuate pistons on long arm (open the flap)
+	//step2: move lift up a little
+	//step3: drive forward for some amount
+	//step4: move long arm out
+	//step5: drive back into autozone
+	//step6: move logn arm in
+	//step7: close flaps
+}
+
 
 
 int HematologistAutonomous::getStrafeAverage()
