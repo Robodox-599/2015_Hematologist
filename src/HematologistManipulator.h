@@ -49,30 +49,26 @@ public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
 
-	//Open or Closed?
+	//Get Functions
 	bool getSecondTierState();
 	bool getForkliftState();
-
-
-	void resetEncoders();
-
-	void moveLift(float speed);
-
 	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
-
-	void activateCompressor(bool start);
-
-	void controlCompressor(bool change);
-
 	bool getCompressorOn();
-
 	Talon* getManipTalon(bool right);
 	Encoder* getLiftEncoder();
+	DoubleSolenoid* getForkliftPiston();
+	DoubleSolenoid* getSecondTierPiston();
+	bool compressorIsOn();
+	bool binHuggerIsOpen();
+  	bool forkliftIsOpen();
+  	bool secondTierIsOpen();
 
+	//Functionality of Manip
+	void resetEncoders();
+	void moveLift(float speed);
+	void activateCompressor(bool start);
+	void controlCompressor(bool change);
   	void automaticallyActivate(bool activate);
-
-  	DoubleSolenoid* getForkliftPiston();
-  	DoubleSolenoid* getSecondTierPiston();
 
   	void openPiston(bool forklift, bool open);
   	void closePiston(bool forklift, bool close);
@@ -80,14 +76,8 @@ public:
   	void turnOnCompressor(bool start);
   	void turnOffCompressor(bool stop);
 
-  	bool compressorIsOn();
-
   	void openBinHugger(bool open);
   	void closeBinHugger(bool close);
-
-  	bool binHuggerIsOpen();
-  	bool forkliftIsOpen();
-  	bool secondTierIsOpen();
 
   	void longArmOpenStep1(bool step1);
   	void longArmOpenStep2(bool step2);
