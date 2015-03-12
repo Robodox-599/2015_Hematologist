@@ -52,6 +52,7 @@ Manip Joystick:
 #define RESET_ENCODER_BUTTON				(9)
 #define FLAPS_OPEN_BUTTON					(11)
 #define FLAPS_CLOSE_BUTTON					(10)
+#define TURN_ROLLERS_ON_BUTTON				(1)
 
 
 //Motor Channels
@@ -61,8 +62,8 @@ Manip Joystick:
 #define BACK_RIGHT_MOTOR_CHANNEL			(2)
 #define LEFT_LIFT_MOTOR_CHANNEL				(5)		
 #define RIGHT_LIFT_MOTOR_CHANNEL			(6)		
-#define LEFT_ROLLER_MOTOR_CHANNEL           ()
-#define RIGHT_ROLLER_MOTOR_CHANNEL          ()
+#define LEFT_ROLLER_MOTOR_CHANNEL           (7)		//TODO
+#define RIGHT_ROLLER_MOTOR_CHANNEL          (7)		//TODO
 
 //Solenoids
 #define FORKLIFT_PISTON_CHANNEL_A			(0)		

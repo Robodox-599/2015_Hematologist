@@ -105,6 +105,8 @@ private:
 #if 1
 		manip->openFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_CLOSE_BUTTON));
+
+		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON));
 #endif
 /*gyro stuff*/
 #if 1

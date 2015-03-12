@@ -249,7 +249,7 @@ void HematologistManipulator::turnOnCompressor(bool start)
 {
 	if (start){
 		compressor->Start();
-		compressorOn = tru
+		compressorOn = true;
 	}
 	return;
 }
@@ -392,7 +392,7 @@ Relay* HematologistManipulator::getLongArmFlap(bool open)
 
 bool HematologistManipulator::flapsIsOpen()
 {
-	return flapsIsOpen;
+	return flapsOpen;
 }
 
 void HematologistManipulator::openFlaps(bool open)
@@ -401,7 +401,7 @@ void HematologistManipulator::openFlaps(bool open)
 	{
 		longArmFlapOpen->Set(Relay::kOn);
 		longArmFlapClose->Set(Relay::kOff);
-		flapsIsOpen = true;
+		flapsOpen = true;
 	}else
 		return;
 }
@@ -412,12 +412,12 @@ void HematologistManipulator::closeFlaps(bool close)
 	{
 		longArmFlapOpen->Set(Relay::kOff);
 		longArmFlapClose->Set(Relay::kOn);
-		flapsIsOpen = false;
+		flapsOpen = false;
 	}else
 		return;
 }
 
-void HematologistManipulator::ToggleRollers(bool toggle)
+void HematologistManipulator::toggleRollers(bool toggle)
 {
 	if(toggle)
 	{
