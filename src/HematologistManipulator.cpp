@@ -32,6 +32,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftOpen = true;
 	secondTierOpen = true;
 
+	flapsIsOpen = false;
+
 	automaticActivation = false;
 
 	longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
@@ -400,4 +402,9 @@ Relay* HematologistManipulator::getRelay(int whichOne)
 		case 2: return longArmFlap2;
 		default: return longArmFlap1;
 	}
+}
+
+bool HematologistManipulator::flapsIsOpen()
+{
+	return flapsIsOpen;
 }

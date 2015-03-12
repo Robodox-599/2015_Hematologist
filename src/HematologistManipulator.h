@@ -64,6 +64,7 @@ public:
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
   	Relay* getLongArmFlap(int whichOne)
+  	bool flapsIsOpen();
 
 	//Functionality of Manip
 	void resetEncoders();
