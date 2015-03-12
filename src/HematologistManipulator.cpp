@@ -8,6 +8,9 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftPiston = new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	longArmPiston = new DoubleSolenoid(LONG_ARM_PISTON_CHANNEL_A, LONG_ARM_PISTON_CHANNEL_B);
 
+	longArmRelay1 = new Relay(LONG_ARM_RELAY_CHANNEL_1);
+	longArmRelay2 = new Relay(LONG_ARM_RELAY_CHANNEL_2);
+
 	openPiston(true, true);
 	openPiston(false, true);
 
