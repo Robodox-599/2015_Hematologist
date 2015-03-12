@@ -17,17 +17,17 @@ Drive Joystick:
 	11 -	
 
 Manip Joystick:
-	1 - 
-	2 - 
-	3 - 
-	4 - 	open bin hugger
-	5 - 	close bin hugger
+	1 -
+	2 - 	close binhugger
+	3 - 	open binhugger
+	4 - 	second tier open
+	5 - 	second tier close
 	6 -		open forklift
 	7 -		close forklift
 	8 -		start compressor
 	9 -		stop compressor
-	10 -	close second tier
-	11 -	open second tier
+	10 -
+	11 -
 	throttle -  roller speed
 */
 
@@ -50,6 +50,8 @@ Manip Joystick:
 #define GYRO_ON_BUTTON						(11)
 #define GYRO_OFF_BUTTON						(10)
 #define RESET_ENCODER_BUTTON				(9)
+#define FLAPS_OPEN_BUTTON					(11)
+#define FLAPS_CLOSE_BUTTON					(10)
 
 
 //Motor Channels
