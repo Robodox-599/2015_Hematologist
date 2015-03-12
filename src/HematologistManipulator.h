@@ -12,6 +12,9 @@ private:
 	DoubleSolenoid* forkliftPiston;
 	DoubleSolenoid* longArmPiston;
 
+	Relay* longArmRelay1;
+	Relay* longArmRelay2;
+
 	Joystick* manipJoystick;
 
 	Encoder* liftEncoder;
