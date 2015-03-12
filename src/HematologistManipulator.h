@@ -63,7 +63,7 @@ public:
 	bool binHuggerIsOpen();
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
-  	Relay* getLongArmFlap(int whichOne)
+  	Relay* getLongArmFlap(int whichOne);
   	bool flapsIsOpen();
 
 	//Functionality of Manip
