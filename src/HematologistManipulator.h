@@ -49,9 +49,6 @@ public:
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
 
-	void activateForklift(bool open);
-	void activateSecondTier(bool open);
-
 	bool getSecondTierState();
 	bool getForkliftState();
 

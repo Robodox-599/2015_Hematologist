@@ -166,40 +166,6 @@ Encoder* HematologistManipulator::getLiftEncoder()
   return liftEncoder;
 }
 
-void HematologistManipulator::activateForklift(bool change)
-{
-	if (change)
-	{
-		if (forkliftPiston->Get() == DoubleSolenoid::kReverse)
-		{
-			forkliftPiston->Set(DoubleSolenoid::kForward);
-			forkliftOpen = false;
-		}
-		else
-		{
-			forkliftPiston->Set(DoubleSolenoid::kForward);
-			forkliftOpen = true;
-		}
-	}
-}
-
-void HematologistManipulator::activateSecondTier(bool change)
-{
-	if (change)
-	{
-		if (secondTierPiston->Get() == DoubleSolenoid::kReverse)
-		{
-			secondTierPiston->Set(DoubleSolenoid::kForward);
-			secondTierOpen = false;
-		}
-		else
-		{
-			secondTierPiston->Set(DoubleSolenoid::kReverse);
-			secondTierOpen = true;
-		}
-	}
-}
-
 bool HematologistManipulator::getSecondTierState()
 {
 	return secondTierOpen;
