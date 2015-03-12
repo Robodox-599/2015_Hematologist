@@ -18,15 +18,15 @@ Drive Joystick:
 
 Manip Joystick:
 	1 -		turn rollers on
-	2 - 	close binhugger
-	3 - 	open binhugger
+	2 - 	bihugger close
+	3 - 	binhugger opem
 	4 - 	second tier open
 	5 - 	second tier close
-	6 -		open forklift
-	7 -		close forklift
+	6 -		forklift open
+	7 -		forklift close
 	8 -		start compressor
 	9 -		stop compressor
-	10 - 	flaps clsoe
+	10 - 	flaps close
 	11 -	flaps open
 	throttle -  roller speed
 */
@@ -86,8 +86,8 @@ Manip Joystick:
 #define SECOND_TIER_PISTON_CHANNEL_B 		(6)
 
 //Relays
-#define LONG_ARM_RELAY_OPEN_CHANNEL			(1)	//TODO: get correct number
-#define LONG_ARM_RELAY_CLOSE_CHANNEL			(2)	//TODO: get correct number
+#define LONG_ARM_RELAY_OPEN_CHANNEL			(0)
+#define LONG_ARM_RELAY_CLOSE_CHANNEL		(1)
 
 //Encoders
 #define BACK_RIGHT_ENCODER_CHANNEL_A  (0)   
