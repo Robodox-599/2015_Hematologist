@@ -394,14 +394,12 @@ void HematologistManipulator::automaticallyOpenTier()
 		automaticActivation = false;
 }
 
-Relay* HematologistManipulator::getRelay(int whichOne)
+Relay* HematologistManipulator::getLongArmFlap(bool open)
 {
-	switch(whichOne)
-	{
-		case 1: return longArmFlap1;
-		case 2: return longArmFlap2;
-		default: return longArmFlap1;
-	}
+	if (open)
+		return longArmFlapOpen;
+	else
+		return longArmFlapClose;
 }
 
 bool HematologistManipulator::flapsIsOpen()
