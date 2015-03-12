@@ -50,8 +50,6 @@ private:
 
 	void TeleopPeriodic()
 	{
-
-#if 1
 		// acquire images
 		IMAQdxStartAcquisition(session);
 		// grab an image, draw the circle, and provide it for the camera server which will
@@ -65,7 +63,7 @@ private:
 			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
-#endif
+
 		drive->drive(oi->getJoystick('L')->GetY(), oi->getJoystick('L')->GetX(), oi->getJoystick('R')->GetX());
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
 
@@ -82,12 +80,9 @@ private:
 		//manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
 		//manip->automaticallyOpenTier();
 
-#if 1
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
-#endif
 
-#if 1
 		manip->longArmOpenStep1(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep2(oi->getJoystick('R')->GetRawButton(LONG_ARM_OPEN_ENABLE_BUTTON));
 		manip->longArmOpenStep3(oi->getJoystick('L')->GetRawButton(LONG_ARM_TRIGGER_BUTTON) || oi->getJoystick('R')->GetRawButton(LONG_ARM_TRIGGER_BUTTON));
@@ -98,14 +93,11 @@ private:
 
 		manip->longArmMoveIn();		//close
 		manip->longArmMoveOut();	//open
-#endif
 
-#if 1
 		manip->openFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
 		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON));
-#endif
 /*gyro stuff*/
 #if 1
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
@@ -120,21 +112,17 @@ private:
 	void printSmartDashboard()
 	{
 
-#if 1
 		oi->getDashboard()->PutBoolean("Top Limit Switch:", manip->getLimitSwitch(true)->limitSwitchIsPressed());
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch:", manip->getLimitSwitch(false)->limitSwitchIsPressed());
-#endif
 
 #if 1
 		oi->getDashboard()->PutNumber("Encoder Forward Average:", auton->getForwardAverage());
 		oi->getDashboard()->PutNumber("Encoder Turn Average:", auton->getTurnAverage());
 		oi->getDashboard()->PutNumber("Encoder Strafe Average:", auton->getStrafeAverage());
-#endif 
+#endif
 
-#if 1
 		oi->getDashboard()->PutBoolean("Gyro On", drive->gyroIsOn());
 		oi->getDashboard()->PutNumber("Gyro Angle:", drive->getGyro()->GetAngle());
-#endif
 
 #if 0
 		//joysticks
