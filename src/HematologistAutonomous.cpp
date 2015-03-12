@@ -547,7 +547,7 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if  (step2)
 	{
-		if (manip->getLiftEncoder() < 750 + LIFT_DEADZONE)
+		if (manip->getLiftEncoder()->Get() < 750 + LIFT_DEADZONE)
 		{
 			manip->moveLift( -.4);
 		}else
