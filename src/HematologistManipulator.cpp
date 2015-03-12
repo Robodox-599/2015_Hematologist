@@ -391,3 +391,13 @@ void HematologistManipulator::automaticallyOpenTier()
 	if (liftEncoder->Get() > 1800 + LIFT_DEADZONE)
 		automaticActivation = false;
 }
+
+Relay* getRelay(int whichOne)
+{
+	switch(whichOne)
+	{
+		case 1: return longArmRelay1;
+		case 2: return longArmRelay2;
+		default: return longArmRelay1;
+	}
+}

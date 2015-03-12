@@ -62,6 +62,7 @@ public:
 	bool binHuggerIsOpen();
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
+  	Relay* getRelay(int whichOne);
 
 	//Functionality of Manip
 	void resetEncoders();
