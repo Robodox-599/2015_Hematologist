@@ -62,9 +62,6 @@ Manip Joystick:
 #define RESET_ENCODER_BUTTON				(9)
 
 
-
-
-
 //Motor Channels
 #define FRONT_LEFT_MOTOR_CHANNEL			(0)
 #define BACK_LEFT_MOTOR_CHANNEL				(1)
