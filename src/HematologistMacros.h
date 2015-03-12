@@ -55,6 +55,7 @@ Manip Joystick:
 #define LONG_ARM_CLOSE_BUTTON				(2)
 #define FLAPS_CLOSE_BUTTON					(4)
 #define FLAPS_OPEN_BUTTON					(5)
+#define RESET_ENCODER_BUTTON				(9)
 
 
 //Motor Channels
