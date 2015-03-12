@@ -27,6 +27,9 @@ private:
 	Talon* leftLiftMotor;
 	Talon* rightLiftMotor;
 
+	Talon* leftRollerMotor;
+	Talon* rightRollerMotor;
+
 	bool compressorOn;
 	bool secondTierOpen;
 	bool forkliftOpen;
@@ -69,8 +72,6 @@ public:
 	//Functionality of Manip
 	void resetEncoders();
 	void moveLift(float speed);
-	void activateCompressor(bool start);
-	void controlCompressor(bool change);
   	void automaticallyActivate(bool activate);
 
   	void openPiston(bool forklift, bool open);
@@ -81,6 +82,8 @@ public:
 
   	void openBinHugger(bool open);
   	void closeBinHugger(bool close);
+
+  	void toggleRollers(bool toggle);
 
   	void longArmOpenStep1(bool step1);
   	void longArmOpenStep2(bool step2);
@@ -100,8 +103,5 @@ public:
 
 	void openFlaps(bool open);
 	void closeFlaps(bool close);
-
-
 };
-
 #endif

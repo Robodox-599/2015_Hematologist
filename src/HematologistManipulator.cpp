@@ -17,6 +17,9 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
 
+	leftRollerMotor = new Talon(LEFT_ROLLER_MOTOR_CHANNEL);
+	rightRollerMotor = new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
+
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
 	compressor = new Compressor(0);
 
@@ -128,21 +131,6 @@ HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch(bool top)
 		return topLimitSwitch;
 	else
 		return bottomLimitSwitch;
-}
-
-void HematologistManipulator::activateCompressor(bool start)
-{
-	if (start)
-		compressor->Start();
-	else
-		compressor->Stop();
-}
-
-void HematologistManipulator::controlCompressor(bool change)
-{
-	if (change)
-		compressorOn = !compressorOn;
-	activateCompressor(compressorOn);
 }
 
 bool HematologistManipulator::getCompressorOn()
@@ -261,7 +249,7 @@ void HematologistManipulator::turnOnCompressor(bool start)
 {
 	if (start){
 		compressor->Start();
-		compressorOn = true;
+		compressorOn = tru
 	}
 	return;
 }
@@ -427,4 +415,18 @@ void HematologistManipulator::closeFlaps(bool close)
 		flapsIsOpen = false;
 	}else
 		return;
+}
+
+void HematologistManipulator::ToggleRollers(bool toggle)
+{
+	if(toggle)
+	{
+		leftRollerMotor->Set(1);
+		rightRollerMotor->Set(1);
+	}
+	else
+    {
+    	leftRollerMotor->Set(0);
+    	rightRollerMotor->Set(0);
+    }
 }
