@@ -35,7 +35,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	forkliftOpen = true;
 	secondTierOpen = true;
 
-	flapsIsOpen = false;
+	flapsOpen = false;
 
 	automaticActivation = false;
 
