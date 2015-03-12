@@ -419,3 +419,14 @@ void HematologistManipulator::openFlaps(bool open)
 	}else
 		return;
 }
+
+void HematologistManipulator::closeFlaps(bool close)
+{
+	if (close)
+	{
+		longArmFlapOpen->Set(Relay::kOff);
+		longArmFlapClose->Set(Relay::kOn);
+		flapsIsOpen = false;
+	}else
+		return;
+}
