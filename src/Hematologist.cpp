@@ -21,7 +21,6 @@ private:
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 		auton = new HematologistAutonomous(drive, manip, oi);
-#if 1
 		//camera->SetQuality(50);
 		//camera->StartAutomaticCapture("cam0");
 
@@ -35,7 +34,6 @@ private:
 		if(imaqError != IMAQdxErrorSuccess) {
 			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
 		}
-#endif
 	}
 
 	void AutonomousInit(){
