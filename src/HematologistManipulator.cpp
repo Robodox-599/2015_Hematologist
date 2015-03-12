@@ -296,77 +296,21 @@ bool HematologistManipulator::secondTierIsOpen()
 	return secondTierOpen;
 }
 
-void HematologistManipulator::longArmOpenStep1(bool step1)
+void HematologistManipulator::longArmMoveOut(bool move, bool confirm)
 {
-	longArmOpen1 = step1;
-}
-void HematologistManipulator::longArmOpenStep2(bool step2)
-{
-	longArmOpen2 = step2;
-}
-void HematologistManipulator::longArmOpenStep3(bool step3)
-{
-	if (!(longArmOpen1 && longArmOpen2))
-		longArmOpen3= false;
-	else
-	{
-		if (step3)
-			longArmOpen3 = step3;
-		else
-			longArmOpen3 = step3;
-	}
-
-}
-std::string HematologistManipulator::warningFromLongArm()
-{
-	if (longArmOpen1&& longArmOpen2)
-	{
-		return "Press the trigger and the long arm will come out";
-	}
-	else
-	{
-		return "Press buttons 3 or 2 to begin process of moving the long arm";
-	}
-}
-
-void HematologistManipulator::longArmMoveOut()
-{
-	if (longArmOpen1 && longArmOpen2 && longArmOpen3)
-	{
+	if (move && confirm)
 		longArmPiston->Set(DoubleSolenoid::kForward);
-		longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
-	}
+	else
+		return;
+
 }
 
-void HematologistManipulator::longArmCloseStep1(bool step1)
+void HematologistManipulator::longArmMoveIn(bool move, bool confirm)
 {
-	longArmClose1 = step1;
-}
-void HematologistManipulator::longArmCloseStep2(bool step2)
-{
-	longArmClose2 = step2;
-}
-void HematologistManipulator::longArmCloseStep3(bool step3)
-{
-	if (!(longArmClose1 && longArmClose2))
-	{
-		longArmClose3 = false;
-	}
-	else
-	{
-		if (step3)
-			longArmClose3 = step3;
-		else
-			longArmClose3 = step3;
-	}
-}
-void HematologistManipulator::longArmMoveIn()
-{
-	if (longArmClose1 && longArmClose2 && longArmClose3)
-	{
+	if (move && confirm)
 		longArmPiston->Set(DoubleSolenoid::kReverse);
-		longArmClose1 = longArmClose2 = longArmClose3 = false;
-	}
+	else
+		return;
 }
 
 void HematologistManipulator::automaticallyOpenTier()

@@ -85,19 +85,8 @@ public:
 
   	void toggleRollers(bool toggle);
 
-  	void longArmOpenStep1(bool step1);
-  	void longArmOpenStep2(bool step2);
-  	void longArmOpenStep3(bool step3);
-
-  	std::string warningFromLongArm();
-
-  	void longArmMoveOut();
-
-  	void longArmCloseStep1(bool step1);
-	void longArmCloseStep2(bool step2);
-	void longArmCloseStep3(bool step3);
-
-	void longArmMoveIn();
+  	void longArmMoveOut(bool move, bool confirm);
+  	void longArmMoveIn(bool move, bool confirm);
 
 	void automaticallyOpenTier();
 
