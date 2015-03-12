@@ -392,7 +392,7 @@ void HematologistManipulator::automaticallyOpenTier()
 		automaticActivation = false;
 }
 
-Relay* getRelay(int whichOne)
+Relay* HematologistManipulator::getRelay(int whichOne)
 {
 	switch(whichOne)
 	{
