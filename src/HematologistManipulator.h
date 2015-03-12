@@ -31,7 +31,7 @@ private:
 	bool secondTierOpen;
 	bool forkliftOpen;
 	bool binHuggerOpen;
-	bool 
+	bool flapsOpen;
 
 	bool longArmOpen1;
 	bool longArmOpen2;
