@@ -12,8 +12,8 @@ private:
 	DoubleSolenoid* forkliftPiston;
 	DoubleSolenoid* longArmPiston;
 
-	Relay* longArmRelay1;
-	Relay* longArmRelay2;
+	Relay* longArmFlap1;
+	Relay* longArmFlap2;
 
 	Joystick* manipJoystick;
 
@@ -31,6 +31,7 @@ private:
 	bool secondTierOpen;
 	bool forkliftOpen;
 	bool binHuggerOpen;
+	bool 
 
 	bool longArmOpen1;
 	bool longArmOpen2;
@@ -62,7 +63,7 @@ public:
 	bool binHuggerIsOpen();
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
-  	Relay* getRelay(int whichOne);
+  	Relay* getLongArmFlap(int whichOne)
 
 	//Functionality of Manip
 	void resetEncoders();
@@ -95,6 +96,8 @@ public:
 	void longArmMoveIn();
 
 	void automaticallyOpenTier();
+
+
 };
 
 #endif
