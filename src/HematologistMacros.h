@@ -17,7 +17,7 @@ Drive Joystick:
 	11 -	
 
 Manip Joystick:
-	1 -
+	1 -		turn rollers on
 	2 - 	close binhugger
 	3 - 	open binhugger
 	4 - 	second tier open
@@ -26,33 +26,43 @@ Manip Joystick:
 	7 -		close forklift
 	8 -		start compressor
 	9 -		stop compressor
-	10 -
-	11 -
+	10 - 	flaps clsoe
+	11 -	flaps open
 	throttle -  roller speed
 */
 
 //Joystick
 #define MANIP_JOYSTICK						(0)		
 #define LEFT_DRIVE_JOYSTICK					(1)		
-#define RIGHT_DRIVE_JOYSTICK				(2)		
-#define BIN_HUGGER_OPEN_BUTTON				(3)
+#define RIGHT_DRIVE_JOYSTICK				(2)
+
+//manip
+#define TURN_ROLLERS_ON_BUTTON				(1)
 #define BIN_HUGGER_CLOSE_BUTTON				(2)
+#define BIN_HUGGER_OPEN_BUTTON				(3)
+#define SECOND_TIER_OPEN_BUTTON				(4)
+#define SECOND_TIER_CLOSE_BUTTON			(5)
 #define FORKLIFT_OPEN_BUTTON				(6)
 #define FORKLIFT_CLOSE_BUTTON				(7)	
 #define START_COMPRESSOR_BUTTON				(8)
-#define STOP_COMPRESSOR_BUTTON				(9)	
-#define SECOND_TIER_OPEN_BUTTON				(4)
-#define SECOND_TIER_CLOSE_BUTTON			(5)
-#define AUTOMATIC_LIFT_BUTTON				(1)
+#define STOP_COMPRESSOR_BUTTON				(9)
+#define FLAPS_CLOSE_BUTTON					(10)
+#define FLAPS_OPEN_BUTTON					(11)
+
+//drive
+
+//left + right
+#define LONG_ARM_TRIGGER_BUTTON				(1)
 #define LONG_ARM_OPEN_ENABLE_BUTTON			(3)		//TODO: get correct number
 #define LONG_ARM_CLOSE_ENABLE_BUTTON		(7)		//TODO: get correct number
-#define LONG_ARM_TRIGGER_BUTTON				(1)
+
+//left
 #define GYRO_ON_BUTTON						(11)
 #define GYRO_OFF_BUTTON						(10)
 #define RESET_ENCODER_BUTTON				(9)
-#define FLAPS_OPEN_BUTTON					(11)
-#define FLAPS_CLOSE_BUTTON					(10)
-#define TURN_ROLLERS_ON_BUTTON				(1)
+
+
+
 
 
 //Motor Channels
