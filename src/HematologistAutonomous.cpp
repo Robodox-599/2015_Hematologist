@@ -571,10 +571,7 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (step4)
 	{
-		manip->longArmOpenStep1(true);
-		manip->longArmOpenStep2(true);
-		manip->longArmOpenStep3(true);
-		manip->longArmMoveOut();
+		manip->longArmMoveOut(true, true);
 		Wait(1000);
 		step4 = false;
 		step5 = true;
@@ -597,10 +594,7 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (step6)
 	{
-		manip->longArmCloseStep1(true);
-		manip->longArmCloseStep2(true);
-		manip->longArmCloseStep3(true);
-		manip->longArmMoveIn();
+		manip->longArmMoveIn(true, true);
 		Wait(1000);
 		step6 = false;
 		step7 = true;
