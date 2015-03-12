@@ -12,6 +12,9 @@ private:
 	DoubleSolenoid* forkliftPiston;
 	DoubleSolenoid* longArmPiston;
 
+	Relay* longArmFlapOpen;
+	Relay* longArmFlapClose;
+
 	Joystick* manipJoystick;
 
 	Encoder* liftEncoder;
@@ -28,6 +31,7 @@ private:
 	bool secondTierOpen;
 	bool forkliftOpen;
 	bool binHuggerOpen;
+	bool flapsOpen;
 
 	bool longArmOpen1;
 	bool longArmOpen2;
@@ -41,39 +45,33 @@ private:
 	bool disableEncoders;
 
 public:
+
+	//Constructor
 	HematologistManipulator(Joystick* manipJoystick);
 	~HematologistManipulator();
 
-	void openBinHugger();
-	void openForklift();
-	void openSecondTier();
-
-	void activateForklift(bool open);
-	void activateSecondTier(bool open);
-
+	//Get Functions
 	bool getSecondTierState();
 	bool getForkliftState();
-
-	void resetEncoders();
-	void toggleCompressor(bool start, bool stop);
-
-	void moveLift(float speed);
-
 	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
-
-	void activateCompressor(bool start);
-
-	void controlCompressor(bool change);
-
 	bool getCompressorOn();
-
 	Talon* getManipTalon(bool right);
 	Encoder* getLiftEncoder();
+	DoubleSolenoid* getForkliftPiston();
+	DoubleSolenoid* getSecondTierPiston();
+	bool compressorIsOn();
+	bool binHuggerIsOpen();
+  	bool forkliftIsOpen();
+  	bool secondTierIsOpen();
+  	Relay* getLongArmFlap(bool open);
+  	bool flapsIsOpen();
 
+	//Functionality of Manip
+	void resetEncoders();
+	void moveLift(float speed);
+	void activateCompressor(bool start);
+	void controlCompressor(bool change);
   	void automaticallyActivate(bool activate);
-
-  	DoubleSolenoid* getForkliftPiston();
-  	DoubleSolenoid* getSecondTierPiston();
 
   	void openPiston(bool forklift, bool open);
   	void closePiston(bool forklift, bool close);
@@ -81,14 +79,8 @@ public:
   	void turnOnCompressor(bool start);
   	void turnOffCompressor(bool stop);
 
-  	bool compressorIsOn();
-
   	void openBinHugger(bool open);
   	void closeBinHugger(bool close);
-
-  	bool binHuggerIsOpen();
-  	bool forkliftIsOpen();
-  	bool secondTierIsOpen();
 
   	void longArmOpenStep1(bool step1);
   	void longArmOpenStep2(bool step2);
@@ -105,6 +97,11 @@ public:
 	void longArmMoveIn();
 
 	void automaticallyOpenTier();
+
+	void openFlaps(bool open);
+	void closeFlaps(bool close);
+
+
 };
 
 #endif
