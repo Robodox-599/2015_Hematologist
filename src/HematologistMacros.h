@@ -45,8 +45,8 @@ Manip Joystick:
 //drive
 
 #define ACTIVATE_LONG_ARM					(1)
-#define LONG_ARM_OPEN_BUTTON				(3)
-#define LONG_ARM_CLOSE_BUTTON				(2)
+#define LONG_ARM_OPEN_BUTTON				(2)
+#define LONG_ARM_CLOSE_BUTTON				(3)
 #define FLAPS_CLOSE_BUTTON					(4)
 #define FLAPS_OPEN_BUTTON					(5)
 #define RESET_ENCODER_BUTTON				(9)
