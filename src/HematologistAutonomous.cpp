@@ -583,7 +583,7 @@ void HematologistAutonomous::longArmAuto()
 	if (step5)
 	{
 		oi->getDashboard()->PutNumber("Forward Average:", getForwardAverage());
-		if (getForwardAverage() < 950 + LIFT_DEADZONE)
+		if (getForwardAverage() < 1050 + LIFT_DEADZONE)
 		{
 			drive->drive(-.5, 0, 0);
 		}else
@@ -598,7 +598,7 @@ void HematologistAutonomous::longArmAuto()
 	if (step6)
 	{
 		manip->longArmMoveIn(true, true);
-		Wait(1000);
+		Wait(1);
 		step6 = false;
 	}
 	if (step7)
