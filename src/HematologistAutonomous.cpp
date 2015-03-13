@@ -549,7 +549,7 @@ void HematologistAutonomous::longArmAuto()
 	{
 		if (manip->getLiftEncoder()->Get() < 1000 + LIFT_DEADZONE)
 		{
-			manip->moveLift(.4);
+			manip->moveLift(-.4);
 		}else
 		{
 			manip->moveLift(0);
@@ -559,7 +559,7 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (step3)
 	{
-		if (getForwardAverage() < 400 + LIFT_DEADZONE)
+		if (getForwardAverage() > -500 - LIFT_DEADZONE)
 		{
 			drive->drive(.5, 0, 0);
 		}else
@@ -572,17 +572,18 @@ void HematologistAutonomous::longArmAuto()
 	if (step4)
 	{
 		manip->longArmMoveOut(true, true);
-		Wait(1000);
+		Wait(2);
+		drive->getEncoder(true, true)->Reset();
+		drive->getEncoder(true, false)->Reset();
+		drive->getEncoder(false, true)->Reset();
+		drive->getEncoder(false, false)->Reset();
 		step4 = false;
 		step5 = true;
 	}
 	if (step5)
 	{
-		drive->getEncoder(true, true)->Reset();
-		drive->getEncoder(true, false)->Reset();
-		drive->getEncoder(false, true)->Reset();
-		drive->getEncoder(false, false)->Reset();
-		if (getForwardAverage() > -1200 - LIFT_DEADZONE)
+		oi->getDashboard()->PutNumber("Forward Average:", getForwardAverage());
+		if (getForwardAverage() < 950 + LIFT_DEADZONE)
 		{
 			drive->drive(-.5, 0, 0);
 		}else
@@ -591,6 +592,7 @@ void HematologistAutonomous::longArmAuto()
 			drive->drive(0, 0, 0);
 			step6 = true;
 		}
+
 	}
 #if 0
 	if (step6)
