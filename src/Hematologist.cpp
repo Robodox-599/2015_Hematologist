@@ -89,7 +89,8 @@ private:
 		manip->openFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
-		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON));
+		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON), oi->getJoystick('M')->GetThrottle());
+		manip->autoRollers();
 /*gyro stuff*/
 #if 0
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
