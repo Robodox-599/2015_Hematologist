@@ -59,7 +59,7 @@ private:
 		{
 			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
 		}else{
-			imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
+			//imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
 
@@ -85,8 +85,8 @@ private:
 		manip->longArmMoveIn(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
 		manip->longArmMoveOut(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
 
-		manip->openFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_OPEN_BUTTON));
-		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(FLAPS_CLOSE_BUTTON));
+		manip->openFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_OPEN_BUTTON));
+		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
 		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON));
 /*gyro stuff*/
