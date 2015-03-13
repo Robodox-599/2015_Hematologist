@@ -111,7 +111,7 @@ float HematologistDrive::linearizeDrive(float driveInput)
 void  HematologistDrive::drive(float forward, float turn, float strafe)
 {
 	setForward(-forward);
-	setTurn(turn);
+	setTurn(3*turn/4);
 	setStrafe(strafe);
 
 	frontLeftMotor->Set(linearizeDrive(this->forward - this->strafe + this->turn));
