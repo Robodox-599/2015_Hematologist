@@ -549,7 +549,7 @@ void HematologistAutonomous::longArmAuto()
 	{
 		if (manip->getLiftEncoder()->Get() < 1000 + LIFT_DEADZONE)
 		{
-			manip->moveLift( -.4);
+			manip->moveLift(.4);
 		}else
 		{
 			manip->moveLift(0);
@@ -584,7 +584,7 @@ void HematologistAutonomous::longArmAuto()
 		drive->getEncoder(false, false)->Reset();
 		if (getForwardAverage() > -1200 - LIFT_DEADZONE)
 		{
-			drive->drive(.5, 0, 0);
+			drive->drive(-.5, 0, 0);
 		}else
 		{
 			step5 = false;
@@ -592,6 +592,7 @@ void HematologistAutonomous::longArmAuto()
 			step6 = true;
 		}
 	}
+#if 0
 	if (step6)
 	{
 		manip->longArmMoveIn(true, true);
@@ -604,6 +605,7 @@ void HematologistAutonomous::longArmAuto()
 		manip->closeFlaps(true);
 		step7 = false;
 	}
+#endif
 
 	//step1: actuate pistons on long arm (open the flap)
 	//step2: move lift up a little
