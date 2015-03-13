@@ -9,17 +9,12 @@ Left Drive Joystick:
 	3 -	extend long arm
 	4 -	retract flaps
 	5 -	extend flaps
-	6 -
-	7 -	 	
-	8 -		
-	9 -		
-	10 -	
-	11 -	
+
 
 Manip Joystick:
 	1 -		turn rollers on
 	2 - 	bihugger close
-	3 - 	binhugger opem
+	3 - 	binhugger open
 	4 - 	second tier open
 	5 - 	second tier close
 	6 -		forklift open
@@ -49,7 +44,6 @@ Manip Joystick:
 
 //drive
 
-//left (but in code the right joystick)
 #define ACTIVATE_LONG_ARM					(1)
 #define LONG_ARM_OPEN_BUTTON				(3)
 #define LONG_ARM_CLOSE_BUTTON				(2)
