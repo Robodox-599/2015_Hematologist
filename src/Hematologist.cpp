@@ -44,6 +44,7 @@ private:
 		//auton->strafeRight();
 		//printSmartDashboard();
 		//auton->getTwoTotes();
+		auton->longArmAuto();
 	}
 
 	void TeleopInit(){}
@@ -82,8 +83,8 @@ private:
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
 
-		manip->longArmMoveIn(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
-		manip->longArmMoveOut(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_BUTTON), oi->getJoystick('R')->GetRawButton(ACTIVATE_LONG_ARM));
+		manip->longArmMoveIn(oi->getJoystick('L')->GetRawButton(LONG_ARM_OPEN_BUTTON), oi->getJoystick('L')->GetRawButton(ACTIVATE_LONG_ARM));
+		manip->longArmMoveOut(oi->getJoystick('L')->GetRawButton(LONG_ARM_CLOSE_BUTTON), oi->getJoystick('L')->GetRawButton(ACTIVATE_LONG_ARM));
 
 		manip->openFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_CLOSE_BUTTON));
