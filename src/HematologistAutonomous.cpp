@@ -590,22 +590,22 @@ void HematologistAutonomous::longArmAuto()
 		{
 			step5 = false;
 			drive->drive(0, 0, 0);
-			step6 = true;
+			step7 = true;
 		}
 
 	}
-#if 0
+#if 1
 	if (step6)
 	{
 		manip->longArmMoveIn(true, true);
 		Wait(1000);
 		step6 = false;
-		step7 = true;
 	}
 	if (step7)
 	{
 		manip->closeFlaps(true);
 		step7 = false;
+		step6 = true;
 	}
 #endif
 
