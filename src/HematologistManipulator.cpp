@@ -66,14 +66,14 @@ void HematologistManipulator::moveLift(float speed)
 {
 	if (topLimitSwitch->limitSwitchIsPressed())
 	{
-		if (-speed > DEADZONE)
+		if (speed > DEADZONE)
 		{
 			leftLiftMotor->Set(0);
 			rightLiftMotor->Set(0);
 		}
 		else
 		{
-			if (-speed < -DEADZONE)
+			if (speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(-speed);
 				rightLiftMotor->Set(-speed);
@@ -90,14 +90,14 @@ void HematologistManipulator::moveLift(float speed)
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
 			liftEncoder->Reset();
-			if (-speed < -DEADZONE)
+			if (speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(0);
 				rightLiftMotor->Set(0);
 			}
 			else
 			{
-				if (-speed > DEADZONE)
+				if (speed > DEADZONE)
 				{
 					leftLiftMotor->Set(-speed);
 					rightLiftMotor->Set(-speed);
@@ -111,7 +111,7 @@ void HematologistManipulator::moveLift(float speed)
 		}
 		else
 		{
-			if (-speed > DEADZONE || -speed < -DEADZONE)
+			if (speed > DEADZONE || speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(-speed);
 				rightLiftMotor->Set(-speed);
