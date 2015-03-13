@@ -86,7 +86,7 @@ public:
   	void openBinHugger(bool open);
   	void closeBinHugger(bool close);
 
-  	void toggleRollers(bool toggle);
+  	void toggleRollers(bool toggle, float direction); //direction is if throttle is + move forward if - move backward
 
   	void longArmMoveOut(bool move, bool confirm);
   	void longArmMoveIn(bool move, bool confirm);

@@ -365,12 +365,20 @@ void HematologistManipulator::closeFlaps(bool close)
 		return;
 }
 
-void HematologistManipulator::toggleRollers(bool toggle)
+void HematologistManipulator::toggleRollers(bool toggle, float direction)
 {
 	if(toggle)
 	{
-		leftRollerMotor->Set(1);
-		rightRollerMotor->Set(1);
+		if(direction > 0)
+		{
+			leftRollerMotor->Set(-1);
+			rightRollerMotor->Set(-1);
+		}
+		else if(direction <= 0)
+		{
+			leftRollerMotor->Set(1);
+			rightRollerMotor->Set(1);
+		}
 	}
 	else
     {
@@ -389,13 +397,13 @@ void HematologistManipulator::autoRollers()
 	if(autoRollerStep == 1)
 	{
 		if(timer->Get() < 5)
-		    toggleRollers(true);
+		    toggleRollers(true, -1);
 		else
 			autoRollerStep = 2;
 	}
 	if(autoRollerStep == 2)
 	{
-		toggleRollers(false);
+		toggleRollers(false, 1);
 		autoRollerStep = 3;
 	}
 	if(autoRollerStep == 3 && forkliftOpen)
