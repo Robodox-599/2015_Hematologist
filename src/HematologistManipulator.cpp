@@ -99,8 +99,8 @@ void HematologistManipulator::moveLift(float speed)
 			{
 				if (speed > DEADZONE)
 				{
-					leftLiftMotor->Set(-speed);
-					rightLiftMotor->Set(-speed);
+					leftLiftMotor->Set(speed);
+					rightLiftMotor->Set(speed);
 				}
 				else
 				{
@@ -113,8 +113,8 @@ void HematologistManipulator::moveLift(float speed)
 		{
 			if (speed > DEADZONE || speed < -DEADZONE)
 			{
-				leftLiftMotor->Set(-speed);
-				rightLiftMotor->Set(-speed);
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
 			}
 			else
 			{
