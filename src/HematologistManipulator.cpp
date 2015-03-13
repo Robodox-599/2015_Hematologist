@@ -11,8 +11,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	longArmFlapOpen = new Relay(LONG_ARM_RELAY_OPEN_CHANNEL, Relay::kForwardOnly);
 	longArmFlapClose = new Relay(LONG_ARM_RELAY_CLOSE_CHANNEL, Relay::kForwardOnly);
 
-	openPiston(true, true);
-	openPiston(false, true);
+	closePiston(true, true);
+	closePiston(false, true);
 
 	leftLiftMotor = new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor = new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
@@ -43,6 +43,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	longArmClose1 = longArmClose2 = longArmClose3 = false;
 
 	timer = new Timer();
+	autoRollerStep = 0;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -410,5 +411,9 @@ void HematologistManipulator::autoRollers()
 	{
 		autoRollerStep = 0;
 		timer->Reset();
+	}
+	if (autoRollerStep == 1 && forkliftOpen)
+	{
+		autoRollerStep = 2;
 	}
 }
