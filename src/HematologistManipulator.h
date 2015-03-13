@@ -47,6 +47,9 @@ private:
 	bool automaticActivation;
 	bool disableEncoders;
 
+	int autoRollerStep;
+
+	Timer *timer;
 public:
 
 	//Constructor
@@ -92,5 +95,7 @@ public:
 
 	void openFlaps(bool open);
 	void closeFlaps(bool close);
+
+	void autoRollers();
 };
 #endif

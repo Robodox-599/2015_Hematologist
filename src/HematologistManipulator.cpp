@@ -41,6 +41,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
 	longArmClose1 = longArmClose2 = longArmClose3 = false;
+
+	timer = new Timer();
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -51,7 +53,8 @@ HematologistManipulator::~HematologistManipulator()
 	delete manipJoystick;
 	delete topLimitSwitch;
 	delete bottomLimitSwitch;
-	delete 	compressor;
+	delete compressor;
+	delete timer;
 
 	secondTierPiston = NULL;
 	binHuggerPiston = NULL;
@@ -60,6 +63,7 @@ HematologistManipulator::~HematologistManipulator()
 	topLimitSwitch= NULL;
 	bottomLimitSwitch = NULL;
 	compressor = NULL;
+	timer = NULL;
 }
 
 void HematologistManipulator::moveLift(float speed)
@@ -373,4 +377,30 @@ void HematologistManipulator::toggleRollers(bool toggle)
     	leftRollerMotor->Set(0);
     	rightRollerMotor->Set(0);
     }
+}
+
+void HematologistManipulator::autoRollers()
+{
+	if(!forkliftOpen && autoRollerStep == 0)
+	{
+		autoRollerStep = 1;
+		timer->Start();
+	}
+	if(autoRollerStep == 1)
+	{
+		if(timer->Get() < 5)
+		    toggleRollers(true);
+		else
+			autoRollerStep = 2;
+	}
+	if(autoRollerStep == 2)
+	{
+		toggleRollers(false);
+		autoRollerStep = 3;
+	}
+	if(autoRollerStep == 3 && forkliftOpen)
+	{
+		autoRollerStep = 0;
+		timer->Reset();
+	}
 }
