@@ -343,8 +343,8 @@ void HematologistManipulator::openFlaps(bool open)
 {
 	if (open)
 	{
-		longArmFlapOpen->Set(Relay::kOff);
-		longArmFlapClose->Set(Relay::kForward);
+		longArmFlapOpen->Set(Relay::kForward);
+		longArmFlapClose->Set(Relay::kOff);
 		flapsOpen = true;
 	}else
 		return;
@@ -354,8 +354,8 @@ void HematologistManipulator::closeFlaps(bool close)
 {
 	if (close)
 	{
-		longArmFlapOpen->Set(Relay::kForward);
-		longArmFlapClose->Set(Relay::kOff);
+		longArmFlapOpen->Set(Relay::kOff);
+		longArmFlapClose->Set(Relay::kForward);
 		flapsOpen = false;
 	}else
 		return;
