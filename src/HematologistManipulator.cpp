@@ -46,6 +46,7 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	autoRollerStep = 0;
 
 	autoButtonPressed = false;
+	autoSequenceFinished = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -417,5 +418,41 @@ void HematologistManipulator::autoRollers()
 	if (autoRollerStep == 1 && forkliftOpen)
 	{
 		autoRollerStep = 2;
+	}
+}
+
+void HematologistManipulator::autoForkLift(bool start)
+{
+	if (start)
+		autoButtonPressed = true;
+	if (autoButtonPressed)
+	{
+		if (liftEncoder->Get() < 1600)
+		{
+			moveLift(-.4);
+		}
+		if (liftEncoder->Get() > 1600-LIFT_DEADZONE)
+		{
+			if (liftEncoder->Get() < 1600+LIFT_DEADZONE)
+			{
+				openPiston(false, true);
+			}
+		}
+		if (liftEncoder->Get() < 2000-LIFT_DEADZONE)
+		{
+			if (liftEncoder->Get() < 2000+LIFT_DEADZONE)
+			{
+				closePiston(false, true);
+				autoSequenceFinished = true;
+				autoButtonPressed = false;
+			}
+		}
+	}
+	if (autoSequenceFinished)
+		moveLift(.4);
+	if (manipJoystick->GetY() > DEADZONE || manipJoystick->GetY() < -DEADZONE)
+	{
+		autoButtonPressed = false;
+		autoSequenceFinished = false;
 	}
 }

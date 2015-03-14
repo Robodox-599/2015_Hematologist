@@ -50,6 +50,7 @@ private:
 	int autoRollerStep;
 
 	bool autoButtonPressed;
+	bool autoSequenceFinished;
 
 	Timer *timer;
 public:
@@ -100,6 +101,6 @@ public:
 
 	void autoRollers();
 
-	void autoForkLift();
+	void autoForkLift(bool start);
 };
 #endif
