@@ -583,7 +583,7 @@ void HematologistAutonomous::longArmAuto()
 	if (step5)
 	{
 		oi->getDashboard()->PutNumber("Forward Average:", getForwardAverage());
-		if (getForwardAverage() < 1050 + LIFT_DEADZONE)
+		if (getForwardAverage() < 1150 + LIFT_DEADZONE)
 		{
 			drive->drive(-.5, 0, 0);
 		}else
