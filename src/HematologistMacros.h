@@ -39,8 +39,9 @@ Manip Joystick:
 #define SECOND_TIER_CLOSE_BUTTON			(5)
 #define FORKLIFT_OPEN_BUTTON				(6)
 #define FORKLIFT_CLOSE_BUTTON				(7)	
-#define START_COMPRESSOR_BUTTON				(8)
-#define STOP_COMPRESSOR_BUTTON				(9)
+#define START_COMPRESSOR_BUTTON				(11)
+#define STOP_COMPRESSOR_BUTTON				(10)
+#define TURN_AUTO_FORKLIFT_ON_BUTTON		(8)
 
 //drive
 

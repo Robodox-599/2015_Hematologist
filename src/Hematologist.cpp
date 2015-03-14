@@ -91,6 +91,7 @@ private:
 
 		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON), oi->getJoystick('M')->GetThrottle());
 		//manip->autoRollers();
+		manip->autoForkLift(oi->getJoystick('L')->GetRawButton(TURN_AUTO_FORKLIFT_ON_BUTTON));
 /*gyro stuff*/
 #if 0
 		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
