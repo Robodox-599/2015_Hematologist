@@ -44,6 +44,8 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	timer = new Timer();
 	autoRollerStep = 0;
+
+	autoButtonPressed = false;
 }
 
 HematologistManipulator::~HematologistManipulator()

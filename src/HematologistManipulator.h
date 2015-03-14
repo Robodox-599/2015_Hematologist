@@ -49,6 +49,8 @@ private:
 
 	int autoRollerStep;
 
+	bool autoButtonPressed;
+
 	Timer *timer;
 public:
 
@@ -97,5 +99,7 @@ public:
 	void closeFlaps(bool close);
 
 	void autoRollers();
+
+	void autoForkLift();
 };
 #endif
