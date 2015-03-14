@@ -41,10 +41,10 @@ private:
 	}
 
 	void AutonomousPeriodic(){
-		//auton->strafeRight();
+		auton->strafeRight();
 		//printSmartDashboard();
 		//auton->getTwoTotes();
-		auton->longArmAuto();
+		//auton->longArmAuto();
 	}
 
 	void TeleopInit(){}

@@ -13,7 +13,7 @@ Left Drive Joystick:
 
 Manip Joystick:
 	1 -		turn rollers on
-	2 - 	bihugger close
+	2 - 	binhugger close
 	3 - 	binhugger open
 	4 - 	second tier open
 	5 - 	second tier close
