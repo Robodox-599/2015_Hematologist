@@ -536,6 +536,7 @@ void HematologistAutonomous::longArmAuto()
 	{
 		step1 = false;
 		step2 = true;
+		step3 = true;
 		drive->getEncoder(true, true)->Reset();
 		drive->getEncoder(true, false)->Reset();
 		drive->getEncoder(false, true)->Reset();
@@ -554,14 +555,13 @@ void HematologistAutonomous::longArmAuto()
 		{
 			manip->moveLift(0);
 			step2 = false;
-			step3 = true;
 		}
 	}
 	if (step3)
 	{
 		if (getForwardAverage() > -500 - LIFT_DEADZONE)
 		{
-			drive->drive(.5, 0, 0);
+			drive->drive(.7, 0, 0);
 		}else
 		{
 			drive->drive(0, 0, 0);
