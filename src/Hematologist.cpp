@@ -41,10 +41,10 @@ private:
 	}
 
 	void AutonomousPeriodic(){
-		auton->strafeRight();
+		//auton->strafeRight();
 		//printSmartDashboard();
 		//auton->getTwoTotes();
-		//auton->longArmAuto();
+		auton->longArmAuto();
 	}
 
 	void TeleopInit(){}
@@ -89,7 +89,7 @@ private:
 		manip->openFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_OPEN_BUTTON));
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
-		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON), oi->getJoystick('M')->GetThrottle());
+		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON), -1);
 		//manip->autoRollers();
 /*gyro stuff*/
 #if 0
