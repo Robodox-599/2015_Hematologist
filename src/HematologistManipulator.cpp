@@ -98,6 +98,7 @@ void HematologistManipulator::moveLift(float speed)
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
 			liftEncoder->Reset();
+			autoSequenceFinished = false;
 			if (-speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(0);
