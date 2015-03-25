@@ -1,0 +1,10 @@
+.cproject
+.project
+build.properties
+build.xml
+sysProps.xml
+.settings/
+Debug/
+.settings\
+Debug\
+/Debug
