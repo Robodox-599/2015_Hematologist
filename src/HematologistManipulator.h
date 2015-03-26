@@ -36,6 +36,10 @@ private:
 	bool binHuggerOpen;
 	bool flapsOpen;
 
+	bool autoLiftIsActive;
+	bool lowerForklift;
+
+
 	bool longArmOpen1;
 	bool longArmOpen2;
 	bool longArmOpen3;
@@ -48,9 +52,6 @@ private:
 	bool disableEncoders;
 
 	int autoRollerStep;
-
-	bool autoButtonPressed;
-	bool autoSequenceFinished;
 
 	Timer *timer;
 public:
@@ -78,6 +79,7 @@ public:
 	//Functionality of Manip
 	void resetEncoders();
 	void moveLift(float speed);
+	void lift(float speed, bool footbool);
   	void automaticallyActivate(bool activate);
 
   	void openPiston(bool forklift, bool open);
@@ -100,7 +102,5 @@ public:
 	void closeFlaps(bool close);
 
 	void autoRollers();
-
-	void autoForkLift(bool start);
 };
 #endif

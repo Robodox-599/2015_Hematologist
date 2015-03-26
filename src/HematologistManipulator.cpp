@@ -44,9 +44,6 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 
 	timer = new Timer();
 	autoRollerStep = 0;
-
-	autoButtonPressed = false;
-	autoSequenceFinished = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -98,7 +95,6 @@ void HematologistManipulator::moveLift(float speed)
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
 			liftEncoder->Reset();
-			autoSequenceFinished = false;
 			if (-speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(0);
@@ -422,38 +418,37 @@ void HematologistManipulator::autoRollers()
 	}
 }
 
-void HematologistManipulator::autoForkLift(bool start)
+void HematologistManipulator::lift(float speed, bool buttonIsPressed)
 {
-	if (start)
-		autoButtonPressed = true;
-	if (autoButtonPressed)
+	if(buttonIsPressed)
 	{
-		if (liftEncoder->Get() < 1600)
-		{
-			moveLift(-.4);
-		}
-		if (liftEncoder->Get() > 1600-LIFT_DEADZONE)
-		{
-			if (liftEncoder->Get() < 1600+LIFT_DEADZONE)
-			{
-				openPiston(false, true);
-			}
-		}
-		if (liftEncoder->Get() < 2000-LIFT_DEADZONE)
-		{
-			if (liftEncoder->Get() < 2000+LIFT_DEADZONE)
-			{
-				closePiston(false, true);
-				autoSequenceFinished = true;
-				autoButtonPressed = false;
-			}
-		}
+		autoLiftIsActive = true;
 	}
-	if (autoSequenceFinished)
-		moveLift(.4);
-	if (manipJoystick->GetY() > DEADZONE || manipJoystick->GetY() < -DEADZONE)
+	if(autoLiftIsActive)
 	{
-		autoButtonPressed = false;
-		autoSequenceFinished = false;
+		if(liftEncoder->Get() < 1550)
+		{
+			moveLift(0.4);
+		}
+		else if(liftEncoder->Get() < 1600)
+		{
+			moveLift(0);
+			openPiston(true, true);
+			lowerForklift = true;
+		}
+		if(lowerForklift)
+		{
+			moveLift(-0.4);
+		}
+
+	}
+	else
+	{
+		autoLiftIsActive = false;
+	}
+	if(bottomLimitSwitch)
+	{
+		autoLiftIsActive = false;
+		lowerForklift = true;
 	}
 }
