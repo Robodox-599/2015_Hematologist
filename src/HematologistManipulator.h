@@ -37,6 +37,9 @@ public:
 	void turnOnCompressor(bool turnOn);
 	void turnOffCompressor(bool turnOff);
 
+	HematologistLimitSwitch* getTopLimitSwitch();
+	HematologistLimitSwitch* getBottomLimitSwitch();
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	

@@ -252,6 +252,15 @@ void HematologistManipulator::turnOffCompressor(bool turnOff)
 		compressor->Stop();
 }
 
+HematologistLimitSwitch* HematologistManipulator::getTopLimitSwitch()
+{
+	return topLimitSwitch;
+}
+
+HematologistLimitSwitch* HematologistManipulator::getBottomLimitSwitch()
+{
+	return bottomLimitSwitch;
+}
 
 
 
