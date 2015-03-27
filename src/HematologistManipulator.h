@@ -27,6 +27,8 @@ public:
 	void moveLift(float speed);
 	void resetEncoder();
 
+	void intakeWithRoller(bool intake);
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	
