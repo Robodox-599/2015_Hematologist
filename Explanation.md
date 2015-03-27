@@ -8,3 +8,4 @@ PROGRESS:
 	OperatorInterface Done
 	Manipulator Done
 	Auto Seequence Not Done
+	Autonomous Done
