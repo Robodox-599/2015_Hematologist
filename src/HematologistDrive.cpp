@@ -16,3 +16,26 @@ HematologistDrive::HematologistDrive()
 	turn = 0;
 	strafe = 0;
 }
+
+HematologistDrive::~HematologistDrive()
+{
+	delete frontLeftMotor;
+	delete frontRightMotor;
+	delete backLeftMotor;
+	delete backRightMotor;
+
+	delete frontLeftEncoder;
+	delete frontRightEncoder;
+	delete backLeftEncoder;
+	delete backRightEncoder;
+
+	frontLeftMotor = NULL;
+	frontRightMotor = NULL;
+	backLeftMotor = NULL;
+	backRightMotor = NULL;
+	frontLeftEncoder = NULL;
+	frontRightEncoder = NULL;
+	backLeftEncoder = NULL;
+	backRightEncoder = NULL;
+
+}
