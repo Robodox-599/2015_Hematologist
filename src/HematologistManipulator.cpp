@@ -172,6 +172,10 @@ void HematologistManipulator::moveLift(float input)
 	}
 }
 
+void HematologistManipulator::autoSequence()
+{
+}
+
 void HematologistManipulator::resetEncoder()
 {
 	liftEncoder->Reset();
