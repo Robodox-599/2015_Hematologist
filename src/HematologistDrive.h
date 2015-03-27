@@ -25,6 +25,8 @@ public:
 	float getStrafeAverage();
 	float getTurnAverage();
 
+	void resetEncoders();
+
 private:
 	Talon* frontLeftMotor;
 	Talon* frontRightMotor; 	//reversed
