@@ -12,12 +12,15 @@ public:
 	HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
 	~HematologistAutonomous();
 
-	int driveStep;
-	int manipStep;
 private:
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
+
+	int driveStep;	
+	int manipStep;
+
+	
 };
 
 #endif
