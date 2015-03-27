@@ -12,6 +12,9 @@ HematologistDrive::HematologistDrive()
 	backLeftEncoder = new Encoder(BACK_LEFT_ENCODER_CHANNEL_A, BACK_LEFT_ENCODER_CHANNEL_B);
 	backRightEncoder = new Encoder(BACK_RIGHT_ENCODER_CHANNEL_A, BACK_RIGHT_ENCODER_CHANNEL_B);
 
+	frontRightEncoder->SetReverseDirection(true);
+	backRightEncoder->SetReverseDirection(true);
+
 	forward = 0;
 	turn = 0;
 	strafe = 0;
