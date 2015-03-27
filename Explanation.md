@@ -6,3 +6,5 @@ PROGRESS:
 	Drive Done
 	LimitSwitch Done
 	OperatorInterface Done
+	Manipulator Done
+	Auto Seequence Not Done
