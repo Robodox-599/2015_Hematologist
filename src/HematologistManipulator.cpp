@@ -176,7 +176,45 @@ void HematologistManipulator::moveLift(float input)
 
 void HematologistManipulator::autoSequence()
 {
+	if (sequenceStep == 0)
+	{
+		moveLift(.4);
+		if (getEncoderValue() > 1000 - ENCODER_DEADZONE)
+		{
+			sequenceStep++;
+		}
+	}
+	if (sequenceStep == 1)
+	{
+		openSecondTier(true);
+		sequenceStep++;
+	}
+	if (sequenceStep == 2)
+	{
+		if (getEncoderValue() > 2000 - ENCODER_DEADZONE)
+		{
+			closeSecondTier(true);
+			moveLift(-.4);
+			sequenceStep++;
+		}
+	}
+	if (oi->getJoystick('M')->GetY() > LIFT_DEADZONE || oi->getJoystkck('M')->GetY() < -LIFT_DEADZONE)
+	{
+		sequenceStarted = false;
+	}
+}
 
+void HematologistManipulator::controlLift(float input, bool startSequence)
+{
+	if (startSequence)
+		sequenceStarted = true;
+	if (sequenceStarted)
+	{
+		autoSequence();
+	}else
+	{
+		moveLift(input);
+	}
 }
 
 void HematologistManipulator::resetEncoder()
