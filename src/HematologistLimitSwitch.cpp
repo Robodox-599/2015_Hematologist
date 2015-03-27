@@ -14,10 +14,10 @@ HematologistLimitSwitch::~HematologistLimitSwitch()
 
 bool HematologistLimitSwitch::isPressed()
 {
-	if (ai->getVoltage() > 4)
+	if (ai->GetVoltage() > 4)
 		return true;
 	else
-		if (ai->getVoltage() < 1)
+		if (ai->GetVoltage() < 1)
 			return false;
 	return false;
 
