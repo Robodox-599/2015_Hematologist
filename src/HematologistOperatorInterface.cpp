@@ -7,3 +7,17 @@ HematologistOperatorInterface::HematologistOperatorInterface()
 	manipJoystick		= new Joystick(MANIP_JOYSTICK_PORT);
 	dashboard->init(); 
 }
+
+HematologistOperatorInterface::~HematologistOperatorInterface()
+{
+	delete leftDriveJoystick;
+	delete rightDriveJoystick;
+	delete manipJoystick;
+	delete dashboard;
+	
+	leftDriveJoystick = NULL;
+	rightDriveJoystick = NULL;
+	manipJoystick = NULL;
+	dashboard = NULL;
+}
+
