@@ -1,6 +1,6 @@
 #include "HematologistManipulator.h"
 
-HematologistManipulator::HematologistManipulator()
+HematologistManipulator::HematologistManipulator(HematologistOperatorInterface* oi)
 {
 	forkliftPiston 		= new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	secondTierPiston	= new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A, SECOND_TIER_PISTON_CHANNEL_B);
@@ -26,6 +26,8 @@ HematologistManipulator::HematologistManipulator()
 
 	sequenceStarted = false;
 	sequenceStep = 0;
+
+	this->oi = oi;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -174,6 +176,7 @@ void HematologistManipulator::moveLift(float input)
 
 void HematologistManipulator::autoSequence()
 {
+
 }
 
 void HematologistManipulator::resetEncoder()
