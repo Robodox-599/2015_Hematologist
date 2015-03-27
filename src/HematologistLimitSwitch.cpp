@@ -10,3 +10,8 @@ HematologistLimitSwitch::~HematologistLimitSwitch()
 	delete ai;
 	ai = NULL;
 }
+
+bool HematologistLimitSwitch::isPressed()
+{
+
+}
