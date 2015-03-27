@@ -6,6 +6,10 @@
 class HematologistDrive
 {
 public:
+	HematologistDrive();
+	~HematologistDrive();
+
+	
 
 private:
 	Talon* frontLeftMotor;
