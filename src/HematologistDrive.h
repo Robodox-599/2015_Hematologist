@@ -27,6 +27,10 @@ private:
 	Encoder* frontRightEncoder;
 	Encoder* backLeftEncoder;
 	Encoder* backRightEncoder;
+
+	float forward;
+	float turn;
+	float strafe;
 };
 
 #endif
