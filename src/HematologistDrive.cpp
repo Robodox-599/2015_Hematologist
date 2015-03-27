@@ -114,10 +114,10 @@ void HematologistDrive::drive(float forward, float turn, float strafe)
 	setTurn(turn *.75);	//turning made stack fall automatic slowing of it
 	setStrafe(strafe);
 
-	frontLeftMotor->Set(linearizeDrive(this->forward + this->turn + this->strafe));
-	frontRightMotor->Set(linearizeDrive(-this->forward + this->turn + this->strafe));
-	backLeftMotor->Set(linearizeDrive(this->forward + this->turn - this->strafe));
-	backRightMotor->Set(linearizeDrive(-this->forward + this->turn - this->strafe));
+	frontLeftMotor->Set(linearizeDrive(this->forward - this->turn + this->strafe));
+	frontRightMotor->Set(linearizeDrive(-this->forward - this->turn - this->strafe));
+	backLeftMotor->Set(linearizeDrive(this->forward - this->turn - this->strafe));
+	backRightMotor->Set(linearizeDrive(-this->forward - this->turn + this->strafe));
 
 }
 
