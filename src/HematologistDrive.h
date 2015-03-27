@@ -19,9 +19,9 @@ public:
 
 private:
 	Talon* frontLeftMotor;
-	Talon* frontRightMotor;
+	Talon* frontRightMotor; 	//reversed
 	Talon* backLeftMotor;
-	Talon* backRightMotor;
+	Talon* backRightMotor;		//reversed
 
 	Encoder* frontLeftEncoder;
 	Encoder* frontRightEncoder;
