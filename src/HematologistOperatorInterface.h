@@ -8,7 +8,9 @@ class HematologistOperatorInterface
 public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
-	
+
+	Joystick* getJoystick(char whichJosytick);
+	SmartDashboard* getDashboard();
 private:
 };
 
