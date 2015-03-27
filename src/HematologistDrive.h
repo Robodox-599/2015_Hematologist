@@ -8,12 +8,11 @@ class HematologistDrive
 public:
 
 private:
+	Talon* frontLeftMotor;
+	Talon* frontRightMotor;
+	Talon* backLeftMotor;
+	Talon* backRightMotor;
 	
-
-
-
-
-
 };
 
 #endif
