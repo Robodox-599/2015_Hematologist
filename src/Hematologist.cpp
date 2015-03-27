@@ -19,7 +19,7 @@ private:
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		drive = new HematologistDrive();
-		manip = new HematologistManipulator(oi);
+		manip = new HematologistManipulator();
 		auton = new HematologistAutonomous(oi, manip, drive);
 
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
