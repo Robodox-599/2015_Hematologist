@@ -120,3 +120,29 @@ void HematologistDrive::drive(float forward, float turn, float strafe)
 	backRightMotor->Set(linearizeDrive(-this->forward + this->turn - this->strafe));
 
 }
+
+float HematologistDrive::getForwardAverage()
+{
+	float average = (frontLeftEncoder->Get() + frontRightEncoder->Get() + backLeftEncoder->Get() + backRightEncoder->Get())/4.0;
+	return average;
+}
+
+float HematologistDrive::getTurnAverage()
+{
+	float average =(frontLeftEncoder->Get() - frontRightEncoder->Get() + backLeftEncoder->Get() - backRightEncoder->Get())/4.0; 
+	return average;
+}
+
+float HematologistDrive::getStrafeAverage()
+{
+	float average = (frontLeftEncoder->Get() - frontRightEncoder->Get() - backLeftEncoder->Get() + backRightEncoder->Get())/4.0;
+	return average;
+}
+
+void HematologistDrive::resetEncoders()
+{
+	frontLeftEncoder->Reset();
+	frontRightEncoder->Reset();
+	backLeftEncoder->Reset();
+	backRightEncoder->Reset();
+}
