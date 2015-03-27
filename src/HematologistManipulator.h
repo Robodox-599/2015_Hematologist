@@ -6,6 +6,24 @@
 class HematologistManipulator
 {
 public:
+	HematologistManipulator();
+	~HematologistManipulator();
+
+	void openForklift(bool open);
+	void closeForklift(bool close);
+
+	void openSecondTier(bool open);
+	void closeSecondTier(bool close);
+
+	void openBinHugger(bool open);
+	void closeBinHugger(bool close);
+
+	void openFlaps(bool open);
+	void closeFlaps(bool close);
+
+	void extendLongArm(bool extend);
+	void retractLongArm(bool retract);
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	
