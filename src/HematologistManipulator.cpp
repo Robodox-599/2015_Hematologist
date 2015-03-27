@@ -128,7 +128,7 @@ void HematologistManipulator::moveLift(float input)
 {
 	if (topLimitSwitch->isPressed())
 	{
-		if (input < -DEADZONE)
+		if (input < -LIFT_DEADZONE)
 		{
 			leftLiftMotor->Set(input);
 			rightLiftMotor->Set(input);
@@ -143,7 +143,7 @@ void HematologistManipulator::moveLift(float input)
 		if (bottomLimitSwitch->isPressed())
 		{
 			resetEncoder();
-			if (input > DEADZONE)
+			if (input > LIFT_DEADZONE)
 			{
 				leftLiftMotor->Set(input);
 				rightLiftMotor->Set(input);
@@ -155,7 +155,7 @@ void HematologistManipulator::moveLift(float input)
 		}else
 		{
 			//neither button pressed, act as if they don't exist
-			if (input > DEADZONE || input < -DEADZONE)
+			if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
 			{
 				leftLiftMotor->Set(input);
 				rightLiftMotor->Set(input);
