@@ -6,6 +6,9 @@
 class HematologistOperatorInterface
 {
 public:
+	HematologistOperatorInterface();
+	~HematologistOperatorInterface();
+	
 private:
 };
 
