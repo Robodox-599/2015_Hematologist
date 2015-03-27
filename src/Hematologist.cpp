@@ -59,7 +59,7 @@ private:
 		}
 
 		//negative value as joysticks are reversed so moving up on a joystick gives you a negative value
-		drive->drive(-oi->getJoystick('R')->getJoystickY(), -oi->getJoystick('R')->getJoystickX(), -oi->getJoystick('L')->GetX());
+		drive->drive(-oi->getJoystick('R')->GetY(), -oi->getJoystick('R')->GetX(), -oi->getJoystick('L')->GetX());
 
 		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
@@ -81,7 +81,7 @@ private:
 		manip->openFlaps(oi->getJoystick('L')->GetRawButton(OPEN_FLAPS_BUTTON));
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON));
 
-		manip->intakeWithRollers(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
+		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 
 		printSmartDashboard();
 	}
@@ -89,7 +89,7 @@ private:
 	void printSmartDashboard()
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
-		oi->getDashboard()->PutBoolean("Bottom LImit Switch", manip->getBottomLImitSwitch()->isPressed());
+		oi->getDashboard()->PutBoolean("Bottom LImit Switch", manip->getBottomLimitSwitch()->isPressed());
 	}
 
 
