@@ -3,6 +3,7 @@
 
 #include "HematologistMacros.h"
 #include "HematologistOperatorInterface.h"
+#include "HematologistLimitSwitch.h"
 
 class HematologistManipulator
 {
