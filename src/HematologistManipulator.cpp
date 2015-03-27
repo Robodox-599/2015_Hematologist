@@ -12,5 +12,6 @@ HematologistManipulator::HematologistManipulator()
 
 	liftEncoder 		= new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
 
-	
+	leftLiftMotor		= new Talon(LEFT_LIFT_MOTOR_CHANNEL);
+	rightLiftMotor		= new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
 }
