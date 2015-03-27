@@ -169,6 +169,11 @@ void HematologistManipulator::moveLift(float input)
 	}
 }
 
+void HematologistManipulator::resetEncoder()
+{
+	liftEncoder->Reset();
+}
+
 
 
 
