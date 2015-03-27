@@ -7,5 +7,5 @@ PROGRESS:
 	LimitSwitch Done
 	OperatorInterface Done
 	Manipulator Done
-	Auto Seequence Not Done
+	Auto Seequence Done
 	Autonomous Done
