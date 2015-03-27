@@ -12,6 +12,9 @@ public:
 	HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
 	~HematologistAutonomous();
 
+	void strafe(bool right);
+	void longArmAuto();
+
 private:
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
