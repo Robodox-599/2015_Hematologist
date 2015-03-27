@@ -47,13 +47,14 @@
 #define TURN_COMPRESSOR_OFF_BUTTON					(10)
 #define TURN_COMPRESSOR_ON_BUTTON					(11)
 
+
 //drive
 #define CONFIRM_BUTTON								(1)
 #define RETRACT_LONG_ARM_BUTTON						(2)
 #define EXTEND_LONG_ARM_BUTTON						(3)
 #define OPEN_FLAPS_BUTTON							(4)
 #define CLOSE_FLAPS_BUTTON							(5)
-
+#define ENCODER_RESET_BUTTON 						(6)
 
 //Motors
 #define FRONT_LEFT_MOTOR_CHANNEL					(0)

@@ -26,6 +26,7 @@ public:
 	float getTurnAverage();
 
 	void resetEncoders();
+	void resetEncoders(bool reset);
 
 private:
 	Talon* frontLeftMotor;

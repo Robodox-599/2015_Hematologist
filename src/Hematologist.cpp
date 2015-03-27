@@ -40,6 +40,24 @@ private:
 		//auton->strafe(true);
 		//auton->strafe(false);
 		//auton->longArmAuto();
+		drive->drive(.4, 0, 0);
+		Wait(3);
+		drive->drive(-.4, 0, 0);
+		Wait(3);
+		drive->drive(0, .4, 0);
+		Wait(3);
+		drive->drive(0, -.4, 0);
+		Wait(3);
+		drive->drive(0 , 0, .4);
+		Wait(3);
+		drive->drive(0, 0, -.4);
+		Wait(3);
+		drive->drive(0, 0, 0);
+		manip->moveLift(.4);
+		Wait(2);
+		manip->moveLift(-.4);
+		Wait(1);
+		manip->moveLift(0);
 	}
 
 	void TeleopInit(){}
@@ -60,6 +78,8 @@ private:
 
 		//negative value as joysticks are reversed so moving up on a joystick gives you a negative value
 		drive->drive(-oi->getJoystick('R')->GetY(), -oi->getJoystick('R')->GetX(), -oi->getJoystick('L')->GetX());
+
+		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(ENCODER_RESET_BUTTON));
 
 		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
@@ -83,6 +103,7 @@ private:
 
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 
+
 		printSmartDashboard();
 	}
 
@@ -90,6 +111,9 @@ private:
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
 		oi->getDashboard()->PutBoolean("Bottom LImit Switch", manip->getBottomLimitSwitch()->isPressed());
+		oi->getDashboard()->PutNumber("Forward Average: ", drive->getForwardAverage());
+		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
+		oi->getDashboard()->PutNumber("Strafe Average: ", drive->getStrafeAverage());
 	}
 
 

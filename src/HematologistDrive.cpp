@@ -146,3 +146,10 @@ void HematologistDrive::resetEncoders()
 	backLeftEncoder->Reset();
 	backRightEncoder->Reset();
 }
+void HematologistDrive::resetEncoders(bool reset)
+{
+	if(reset)
+	{
+		resetEncoders();
+	}
+}
