@@ -9,7 +9,12 @@
 class HematologistAutonomous
 {
 public:
+	HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
+	~HematologistAutonomous();
 private:
+	HematologistOperatorInterface* oi;
+	HematologistManipulator* manip;
+	HematologistDrive* drive;
 };
 
 #endif
