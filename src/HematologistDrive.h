@@ -19,6 +19,8 @@ public:
 
 	float linearizeDrive(float input);
 
+	void drive(float forward, float turn, float strafe);
+
 private:
 	Talon* frontLeftMotor;
 	Talon* frontRightMotor; 	//reversed
