@@ -19,7 +19,7 @@ HematologistAutonomous::~HematologistAutonomous()
 	drive = NULL;
 }
 
-HematologistAutonomous::strafe(bool right)
+void HematologistAutonomous::strafe(bool right)
 {
 	if (right)
 	{
@@ -39,7 +39,7 @@ HematologistAutonomous::strafe(bool right)
 	}
 }
 
-HematologistAutonomous::longArmAuto()
+void HematologistAutonomous::longArmAuto()
 {
 	if (driveStep == 0)
 	{
@@ -50,8 +50,8 @@ HematologistAutonomous::longArmAuto()
 	{
 		manip->resetEncoder();
 		manipStep++;
-		closeForklift(true);
-		closeSecondtier(true);
+		manip->closeForklift(true);
+		manip->closeSecondTier(true);
 	}
 	if (manipStep == 1)
 	{
@@ -76,10 +76,10 @@ HematologistAutonomous::longArmAuto()
 	}
 	if (manipStep == 2)
 	{
-		manip->extendLongArm();
+		manip->extendLongArm(true);
 		Wait(1.5);
 		drive->resetEncoders();
-		manip->openFlaps();
+		manip->openFlaps(true);
 		driveStep++;
 	}
 	if (driveStep == 2)
@@ -95,8 +95,8 @@ HematologistAutonomous::longArmAuto()
 	}
 	if (manipStep == 3)
 	{
-		manip->retractLongArm();
-		manip->closeFlaps();
+		manip->retractLongArm(true);
+		manip->closeFlaps(true);
 		manipStep++;
 	}
 
