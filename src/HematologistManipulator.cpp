@@ -18,5 +18,6 @@ HematologistManipulator::HematologistManipulator()
 	leftRollerMotor		= new Talon(LEFT_ROLLER_MOTOR_CHANNEL);
 	rightRollerMotor	= new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
 
-	
+	compressor = new Compressor(COMPRESSOR_CHANNEL);
+	compressor->SetClosedLoopControl(true);
 }
