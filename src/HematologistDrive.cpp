@@ -88,6 +88,12 @@ float HematologistDrive::getStrafe()
 	return strafe;
 }
 
+/*
+The return value is derived from the point-slope equation
+y - y1 = m(x-x1)
+where y is the value given to the motors
+where x is the value of the joysticks
+*/
 float HematologistDrive::linearizeDrive(float input)
 {
 	if (input > DEADZONE)
