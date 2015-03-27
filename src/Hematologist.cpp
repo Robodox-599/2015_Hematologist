@@ -39,7 +39,8 @@ private:
 	void AutonomousPeriodic(){
 		//auton->strafe(true);
 		//auton->strafe(false);
-		//auton->longArmAuto();
+		auton->longArmAuto();
+#if 0
 		drive->drive(.4, 0, 0);
 		Wait(3);
 		drive->drive(-.4, 0, 0);
@@ -58,6 +59,7 @@ private:
 		manip->moveLift(-.4);
 		Wait(1);
 		manip->moveLift(0);
+#endif
 	}
 
 	void TeleopInit(){}
