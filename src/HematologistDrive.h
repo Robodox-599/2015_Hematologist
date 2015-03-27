@@ -12,7 +12,11 @@ private:
 	Talon* frontRightMotor;
 	Talon* backLeftMotor;
 	Talon* backRightMotor;
-	
+
+	Encoder* frontLeftEncoder;
+	Encoder* frontRightEncoder;
+	Encoder* backLeftEncoder;
+	Encoder* backRightEncoder;
 };
 
 #endif
