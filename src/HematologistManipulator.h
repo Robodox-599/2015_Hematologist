@@ -18,6 +18,8 @@ private:
 
 	Encoder* liftEncoder;
 
+	Compressor* compressor
+
 };
 
 #endif
