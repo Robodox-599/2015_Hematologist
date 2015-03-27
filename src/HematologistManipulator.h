@@ -16,6 +16,8 @@ private:
 	Relay* flapOpenRelay;
 	Relay* flapCloseRelay;
 
+	Encoder* liftEncoder;
+
 };
 
 #endif
