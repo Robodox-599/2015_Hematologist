@@ -187,6 +187,17 @@ void HematologistManipulator::intakeWithRoller(bool intake)
 	}
 }
 
+void HematologistManipulator::turnOnCompressor(bool turnOn)
+{
+	if (turnOn)
+		compressor->Start();
+}
+
+void HematologistManipulator::turnOffCompressor(bool turnOff)
+{
+	if (turnOff)
+		compressor->Stop();
+}
 
 
 
