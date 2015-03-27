@@ -198,7 +198,7 @@ void HematologistManipulator::autoSequence()
 			sequenceStep++;
 		}
 	}
-	if (oi->getJoystick('M')->GetY() > LIFT_DEADZONE || oi->getJoystick('M')->GetY() < -LIFT_DEADZONE)
+	if (input > DEADZONE || input < -DEADZONE)
 	{
 		sequenceStarted = false;
 	}
@@ -210,7 +210,7 @@ void HematologistManipulator::controlLift(float input, bool startSequence)
 		sequenceStarted = true;
 	if (sequenceStarted)
 	{
-		autoSequence();
+		autoSequence(input);
 	}else
 	{
 		moveLift(input);

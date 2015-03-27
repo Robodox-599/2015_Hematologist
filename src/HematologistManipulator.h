@@ -27,7 +27,7 @@ public:
 	void retractLongArm(bool retract);
 
 	void moveLift(float input);
-	void autoSequence();
+	void autoSequence(float input);
 	void controlLift(float input, bool startSequence);
 
 	void resetEncoder();
