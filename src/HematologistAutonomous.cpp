@@ -89,7 +89,6 @@ void HematologistAutonomous::longArmAuto()
 		else
 		{
 			drive->drive(0, 0, 0);
-			driveStep++;
 			manipStep++;
 		}
 	}
