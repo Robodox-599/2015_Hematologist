@@ -24,6 +24,9 @@ public:
 	void extendLongArm(bool extend);
 	void retractLongArm(bool retract);
 
+	void moveLift(float speed);
+	void resetEncoder();
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	
