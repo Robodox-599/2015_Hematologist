@@ -5,8 +5,8 @@ HematologistAutonomous::HematologistAutonomous(HematologistOperatorInterface* oi
 	this->oi = oi;
 	this->manip = manip;
 	this->drive = drive;
-	int driveStep = 0;
-	int manipStep = 0;
+	driveStep = 0;
+	manipStep = 0;
 }
 
 HematologistAutonomous::~HematologistAutonomous()
