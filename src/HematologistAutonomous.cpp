@@ -49,5 +49,84 @@ HematologistAutonomous::longArmAuto()
 	if (manipStep == 0)
 	{
 		manip->resetEncoder();
+		manipStep++;
+		closeForklift(true);
+		closeSecondtier(true);
 	}
+	if (manipStep == 1)
+	{
+		if (manip->getEncoderValue() < 1000 + ENCODER_DEADZONE)
+		{
+			manip->moveLift(.4);
+		}else
+		{
+			manip->moveLift(0);
+			manipStep++;
+		}
+	}
+	if (driveStep == 1)
+	{
+		if (drive->getForwardAverage() > -500 - ENCODER_DEADZONE)
+		{
+			drive->drive(-.7, 0, 0);
+		}else
+		{
+			drive->drive(0, 0, 0);
+		}
+	}
+	if (manipStep == 2)
+	{
+		manip->extendLongArm();
+		Wait(1.5);
+		drive->resetEncoders();
+		manip->openFlaps();
+		driveStep++;
+	}
+	if (driveStep == 2)
+	{
+		if (drive->getForwardAverage() < 1200 + ENCODER_DEADZONE)
+			drive->drive(.5, 0, 0);
+		else
+		{
+			drive->drive(0, 0, 0);
+			driveStep++;
+			manipStep++;
+		}
+	}
+	if (manipStep == 3)
+	{
+		manip->retractLongArm();
+		manip->closeFlaps();
+		manipStep++;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
