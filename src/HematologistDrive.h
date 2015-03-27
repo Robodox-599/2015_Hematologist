@@ -17,6 +17,8 @@ public:
 	float getTurn();
 	float getStrafe();
 
+	float linearizeDrive();
+
 private:
 	Talon* frontLeftMotor;
 	Talon* frontRightMotor; 	//reversed
