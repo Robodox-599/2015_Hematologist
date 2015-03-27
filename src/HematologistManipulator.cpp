@@ -172,7 +172,7 @@ void HematologistManipulator::moveLift(float input)
 	}
 }
 
-void HematologistManipulator::autoSequence()
+void HematologistManipulator::autoSequence(float input)
 {
 	if(sequenceStep == 0)
 	{
@@ -190,6 +190,11 @@ void HematologistManipulator::autoSequence()
 	 		sequenceStep++;
 	  }
 	}
+	if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
+	{
+		startSequence = false;
+	}
+
 
 }
 
