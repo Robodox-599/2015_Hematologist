@@ -37,5 +37,53 @@ HematologistDrive::~HematologistDrive()
 	frontRightEncoder = NULL;
 	backLeftEncoder = NULL;
 	backRightEncoder = NULL;
+}
 
+void HematologistDrive::setForward(float forward)
+{
+	if (forward > DEADZONE || forward < -DEADZONE)
+	{
+		this->forward = forward;
+	}else
+	{
+		this->forward = 0;
+	}
+}
+
+void HematologistDrive::setTurn(float turn)
+{
+	if (turn > DEADZONE || turn < -DEADZONE)
+	{
+		this->turn = turn;
+	}else
+	{
+		this->turn = 0;
+	}
+}
+
+void HematologistDrive::setStrafe(float strafe)
+{
+	if (strafe > DEADZONE || strafe < -DEADZONE)
+	{
+		this->strafe = strafe;
+	}else
+	{
+		this->strafe = 0;
+	}
+}
+
+
+float HematologistDrive::getForward()
+{
+	return forward;
+}
+
+float HematologistDrive::getTurn()
+{
+	return turn;
+}
+
+float HematologistDrive::getStrafe()
+{
+	return strafe;
 }
