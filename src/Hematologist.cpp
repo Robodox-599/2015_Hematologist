@@ -36,7 +36,11 @@ private:
 
 	void AutonomousInit(){}
 
-	void AutonomousPeriodic(){}
+	void AutonomousPeriodic(){
+		//auton->strafe(true);
+		//auton->strafe(false);
+		//auton->longArmAuto();
+	}
 
 	void TeleopInit(){}
 
@@ -53,6 +57,31 @@ private:
 			//imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
 			CameraServer::GetInstance()->SetImage(frame);
 		}
+
+		//negative value as joysticks are reversed so moving up on a joystick gives you a negative value
+		drive->drive(-oi->getJoystick('R')->getJoystickY(), -oi->getJoystick('R')->getJoystickX(), -oi->getJoystick('L')->GetX());
+
+		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
+
+		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
+		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));
+
+		manip->openForklift(oi->getJoystick('M')->GetRawButton(OPEN_FORKLIFT_BUTTON));
+		manip->closeForklift(oi->getJoystick('M')->GetRawButton(CLOSE_FORKLIFT_BUTTON));
+
+		manip->openSecondTier(oi->getJoystick('M')->GetRawButton(OPEN_SECOND_TIER_BUTTON));
+		manip->closeSecondTier(oi->getJoystick('M')->GetRawButton(CLOSE_SECOND_TIER_BUTTON));
+
+		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(OPEN_BIN_HUGGER_BUTTON));
+		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(CLOSE_BIN_HUGGER_BUTTON));
+
+		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('R')->GetRawButton(CONFIRM_BUTTON));
+		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('R')->GetRawButton(CONFIRM_BUTTON));
+
+		manip->openFlaps(oi->getJoystick('L')->GetRawButton(OPEN_FLAPS_BUTTON));
+		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON));
+
+		manip->intakeWithRollers(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 	}
 
 
