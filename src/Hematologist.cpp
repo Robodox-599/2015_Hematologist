@@ -82,6 +82,14 @@ private:
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON));
 
 		manip->intakeWithRollers(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
+
+		printSmartDashboard();
+	}
+
+	void printSmartDashboard()
+	{
+		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
+		oi->getDashboard()->PutBoolean("Bottom LImit Switch", manip->getBottomLImitSwitch()->isPressed());
 	}
 
 
