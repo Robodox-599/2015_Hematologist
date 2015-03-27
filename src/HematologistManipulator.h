@@ -18,7 +18,13 @@ private:
 
 	Encoder* liftEncoder;
 
-	Compressor* compressor
+	Compressor* compressor;
+
+	Talon* leftLiftMotor;
+	Talon* rightLiftMotor;
+
+	Talon* leftRollerMotor;
+	Talon* rightRollerMotor;
 
 };
 
