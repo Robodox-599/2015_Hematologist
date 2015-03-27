@@ -29,6 +29,9 @@ public:
 
 	void intakeWithRoller(bool intake);
 
+	void turnOnCompressor(bool turnOn);
+	void turnOffCompressor(bool turnOff);
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	
