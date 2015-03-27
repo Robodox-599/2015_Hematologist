@@ -6,6 +6,9 @@
 class HematologistLimitSwitch
 {
 public:
+	HematologistLimitSwitch(int limitSwitchChannel);
+	~HematologistAnalogLimitSwitch();
+
 private:
 };
 
