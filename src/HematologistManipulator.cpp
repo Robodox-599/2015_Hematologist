@@ -126,6 +126,7 @@ void HematologistManipulator::retractLongArm(bool retract)
 
 void HematologistManipulator::moveLift(float input)
 {
+	//different deadzone used here b/c drivers want different deadzone values
 	if (topLimitSwitch->isPressed())
 	{
 		if (input < -LIFT_DEADZONE)
