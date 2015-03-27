@@ -31,3 +31,8 @@ Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
 		return manipJoystick;
 	return leftDriveJoystick;	//arbitrary set as the default
 }
+
+SmartDashboard* HematologistOperatorInterface::getDashboard()
+{
+	return dashboard;
+}
