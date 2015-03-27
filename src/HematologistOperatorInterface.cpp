@@ -21,3 +21,13 @@ HematologistOperatorInterface::~HematologistOperatorInterface()
 	dashboard = NULL;
 }
 
+Joystick* HematologistOperatorInterface::getJoystick(char whichJoystick)
+{
+	if (whichJoystick == 'L')
+		return leftDriveJoystick;
+	if (whichJoystick == 'R')
+		return rightDriveJoystick;
+	if (whichJoystick == 'M')
+		return manipJoystick;
+	return leftDriveJoystick;	//arbitrary set as the default
+}
