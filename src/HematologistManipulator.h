@@ -6,7 +6,16 @@
 class HematologistManipulator
 {
 public:
+
 private:
+	DoubleSolenoid* forkliftPiston;	
+	DoubleSolenoid* secondTierPiston;
+	DoubleSolenoid* binHuggerPiston;
+	DoubleSolenoid* longArmPiston;
+
+	Relay* flapOpenRelay;
+	Relay* flapCloseRelay;
+
 };
 
 #endif
