@@ -87,3 +87,14 @@ float HematologistDrive::getStrafe()
 {
 	return strafe;
 }
+
+float HematologistDrive::linearizeDrive(float input)
+{
+	if (input > DEADZONE)
+		return (1/(1-DEADZONE)) * (input - DEADZONE);
+	else
+		if (input < -DEADZONE)
+			return (1/(1-DEADZONE)) * (input + DEADZONE);
+		else
+			return 0;
+}
