@@ -24,7 +24,7 @@ public:
 	void extendLongArm(bool extend);
 	void retractLongArm(bool retract);
 
-	void moveLift(float speed);
+	void moveLift(float input);
 	void resetEncoder();
 
 	void intakeWithRoller(bool intake);
