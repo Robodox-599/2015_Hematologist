@@ -36,6 +36,7 @@ private:
 	bool binHuggerOpen;
 	bool flapsOpen;
 
+
 	bool longArmOpen1;
 	bool longArmOpen2;
 	bool longArmOpen3;

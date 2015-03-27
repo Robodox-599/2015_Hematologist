@@ -41,7 +41,7 @@ Manip Joystick:
 #define FORKLIFT_CLOSE_BUTTON				(7)	
 #define START_COMPRESSOR_BUTTON				(8)
 #define STOP_COMPRESSOR_BUTTON				(9)
-
+	
 //drive
 
 #define ACTIVATE_LONG_ARM					(1)
