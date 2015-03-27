@@ -63,16 +63,16 @@ HematologistManipulator::~HematologistManipulator()
 	bottomLimitSwitch= NULL;
 }
 
-void HematologistManipulator::openForkLift(bool open)
+void HematologistManipulator::openForklift(bool open)
 {
 	if(open)
-		forkLiftPiston->Set(DoubleSolenoid::kReverse);
+		forkliftPiston->Set(DoubleSolenoid::kReverse);
 }
 
-void HematologistManipulator::closeForkLift(bool close)
+void HematologistManipulator::closeForklift(bool close)
 {
 	if (close)
-		forkLiftPiston->Set(DoubleSolenoid::kForward);
+		forkliftPiston->Set(DoubleSolenoid::kForward);
 }
 
 void HematologistManipulator::openSecondTier(bool open)
@@ -155,7 +155,7 @@ void HematologistManipulator::moveLift(float input)
 				rightLiftMotor->Set(input);
 			}else
 			{
-				leftLiftMotor->Set(0):
+				leftLiftMotor->Set(0);
 				rightLiftMotor->Set(0);
 			}
 		}else
@@ -198,7 +198,7 @@ void HematologistManipulator::autoSequence()
 			sequenceStep++;
 		}
 	}
-	if (oi->getJoystick('M')->GetY() > LIFT_DEADZONE || oi->getJoystkck('M')->GetY() < -LIFT_DEADZONE)
+	if (oi->getJoystick('M')->GetY() > LIFT_DEADZONE || oi->getJoystick('M')->GetY() < -LIFT_DEADZONE)
 	{
 		sequenceStarted = false;
 	}

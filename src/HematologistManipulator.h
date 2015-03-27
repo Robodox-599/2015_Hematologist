@@ -2,12 +2,12 @@
 #define HEMATOLOGIST_MANIPULATOR_H
 
 #include "HematologistMacros.h"
-#include "HematolgoistOperatorInterface.h"
+#include "HematologistOperatorInterface.h"
 
 class HematologistManipulator
 {
 public:
-	HematologistManipulator(HematolgoistOperatorInterface* oi);
+	HematologistManipulator(HematologistOperatorInterface* oi);
 	~HematologistManipulator();
 
 	void openForklift(bool open);
@@ -66,7 +66,7 @@ private:
 	bool sequenceStarted;
 	int sequenceStep;
 
-	HematolgoistOperatorInterface* oi;
+	HematologistOperatorInterface* oi;
 
 };
 
