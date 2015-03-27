@@ -25,6 +25,9 @@ public:
 	void retractLongArm(bool retract);
 
 	void moveLift(float input);
+	void autoSequence(bool start);
+	void controlLift(float input, bool startSequence);
+
 	void resetEncoder();
 	float getEncoderValue();
 
@@ -55,6 +58,9 @@ private:
 
 	HematologistLimitSwitch* topLimitSwitch;
 	HematologistLimitSwitch* bottomLimitSwitch;
+
+	bool sequenceStarted;
+	int sequenceStep;
 
 };
 
