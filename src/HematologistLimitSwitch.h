@@ -7,7 +7,7 @@ class HematologistLimitSwitch
 {
 public:
 	HematologistLimitSwitch(int limitSwitchChannel);
-	~HematologistAnalogLimitSwitch();
+	~HematologistLimitSwitch();
 
 	bool isPressed();
 private:
