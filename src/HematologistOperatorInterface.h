@@ -12,6 +12,11 @@ public:
 	Joystick* getJoystick(char whichJosytick);
 	SmartDashboard* getDashboard();
 private:
+	Joystick* leftDriveJoystick;
+	Joystick* rightDriveJoystick;
+	Joystick* manipJoystick;
+	SmartDashboard* dashboard;
+
 };
 
 #endif
