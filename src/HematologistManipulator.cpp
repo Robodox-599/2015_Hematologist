@@ -57,3 +57,70 @@ HematologistManipulator::~HematologistManipulator()
 	topLimitSwitch= NULL;
 	bottomLimitSwitch= NULL;
 }
+
+void HematologistManipulator::openForkLift(bool open)
+{
+	if(open)
+		forkLiftPiston->Set(DoubleSolenoid::kReverse);
+}
+
+void HematologistManipulator::closeForkLift(bool close)
+{
+	if (close)
+		forkLiftPiston->Set(DoubleSolenoid::kForward);
+}
+
+void HematologistManipulator::openSecondTier(bool open)
+{
+	if (open)
+		secondTierPiston->Set(DoubleSolenoid::kForward);
+}
+
+void HematologistManipulator::closeSecondTier(bool close)
+{
+	if (close)
+		secondTierPiston->Set(DoubleSolenoid::kReverse);
+}
+
+void HematologistManipulator::openBinHugger(bool open)
+{
+	if (open)
+		binHuggerPiston->Set(DoubleSolenoid::kReverse);
+}
+
+void HematologistManipulator::closeBinHugger(bool close)
+{
+	if (close)
+		binHuggerPiston->Set(DoubleSolenoid::kForward);
+}
+
+void HematologistManipulator::openFlaps(bool open)
+{
+	if (open)
+	{
+		flapOpenRelay->Set(Relay::kForward);
+		flapCloseRelay->Set(Relay::kOff);
+	}
+}
+
+void HematologistManipulator::closeFlaps(bool close)
+{
+	if (close)
+	{
+		flapOpenRelay->Set(Relay::kOff);
+		flapCloseRelay->Set(Relay::kForward);
+	}
+}
+
+void HematologistManipulator::extendLongArm(bool extend)
+{
+	if (extend)
+		longArmPiston->Set(DoubleSolenoid::kForward);
+}
+
+void HematologistManipulator::retractLongArm(bool retract)
+{
+	if (retract)
+		longArmPiston->Set(DoubleSolenoid::kReverse);
+}
+
