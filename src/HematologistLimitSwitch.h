@@ -9,6 +9,7 @@ public:
 	HematologistLimitSwitch(int limitSwitchChannel);
 	~HematologistAnalogLimitSwitch();
 
+	bool pressed();
 private:
 };
 
