@@ -174,6 +174,19 @@ void HematologistManipulator::resetEncoder()
 	liftEncoder->Reset();
 }
 
+void HematologistManipulator::intakeWithRoller(bool intake)
+{
+	if (intake)
+	{
+		leftRollerMotor->Set(1);
+		rightRollerMotor->Set(1);
+	}else
+	{
+		leftRollerMotor->Set(0);
+		rightRollerMotor->Set(0);
+	}
+}
+
 
 
 
