@@ -124,3 +124,97 @@ void HematologistManipulator::retractLongArm(bool retract)
 		longArmPiston->Set(DoubleSolenoid::kReverse);
 }
 
+void HematologistManipulator::moveLift(float speed)
+{
+	if (topLimitSwitch->isPressed())
+	{
+		if (speed < -DEADZONE)
+		{
+			leftLiftMotor->Set(speed);
+			rightLiftMotor->Set(speed);
+		}else
+		{
+			leftLiftMotor->Set(0);
+			rightLiftMotor->Set(0);
+		}
+	}
+	else
+	{
+		if (bottomLimitSwitch->isPressed())
+		{
+			resetEncoder();
+			if (speed > DEADZONE)
+			{
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
+			}else
+			{
+				leftLiftMotor->Set(0):
+				rightLiftMotor->Set(0);
+			}
+		}else
+		{
+			//neither button pressed, act as if they don't exist
+			if (speed > DEADZONE || speed < -DEADZONE)
+			{
+				leftLiftMotor->Set(speed);
+				rightLiftMotor->Set(speed);
+			}else
+			{
+				leftLiftMotor->Set(0);
+				rightLiftMotor->Set(0);
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
