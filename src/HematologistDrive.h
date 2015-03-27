@@ -21,6 +21,10 @@ public:
 
 	void drive(float forward, float turn, float strafe);
 
+	float getForwardAverage();
+	float getStrafeAverage();
+	float getTurnAverage();
+
 private:
 	Talon* frontLeftMotor;
 	Talon* frontRightMotor; 	//reversed
