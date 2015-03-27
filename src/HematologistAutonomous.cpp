@@ -38,3 +38,16 @@ HematologistAutonomous::strafe(bool right)
 			drive->drive(0, 0, 0);
 	}
 }
+
+HematologistAutonomous::longArmAuto()
+{
+	if (driveStep == 0)
+	{
+		drive->resetEncoders();
+		driveStep++;
+	}
+	if (manipStep == 0)
+	{
+		manip->resetEncoder();
+	}
+}
