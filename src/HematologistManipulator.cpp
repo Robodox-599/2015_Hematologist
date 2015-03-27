@@ -88,13 +88,13 @@ void HematologistManipulator::closeSecondTier(bool close)
 void HematologistManipulator::openBinHugger(bool open)
 {
 	if (open)
-		binHuggerPiston->Set(DoubleSolenoid::kReverse);
+		binHuggerPiston->Set(DoubleSolenoid::kForward);
 }
 
 void HematologistManipulator::closeBinHugger(bool close)
 {
 	if (close)
-		binHuggerPiston->Set(DoubleSolenoid::kForward);
+		binHuggerPiston->Set(DoubleSolenoid::kReverse);
 }
 
 void HematologistManipulator::openFlaps(bool open)
