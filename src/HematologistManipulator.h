@@ -8,7 +8,7 @@
 class HematologistManipulator
 {
 public:
-	HematologistManipulator(HematologistOperatorInterface* oi);
+	HematologistManipulator();
 	~HematologistManipulator();
 
 	void openForklift(bool open);
@@ -66,8 +66,6 @@ private:
 
 	bool sequenceStarted;
 	int sequenceStep;
-
-	HematologistOperatorInterface* oi;
 
 };
 
