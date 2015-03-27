@@ -17,7 +17,7 @@ public:
 	float getTurn();
 	float getStrafe();
 
-	float linearizeDrive();
+	float linearizeDrive(float input);
 
 private:
 	Talon* frontLeftMotor;
