@@ -174,6 +174,11 @@ void HematologistManipulator::resetEncoder()
 	liftEncoder->Reset();
 }
 
+float HematologistManipulator::getEncoderValue()
+{
+	return liftEncoder->Get();
+}
+
 void HematologistManipulator::intakeWithRoller(bool intake)
 {
 	if (intake)

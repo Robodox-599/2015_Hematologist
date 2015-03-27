@@ -26,6 +26,7 @@ public:
 
 	void moveLift(float input);
 	void resetEncoder();
+	float getEncoderValue();
 
 	void intakeWithRoller(bool intake);
 
