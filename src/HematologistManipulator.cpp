@@ -14,4 +14,9 @@ HematologistManipulator::HematologistManipulator()
 
 	leftLiftMotor		= new Talon(LEFT_LIFT_MOTOR_CHANNEL);
 	rightLiftMotor		= new Talon(RIGHT_LIFT_MOTOR_CHANNEL);
+
+	leftRollerMotor		= new Talon(LEFT_ROLLER_MOTOR_CHANNEL);
+	rightRollerMotor	= new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
+
+	
 }
