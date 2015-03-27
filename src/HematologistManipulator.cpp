@@ -24,3 +24,36 @@ HematologistManipulator::HematologistManipulator()
 	topLimitSwitch 		= new HematologistLimitSwitch(TOP_LIMIT_SWITCH_CHANNEL);
 	bottomLimitSwitch 	= new HematologistLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
 }
+
+HematologistManipulator::~HematologistManipulator()
+{
+	delete forkliftPiston;
+	delete secondTierPiston;
+	delete binHuggerPiston;
+	delete longArmPiston;
+	delete flapOpenRelay;
+	delete flapCloseRelay;
+	delete liftEncoder;
+	delete leftLiftMotor;
+	delete rightLiftMotor;
+	delete leftRollerMotor;
+	delete rightRollerMotor;
+	delete compressor;
+	delete topLimitSwitch;
+	delete bottomLimitSwitch;
+
+	forkliftPiston= NULL;
+	secondTierPiston= NULL;
+	binHuggerPiston= NULL;
+	longArmPiston= NULL;
+	flapOpenRelay= NULL;
+	flapCloseRelay= NULL;
+	liftEncoder= NULL;
+	leftLiftMotor= NULL;
+	rightLiftMotor= NULL;
+	leftRollerMotor= NULL;
+	rightRollerMotor= NULL;
+	compressor= NULL;
+	topLimitSwitch= NULL;
+	bottomLimitSwitch= NULL;
+}
