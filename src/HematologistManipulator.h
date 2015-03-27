@@ -52,6 +52,9 @@ private:
 	Talon* leftRollerMotor;
 	Talon* rightRollerMotor;
 
+	HematologistLimitSwitch* topLimitSwitch;
+	HematologistLimitSwitch* bottomLimitSwitch;
+
 };
 
 #endif
