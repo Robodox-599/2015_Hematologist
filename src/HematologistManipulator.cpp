@@ -210,19 +210,7 @@ void HematologistManipulator::autoSequence(float input)
 
 void HematologistManipulator::controlLift(float input, bool startSequence)
 {
-	if (startSequence)
-	{
-		sequenceStarted = true;
-		sequenceStep = 0;
-	}
-	if (sequenceStarted && !forkliftOpen)
-	{
-		autoSequence(input);
-	}else
-	{
-		sequenceStarted = false;
-		moveLift(input);
-	}
+	moveLift(input);
 }
 
 void HematologistManipulator::resetEncoder()
