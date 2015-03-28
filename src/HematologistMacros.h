@@ -52,8 +52,8 @@
 #define CONFIRM_BUTTON								(1)
 #define RETRACT_LONG_ARM_BUTTON						(2)
 #define EXTEND_LONG_ARM_BUTTON						(3)
-#define OPEN_FLAPS_BUTTON							(4)
-#define CLOSE_FLAPS_BUTTON							(5)
+#define OPEN_FLAPS_BUTTON							(5)
+#define CLOSE_FLAPS_BUTTON							(4)
 #define ENCODER_RESET_BUTTON 						(6)
 
 //Motors
