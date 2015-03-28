@@ -25,7 +25,7 @@ void HematologistAutonomous::strafe(bool right)
 	{
 		if (drive->getStrafeAverage() < 2000 + ENCODER_DEADZONE)
 		{
-			drive->drive(0, 0, .8);
+			drive->drive(0, 0, -.8);
 		}else
 		{
 			drive->drive(0, 0, 0);
@@ -45,7 +45,7 @@ void HematologistAutonomous::longArmAuto()
 	if (driveStep == 0)
 	{
 		drive->resetEncoders();
-		driveStep++;
+		//driveStep++;
 	}
 	if (manipStep == 0)
 	{
@@ -53,6 +53,9 @@ void HematologistAutonomous::longArmAuto()
 		manipStep++;
 		manip->closeForklift(true);
 		manip->closeSecondTier(true);
+		manip->openFlaps(true);
+		driveStep++;
+		Wait(1);
 	}
 	if (manipStep == 1)
 	{
@@ -77,9 +80,8 @@ void HematologistAutonomous::longArmAuto()
 	}
 	if (manipStep == 2)
 	{
-		manip->openFlaps(true);
 		manip->extendLongArm(true);
-		Wait(2);
+		Wait(3);
 		drive->resetEncoders();
 		driveStep++;
 		manipStep++;

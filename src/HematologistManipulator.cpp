@@ -26,6 +26,8 @@ HematologistManipulator::HematologistManipulator()
 
 	sequenceStarted = false;
 	sequenceStep = 0;
+
+	forkliftOpen = false;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -63,14 +65,18 @@ HematologistManipulator::~HematologistManipulator()
 
 void HematologistManipulator::openForklift(bool open)
 {
-	if(open)
+	if(open){
 		forkliftPiston->Set(DoubleSolenoid::kReverse);
+		forkliftOpen = true;
+	}
 }
 
 void HematologistManipulator::closeForklift(bool close)
 {
-	if (close)
+	if (close){
 		forkliftPiston->Set(DoubleSolenoid::kForward);
+		forkliftOpen = false;
+	}
 }
 
 void HematologistManipulator::openSecondTier(bool open)
@@ -176,22 +182,28 @@ void HematologistManipulator::autoSequence(float input)
 {
 	if(sequenceStep == 0)
 	{
-		moveLift(.4);
-		if(getEncoderValue() > 2600 + ENCODER_DEADZONE)
+		moveLift(1);
+		if(getEncoderValue() > 3275 - ENCODER_DEADZONE)
 		{
 			sequenceStep++;
 		}
 	}
 	if(sequenceStep == 1)
 	{
-	 	moveLift(-.4);
-	 	if(getEncoderValue() == 0)
+	 	moveLift(-.6);
+	 	if (getEncoderValue() < 2500)
+	 	{
+	 		openForklift(true);
+	 	}
+	 	if(getEncoderValue() >= 0 && getEncoderValue() < 20)
 	 	{
 	 		sequenceStep++;
-	  }
+	 		moveLift(0);
+	 	}
 	}
 	if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
 	{
+		moveLift(0);
 		sequenceStarted = false;
 	}
 }
@@ -203,11 +215,12 @@ void HematologistManipulator::controlLift(float input, bool startSequence)
 		sequenceStarted = true;
 		sequenceStep = 0;
 	}
-	if (sequenceStarted)
+	if (sequenceStarted && !forkliftOpen)
 	{
 		autoSequence(input);
 	}else
 	{
+		sequenceStarted = false;
 		moveLift(input);
 	}
 }
@@ -255,6 +268,15 @@ HematologistLimitSwitch* HematologistManipulator::getTopLimitSwitch()
 HematologistLimitSwitch* HematologistManipulator::getBottomLimitSwitch()
 {
 	return bottomLimitSwitch;
+}
+
+bool HematologistManipulator::highEnough()
+{
+	if (getEncoderValue() > 3000 - LIFT_DEADZONE && getEncoderValue() < 3100 + LIFT_DEADZONE)
+	{
+		return true;
+	}
+	return false;
 }
 
 

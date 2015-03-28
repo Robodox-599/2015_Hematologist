@@ -97,11 +97,11 @@ private:
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(OPEN_BIN_HUGGER_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(CLOSE_BIN_HUGGER_BUTTON));
 
-		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetTrigger());
-		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetTrigger());
+		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
+		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 
-		manip->openFlaps(oi->getJoystick('L')->GetRawButton(OPEN_FLAPS_BUTTON));
-		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON));
+		manip->openFlaps(oi->getJoystick('L')->GetRawButton(OPEN_FLAPS_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
+		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 
@@ -116,6 +116,8 @@ private:
 		oi->getDashboard()->PutNumber("Forward Average: ", drive->getForwardAverage());
 		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
 		oi->getDashboard()->PutNumber("Strafe Average: ", drive->getStrafeAverage());
+		oi->getDashboard()->PutBoolean("Ready: ", manip->highEnough());
+		oi->getDashboard()->PutNumber("Lift Encoder: ", manip->getEncoderValue());
 	}
 
 

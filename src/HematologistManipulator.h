@@ -41,6 +41,8 @@ public:
 	HematologistLimitSwitch* getTopLimitSwitch();
 	HematologistLimitSwitch* getBottomLimitSwitch();
 
+	bool highEnough();
+
 
 private:
 	DoubleSolenoid* forkliftPiston;	
@@ -67,6 +69,7 @@ private:
 	bool sequenceStarted;
 	int sequenceStep;
 
+	bool forkliftOpen;
 };
 
 #endif
