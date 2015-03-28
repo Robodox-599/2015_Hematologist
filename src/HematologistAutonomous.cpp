@@ -41,6 +41,7 @@ void HematologistAutonomous::strafe(bool right)
 
 void HematologistAutonomous::longArmAuto()
 {
+
 	if (driveStep == 0)
 	{
 		drive->resetEncoders();
@@ -57,30 +58,31 @@ void HematologistAutonomous::longArmAuto()
 	{
 		if (manip->getEncoderValue() < 1000 + ENCODER_DEADZONE)
 		{
-			manip->moveLift(.4);
+			//manip->moveLift(.4);
 		}else
 		{
-			manip->moveLift(0);
-			manipStep++;
+			//manip->moveLift(0);
 		}
 	}
 	if (driveStep == 1)
 	{
-		if (drive->getForwardAverage() > -500 - ENCODER_DEADZONE)
+		if (drive->getForwardAverage() > -550 - ENCODER_DEADZONE)
 		{
 			drive->drive(-.7, 0, 0);
 		}else
 		{
 			drive->drive(0, 0, 0);
+			manipStep++;
 		}
 	}
 	if (manipStep == 2)
 	{
-		manip->extendLongArm(true);
-		Wait(1.5);
-		drive->resetEncoders();
 		manip->openFlaps(true);
+		manip->extendLongArm(true);
+		Wait(2);
+		drive->resetEncoders();
 		driveStep++;
+		manipStep++;
 	}
 	if (driveStep == 2)
 	{
@@ -92,11 +94,10 @@ void HematologistAutonomous::longArmAuto()
 			manipStep++;
 		}
 	}
-	if (manipStep == 3)
+	if (manipStep == 4)
 	{
 		manip->retractLongArm(true);
 		manip->closeFlaps(true);
-		manipStep++;
 	}
 
 
