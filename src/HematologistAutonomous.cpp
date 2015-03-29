@@ -55,7 +55,7 @@ void HematologistAutonomous::longArmAuto()
 		manip->closeSecondTier(true);
 		manip->openFlaps(true);
 		driveStep++;
-		Wait(1);
+		Wait(3);
 	}
 	if (manipStep == 1)
 	{
