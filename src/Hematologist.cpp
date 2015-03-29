@@ -39,7 +39,7 @@ private:
 	void AutonomousPeriodic(){
 		//auton->strafe(true);
 		//auton->strafe(false);
-		auton->longArmAuto();
+		//sauton->longArmAuto();
 	}
 
 	void TeleopInit(){}
