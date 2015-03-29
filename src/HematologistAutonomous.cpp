@@ -33,7 +33,7 @@ void HematologistAutonomous::strafe(bool right)
 	}else
 	{
 		if (drive->getStrafeAverage() > -2000 - ENCODER_DEADZONE)
-			drive->drive(0, 0, -.8);
+			drive->drive(0, 0, .8);
 		else
 			drive->drive(0, 0, 0);
 	}

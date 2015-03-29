@@ -40,26 +40,6 @@ private:
 		//auton->strafe(true);
 		//auton->strafe(false);
 		//auton->longArmAuto();
-#if 0
-		drive->drive(.4, 0, 0);
-		Wait(3);
-		drive->drive(-.4, 0, 0);
-		Wait(3);
-		drive->drive(0, .4, 0);
-		Wait(3);
-		drive->drive(0, -.4, 0);
-		Wait(3);
-		drive->drive(0 , 0, .4);
-		Wait(3);
-		drive->drive(0, 0, -.4);
-		Wait(3);
-		drive->drive(0, 0, 0);
-		manip->moveLift(.4);
-		Wait(2);
-		manip->moveLift(-.4);
-		Wait(1);
-		manip->moveLift(0);
-#endif
 	}
 
 	void TeleopInit(){}
