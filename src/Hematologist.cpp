@@ -39,7 +39,7 @@ private:
 	void AutonomousPeriodic(){
 		//auton->strafe(true);
 		//auton->strafe(false);
-		//sauton->longArmAuto();
+		auton->longArmAuto();
 	}
 
 	void TeleopInit(){}
@@ -92,7 +92,7 @@ private:
 	void printSmartDashboard()
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
-		oi->getDashboard()->PutBoolean("Bottom LImit Switch", manip->getBottomLimitSwitch()->isPressed());
+		oi->getDashboard()->PutBoolean("Bottom Limit Switch", manip->getBottomLimitSwitch()->isPressed());
 		oi->getDashboard()->PutNumber("Forward Average: ", drive->getForwardAverage());
 		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
 		oi->getDashboard()->PutNumber("Strafe Average: ", drive->getStrafeAverage());
