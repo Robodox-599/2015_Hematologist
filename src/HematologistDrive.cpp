@@ -29,43 +29,44 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 HematologistDrive::~HematologistDrive()
 {
 	delete frontLeftMotor;
-	delete backRightMotor;
+	delete frontRightMotor;
 	delete backLeftMotor;
-	delete frontRightMotor; //was "delete backRightMotor"
+	delete backRightMotor;
+
 	delete frontLeftEncoder;
-	delete backLeftEncoder;
 	delete frontRightEncoder;
+	delete backLeftEncoder;
 	delete backRightEncoder;
 
 	delete gyro;
 
 	frontLeftMotor 	= NULL;
+	frontRightMotor = NULL;
 	backRightMotor 	= NULL;
 	backLeftMotor 	= NULL;
-	frontRightMotor = NULL;
+
 	frontLeftEncoder = NULL;
-	backLeftEncoder = NULL;
 	frontRightEncoder = NULL;
+	backLeftEncoder = NULL;
 	backRightEncoder = NULL;
+
 	gyro = NULL;
 }
 
 float HematologistDrive::setForward(float forward)
 {
 	if (forward > DEADZONE || forward < -DEADZONE)
-	{
 		this->forward = forward;
-	}
 	else
-	{
 		this->forward = 0;
-	}
+
 	return this->forward;
 }
 
 float HematologistDrive::setTurn(float turn)
 {
-	if(gyroOn){
+	if (gyroOn) 
+	{
 		if (turn > DEADZONE || turn < -DEADZONE)
 		{
 			this->turn = turn;
@@ -78,10 +79,14 @@ float HematologistDrive::setTurn(float turn)
 	}
 	else
 	{
-		if(turn > DEADZONE || turn < -DEADZONE)
+		if (turn > DEADZONE || turn < -DEADZONE)
+		{
 			this->turn = turn;
+		}
 		else
+		{
 			this->turn = 0;
+		}
 	}
 	return this->turn;
 }
@@ -120,24 +125,6 @@ void  HematologistDrive::drive(float forward, float turn, float strafe)
 	backRightMotor->Set(linearizeDrive(-this->forward - this->strafe + this->turn));
 }
 
-Encoder* HematologistDrive::getEncoder(bool front, bool right)
-{
-  if (front)
-  {
-    if (right)
-      return frontRightEncoder;
-    else
-      return frontLeftEncoder;
-  }
-  else
-  {
-    if (right)
-      return backRightEncoder;
-    else
-      return backLeftEncoder;
-  }
-}
-
 Talon* HematologistDrive::getDriveTalon(bool front, bool right)
 {
   if (front)
@@ -156,9 +143,33 @@ Talon* HematologistDrive::getDriveTalon(bool front, bool right)
   }
 }
 
-bool HematologistDrive::gyroIsOn()
+Encoder* HematologistDrive::getEncoder(bool front, bool right)
 {
-	return gyroOn;
+  if (front)
+  {
+    if (right)
+      return frontRightEncoder;
+    else
+      return frontLeftEncoder;
+  }
+  else
+  {
+    if (right)
+      return backRightEncoder;
+    else
+      return backLeftEncoder;
+  }
+}
+
+void HematologistDrive::resetEncoders(bool reset)
+{
+	if (reset)
+	{
+		frontLeftEncoder->Reset();	
+		backLeftEncoder->Reset();	
+		frontRightEncoder->Reset();	
+		backRightEncoder->Reset();	
+	}
 }
 
 void HematologistDrive::turnOnGyro(bool turnOn)
@@ -171,20 +182,4 @@ void HematologistDrive::turnOffGyro(bool turnOff)
 {
 	if (turnOff)
 		gyroOn = false;
-}
-
-void HematologistDrive::resetEncoders(bool reset)
-{
-	if(reset)
-	{
-		frontLeftEncoder->Reset();	
-		backLeftEncoder->Reset();	
-		frontRightEncoder->Reset();	
-		backRightEncoder->Reset();	
-	}
-}
-
-Gyro* HematologistDrive::getGyro()
-{
-	return gyro;
 }

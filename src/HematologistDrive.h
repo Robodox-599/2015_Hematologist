@@ -14,33 +14,32 @@ public:
 	float setTurn(float turn);
 	float setStrafe(float strafe);
 
-	void drive(float forward, float turn, float strafe);
 	float linearizeDrive(float driveInput);
-
-	Encoder* getEncoder(bool front, bool right);
+	void drive(float forward, float turn, float strafe);
 
 	Talon* getDriveTalon(bool front, bool right);
 
-	void turnOnGyro(bool turnOn);
-	void turnOffGyro(bool turnOff);
-	bool gyroIsOn();
+	Encoder* getEncoder(bool front, bool right);
 
 	void resetEncoders(bool reset);
 
-	Gyro* getGyro();
+	void turnOnGyro(bool turnOn);
+	void turnOffGyro(bool turnOff);
+
 private:
-
-	Gyro* gyro;
-
 	float forward;
 	float turn;
 	float strafe;
 
 	float kP;
-	
+
 	bool gyroOn;
+    double gyro_ref;
+
 
 	HematologistOperatorInterface* oi;
+
+	Gyro* gyro;
 
 	Talon* frontLeftMotor;
 	Talon* backLeftMotor;
@@ -51,10 +50,6 @@ private:
 	Encoder* backLeftEncoder;
 	Encoder* frontRightEncoder;
 	Encoder* backRightEncoder;
-
-
-	double gyro_ref;
-
 };
 
 #endif
