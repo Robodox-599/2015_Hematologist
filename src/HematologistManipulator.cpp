@@ -21,14 +21,16 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	rightRollerMotor = new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
 
 	liftEncoder = new Encoder(LIFT_ENCODER_CHANNEL_A, LIFT_ENCODER_CHANNEL_B);
+
 	compressor = new Compressor(0);
-
 	compressor->SetClosedLoopControl(true);
-
-	this->manipJoystick = manipJoystick;
 
 	topLimitSwitch = new HematologistAnalogLimitSwitch(TOP_LIMIT_SWITCH_CHANNEL);
 	bottomLimitSwitch = new HematologistAnalogLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
+
+	timer = new Timer();
+
+	this->manipJoystick = manipJoystick;
 
 	disableEncoders = false;
 
@@ -42,28 +44,35 @@ HematologistManipulator::HematologistManipulator(Joystick* manipJoystick)
 	longArmOpen1 = longArmOpen2 = longArmOpen3 = false;
 	longArmClose1 = longArmClose2 = longArmClose3 = false;
 
-	timer = new Timer();
 	autoRollerStep = 0;
 }
 
 HematologistManipulator::~HematologistManipulator()
 {
+	delete forkliftPiston;
 	delete secondTierPiston;
 	delete binHuggerPiston;
-	delete forkliftPiston;
+
 	delete manipJoystick;
-	delete topLimitSwitch;
+
 	delete bottomLimitSwitch;
+	delete topLimitSwitch;
+
 	delete compressor;
+
 	delete timer;
 
+	forkliftPiston = NULL;
 	secondTierPiston = NULL;
 	binHuggerPiston = NULL;
-	forkliftPiston = NULL;
+
 	manipJoystick = NULL;
-	topLimitSwitch= NULL;
+
 	bottomLimitSwitch = NULL;
+	topLimitSwitch= NULL;
+
 	compressor = NULL;
+
 	timer = NULL;
 }
 
@@ -95,6 +104,7 @@ void HematologistManipulator::moveLift(float speed)
 		if (bottomLimitSwitch->limitSwitchIsPressed())
 		{
 			liftEncoder->Reset();
+
 			if (-speed < -DEADZONE)
 			{
 				leftLiftMotor->Set(0);
@@ -136,11 +146,6 @@ HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch(bool top)
 		return topLimitSwitch;
 	else
 		return bottomLimitSwitch;
-}
-
-bool HematologistManipulator::getCompressorOn()
-{
-	return compressorOn;
 }
 
 Talon* HematologistManipulator::getManipTalon(bool right)
@@ -368,14 +373,14 @@ void HematologistManipulator::closeFlaps(bool close)
 
 void HematologistManipulator::toggleRollers(bool toggle, float direction)
 {
-	if(toggle)
+	if (toggle)
 	{
-		if(direction > 0)
+		if (direction > 0)
 		{
 			leftRollerMotor->Set(-1);
 			rightRollerMotor->Set(-1);
 		}
-		else if(direction <= 0)
+		else if (direction <= 0)
 		{
 			leftRollerMotor->Set(1);
 			rightRollerMotor->Set(1);
@@ -390,24 +395,24 @@ void HematologistManipulator::toggleRollers(bool toggle, float direction)
 
 void HematologistManipulator::autoRollers()
 {
-	if(!forkliftOpen && autoRollerStep == 0)
+	if (!forkliftOpen && autoRollerStep == 0)
 	{
 		autoRollerStep = 1;
 		timer->Start();
 	}
-	if(autoRollerStep == 1)
+	if (autoRollerStep == 1)
 	{
-		if(timer->Get() < 5)
+		if (timer->Get() < 5)
 		    toggleRollers(true, -1);
 		else
 			autoRollerStep = 2;
 	}
-	if(autoRollerStep == 2)
+	if (autoRollerStep == 2)
 	{
 		toggleRollers(false, 1);
 		autoRollerStep = 3;
 	}
-	if(autoRollerStep == 3 && forkliftOpen)
+	if (autoRollerStep == 3 && forkliftOpen)
 	{
 		autoRollerStep = 0;
 		timer->Reset();
