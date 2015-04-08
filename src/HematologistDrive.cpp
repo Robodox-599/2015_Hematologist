@@ -19,9 +19,9 @@ HematologistDrive::HematologistDrive(HematologistOperatorInterface* oi)
 	gyro_ref = 0;
 	gyroOn = false;
 
-	forward = turn = strafe = 0;
-
 	this->oi = oi;
+
+	forward = turn = strafe = 0;
 
 	kP = GYRO_KP;
 }
