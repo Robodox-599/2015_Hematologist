@@ -35,15 +35,7 @@ private:
 public:
 	HematologistAutonomous(HematologistDrive* drive, HematologistManipulator* manip, HematologistOperatorInterface* oi);
 	~HematologistAutonomous();
-	/*
-	void firstHemanAuto();
-
-	void secondHemanAuto();
-	void thirdHemanAuto(); // gets 3 totes and stack it
-
-	int encoderAverage();
-	*/
-
+	
 	void strafeRight();
 	void getTwoTotes();
 	void getThreeTotes();
