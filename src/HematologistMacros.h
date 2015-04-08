@@ -23,7 +23,7 @@ Manip Joystick:
 	9 -		stop compressor
 	10 - 	flaps close
 	11 -	flaps open
-	throttle -  roller speed
+	throttle -  roller speed 
 */
 
 //Joystick
