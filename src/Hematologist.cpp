@@ -11,7 +11,6 @@ private:
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
 	HematologistAutonomous* auton;
-	//CameraServer* camera = CameraServer::GetInstance();
 	IMAQdxSession session;
 	Image *frame;
 	IMAQdxError imaqError;
@@ -21,24 +20,19 @@ private:
 		manip = new HematologistManipulator(oi->getJoystick('M'));
 		drive = new HematologistDrive(oi);
 		auton = new HematologistAutonomous(drive, manip, oi);
-		//camera->SetQuality(50);
-		//camera->StartAutomaticCapture("cam0");
 
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
+
 		//the camera name (ex "cam0") can be found through the roborio web interface
 		imaqError = IMAQdxOpenCamera("cam0", IMAQdxCameraControlModeController, &session);
-		if(imaqError != IMAQdxErrorSuccess) {
+		if(imaqError != IMAQdxErrorSuccess)
 			DriverStation::ReportError("IMAQdxOpenCamera error: " + std::to_string((long)imaqError) + "\n");
-		}
 		imaqError = IMAQdxConfigureGrab(session);
-		if(imaqError != IMAQdxErrorSuccess) {
+		if(imaqError != IMAQdxErrorSuccess)
 			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
-		}
 	}
 
-	void AutonomousInit(){
-
-	}
+	void AutonomousInit(){}
 
 	void AutonomousPeriodic(){
 		//auton->strafeRight();
@@ -53,16 +47,14 @@ private:
 	{
 		// acquire images
 		IMAQdxStartAcquisition(session);
+
 		// grab an image, draw the circle, and provide it for the camera server which will
 		// in turn send it to the dashboard.
 		IMAQdxGrab(session, frame, true, NULL);
 		if(imaqError != IMAQdxErrorSuccess) 
-		{
 			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
-		}else{
-			//imaqDrawShapeOnImage(frame, frame, { 10, 10, 100, 100 }, DrawMode::IMAQ_DRAW_VALUE, ShapeMode::IMAQ_SHAPE_OVAL, 0.0f);
+		else
 			CameraServer::GetInstance()->SetImage(frame);
-		}
 
 		drive->drive(oi->getJoystick('R')->GetY(), oi->getJoystick('R')->GetX(), oi->getJoystick('L')->GetX());
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(RESET_ENCODER_BUTTON));
@@ -77,9 +69,6 @@ private:
 		manip->openPiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_OPEN_BUTTON));		//open forklift
 		manip->closePiston(true, oi->getJoystick('M')->GetRawButton(FORKLIFT_CLOSE_BUTTON));	//close forklift
 
-		//manip->automaticallyActivate(oi->getJoystick('M')->GetRawButton(AUTOMATIC_LIFT_BUTTON));
-		//manip->automaticallyOpenTier();
-
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_OPEN_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(BIN_HUGGER_CLOSE_BUTTON));
 
@@ -90,15 +79,9 @@ private:
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(FLAPS_CLOSE_BUTTON));
 
 		manip->toggleRollers(oi->getJoystick('M')->GetRawButton(TURN_ROLLERS_ON_BUTTON), -1);
-		//manip->autoRollers();
-/*gyro stuff*/
-#if 0
-		drive->turnOnGyro(oi->getJoystick('L')->GetRawButton(GYRO_ON_BUTTON));
-		drive->turnOffGyro(oi->getJoystick('L')->GetRawButton(GYRO_OFF_BUTTON));
-#endif
+
 		printSmartDashboard();
 	}
-
 	
 	void TestPeriodic(){}
 
