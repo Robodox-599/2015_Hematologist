@@ -24,7 +24,8 @@ HematologistAutonomous::HematologistAutonomous(HematologistDrive* drive, Hematol
 	step17	= false;	//this step will not start, must be told when to	
 	step18	= false;	//this step will not start, must be told when to		
 }
-HematologistAutonomous::~HematologistAutonomous(){
+
+HematologistAutonomous::~HematologistAutonomous() {
 	delete drive;
 	delete manip;
 
@@ -38,7 +39,6 @@ void HematologistAutonomous::strafeRight()
 	oi->getDashboard()->PutBoolean("Step2", step2);
 	oi->getDashboard()->PutBoolean("Step3", step3);
 	oi->getDashboard()->PutNumber("Strafe Avg Auto:", getStrafeAverage());
-
 
 	if (step1)
 	{
@@ -87,11 +87,11 @@ void HematologistAutonomous::strafeRight()
 		if (manip->getLiftEncoder()->Get() < 750 - LIFT_DEADZONE)
 		{
 			manip->moveLift(-.5);
-		}else
-		{
-			if (manip->getLiftEncoder()->Get() > 750 + LIFT_DEADZONE)
+		} else {
+			if (manip->getLiftEncoder()->Get() > 750 + LIFT_DEADZONE) 
+			{
 				manip->moveLift(.5);
-			else{
+			} else {
 				manip->moveLift(0);
 				step3 = false;
 				step2 = true;
@@ -107,7 +107,7 @@ void HematologistAutonomous::getTwoTotes()
 		reset encoders
 		decide which step to go from there
 	*/
-	if (step1){
+	if (step1) {
 		drive->getEncoder(true, true)->Reset();
 		drive->getEncoder(true, false)->Reset();
 		drive->getEncoder(false, true)->Reset();
@@ -308,7 +308,7 @@ void HematologistAutonomous::getThreeTotes()
 		reset encoders
 		decide which step to go from there
 	*/
-	if (step1){
+	if (step1) {
 		drive->getEncoder(true, true)->Reset();
 		drive->getEncoder(true, false)->Reset();
 		drive->getEncoder(false, true)->Reset();
@@ -460,7 +460,7 @@ void HematologistAutonomous::getThreeTotes()
 		turn to align to third tote
 		reset encoders, stop motors
 	*/
-	if(step8)
+	if (step8)
 	{
 		if (getTurnAverage() < 100 - LIFT_DEADZONE)
 			drive->drive(0, .1, 0);
@@ -617,8 +617,6 @@ void HematologistAutonomous::longArmAuto()
 	//step6: move logn arm in
 	//step7: close flaps
 }
-
-
 
 int HematologistAutonomous::getStrafeAverage()
 {
