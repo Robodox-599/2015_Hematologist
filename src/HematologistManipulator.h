@@ -26,9 +26,16 @@ public:
 	void extendLongArm(bool extend);
 	void retractLongArm(bool retract);
 
+<<<<<<< HEAD
 	void moveLift(float input);
 	void autoSequence(float input);
 	void controlLift(float input, bool startSequence);
+=======
+
+	bool longArmOpen1;
+	bool longArmOpen2;
+	bool longArmOpen3;
+>>>>>>> f88f0b8b7432cdb8b1e38f4b3e1649fd618c64ff
 
 	void resetEncoder();
 	float getEncoderValue();

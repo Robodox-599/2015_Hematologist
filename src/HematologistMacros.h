@@ -36,6 +36,7 @@
 #define RIGHT_DRIVE_JOYSTICK_PORT					(2)
 
 //manip
+<<<<<<< HEAD
 #define INTAKE_ROLLER_BUTTON						(1)
 #define CLOSE_BIN_HUGGER_BUTTON						(2)
 #define OPEN_BIN_HUGGER_BUTTON						(3)
@@ -46,6 +47,26 @@
 #define START_SEQUENCE_BUTTON						(8)
 #define TURN_COMPRESSOR_OFF_BUTTON					(10)
 #define TURN_COMPRESSOR_ON_BUTTON					(11)
+=======
+#define TURN_ROLLERS_ON_BUTTON				(1)
+#define BIN_HUGGER_CLOSE_BUTTON				(2)
+#define BIN_HUGGER_OPEN_BUTTON				(3)
+#define SECOND_TIER_OPEN_BUTTON				(4)
+#define SECOND_TIER_CLOSE_BUTTON			(5)
+#define FORKLIFT_OPEN_BUTTON				(6)
+#define FORKLIFT_CLOSE_BUTTON				(7)	
+#define START_COMPRESSOR_BUTTON				(8)
+#define STOP_COMPRESSOR_BUTTON				(9)
+	
+//drive
+
+#define ACTIVATE_LONG_ARM					(1)
+#define LONG_ARM_OPEN_BUTTON				(3)
+#define LONG_ARM_CLOSE_BUTTON				(2)
+#define FLAPS_CLOSE_BUTTON					(4)
+#define FLAPS_OPEN_BUTTON					(5)
+#define RESET_ENCODER_BUTTON				(9)
+>>>>>>> f88f0b8b7432cdb8b1e38f4b3e1649fd618c64ff
 
 
 //drive

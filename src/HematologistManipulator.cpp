@@ -272,6 +272,7 @@ bool HematologistManipulator::highEnough()
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -314,4 +315,35 @@ bool HematologistManipulator::highEnough()
 
 
 
+=======
+void HematologistManipulator::autoRollers()
+{
+	if(!forkliftOpen && autoRollerStep == 0)
+	{
+		autoRollerStep = 1;
+		timer->Start();
+	}
+	if(autoRollerStep == 1)
+	{
+		if(timer->Get() < 5)
+		    toggleRollers(true, -1);
+		else
+			autoRollerStep = 2;
+	}
+	if(autoRollerStep == 2)
+	{
+		toggleRollers(false, 1);
+		autoRollerStep = 3;
+	}
+	if(autoRollerStep == 3 && forkliftOpen)
+	{
+		autoRollerStep = 0;
+		timer->Reset();
+	}
+	if (autoRollerStep == 1 && forkliftOpen)
+	{
+		autoRollerStep = 2;
+	}
+}
+>>>>>>> f88f0b8b7432cdb8b1e38f4b3e1649fd618c64ff
 

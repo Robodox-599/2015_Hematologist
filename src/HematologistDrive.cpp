@@ -25,8 +25,12 @@ HematologistDrive::~HematologistDrive()
 	delete frontLeftMotor;
 	delete frontRightMotor;
 	delete backLeftMotor;
+<<<<<<< HEAD
 	delete backRightMotor;
 
+=======
+	delete frontRightMotor; //was "delete backRightMotor"
+>>>>>>> f88f0b8b7432cdb8b1e38f4b3e1649fd618c64ff
 	delete frontLeftEncoder;
 	delete frontRightEncoder;
 	delete backLeftEncoder;

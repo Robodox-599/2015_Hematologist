@@ -83,11 +83,16 @@ private:
 		manip->openFlaps(oi->getJoystick('L')->GetRawButton(OPEN_FLAPS_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		manip->closeFlaps(oi->getJoystick('L')->GetRawButton(CLOSE_FLAPS_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 
+<<<<<<< HEAD
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 
 
 		printSmartDashboard();
 	}
+=======
+	
+	void TestPeriodic(){}
+>>>>>>> f88f0b8b7432cdb8b1e38f4b3e1649fd618c64ff
 
 	void printSmartDashboard()
 	{
