@@ -11,17 +11,31 @@ class Hematologist: public IterativeRobot
 	HematologistManipulator* manip;
 	HematologistOperatorInterface* oi;
 	HematologistDrive* drive;
+/*
+	Objects necessary for USB WebCam
 
+	Keep in mind that to use the WebCam as well as the SmartDashboard
+	you need the Default dashboard as well as the C++ Dashboard up. 
+	Put the setting on the Default Dashboard to USB Camera HW
+*/
 	IMAQdxSession session;
 	Image *frame;
 	IMAQdxError imaqError;
 private:
 	void RobotInit(){
+		/*
+			Creating the necessary objects to run the robot
+		*/
 		oi = new HematologistOperatorInterface();
 		drive = new HematologistDrive();
 		manip = new HematologistManipulator();
-		auton = new HematologistAutonomous(oi, manip, drive);
+		auton = new HematologistAutonomous(oi, manip, drive);	//Pass in these variables so that you can manipulate the robot in autonomous
+																//You don't create the variables again in Autonomous b/c that creates a memory conflict
 
+
+		/*
+			Initialization of code for camera
+		*/
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
 		//the camera name (ex "cam0") can be found through the roborio web interface
 		imaqError = IMAQdxOpenCamera("cam0", IMAQdxCameraControlModeController, &session);
@@ -36,6 +50,10 @@ private:
 
 	void AutonomousInit(){}
 
+	/*
+		Just comment out which autonomous you don't want and uncomment the one you want
+	*/
+
 	void AutonomousPeriodic(){
 		//auton->strafe(true);
 		//auton->strafe(false);
@@ -45,6 +63,7 @@ private:
 	void TeleopInit(){}
 
 	void TeleopPeriodic(){
+		//code for camera to continue looping to continue getting the image
 		// acquire images
 		IMAQdxStartAcquisition(session);
 		// grab an image, draw the circle, and provide it for the camera server which will
@@ -88,7 +107,7 @@ private:
 
 		printSmartDashboard();
 	}
-
+	//Function to print onto the Dashboard anything we would want, used for testing purposes
 	void printSmartDashboard()
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
