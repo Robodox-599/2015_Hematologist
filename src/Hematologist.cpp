@@ -12,6 +12,9 @@ class Hematologist: public IterativeRobot
 	HematologistOperatorInterface* oi;
 	HematologistDrive* drive;
 
+	//Necessary Objects for Vision
+	//Unfortunately, this and every code relating to the camera was just copied from Intermediate Vision sample project
+	//So I can't explain what each line does, but it works so...
 	IMAQdxSession session;
 	Image *frame;
 	IMAQdxError imaqError;
@@ -63,6 +66,7 @@ private:
 
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(ENCODER_RESET_BUTTON));
 
+		//the second variable is not actually used because the idea of a sequence, albeit useful, did not work in the field
 		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
@@ -77,6 +81,14 @@ private:
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(OPEN_BIN_HUGGER_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(CLOSE_BIN_HUGGER_BUTTON));
 
+		//these functions take about 2 seconds for it to happen b/c of how slow the pistons are that control the thing
+		/*
+			What I pass as a parameter into these long arm functions is a boolean
+			oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) returns a boolean to check if if that button is pressed
+			oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON) returns a boolean to check if the trigger is button
+			instead of passing the two separately, i pass it as boolean && boolean so that i'm only sending one bool 
+			so that i'm only checking one variable in the code for the function insetad of two
+		*/
 		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 
@@ -89,6 +101,7 @@ private:
 		printSmartDashboard();
 	}
 
+	//prints important information to the dashboard
 	void printSmartDashboard()
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
@@ -99,8 +112,6 @@ private:
 		oi->getDashboard()->PutBoolean("Ready: ", manip->highEnough());
 		oi->getDashboard()->PutNumber("Lift Encoder: ", manip->getEncoderValue());
 	}
-
-
 
 	void TestPeriodic(){}
 };
