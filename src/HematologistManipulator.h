@@ -61,17 +61,12 @@ public:
 	bool getSecondTierState();
 	bool getForkliftState();
 	HematologistAnalogLimitSwitch* getLimitSwitch(bool top);
-	bool getCompressorOn();
-	Talon* getManipTalon(bool right);
 	Encoder* getLiftEncoder();
 	DoubleSolenoid* getForkliftPiston();
 	DoubleSolenoid* getSecondTierPiston();
-	bool compressorIsOn();
 	bool binHuggerIsOpen();
   	bool forkliftIsOpen();
   	bool secondTierIsOpen();
-  	Relay* getLongArmFlap(bool open);
-  	bool flapsIsOpen();
 
 	//Functionality of Manip
 	void resetEncoders();
@@ -96,7 +91,5 @@ public:
 
 	void openFlaps(bool open);
 	void closeFlaps(bool close);
-
-	void autoRollers();
 };
 #endif

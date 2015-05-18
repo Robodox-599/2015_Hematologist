@@ -17,10 +17,6 @@ public:
 	float linearizeDrive(float driveInput);
 	void drive(float forward, float turn, float strafe);
 
-	Talon* getDriveTalon(bool front, bool right);
-
-	Encoder* getEncoder(bool front, bool right);
-
 	void resetEncoders(bool reset);
 
 	void turnOnGyro(bool turnOn);

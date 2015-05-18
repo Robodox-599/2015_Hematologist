@@ -148,14 +148,6 @@ HematologistAnalogLimitSwitch* HematologistManipulator::getLimitSwitch(bool top)
 		return bottomLimitSwitch;
 }
 
-Talon* HematologistManipulator::getManipTalon(bool right)
-{
-  if (right)
-    return rightLiftMotor;
-  else
-    return leftLiftMotor;
-}
-
 Encoder* HematologistManipulator::getLiftEncoder()
 {
   return liftEncoder;
@@ -176,6 +168,7 @@ void HematologistManipulator::automaticallyActivate(bool activate)
 	//wrong number
 	if (activate)
 		automaticActivation = true;
+	
 	if (automaticActivation)
 	{
 		closePiston(true, true);
@@ -257,16 +250,11 @@ void HematologistManipulator::turnOffCompressor(bool stop)
 
 void HematologistManipulator::turnOnCompressor(bool start)
 {
-	if (start){
+	if (start) {
 		compressor->Start();
 		compressorOn = true;
 	}
 	return;
-}
-
-bool HematologistManipulator::compressorIsOn()
-{
-	return compressorOn;
 }
 
 void HematologistManipulator::openBinHugger(bool open)
@@ -336,19 +324,6 @@ void HematologistManipulator::automaticallyOpenTier()
 		automaticActivation = false;
 }
 
-Relay* HematologistManipulator::getLongArmFlap(bool open)
-{
-	if (open)
-		return longArmFlapOpen;
-	else
-		return longArmFlapClose;
-}
-
-bool HematologistManipulator::flapsIsOpen()
-{
-	return flapsOpen;
-}
-
 void HematologistManipulator::openFlaps(bool open)
 {
 	if (open)
@@ -356,7 +331,7 @@ void HematologistManipulator::openFlaps(bool open)
 		longArmFlapOpen->Set(Relay::kForward);
 		longArmFlapClose->Set(Relay::kOff);
 		flapsOpen = true;
-	}else
+	} else
 		return;
 }
 
@@ -367,7 +342,7 @@ void HematologistManipulator::closeFlaps(bool close)
 		longArmFlapOpen->Set(Relay::kOff);
 		longArmFlapClose->Set(Relay::kForward);
 		flapsOpen = false;
-	}else
+	} else
 		return;
 }
 
@@ -392,34 +367,3 @@ void HematologistManipulator::toggleRollers(bool toggle, float direction)
     	rightRollerMotor->Set(0);
     }
 }
-
-void HematologistManipulator::autoRollers()
-{
-	if (!forkliftOpen && autoRollerStep == 0)
-	{
-		autoRollerStep = 1;
-		timer->Start();
-	}
-	if (autoRollerStep == 1)
-	{
-		if (timer->Get() < 5)
-		    toggleRollers(true, -1);
-		else
-			autoRollerStep = 2;
-	}
-	if (autoRollerStep == 2)
-	{
-		toggleRollers(false, 1);
-		autoRollerStep = 3;
-	}
-	if (autoRollerStep == 3 && forkliftOpen)
-	{
-		autoRollerStep = 0;
-		timer->Reset();
-	}
-	if (autoRollerStep == 1 && forkliftOpen)
-	{
-		autoRollerStep = 2;
-	}
-}
-
