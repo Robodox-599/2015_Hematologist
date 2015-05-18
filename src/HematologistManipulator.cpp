@@ -203,14 +203,20 @@ void HematologistManipulator::autoSequence(float input)
 	}
 	if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
 	{
-		moveLift(0);
+		moveLift(input);
 		sequenceStarted = false;
 	}
 }
 
 void HematologistManipulator::controlLift(float input, bool startSequence)
 {
-	moveLift(input);
+	if (startSequence)
+	{
+		autoSequence(input);
+	}else
+	{
+		moveLift(input);
+	}
 }
 
 void HematologistManipulator::resetEncoder()
