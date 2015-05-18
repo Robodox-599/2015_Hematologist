@@ -201,6 +201,10 @@ void HematologistManipulator::autoSequence(float input)
 	 		moveLift(0);
 	 	}
 	}
+	if (sequenceStep == 2)
+	{
+		sequenceStarted = false;
+	}
 	if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
 	{
 		moveLift(input);
@@ -212,11 +216,15 @@ void HematologistManipulator::controlLift(float input, bool startSequence)
 {
 	if (startSequence)
 	{
+		sequenceStarted = true;
+	}
+	if (sequenceStarted){
 		autoSequence(input);
 	}else
 	{
 		moveLift(input);
 	}
+
 }
 
 void HematologistManipulator::resetEncoder()
