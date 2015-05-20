@@ -22,7 +22,7 @@ private:
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
 		drive = new HematologistDrive();
-		manip = new HematologistManipulator();
+		manip = new HematologistManipulator(oi);
 		auton = new HematologistAutonomous(oi, manip, drive);
 
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
@@ -67,7 +67,7 @@ private:
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(ENCODER_RESET_BUTTON));
 
 		//the second variable is not actually used because the idea of a sequence, albeit useful, did not work in the field
-		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
+		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON), oi->getJoystick('M')->GetRawButton(START_BIN_SEQUENCE_BUTTON));
 
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
 		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));

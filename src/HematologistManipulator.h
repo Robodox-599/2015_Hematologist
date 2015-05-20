@@ -9,7 +9,7 @@ class HematologistManipulator
 {
 public:
 	//constructor/destructor
-	HematologistManipulator();
+	HematologistManipulator(HematologistOperatorInterface* oi);
 	~HematologistManipulator();
 
 	//you would send in either a joystick->GetRawButton() or an actual value of true/false. 
@@ -40,10 +40,12 @@ public:
 	//see that and then stop the sequence
 	void autoSequence(float input);
 
+	void binAutoSequence(float input);
+
 	//put in joystick->GetY()/GetX() for input
 	//put in joystick->GetRawButton() for startSequence
 	//you stop the sequence b moving the joystick
-	void controlLift(float input, bool startSequence);
+	void controlLift(float input, bool startSequence, bool binStartSequence);
 
 	//will reset the encoder value to zero
 	//this should be caleld when the bottom limit switch is hit
@@ -104,7 +106,12 @@ private:
 	bool sequenceStarted;
 	int sequenceStep;
 
+	bool binSequenceStarted;
+	int binSequenceStep;
+
 	bool forkliftOpen;
+
+	HematologistOperatorInterface* oi;
 };
 
 #endif

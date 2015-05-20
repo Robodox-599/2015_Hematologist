@@ -1,6 +1,6 @@
 #include "HematologistManipulator.h"
 
-HematologistManipulator::HematologistManipulator()
+HematologistManipulator::HematologistManipulator(HematologistOperatorInterface* oi)
 {
 	forkliftPiston 		= new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	secondTierPiston	= new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A, SECOND_TIER_PISTON_CHANNEL_B);
@@ -27,7 +27,12 @@ HematologistManipulator::HematologistManipulator()
 	sequenceStarted	= false;
 	sequenceStep	= 0;
 
+	binSequenceStarted 	= false;
+	binSequenceStep 	= 0;
+
 	forkliftOpen = false;
+
+	this->oi = oi;
 }
 
 HematologistManipulator::~HematologistManipulator()
@@ -212,17 +217,37 @@ void HematologistManipulator::autoSequence(float input)
 	}
 }
 
-void HematologistManipulator::controlLift(float input, bool startSequence)
+void HematologistManipulator::controlLift(float input, bool startSequence, bool binStartSequence)
 {
-	if (startSequence)
+
+	oi->getDashboard()->PutBoolean("SequenceStarted", sequenceStarted);
+	oi->getDashboard()->PutBoolean("Bin Sequence Started", binSequenceStarted);
+
+	oi->getDashboard()->PutNumber("SequenceStep", sequenceStep);
+	oi->getDashboard()->PutNumber("Bin Sequence Step", binSequenceStep);
+	if (startSequence && !binSequenceStarted)
 	{
 		sequenceStarted = true;
+	}else
+	{
+		if (binStartSequence && !sequenceStarted)
+		{
+			binSequenceStarted = true;
+		}
 	}
 	if (sequenceStarted){
 		autoSequence(input);
 	}else
 	{
-		moveLift(input);
+		if (binSequenceStarted)
+		{
+			binAutoSequence(input);
+		}else
+		{
+			moveLift(input);
+			sequenceStep = 0;
+			binSequenceStep = 0;
+		}
 	}
 
 }
@@ -281,7 +306,39 @@ bool HematologistManipulator::highEnough()
 	return false;
 }
 
-
+void HematologistManipulator::binAutoSequence(float input)
+{
+	if(binSequenceStep == 0)
+	{
+		openBinHugger(true);
+		moveLift(0.8);
+		if(topLimitSwitch->isPressed())
+		{
+			binSequenceStep++;
+		}
+	}
+	if (binSequenceStep == 1)
+	{
+		moveLift(0);
+		closeBinHugger(true);
+		binSequenceStep++;
+	}
+	if (binSequenceStep == 2)
+	{
+		moveLift(-.8);
+		if (bottomLimitSwitch->isPressed())
+		{
+			binSequenceStep++;
+		}
+	}
+	if(binSequenceStep == 3)
+	{
+		binSequenceStarted = false;
+	}
+	if(input > DEADZONE || input < -DEADZONE){
+		binSequenceStarted = false;
+	}
+}
 
 
 
