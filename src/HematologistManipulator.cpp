@@ -24,8 +24,8 @@ HematologistManipulator::HematologistManipulator()
 	topLimitSwitch 		= new HematologistLimitSwitch(TOP_LIMIT_SWITCH_CHANNEL);
 	bottomLimitSwitch 	= new HematologistLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
 
-	sequenceStarted = false;
-	sequenceStep = 0;
+	sequenceStarted	= false;
+	sequenceStep	= 0;
 
 	forkliftOpen = false;
 }
