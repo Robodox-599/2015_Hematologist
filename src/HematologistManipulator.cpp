@@ -188,7 +188,7 @@ void HematologistManipulator::autoSequence(float input)
 	if(sequenceStep == 0)
 	{
 		moveLift(1);
-		if(getEncoderValue() > 3275 - ENCODER_DEADZONE)
+		if(getEncoderValue() > 3250 - ENCODER_DEADZONE)
 		{
 			sequenceStep++;
 		}
@@ -200,7 +200,7 @@ void HematologistManipulator::autoSequence(float input)
 	 	{
 	 		openForklift(true);
 	 	}
-	 	if(getEncoderValue() >= 0 && getEncoderValue() < 20)
+	 	if(bottomLimitSwitch->isPressed())
 	 	{
 	 		sequenceStep++;
 	 		moveLift(0);
@@ -310,6 +310,7 @@ void HematologistManipulator::binAutoSequence(float input)
 {
 	if(binSequenceStep == 0)
 	{
+		intakeWithRoller(true);
 		openBinHugger(true);
 		moveLift(0.8);
 		if(topLimitSwitch->isPressed())
@@ -319,12 +320,14 @@ void HematologistManipulator::binAutoSequence(float input)
 	}
 	if (binSequenceStep == 1)
 	{
+		intakeWithRoller(true);
 		moveLift(0);
 		closeBinHugger(true);
 		binSequenceStep++;
 	}
 	if (binSequenceStep == 2)
 	{
+		intakeWithRoller(false);
 		moveLift(-.8);
 		if (bottomLimitSwitch->isPressed())
 		{
@@ -334,9 +337,11 @@ void HematologistManipulator::binAutoSequence(float input)
 	if(binSequenceStep == 3)
 	{
 		binSequenceStarted = false;
+		openForklift(true);
 	}
 	if(input > DEADZONE || input < -DEADZONE){
 		binSequenceStarted = false;
+		openForklift(true);
 	}
 }
 
