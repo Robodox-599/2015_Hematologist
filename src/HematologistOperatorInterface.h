@@ -9,7 +9,11 @@ public:
 	HematologistOperatorInterface();
 	~HematologistOperatorInterface();
 
-	Joystick* getJoystick(char whichJosytick);
+    //returns a joystick
+    //'L' = LeftDriveJoystick
+    //'R' = rightDriveJoystick
+    //'M' = ManipJoystick
+	Joystick* getJoystick(char whichJosytick);     
 	SmartDashboard* getDashboard();
 private:
 	Joystick* leftDriveJoystick;
