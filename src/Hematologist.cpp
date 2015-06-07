@@ -62,11 +62,13 @@ private:
 		}
 
 		//negative value as joysticks are reversed so moving up on a joystick gives you a negative value
+		//as such, negative joystick is the positive value (so instead of -1, I put in -(-1))
 		drive->drive(-oi->getJoystick('R')->GetY(), -oi->getJoystick('R')->GetX(), -oi->getJoystick('L')->GetX());
 
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(ENCODER_RESET_BUTTON));
 
 		//the second variable is not actually used because the idea of a sequence, albeit useful, did not work in the field
+		//If you wish to see an example of the logic behind sequences, go to the AutomatingSequences branch
 		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
