@@ -19,7 +19,8 @@ HematologistManipulator::HematologistManipulator()
 	rightRollerMotor	= new Talon(RIGHT_ROLLER_MOTOR_CHANNEL);
 
 	compressor 			= new Compressor(COMPRESSOR_CHANNEL);
-	compressor->SetClosedLoopControl(true);
+	compressor->SetClosedLoopControl(true);							//ensures that the compressor stops after 120psi
+																	//this is always needed!!!!!!!
 
 	topLimitSwitch 		= new HematologistLimitSwitch(TOP_LIMIT_SWITCH_CHANNEL);
 	bottomLimitSwitch 	= new HematologistLimitSwitch(BOTTOM_LIMIT_SWITCH_CHANNEL);
@@ -63,6 +64,21 @@ HematologistManipulator::~HematologistManipulator()
 	bottomLimitSwitch= NULL;
 }
 
+/*
+	all of these open/closeSomething are all the same. 
+	For teleop, put in joystick->GetRawButton()
+	for auto, put in true
+	the reason why I don't toggle (use one button to swtich between open/close) is that toggling doens't really work
+	If in the future it does, I welcome you to do so. However, there are other problems.
+	For one, the driver needs to know that the button will do one thing. If we toggle, he has to keep track of if said thing
+	is open or not. this way, one button will open it no matter what and will close it no matter what. 
+	It's just generally easier
+
+	Finally, keep in mind that kForward ≠ open. OpenForklift is a perfect example as kReverse means to open
+	This is why we have these functions, so you don't have to remember if one is reversed or not. 
+	We found out which does what by experimentation
+*/
+
 void HematologistManipulator::openForklift(bool open)
 {
 	if(open){
@@ -103,12 +119,20 @@ void HematologistManipulator::closeBinHugger(bool close)
 		binHuggerPiston->Set(DoubleSolenoid::kReverse);
 }
 
+/*
+we ran out of space for solenoids so we had to use relays to activate the DoubleSolenoid
+relays are pretty simple to understand so think of them as a switch. when a relay is activated, current flows and so the pison is activated
+because each relay goes to activate the solenoid differently (one tells it to DoubleSolenoid::kForward, other DoubleSoleonid::kReverse)
+one must be turned off
+I'm fairly certain that the relays we used are Normally Open relays but you might want to check back with electronics about that. 
+If relays still confuse you, talk to them.
+*/
 void HematologistManipulator::openFlaps(bool open)
 {
 	if (open)
 	{
-		flapOpenRelay->Set(Relay::kForward);
-		flapCloseRelay->Set(Relay::kOff);
+		flapOpenRelay->Set(Relay::kForward);			//essentially tells the solenoid to set it to DoubleSolenoid::kForward
+		flapCloseRelay->Set(Relay::kOff);				//stops giving a command so the solenoid doesn't bother with it
 	}
 }
 
@@ -138,7 +162,7 @@ void HematologistManipulator::moveLift(float input)
 	//different deadzone used here b/c drivers want different deadzone values
 	if (topLimitSwitch->isPressed())
 	{
-		if (input < -LIFT_DEADZONE)
+		if (input < -LIFT_DEADZONE)			//lift only moves if I tell it to go down
 		{
 			leftLiftMotor->Set(input);
 			rightLiftMotor->Set(input);
@@ -153,7 +177,7 @@ void HematologistManipulator::moveLift(float input)
 		if (bottomLimitSwitch->isPressed())
 		{
 			resetEncoder();
-			if (input > LIFT_DEADZONE)
+			if (input > LIFT_DEADZONE)		//lift only moves if I tell it to go up
 			{
 				leftLiftMotor->Set(input);
 				rightLiftMotor->Set(input);
@@ -178,6 +202,14 @@ void HematologistManipulator::moveLift(float input)
 	}
 }
 
+/*
+The assumption here is that the lift is all the way down and that the lift is hitting the limit switch
+If the driver screws that up, that's his fault. 
+This sequence is a good example of even though your program should be user friendly (and idiot proof for the drivers)
+you can still give them instructions on what they can and cannot do
+just make sure the instructions are easy to follow
+*/
+//the input should be the value of the liftJoystick
 void HematologistManipulator::autoSequence(float input)
 {
 	if(sequenceStep == 0)
@@ -204,13 +236,35 @@ void HematologistManipulator::autoSequence(float input)
 	if (input > LIFT_DEADZONE || input < -LIFT_DEADZONE)
 	{
 		moveLift(0);
-		sequenceStarted = false;
+		sequenceStarted = false;					//you have to make this false so that we don't keep looping		
 	}
 }
 
+//because the sequence didn't work on the field (it actually worked well in the pit)
+//we just took it out of code
+//However, the code with the sequence is put in between the #if 0 and #end if. 
+//If you want to use that code, comment out the moveLift(input) and turn the 0 into a 1
+/*
+	the input should be the joystick->GetY() and the startSequence a ->GetRawButton()
+*/
 void HematologistManipulator::controlLift(float input, bool startSequence)
 {
 	moveLift(input);
+#if 0
+	if (startSequence)
+	{
+		sequenceStarted = true;
+		sequenceStep = 0;			//sequenceStep increases during the sequence so if we didn't do this, sequenceStep wouldn't equal 0 at the beginning
+									//so the sequence would never start
+	}
+	if (sequenceStarted)
+	{
+		autoSequence(input);
+	}else
+	{
+		moveLift(input);
+	}
+#endif
 }
 
 void HematologistManipulator::resetEncoder()
@@ -223,6 +277,9 @@ float HematologistManipulator::getEncoderValue()
 	return liftEncoder->Get();
 }
 
+/*
+	the intake should be ->GetRawButton()
+*/
 void HematologistManipulator::intakeWithRoller(bool intake)
 {
 	if (intake)
@@ -236,6 +293,12 @@ void HematologistManipulator::intakeWithRoller(bool intake)
 	}
 }
 
+/*
+another ->GetRawButton()
+these functions do not affect the fact that the compressor will turn off whenever psi = 120
+if psi = 120 and you turn on the compressor, nothing will happen
+however, if you turn it off and the psi < 120, the compressor will not automatically turn on as it would if it was on
+*/
 void HematologistManipulator::turnOnCompressor(bool turnOn)
 {
 	if (turnOn)
@@ -258,6 +321,10 @@ HematologistLimitSwitch* HematologistManipulator::getBottomLimitSwitch()
 	return bottomLimitSwitch;
 }
 
+/*
+intended to help the driver know when he had moved high enough with the tote to have passed the second tier
+but it was never put in and was never used so...
+*/
 bool HematologistManipulator::highEnough()
 {
 	if (getEncoderValue() > 3000 - LIFT_DEADZONE && getEncoderValue() < 3100 + LIFT_DEADZONE)
