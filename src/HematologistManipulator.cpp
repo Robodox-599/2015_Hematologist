@@ -417,3 +417,4 @@ void HematologistManipulator::autoRollers()
 		autoRollerStep = 2;
 	}
 }
+
