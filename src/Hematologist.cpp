@@ -70,8 +70,10 @@ private:
 		//If you wish to see an example of the logic behind sequences, go to the AutomatingSequences branch
 		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
-		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
-		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));
+		//manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
+		//manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));
+		manip->turnOffCompressor(true);
+		manip->turnOnCompressor(false);
 
 		manip->openForklift(oi->getJoystick('M')->GetRawButton(OPEN_FORKLIFT_BUTTON));
 		manip->closeForklift(oi->getJoystick('M')->GetRawButton(CLOSE_FORKLIFT_BUTTON));
@@ -96,8 +98,8 @@ private:
 		manip->openFlaps(oi->getJoystick('M')->GetRawButton(OPEN_FLAPS_BUTTON) /*&& oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON)*/);
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON) /*&& oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON)*/);
 
-		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
-
+		//manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
+		manip->intakeWithRoller(false);
 
 		printSmartDashboard();
 	}

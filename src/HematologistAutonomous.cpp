@@ -58,11 +58,11 @@ void HematologistAutonomous::longArmAuto()
 		//close all pistons b/c necessary to drive over the scoring platform
 		manip->closeForklift(true);
 		manip->closeSecondTier(true);
-		manip->openFlaps(true);
+		// manip->openFlaps(true);
 		driveStep++;
 		Wait(3);	
 	}
-	//took this part out as the lift would instead be position high enough so we don't have to wait for it to lift
+	/*took this part out as the lift would instead be position high enough so we don't have to wait for it to lift
 	if (manipStep == 1)
 	{
 		if (manip->getEncoderValue() < 1000 + ENCODER_DEADZONE)
@@ -72,7 +72,8 @@ void HematologistAutonomous::longArmAuto()
 		{
 			//manip->moveLift(0);
 		}
-	}
+	}*/
+
 	//drives backward using encoder to check if he's far enought, all the way to the step
 	if (driveStep == 1)
 	{
@@ -89,6 +90,7 @@ void HematologistAutonomous::longArmAuto()
 	{
 		manip->extendLongArm(true);	
 		Wait(3);	//b/c long arm takes forever
+		manip->openFlaps(true);
 		drive->resetEncoders();	//reset encoders so that some of the slack doesn't affect how far the robot would move
 		driveStep++;
 		manipStep++;
@@ -111,8 +113,6 @@ void HematologistAutonomous::longArmAuto()
 		manip->retractLongArm(true);	//do long arm first b/c if you try the flaps first you'll knock something over
 		manip->closeFlaps(true);
 	}
-
-
 }
 
 
