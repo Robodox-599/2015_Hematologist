@@ -24,7 +24,7 @@ void HematologistAutonomous::strafe(bool right)
 {
 	if (right)
 	{
-		if (drive->getStrafeAverage() < 2000 + ENCODER_DEADZONE)	//check if the encoder value is too low
+		if (drive->getStrafeAverage() < 1500 + ENCODER_DEADZONE)	//check if the encoder value is too low
 		{
 			drive->drive(0, 0, -.8);	//moves right
 		}else
@@ -33,7 +33,7 @@ void HematologistAutonomous::strafe(bool right)
 		}
 	}else
 	{
-		if (drive->getStrafeAverage() > -2000 - ENCODER_DEADZONE)	//checks a neg b/c if you move left, the encoder value decreases
+		if (drive->getStrafeAverage() > -1500 - ENCODER_DEADZONE)	//checks a neg b/c if you move left, the encoder value decreases
 			drive->drive(0, 0, .8);	//moves left
 		else
 			drive->drive(0, 0, 0);	//stops when encoder value too big (neg)	
