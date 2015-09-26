@@ -9,8 +9,8 @@
 		5.	close second tier
 		6.	open forklift
 		7.	close forklift
-		8.	start sequence
-		9.
+		8.	open flaps					(commented out) start sequence
+		9.	close flaps
 		10.	compressor off
 		11.	compressor on
 		12.
@@ -18,8 +18,8 @@
 		1.	confirm
 		2.	retract long arm
 		3.	extend long arm
-		4.	open flaps
-		5.	close flaps
+		4.	
+		5.	
 		6.
 		7.
 		8.
@@ -43,17 +43,16 @@
 #define CLOSE_SECOND_TIER_BUTTON					(5)
 #define OPEN_FORKLIFT_BUTTON						(6)
 #define CLOSE_FORKLIFT_BUTTON						(7)
-#define START_SEQUENCE_BUTTON						(8)
+//#define START_SEQUENCE_BUTTON						(8)
 #define TURN_COMPRESSOR_OFF_BUTTON					(10)
 #define TURN_COMPRESSOR_ON_BUTTON					(11)
-
+#define OPEN_FLAPS_BUTTON							(8)
+#define CLOSE_FLAPS_BUTTON							(9)
 
 //drive
 #define CONFIRM_BUTTON								(1)
 #define RETRACT_LONG_ARM_BUTTON						(2)
 #define EXTEND_LONG_ARM_BUTTON						(3)
-#define OPEN_FLAPS_BUTTON							(8)
-#define CLOSE_FLAPS_BUTTON							(9)
 #define ENCODER_RESET_BUTTON 						(6)
 
 //Motors

@@ -68,7 +68,7 @@ private:
 
 		//the second variable is not actually used because the idea of a sequence, albeit useful, did not work in the field
 		//If you wish to see an example of the logic behind sequences, go to the AutomatingSequences branch
-		manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
+		//manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
 
 		//manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
 		//manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));
@@ -85,18 +85,11 @@ private:
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(CLOSE_BIN_HUGGER_BUTTON));
 
 		//these functions take about 2 seconds for it to happen b/c of how slow the pistons are that control the thing
-		/*
-			What I pass as a parameter into these long arm functions is a boolean
-			oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) returns a boolean to check if if that button is pressed
-			oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON) returns a boolean to check if the trigger is button
-			instead of passing the two separately, i pass it as boolean && boolean so that i'm only sending one bool 
-			so that i'm only checking one variable in the code for the function insetad of two
-		*/
 		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 
-		manip->openFlaps(oi->getJoystick('M')->GetRawButton(OPEN_FLAPS_BUTTON) /*&& oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON)*/);
-		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON) /*&& oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON)*/);
+		manip->openFlaps(oi->getJoystick('M')->GetRawButton(OPEN_FLAPS_BUTTON));
+		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON));
 
 		//manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 		manip->intakeWithRoller(false);
