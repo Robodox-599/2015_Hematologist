@@ -6,7 +6,6 @@
 
 class Hematologist: public IterativeRobot
 {
-
 	HematologistAutonomous* auton;
 	HematologistManipulator* manip;
 	HematologistOperatorInterface* oi;
