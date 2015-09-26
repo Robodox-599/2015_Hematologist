@@ -1,9 +1,6 @@
 #ifndef HEMATOLOGIST_AUTONOMOUS_H
 #define HEMATOLOGIST_AUTONOMOUS_H
 
-/*
-	All files included as Autonomous needs to use the oi, manip, and drive, to move every aspect of the robot
-*/
 #include "HematologistMacros.h"
 #include "HematologistOperatorInterface.h"
 #include "HematologistDrive.h"
@@ -12,26 +9,25 @@
 class HematologistAutonomous
 {
 public:
+	//Send in these Hematologist Objects rather than creating new ones
+	//If you create them again, you'll create a memory conflict
+	//You need these to control the robot
 	HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
 	~HematologistAutonomous();
 
-	/*
-		param: bool right
-		Will strafe right if you pass in true
-		Will strafe left if you pass in false
-	*/
+	//Send in true to strafe right, false to strafe left	
 	void strafe(bool right);
 
-	//Will do long arm auto
-	//logic explanation in code in  .cpp file
+	//Moves back, flips long arm back, flips flaps open, moves forward with two bins
 	void longArmAuto();
 
 private:
+	//I need these Hematologist Objects to control the robot
 	HematologistOperatorInterface* oi;
 	HematologistManipulator* manip;
 	HematologistDrive* drive;
 
-	//steps here used to determine which part of auto is to be done
+	//These two variables are used to keep track of where in the sequence the robot is in
 	int driveStep;	
 	int manipStep;
 

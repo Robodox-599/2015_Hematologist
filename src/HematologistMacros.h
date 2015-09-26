@@ -52,8 +52,8 @@
 #define CONFIRM_BUTTON								(1)
 #define RETRACT_LONG_ARM_BUTTON						(2)
 #define EXTEND_LONG_ARM_BUTTON						(3)
-#define OPEN_FLAPS_BUTTON							(5)
-#define CLOSE_FLAPS_BUTTON							(4)
+#define OPEN_FLAPS_BUTTON							(8)
+#define CLOSE_FLAPS_BUTTON							(9)
 #define ENCODER_RESET_BUTTON 						(6)
 
 //Motors
@@ -94,8 +94,8 @@
 //misc
 #define COMPRESSOR_CHANNEL							(0)	
 #define TOP_LIMIT_SWITCH_CHANNEL					(0)
-#define BOTTOM_LIMIT_SWITCH_CHANNEL					(2)
-#define DEADZONE									(.05)
+#define BOTTOM_LIMIT_SWITCH_CHANNEL					(3)
+#define DEADZONE									(.1)
 #define LIFT_DEADZONE								(.1)
 #define ENCODER_DEADZONE							(20)
 
