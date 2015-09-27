@@ -94,7 +94,6 @@ private:
 		printSmartDashboard();
 	}
 
-	//prints important information to the dashboard
 	void printSmartDashboard()
 	{
 		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
@@ -102,7 +101,6 @@ private:
 		oi->getDashboard()->PutNumber("Forward Average: ", drive->getForwardAverage());
 		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
 		oi->getDashboard()->PutNumber("Strafe Average: ", drive->getStrafeAverage());
-		oi->getDashboard()->PutBoolean("Ready: ", manip->highEnough());
 		oi->getDashboard()->PutNumber("Lift Encoder: ", manip->getEncoderValue());
 	}
 
