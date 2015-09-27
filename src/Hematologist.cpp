@@ -1,15 +1,15 @@
 #include "HematologistMacros.h"
-#include "Autonomous/HematologistAutonomous.h"
-#include "Manipulator/HematologistManipulator.h"
+#include "Autonomous/Autonomous.h"
+#include "Drive/Drive.h"
+#include "Manipulator/Manipulator.h"
 #include "HematologistOperatorInterface.h"
-#include "Drive/HematologistDrive.h"
 
 class Hematologist: public IterativeRobot
 {
-	HematologistAutonomous* auton;
-	HematologistManipulator* manip;
+	Autonomous* auton;
+	Manipulator* manip;
 	HematologistOperatorInterface* oi;
-	HematologistDrive* drive;
+	Drive* drive;
 
 	//Necessary Objects for Vision
 	//Unfortunately, this and every code relating to the camera was just copied from Intermediate Vision sample project
@@ -20,9 +20,9 @@ class Hematologist: public IterativeRobot
 private:
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
-		drive = new HematologistDrive();
-		manip = new HematologistManipulator();
-		auton = new HematologistAutonomous(oi, manip, drive);
+		drive = new Drive();
+		manip = new Manipulator();
+		auton = new Autonomous(oi, manip, drive);
 
 		frame = imaqCreateImage(IMAQ_IMAGE_RGB, 0);
 		//the camera name (ex "cam0") can be found through the roborio web interface

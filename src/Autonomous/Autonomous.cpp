@@ -1,6 +1,6 @@
 #include "Autonomous.h"
 
-Autonomous::Autonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive)
+Autonomous::Autonomous(HematologistOperatorInterface* oi, Manipulator* manip, Drive* drive)
 {
 	this->oi = oi;
 	this->manip = manip;
