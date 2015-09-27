@@ -86,12 +86,12 @@ private:
 		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		// 6. Flaps
-		manip->openFlaps(oi->getJoystick('M')->GetRawButton(OPEN_FLAPS_BUTTON));
-		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON));
+		manip->openFlaps(oi->getJoystick('R')->GetRawButton(OPEN_FLAPS_BUTTON));
+		manip->closeFlaps(oi->getJoystick('R')->GetRawButton(CLOSE_FLAPS_BUTTON));
 		// 7. Intake
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 		// 8. Move lift
-		manip->moveLift(oi->getJoystick('L')->GetY());
+		manip->moveLift(oi->getJoystick('M')->GetY());
 
 		printSmartDashboard();
 	}

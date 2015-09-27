@@ -129,10 +129,11 @@ If relays still confuse you, talk to them.
 */
 void Manipulator::openFlaps(bool open)
 {
+	//
 	if (open)
 	{
-		flapOpenRelay->Set(Relay::kOff);			//essentially tells the solenoid to set it to DoubleSolenoid::kForward
-		flapCloseRelay->Set(Relay::kForward);				//stops giving a command so the solenoid doesn't bother with it
+		flapOpenRelay->Set(Relay::kOff);
+		flapCloseRelay->Set(Relay::kForward);
 	}
 }
 
