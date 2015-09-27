@@ -14,8 +14,7 @@ class HematologistLimitSwitch
 public:
 	HematologistLimitSwitch(int limitSwitchChannel);
 	~HematologistLimitSwitch();
-
-    //tells us if the limit switch is pressed. the logic is more talked about in the .cpp file
+    
 	bool isPressed();
 private:
     //because we had to use an analog port, that meant we had to read the analog port
