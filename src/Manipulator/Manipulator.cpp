@@ -131,8 +131,8 @@ void Manipulator::openFlaps(bool open)
 {
 	if (open)
 	{
-		flapOpenRelay->Set(Relay::kForward);			//essentially tells the solenoid to set it to DoubleSolenoid::kForward
-		flapCloseRelay->Set(Relay::kOff);				//stops giving a command so the solenoid doesn't bother with it
+		flapOpenRelay->Set(Relay::kOff);			//essentially tells the solenoid to set it to DoubleSolenoid::kForward
+		flapCloseRelay->Set(Relay::kForward);				//stops giving a command so the solenoid doesn't bother with it
 	}
 }
 
@@ -140,8 +140,8 @@ void Manipulator::closeFlaps(bool close)
 {
 	if (close)
 	{
-		flapOpenRelay->Set(Relay::kOff);
-		flapCloseRelay->Set(Relay::kForward);
+		flapOpenRelay->Set(Relay::kForward);
+		flapCloseRelay->Set(Relay::kOff);
 	}
 }
 
