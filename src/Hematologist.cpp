@@ -17,6 +17,7 @@ class Hematologist: public IterativeRobot
 	IMAQdxSession session;
 	Image *frame;
 	IMAQdxError imaqError;
+
 private:
 	void RobotInit(){
 		oi = new HematologistOperatorInterface();
@@ -62,33 +63,32 @@ private:
 
 		//negative value as joysticks are reversed so moving up on a joystick gives you a negative value
 		//as such, negative joystick is the positive value (so instead of -1, I put in -(-1))
+
+		//---------------- GET JOYSTICK DRIVE VALUES ----------------
 		drive->drive(-oi->getJoystick('R')->GetY(), -oi->getJoystick('R')->GetX(), -oi->getJoystick('L')->GetX());
 
 		drive->resetEncoders(oi->getJoystick('L')->GetRawButton(ENCODER_RESET_BUTTON));
 
-		//the second variable is not actually used because the idea of a sequence, albeit useful, did not work in the field
-		//If you wish to see an example of the logic behind sequences, go to the AutomatingSequences branch
-		//manip->controlLift(-oi->getJoystick('M')->GetY(), oi->getJoystick('M')->GetRawButton(START_SEQUENCE_BUTTON));
-
+		//---------------- GET MANIPULATOR BUTTON VALUES ----------------
+		// 1. Compressors
 		manip->turnOffCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_OFF_BUTTON));
 		manip->turnOnCompressor(oi->getJoystick('M')->GetRawButton(TURN_COMPRESSOR_ON_BUTTON));
-
+		// 2. Forklift
 		manip->openForklift(oi->getJoystick('M')->GetRawButton(OPEN_FORKLIFT_BUTTON));
 		manip->closeForklift(oi->getJoystick('M')->GetRawButton(CLOSE_FORKLIFT_BUTTON));
-
+		// 3. Second tier
 		manip->openSecondTier(oi->getJoystick('M')->GetRawButton(OPEN_SECOND_TIER_BUTTON));
 		manip->closeSecondTier(oi->getJoystick('M')->GetRawButton(CLOSE_SECOND_TIER_BUTTON));
-
+		// 4. Bin hugger
 		manip->openBinHugger(oi->getJoystick('M')->GetRawButton(OPEN_BIN_HUGGER_BUTTON));
 		manip->closeBinHugger(oi->getJoystick('M')->GetRawButton(CLOSE_BIN_HUGGER_BUTTON));
-
-		//these functions take about 2 seconds for it to happen b/c of how slow the pistons are that control the thing
+		// 5. Long arms
 		manip->extendLongArm(oi->getJoystick('L')->GetRawButton(EXTEND_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
 		manip->retractLongArm(oi->getJoystick('L')->GetRawButton(RETRACT_LONG_ARM_BUTTON) && oi->getJoystick('L')->GetRawButton(CONFIRM_BUTTON));
-
+		// 6. Flaps
 		manip->openFlaps(oi->getJoystick('M')->GetRawButton(OPEN_FLAPS_BUTTON));
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON));
-
+		// 7. Intake
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
 
 		printSmartDashboard();
@@ -96,7 +96,7 @@ private:
 
 	void printSmartDashboard()
 	{
-		oi->getDashboard()->PutBoolean("Top Limit Switch", manip->getTopLimitSwitch()->isPressed());
+		oi->getDashboard()->PutBoolean("Top Limit Switch ", manip->getTopLimitSwitch()->isPressed());
 		oi->getDashboard()->PutBoolean("Bottom Limit Switch", manip->getBottomLimitSwitch()->isPressed());
 		oi->getDashboard()->PutNumber("Forward Average: ", drive->getForwardAverage());
 		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
