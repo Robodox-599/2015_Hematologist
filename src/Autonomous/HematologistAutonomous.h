@@ -1,10 +1,10 @@
 #ifndef HEMATOLOGIST_AUTONOMOUS_H
 #define HEMATOLOGIST_AUTONOMOUS_H
 
-#include "HematologistMacros.h"
-#include "HematologistOperatorInterface.h"
-#include "HematologistDrive.h"
-#include "HematologistManipulator.h"
+#include "../HematologistMacros.h"
+#include "../HematologistOperatorInterface.h"
+#include "../Drive/HematologistDrive.h"
+#include "../Manipulator/HematologistManipulator.h"
 
 class HematologistAutonomous
 {

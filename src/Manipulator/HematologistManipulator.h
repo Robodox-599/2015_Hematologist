@@ -1,9 +1,9 @@
 #ifndef HEMATOLOGIST_MANIPULATOR_H
 #define HEMATOLOGIST_MANIPULATOR_H
 
-#include "HematologistMacros.h"
-#include "HematologistOperatorInterface.h"
-#include "HematologistLimitSwitch.h"
+#include "../HematologistMacros.h"
+#include "../HematologistOperatorInterface.h"
+#include "../HematologistLimitSwitch.h"
 
 class HematologistManipulator
 {

@@ -1,8 +1,8 @@
 #include "HematologistMacros.h"
-#include "HematologistAutonomous.h"
-#include "HematologistManipulator.h"
+#include "Autonomous/HematologistAutonomous.h"
+#include "Manipulator/HematologistManipulator.h"
 #include "HematologistOperatorInterface.h"
-#include "HematologistDrive.h"
+#include "Drive/HematologistDrive.h"
 
 class Hematologist: public IterativeRobot
 {
