@@ -40,9 +40,9 @@ private:
 	void AutonomousInit(){}
 
 	void AutonomousPeriodic(){
-		//auton->strafe(true);
-		//auton->strafe(false);
-		auton->longArmAuto();
+		auton->strafeRight();
+		auton->strafeLeft();
+		auton->extendLongArm();
 	}
 
 	void TeleopInit(){}
