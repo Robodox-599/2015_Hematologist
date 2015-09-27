@@ -20,24 +20,20 @@ Autonomous::~Autonomous()
 	drive = NULL;
 }
 
-void Autonomous::strafe(bool right)
+void Autonomous::strafeRight()
 {
-	if (right)
-	{
-		if (drive->getStrafeAverage() < 1500 + ENCODER_DEADZONE)	//check if the encoder value is too low
-		{
-			drive->drive(0, 0, -.8);	//moves right
-		}else
-		{
-			drive->drive(0, 0, 0);	//stops when enoder value is too high
-		}
-	}else
-	{
-		if (drive->getStrafeAverage() > -1500 - ENCODER_DEADZONE)	//checks a neg b/c if you move left, the encoder value decreases
-			drive->drive(0, 0, .8);	//moves left
-		else
-			drive->drive(0, 0, 0);	//stops when encoder value too big (neg)	
-	}
+	if (drive->getStrafeAverage() < 1500 + ENCODER_DEADZONE)
+		drive->drive(0, 0, -.8);
+	else
+		drive->drive(0, 0, 0);
+}
+
+void Autonomous::strafeLeft()
+{
+	if (drive->getStrafeAverage() > -1500 - ENCODER_DEADZONE)
+		drive->drive(0, 0, .8);
+	else
+		drive->drive(0, 0, 0);
 }
 
 //set up the lift slightly above the ground and face away from the step and toward the driver stations
