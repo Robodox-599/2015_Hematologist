@@ -40,9 +40,9 @@ private:
 	void AutonomousInit(){}
 
 	void AutonomousPeriodic(){
-		auton->strafeRight();
-		auton->strafeLeft();
-		auton->extendLongArm();
+		//auton->strafeRight();
+		//auton->strafeLeft();
+		//auton->longArmAuto();
 	}
 
 	void TeleopInit(){}
@@ -90,6 +90,8 @@ private:
 		manip->closeFlaps(oi->getJoystick('M')->GetRawButton(CLOSE_FLAPS_BUTTON));
 		// 7. Intake
 		manip->intakeWithRoller(oi->getJoystick('M')->GetRawButton(INTAKE_ROLLER_BUTTON));
+		// 8. Move lift
+		manip->moveLift(oi->getJoystick('L')->GetY());
 
 		printSmartDashboard();
 	}
@@ -102,6 +104,7 @@ private:
 		oi->getDashboard()->PutNumber("Turn Average: ", drive->getTurnAverage());
 		oi->getDashboard()->PutNumber("Strafe Average: ", drive->getStrafeAverage());
 		oi->getDashboard()->PutNumber("Lift Encoder: ", manip->getEncoderValue());
+		oi->getDashboard()->PutNumber("Lift value: ", oi->getJoystick('M')->GetY());
 	}
 
 	void TestPeriodic(){}
