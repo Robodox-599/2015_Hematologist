@@ -1,16 +1,16 @@
-#ifndef HEMATOLOGIST_MANIPULATOR_H
-#define HEMATOLOGIST_MANIPULATOR_H
+#ifndef MANIPULATOR_H
+#define MANIPULATOR_H
 
 #include "../HematologistMacros.h"
 #include "../HematologistOperatorInterface.h"
 #include "../HematologistLimitSwitch.h"
 
-class HematologistManipulator
+class Manipulator
 {
 public:
 	//constructor/destructor
-	HematologistManipulator();
-	~HematologistManipulator();
+	Manipulator();
+	~Manipulator();
 
 	//you would send in either a joystick->GetRawButton() or an actual value of true/false. 
 	//the latter is used for autonomous

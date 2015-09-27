@@ -1,6 +1,6 @@
-#include "HematologistAutonomous.h"
+#include "Autonomous.h"
 
-HematologistAutonomous::HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive)
+Autonomous::Autonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive)
 {
 	this->oi = oi;
 	this->manip = manip;
@@ -10,7 +10,7 @@ HematologistAutonomous::HematologistAutonomous(HematologistOperatorInterface* oi
 	manipStep = 0;
 }
 
-HematologistAutonomous::~HematologistAutonomous()
+Autonomous::~Autonomous()
 {
 	delete oi;
 	delete manip;
@@ -20,7 +20,7 @@ HematologistAutonomous::~HematologistAutonomous()
 	drive = NULL;
 }
 
-void HematologistAutonomous::strafe(bool right)
+void Autonomous::strafe(bool right)
 {
 	if (right)
 	{
@@ -41,7 +41,7 @@ void HematologistAutonomous::strafe(bool right)
 }
 
 //set up the lift slightly above the ground and face away from the step and toward the driver stations
-void HematologistAutonomous::longArmAuto()
+void Autonomous::longArmAuto()
 {
 
 	//driveStep will deal with drive stuff

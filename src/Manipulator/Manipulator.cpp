@@ -1,6 +1,6 @@
-#include "HematologistManipulator.h"
+#include "Manipulator.h"
 
-HematologistManipulator::HematologistManipulator()
+Manipulator::Manipulator()
 {
 	forkliftPiston 		= new DoubleSolenoid(FORKLIFT_PISTON_CHANNEL_A, FORKLIFT_PISTON_CHANNEL_B);
 	secondTierPiston	= new DoubleSolenoid(SECOND_TIER_PISTON_CHANNEL_A, SECOND_TIER_PISTON_CHANNEL_B);
@@ -31,7 +31,7 @@ HematologistManipulator::HematologistManipulator()
 	forkliftOpen = false;
 }
 
-HematologistManipulator::~HematologistManipulator()
+Manipulator::~Manipulator()
 {
 	delete forkliftPiston;
 	delete secondTierPiston;
@@ -79,7 +79,7 @@ HematologistManipulator::~HematologistManipulator()
 	We found out which does what by experimentation
 */
 
-void HematologistManipulator::openForklift(bool open)
+void Manipulator::openForklift(bool open)
 {
 	if(open){
 		forkliftPiston->Set(DoubleSolenoid::kReverse);
@@ -87,7 +87,7 @@ void HematologistManipulator::openForklift(bool open)
 	}
 }
 
-void HematologistManipulator::closeForklift(bool close)
+void Manipulator::closeForklift(bool close)
 {
 	if (close){
 		forkliftPiston->Set(DoubleSolenoid::kForward);
@@ -95,25 +95,25 @@ void HematologistManipulator::closeForklift(bool close)
 	}
 }
 
-void HematologistManipulator::openSecondTier(bool open)
+void Manipulator::openSecondTier(bool open)
 {
 	if (open)
 		secondTierPiston->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::closeSecondTier(bool close)
+void Manipulator::closeSecondTier(bool close)
 {
 	if (close)
 		secondTierPiston->Set(DoubleSolenoid::kReverse);
 }
 
-void HematologistManipulator::openBinHugger(bool open)
+void Manipulator::openBinHugger(bool open)
 {
 	if (open)
 		binHuggerPiston->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::closeBinHugger(bool close)
+void Manipulator::closeBinHugger(bool close)
 {
 	if (close)
 		binHuggerPiston->Set(DoubleSolenoid::kReverse);
@@ -127,7 +127,7 @@ one must be turned off
 I'm fairly certain that the relays we used are Normally Open relays but you might want to check back with electronics about that. 
 If relays still confuse you, talk to them.
 */
-void HematologistManipulator::openFlaps(bool open)
+void Manipulator::openFlaps(bool open)
 {
 	if (open)
 	{
@@ -136,7 +136,7 @@ void HematologistManipulator::openFlaps(bool open)
 	}
 }
 
-void HematologistManipulator::closeFlaps(bool close)
+void Manipulator::closeFlaps(bool close)
 {
 	if (close)
 	{
@@ -145,19 +145,19 @@ void HematologistManipulator::closeFlaps(bool close)
 	}
 }
 
-void HematologistManipulator::extendLongArm(bool extend)
+void Manipulator::extendLongArm(bool extend)
 {
 	if (extend)
 		longArmPiston->Set(DoubleSolenoid::kForward);
 }
 
-void HematologistManipulator::retractLongArm(bool retract)
+void Manipulator::retractLongArm(bool retract)
 {
 	if (retract)
 		longArmPiston->Set(DoubleSolenoid::kReverse);
 }
 
-void HematologistManipulator::moveLift(float input)
+void Manipulator::moveLift(float input)
 {
 	//different deadzone used here b/c drivers want different deadzone values
 	if (topLimitSwitch->isPressed())
@@ -210,7 +210,7 @@ you can still give them instructions on what they can and cannot do
 just make sure the instructions are easy to follow
 */
 //the input should be the value of the liftJoystick
-void HematologistManipulator::autoSequence(float input)
+void Manipulator::autoSequence(float input)
 {
 	if(sequenceStep == 0)
 	{
@@ -247,7 +247,7 @@ void HematologistManipulator::autoSequence(float input)
 /*
 	the input should be the joystick->GetY() and the startSequence a ->GetRawButton()
 */
-void HematologistManipulator::controlLift(float input, bool startSequence)
+void Manipulator::controlLift(float input, bool startSequence)
 {
 	moveLift(input);
 #if 0
@@ -267,12 +267,12 @@ void HematologistManipulator::controlLift(float input, bool startSequence)
 #endif
 }
 
-void HematologistManipulator::resetEncoder()
+void Manipulator::resetEncoder()
 {
 	liftEncoder->Reset();
 }
 
-float HematologistManipulator::getEncoderValue()
+float Manipulator::getEncoderValue()
 {
 	return liftEncoder->Get();
 }
@@ -280,7 +280,7 @@ float HematologistManipulator::getEncoderValue()
 /*
 	the intake should be ->GetRawButton()
 */
-void HematologistManipulator::intakeWithRoller(bool intake)
+void Manipulator::intakeWithRoller(bool intake)
 {
 	if (intake)
 	{
@@ -299,24 +299,24 @@ these functions do not affect the fact that the compressor will turn off wheneve
 if psi = 120 and you turn on the compressor, nothing will happen
 however, if you turn it off and the psi < 120, the compressor will not automatically turn on as it would if it was on
 */
-void HematologistManipulator::turnOnCompressor(bool turnOn)
+void Manipulator::turnOnCompressor(bool turnOn)
 {
 	if (turnOn)
 		compressor->Start();
 }
 
-void HematologistManipulator::turnOffCompressor(bool turnOff)
+void Manipulator::turnOffCompressor(bool turnOff)
 {
 	if (turnOff)
 		compressor->Stop();
 }
 
-HematologistLimitSwitch* HematologistManipulator::getTopLimitSwitch()
+HematologistLimitSwitch* Manipulator::getTopLimitSwitch()
 {
 	return topLimitSwitch;
 }
 
-HematologistLimitSwitch* HematologistManipulator::getBottomLimitSwitch()
+HematologistLimitSwitch* Manipulator::getBottomLimitSwitch()
 {
 	return bottomLimitSwitch;
 }
@@ -325,7 +325,7 @@ HematologistLimitSwitch* HematologistManipulator::getBottomLimitSwitch()
 intended to help the driver know when he had moved high enough with the tote to have passed the second tier
 but it was never put in and was never used so...
 */
-bool HematologistManipulator::highEnough()
+bool Manipulator::highEnough()
 {
 	if (getEncoderValue() > 3000 - LIFT_DEADZONE && getEncoderValue() < 3100 + LIFT_DEADZONE)
 	{

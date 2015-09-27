@@ -1,19 +1,19 @@
-#ifndef HEMATOLOGIST_AUTONOMOUS_H
-#define HEMATOLOGIST_AUTONOMOUS_H
+#ifndef AUTONOMOUS_H
+#define AUTONOMOUS_H
 
 #include "../HematologistMacros.h"
 #include "../HematologistOperatorInterface.h"
-#include "../Drive/HematologistDrive.h"
-#include "../Manipulator/HematologistManipulator.h"
+#include "../Drive/Drive.h"
+#include "../Manipulator/Manipulator.h"
 
-class HematologistAutonomous
+class Autonomous
 {
 public:
 	//Send in these Hematologist Objects rather than creating new ones
 	//If you create them again, you'll create a memory conflict
 	//You need these to control the robot
-	HematologistAutonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
-	~HematologistAutonomous();
+	Autonomous(HematologistOperatorInterface* oi, HematologistManipulator* manip, HematologistDrive* drive);
+	~Autonomous();
 
 	//Send in true to strafe right, false to strafe left	
 	void strafe(bool right);

@@ -1,13 +1,13 @@
-#ifndef HEMATOLOGIST_DRIVE_H
-#define HEMATOLOGIST_DRIVE_H
+#ifndef DRIVE_H
+#define DRIVE_H
 
 #include "../HematologistMacros.h"
 
-class HematologistDrive
+class Drive
 {
 public:
-	HematologistDrive();
-	~HematologistDrive();
+	Drive();
+	~Drive();
 
 	void setForward(float forward);    //sets class varaibles of forward
 	void setTurn(float turn);          //sets class varaibles of turn 

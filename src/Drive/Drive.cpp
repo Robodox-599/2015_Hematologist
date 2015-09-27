@@ -1,6 +1,6 @@
-#include "HematologistDrive.h"
+#include "Drive.h"
 
-HematologistDrive::HematologistDrive()
+Drive::Drive()
 {
 	frontLeftMotor = new Talon(FRONT_LEFT_MOTOR_CHANNEL);
 	frontRightMotor = new Talon(FRONT_RIGHT_MOTOR_CHANNEL);
@@ -21,7 +21,7 @@ HematologistDrive::HematologistDrive()
 	strafe = 0;
 }
 
-HematologistDrive::~HematologistDrive()
+Drive::~Drive()
 {
 	delete frontLeftMotor;
 	delete frontRightMotor;
@@ -43,7 +43,7 @@ HematologistDrive::~HematologistDrive()
 	backRightEncoder = NULL;
 }
 
-void HematologistDrive::setForward(float forward)
+void Drive::setForward(float forward)
 {
 	if (forward > DEADZONE || forward < -DEADZONE)
 	{
@@ -54,7 +54,7 @@ void HematologistDrive::setForward(float forward)
 	}
 }
 
-void HematologistDrive::setTurn(float turn)
+void Drive::setTurn(float turn)
 {
 	if (turn > DEADZONE || turn < -DEADZONE)
 	{
@@ -65,7 +65,7 @@ void HematologistDrive::setTurn(float turn)
 	}
 }
 
-void HematologistDrive::setStrafe(float strafe)
+void Drive::setStrafe(float strafe)
 {
 	if (strafe > DEADZONE || strafe < -DEADZONE)
 	{
@@ -77,17 +77,17 @@ void HematologistDrive::setStrafe(float strafe)
 }
 
 
-float HematologistDrive::getForward()
+float Drive::getForward()
 {
 	return forward;
 }
 
-float HematologistDrive::getTurn()
+float Drive::getTurn()
 {
 	return turn;
 }
 
-float HematologistDrive::getStrafe()
+float Drive::getStrafe()
 {
 	return strafe;
 }
@@ -108,7 +108,7 @@ y = m(x - x1) + 0
 y = (1/(1-DEADZONE)) * (input - DEADZONE)
 
 */
-float HematologistDrive::linearizeDrive(float input)
+float Drive::linearizeDrive(float input)
 {
 	if (input > DEADZONE)
 		return (1/(1-DEADZONE)) * (input - DEADZONE);     //the derivation is above
@@ -119,7 +119,7 @@ float HematologistDrive::linearizeDrive(float input)
 			return 0;                                       //if inside DEADZONE, motors shouldn't move
 }
 
-void HematologistDrive::drive(float forward, float turn, float strafe)
+void Drive::drive(float forward, float turn, float strafe)
 {
 	setForward(forward);
 	setTurn(turn *.75);	//turning made stack fall. This ensures that the robot moves slower to prevent that
@@ -141,34 +141,34 @@ void HematologistDrive::drive(float forward, float turn, float strafe)
   //ex: to reverse frontLeft, you get that frontLeft = -(forward + turn + strafe)
 }
 
-float HematologistDrive::getForwardAverage()
+float Drive::getForwardAverage()
 {
 	float average = (frontLeftEncoder->Get() + frontRightEncoder->Get() + backLeftEncoder->Get() + backRightEncoder->Get())/4.0;
 	return average;
 }
 
-float HematologistDrive::getTurnAverage()
+float Drive::getTurnAverage()
 {
   //make the right encoders negative so that when you turn right, the encoders give a positive value
 	float average =(frontLeftEncoder->Get() - frontRightEncoder->Get() + backLeftEncoder->Get() - backRightEncoder->Get())/4.0; 
 	return average;
 }
 
-float HematologistDrive::getStrafeAverage()
+float Drive::getStrafeAverage()
 {
   //reverse the frontRight and the backLeft so that when you strafe right the encoders give a positive value
 	float average = (frontLeftEncoder->Get() - frontRightEncoder->Get() - backLeftEncoder->Get() + backRightEncoder->Get())/4.0;
 	return average;
 }
 
-void HematologistDrive::resetEncoders()
+void Drive::resetEncoders()
 {
 	frontLeftEncoder->Reset();   //resets the encoders
 	frontRightEncoder->Reset();  //resets the encoders
 	backLeftEncoder->Reset();    //resets the encoders
 	backRightEncoder->Reset();   //resets the encoders
 }
-void HematologistDrive::resetEncoders(bool reset)
+void Drive::resetEncoders(bool reset)
 {
   //button put in, if buttton pressed, then encoders reset
 	if(reset)
