@@ -16,7 +16,8 @@ public:
 	~Autonomous();
 
 	//Send in true to strafe right, false to strafe left	
-	void strafe(bool right);
+	void strafeRight();
+	void strafeLeft();
 
 	//Moves back, flips long arm back, flips flaps open, moves forward with two bins
 	void longArmAuto();
@@ -27,11 +28,8 @@ private:
 	Manipulator* manip;
 	Drive* drive;
 
-	//These two variables are used to keep track of where in the sequence the robot is in
-	int driveStep;	
-	int manipStep;
-
-	
+	int autonDriveStep;	
+	int autonManipStep;
 };
 
 #endif

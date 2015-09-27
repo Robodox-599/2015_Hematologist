@@ -5,9 +5,9 @@ Autonomous::Autonomous(HematologistOperatorInterface* oi, Manipulator* manip, Dr
 	this->oi = oi;
 	this->manip = manip;
 	this->drive = drive;
-	//You have to initialize these steps to make the sequence work
-	driveStep = 0;
-	manipStep = 0;
+
+	autonDriveStep = 0;
+	autonManipStep = 0;
 }
 
 Autonomous::~Autonomous()
@@ -43,27 +43,20 @@ void Autonomous::strafe(bool right)
 //set up the lift slightly above the ground and face away from the step and toward the driver stations
 void Autonomous::longArmAuto()
 {
-
-	//driveStep will deal with drive stuff
-	//manipStep will deal with manipulator stuff
-
-	if (driveStep == 0)
-	{
+	if (autonDriveStep == 0)
 		drive->resetEncoders();
-	}
-	if (manipStep == 0)
+	if (autonManipStep == 0)
 	{
 		manip->resetEncoder();
-		manipStep++;
-		//close all pistons b/c necessary to drive over the scoring platform
+		autonManipStep++;
 		manip->closeForklift(true);
 		manip->closeSecondTier(true);
-		// manip->openFlaps(true);
-		driveStep++;
+		manip->openFlaps(true);
+		autonDriveStep++;
 		Wait(3);	
 	}
 	/*took this part out as the lift would instead be position high enough so we don't have to wait for it to lift
-	if (manipStep == 1)
+	if (autonManipStep == 1)
 	{
 		if (manip->getEncoderValue() < 1000 + ENCODER_DEADZONE)
 		{
@@ -75,7 +68,7 @@ void Autonomous::longArmAuto()
 	}*/
 
 	//drives backward using encoder to check if he's far enought, all the way to the step
-	if (driveStep == 1)
+	if (autonDriveStep == 1)
 	{
 		if (drive->getForwardAverage() > -550 - ENCODER_DEADZONE)
 		{
@@ -83,32 +76,33 @@ void Autonomous::longArmAuto()
 		}else
 		{
 			drive->drive(0, 0, 0);
-			manipStep++;	//once at the step, robot doesn't move until after manipulator shit has gone down so drive++ not done
+			autonManipStep++;	//once at the step, robot doesn't move until after manipulator shit has gone down so drive++ not done
 		}
 	}
-	if (manipStep == 2)
+	
+	if (autonManipStep == 2)
 	{
 		manip->extendLongArm(true);	
-		Wait(3);	//b/c long arm takes forever
+		Wait(3);
 		manip->openFlaps(true);
 		drive->resetEncoders();	//reset encoders so that some of the slack doesn't affect how far the robot would move
-		driveStep++;
-		manipStep++;
+		autonDriveStep++;
+		autonManipStep++;
 	}
-	//drives forward
-	if (driveStep == 2)
+
+	if (autonDriveStep == 2)
 	{
 		if (drive->getForwardAverage() < 1200 + ENCODER_DEADZONE)
 			drive->drive(.5, 0, 0);
 		else
 		{
 			drive->drive(0, 0, 0);
-			manipStep++;
+			autonManipStep++;
 		}
 	}
-	//close all of the log arm stuff
-	if (manipStep == 4)	//manipStep not checking 3 b/c in manipStep==2, we increased manipStep so that we don't 
-											//repeat that if statement but we don't want to do the next step for manip until after driveStep was done
+
+	if (autonManipStep == 4)	//autonManipStep not checking 3 b/c in autonManipStep==2, we increased autonManipStep so that we don't 
+											//repeat that if statement but we don't want to do the next step for manip until after autonDriveStep was done
 	{
 		manip->retractLongArm(true);	//do long arm first b/c if you try the flaps first you'll knock something over
 		manip->closeFlaps(true);
