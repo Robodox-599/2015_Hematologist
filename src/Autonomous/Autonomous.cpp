@@ -39,7 +39,7 @@ void Autonomous::strafeLeft()
 //set up the lift slightly above the ground and face away from the step and toward the driver stations
 void Autonomous::longArmAuto()
 {
-	if (autonDriveStep == 0)
+	//if (autonDriveStep == 0)
 		drive->resetEncoders();
 	if (autonManipStep == 0)
 	{
@@ -48,38 +48,27 @@ void Autonomous::longArmAuto()
 		manip->closeForklift(true);
 		manip->closeSecondTier(true);
 		manip->openFlaps(true);
-		autonDriveStep++;
-		Wait(3);	
+		Wait(1.5);
+		autonDriveStep++;	
 	}
-	/*took this part out as the lift would instead be position high enough so we don't have to wait for it to lift
-	if (autonManipStep == 1)
-	{
-		if (manip->getEncoderValue() < 1000 + ENCODER_DEADZONE)
-		{
-			//manip->moveLift(.4);
-		}else
-		{
-			//manip->moveLift(0);
-		}
-	}*/
 
-	//drives backward using encoder to check if he's far enought, all the way to the step
 	if (autonDriveStep == 1)
 	{
+		drive->resetEncoders();
 		if (drive->getForwardAverage() > -550 - ENCODER_DEADZONE)
 		{
 			drive->drive(-.7, 0, 0);
 		}else
 		{
 			drive->drive(0, 0, 0);
-			autonManipStep++;	//once at the step, robot doesn't move until after manipulator shit has gone down so drive++ not done
+			autonManipStep++;
 		}
 	}
 	
 	if (autonManipStep == 2)
 	{
 		manip->extendLongArm(true);	
-		Wait(3);
+		Wait(1);
 		manip->openFlaps(true);
 		drive->resetEncoders();	//reset encoders so that some of the slack doesn't affect how far the robot would move
 		autonDriveStep++;

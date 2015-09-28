@@ -94,7 +94,7 @@
 #define COMPRESSOR_CHANNEL							(0)	
 #define TOP_LIMIT_SWITCH_CHANNEL					(0)
 #define BOTTOM_LIMIT_SWITCH_CHANNEL					(3)
-#define DEADZONE									(.5)
+#define DEADZONE									(.25)
 #define LIFT_DEADZONE								(.1)
 #define ENCODER_DEADZONE							(20)
 
